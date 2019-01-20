@@ -1,0 +1,138 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}{{question.subject}} {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+    },
+  items: [
+    {
+      text: 'Send view or decision',
+      href: '/app/cases/'+_case.id+'/pip/decision'
+    },
+    {
+      classes: 'hmcts-button--secondary',
+      text: 'List for hearing',
+      href: '/app/cases/'+_case.id+'/pip/list-for-hearing'
+    }
+  ]
+}) }}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: './'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-heading-xl">{{question.subject}}</h1>
+
+          <div class="jui-question jui-prose-scope">
+
+            <p class="jui-question__meta">From <span class="jui-question__author">{{question.author}}</span>, added on <time datetime="{{question.dateAdded | date('YYYY-MM-DDTHH:mm')}}">{{question.dateAdded | date('D MMMM YYYY')}}</time></p>
+
+            {{question.body | safe}}
+
+          </div>
+
+          {% if isDraftQuestion %}
+
+            <div class="jui-button-actions  govuk-!-margin-top-7">
+
+              <div class="jui-button-actions__item  jui-button-actions__item--inline">
+                {{ govukButton({
+                  text: 'Edit question',
+                  href: editQuestionLink.href
+                }) }}
+              </div>
+
+              <div class="jui-button-actions__item  jui-button-actions__item--inline">
+                {{ govukButton({
+                  href: deleteQuestionLink.href,
+                  text: 'Delete question',
+                  classes: 'jui-button--secondary'
+                }) }}
+              </div>
+
+            </div>
+
+          {% endif %}
+
+          {% if response %}
+
+            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+            <h2 class="govuk-heading-m">Response</h2>
+
+            <div class="jui-response jui-prose-scope">
+
+              <p class="jui-question__meta">From <span class="jui-question__author">{{response.author}}</span>, received on <time datetime="{{response.date | date('YYYY-MM-DDTHH:mm')}}">{{response.date | date('D MMMM YYYY')}}</time></p>
+
+              {{response.body | safe}}
+
+            </div>
+
+            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+            <form method="post">
+
+              {% call govukFieldset({
+                legend: {
+                  text: 'Add follow up question to round 2',
+                  classes: 'govuk-fieldset__legend--m',
+                  isPageHeading: false
+                }
+              }) %}
+
+              {{ govukInput({
+                label: {
+                  text: 'Subject'
+                },
+                id: 'subject',
+                name: 'subject',
+                value: question.subject
+              }) }}
+
+              {{ govukTextarea({
+                classes: 'js-editor',
+                label: {
+                  text: 'Question'
+                },
+                id: 'question',
+                name: 'question'
+              }) }}
+
+              {{ govukButton({
+                text: 'Add question'
+              }) }}
+
+              {% endcall %}
+
+            </form>
+
+          {% endif %}
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}
+
+{% block page_scripts %}
+  <script>
+    new Editor($('.js-editor'))
+  </script>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Do you want to approve the draft consent order? {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+  {{ hmctsIdentityBar({
+    title: {
+      html: casebar.parties
+    }
+  }) }}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          {% if errorSummary.items.length %}
+            {{ govukErrorSummary({
+              titleText: 'There is a problem',
+              errorList: errorSummary.items
+            }) }}
+          {% endif %}
+
+          <form method="post">
+
+            {{ govukRadios({
+              classes: 'govuk-radios--inline',
+              idPrefix: 'decision',
+              name: 'decision',
+              errorMessage: inlineErrors['decision'],
+              fieldset: {
+                legend: {
+                  classes: 'govuk-fieldset__legend--xl',
+                  text: 'Do you want to approve the draft consent order?',
+                  isPageHeading: true
+                }
+              },
+              items: [
+                {
+                  value: 'Consent order approved',
+                  html: 'Yes<span class="govuk-visually-hidden">, consent order approved</span>',
+                  checked: checked('decision', 'Consent order approved') == 'checked'
+                },
+                {
+                  value: 'Consent order not approved',
+                  html: 'No<span class="govuk-visually-hidden">, consent order not approved</span>',
+                  checked: checked('decision', 'Consent order not approved') == 'checked'
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: 'Continue'
+            }) }}
+
+          </form>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}

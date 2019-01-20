@@ -1,0 +1,59 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Decision submitted {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+  <div class="jui-width-container">
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          {{ govukPanel({
+            headingLevel: 1,
+            titleText: 'Decision submitted',
+            html: _case.id
+          }) }}
+
+          <h2 class="govuk-heading-m">What happens next</h2>
+
+          {% if data['satisfied'] === 'Yes' and data['costsOrderDecision'] == 'Respondent to pay petitioner’s costs' %}
+
+            <p>Content to be agreed.</p>
+
+          {% elif data['satisfied'] === 'Yes' and data['costsOrderDecision'] == 'Other' %}
+
+            <p>Content to be agreed.</p>
+
+          {% elif data['satisfied'] === 'Yes' and data['costsOrderDecision'] == 'No order for costs' %}
+
+            <p>Content to be agreed.</p>
+
+          {% elif data['satisfied'] === 'No' %}
+
+            <p>Content to be agreed.</p>
+
+          {% endif %}
+
+          <!-- <form method="post">
+            {{ govukButton({
+              classes: 'govuk-!-margin-bottom-4 govuk-!-margin-top-4',
+              text: 'Continue to next case'
+            }) }}
+          </form> -->
+
+          <p><a href="/app/dashboard">Go to your cases</a></p>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+
+{% endblock %}

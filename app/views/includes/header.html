@@ -1,0 +1,74 @@
+{% set toggleSearchHtml %}
+  <div class="hmcts-search-toggle">
+    <div class="hmcts-search-toggle__toggle"></div>
+    <div class="hmcts-search-toggle__search">
+      {{ hmctsSearch({
+        action: '/app/search-results',
+        classes: 'hmcts-search--ondark hmcts-search--toggle hmcts-hidden',
+        input: {
+          id: 'search2',
+          name: 'search2'
+        },
+        label: {
+          classes: 'govuk-visually-hidden',
+          text: 'Search'
+        },
+        hint: {
+          text: 'Enter account number or shortname.'
+        },
+        button: {
+          text: 'Search'
+        }
+      }) }}
+    </div>
+  </div>
+{% endset %}
+
+
+{% if pageID == "Signin" %}
+
+  {{ hmctsGlobalHeader({
+
+    service: {
+      name: serviceName,
+      url: '/app/dashboard'
+    }
+
+  }) }}
+
+{% else %}
+  {{ hmctsGlobalHeader({
+
+    service: {
+      name: serviceName,
+      url: '/app/dashboard'
+    },
+
+    navigation: {
+      label: 'Account navigation',
+      items: [{
+        text: 'Sign out',
+        href: '/sign-out'
+      }]
+    }
+
+  }) }}
+
+  {{ hmctsPrimaryNavigation({
+    label: 'Primary navigation',
+    classes: 'govuk-!-margin-bottom-0',
+    items: [{
+      text: 'Your accounts',
+      href: '/app/dashboard',
+      active: pageID == 'your-accounts'
+    },
+    {
+      text: 'Your tasks',
+      href: '/app/tasks',
+      active: pageID == 'your-tasks'
+    }
+    ],
+    searchHtml: toggleSearchHtml
+  }) }}
+{% endif %}
+

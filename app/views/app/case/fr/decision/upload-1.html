@@ -1,0 +1,80 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Do you want to upload an amended consent order? {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          {% if errors %}
+            {{ govukErrorSummary({
+              titleText: "There is a problem",
+              errorList: errors
+            }) }}
+          {% endif %}
+
+          <form method="post" action="/app/cases/{{_case.id}}/fr/upload-1">
+
+            {# {% set uploadFieldHtml %}
+              {{ govukFileUpload({
+                id: 'file-upload-1',
+                name: 'file-upload-1',
+                label: {
+                  text: 'Upload amended consent order',
+                  classes: 'govuk-label--m'
+                },
+                hint: {
+                  html: '<a href="/">Download latest version</a>'
+                }
+              }) }}
+            {% endset %} #}
+
+            {{ govukRadios({
+              idPrefix: 'uploadnew',
+              name: 'uploadnew',
+              classes: 'govuk-radios--inline',
+              fieldset: {
+                legend: {
+                  text: 'Do you want to upload an amended consent order?',
+                  isPageHeading: true,
+                  classes: 'govuk-fieldset__legend--l'
+                }
+              },
+              items: [
+                {
+                  value: 'Yes',
+                  html: 'Yes'
+                },
+                {
+                  value: 'No',
+                  html: 'No'
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: 'Continue'
+            }) }}
+
+          </form>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}

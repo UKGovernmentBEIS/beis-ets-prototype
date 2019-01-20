@@ -1,0 +1,38 @@
+{% extends "layouts/admin/base-account-question.html" %}
+{% set selectedInstallation = (data.newLinkedRepresentative.installation) or '' %}
+
+<!-- Adds a class to increase vertical spacing for pages without a back button -->
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
+{% block pageTitle %}
+  Confirmation
+{% endblock %}
+
+{% block content %}
+      {% if data.newLinkedRepresentative.existingEtsUser == 'no' %}
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+            Ask the user to create an account first.
+          </strong>
+        </div>
+        <p>Once they have created their user account, please complete these steps again to add them as an authorised representative.</p>
+        {{ govukButton({
+          text: "Back to the home page",
+          href: '/account/' + installationID
+        }) }}
+      {% else %}
+        <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-9">
+        <h1 class="govuk-panel__title">Task completed</h1>
+        <div class="govuk-panel__body">
+          You have successfully requested for a new authorised representative to be added.
+        </div>
+      </div>
+
+      {{ govukInsetText({
+        html: "Visit account page to <a class='govuk-link' href='/account/" + installationID +"'>manage representatives</a>."
+      }) }}
+      {% endif %}
+
+{% endblock %}

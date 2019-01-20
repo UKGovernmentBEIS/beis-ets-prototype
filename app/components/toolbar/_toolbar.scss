@@ -1,0 +1,253 @@
+.jui-toolbar {
+  @include govuk-clearfix;
+  background-color: govuk-colour("white");
+  border-bottom: 1px solid #DDDDDD;
+  border-top: 1px solid #DDDDDD;
+  position: sticky;
+  position: -webkit-sticky;
+  top: -1px;
+  width: 100%;
+  z-index: 200;
+
+  &::after {
+    content: "";
+    display: block;
+    height: 1px;
+    left: 50%;
+    margin-top: 0;
+    margin-left: -50%;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    -webkit-box-shadow: 0px 0px 3px 2px #BEBEBE;
+      -moz-box-shadow: 0px 0px 3px 2px #BEBEBE;
+            box-shadow: 0px 0px 3px 2px #BEBEBE;
+  }
+
+  &::before {
+    content: "";
+    background-color: govuk-colour("white");
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+  }
+
+}
+
+.jui-toolbar__container {
+  @include govuk-clearfix;
+  @include jui-width-container;
+  border-left:1px solid govuk-colour("grey-3");
+  border-right: 1px solid govuk-colour("grey-3");
+  height: 100%;
+  position: relative;
+  left: 0; top: 0;
+  z-index: 1;
+
+}
+
+.jui-toolbar__section1 {
+  float: left;
+}
+
+.jui-toolbar__section2 {
+  float: right;
+}
+
+.jui-toolbar__button {
+  @include govuk-font($size: 19, $line-height: 1);
+  background-color: govuk-colour("white");
+  border: 0 none;
+  color: govuk-colour("black");
+  cursor: pointer;
+
+
+
+  padding-top: 16px;
+  padding-bottom: 15px;
+
+  float: left;
+  margin: 0;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: relative;
+
+  &::after {
+    background-color: #DEE0E2;
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1px;
+  }
+
+  // Fix unwanted button padding in Firefox
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+
+  &:focus {
+    outline: 3px solid $govuk-focus-colour;
+    outline-offset: -1px;
+    position: relative;
+    z-index: 2;
+  }
+
+
+  &:focus::after {
+    content: none;
+  }
+
+
+  &:hover {
+    background-color: govuk-colour("grey-4");
+  }
+
+
+  &[aria-pressed=true] {
+    background-color: govuk-colour("grey-4");
+    cursor: default;
+  }
+
+
+}
+
+
+.jui-toolbar__section2 {
+
+  .jui-toolbar__button {
+    &::before {
+      background-color: #DEE0E2;
+      content: "";
+      display: block;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1px;
+    }
+  }
+
+  .jui-toolbar__button {
+    &::after {
+      width: 0;
+    }
+  }
+}
+
+
+.jui-toolbar__menu {
+  float: left;
+  position: relative;
+}
+
+.jui-toolbar__menu-button {
+  @include govuk-font($size: 19, $line-height: 1);
+  background-color: govuk-colour("white");
+  border: 0 none;
+  color: govuk-colour("black");
+  cursor: pointer;
+  padding-top: 16px;
+  padding-bottom: 15px;
+  margin: 0;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: relative;
+
+  &::after {
+    background-color: #DEE0E2;
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1px;
+  }
+
+  // Fix unwanted button padding in Firefox
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+
+  &:focus {
+    outline: 3px solid $govuk-focus-colour;
+    outline-offset: -1px;
+    position: relative;
+    z-index: 2;
+  }
+
+
+  &:focus::after {
+    content: none;
+  }
+
+
+  &:hover {
+    background-color: govuk-colour("grey-4");
+  }
+
+  &[aria-expanded=true] {
+    background-color: govuk-colour("grey-4");
+    cursor: default;
+  }
+}
+
+.jui-toolbar__menu-content {
+  position: absolute;
+  width: 300px;
+  background: white;
+  border: 1px solid #DDDDDD;
+  left: -1px;
+}
+
+
+
+.jui-toolbar__button--items {
+  background-image: url(#{$jui-assets-path}icon-casefile-items.svg);
+  background-repeat: no-repeat;
+  background-size: 18px 14px;
+  background-position: 15px 50%;
+  padding-left: 45px;
+}
+
+.jui-toolbar__menu-button--view {
+  background-image: url(#{$jui-assets-path}icon-casefile-view.svg);
+  background-repeat: no-repeat;
+  background-size: 19px 13px;
+  background-position: 15px 50%;
+  padding-left: 45px;
+}
+
+.jui-toolbar__menu-item {
+  @include govuk-font($size: 19, $line-height: 1);
+  background-color: govuk-colour("white");
+  border: 0 none;
+  color: govuk-colour("black");
+  cursor: pointer;
+  padding-top: 16px;
+  padding-bottom: 15px;
+  margin: 0;
+  padding-left: 45px;
+  padding-right: 15px;
+  border-bottom: 1px solid govuk-colour('grey-3');
+  width: 100%;
+  text-align: left;
+
+  &:hover {
+    background-color: govuk-colour('grey-4');
+  }
+
+  &[aria-pressed=true] {
+    background-image: url(#{$jui-assets-path}icon-casefile-tick.svg);
+    background-repeat: no-repeat;
+    background-size: 17px 13px;
+    background-position: 15px 50%;
+    background-color: govuk-colour('grey-4');
+  }
+}

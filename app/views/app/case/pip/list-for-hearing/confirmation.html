@@ -1,0 +1,32 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Hearing requested {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+  <div class="jui-width-container">
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+          <div class="govuk-panel govuk-panel--confirmation">
+            <h2 class="govuk-panel__title">Hearing requested</h2>
+            <div class="govuk-panel__body">
+              {{_case.id}}
+            </div>
+          </div>
+
+          <h2 class="govuk-heading-m">What happens next</h2>
+          <p>Your request will be sent to a listings officer who will schedule the hearing.</p>
+          <p><a href="/app/dashboard">Go to your dashboard</a></p>
+
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+{% endblock %}

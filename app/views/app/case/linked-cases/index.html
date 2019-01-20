@@ -1,0 +1,58 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Linked cases {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+    },
+  items: [
+    {
+      text: 'Send view or decision',
+      href: '/app/cases/'+_case.id+'/pip/decision'
+    },
+    {
+      classes: 'hmcts-button--secondary',
+      text: 'List for hearing',
+      href: '/app/cases/'+_case.id+'/pip/list-for-hearing'
+    }
+  ]
+}) }}
+
+	<div class="jui-width-container">
+
+    <main class="govuk-main-wrapper" role="main">
+
+      {{ hmctsSubNavigation({
+        items: caseNavItems
+      }) }}
+
+      {% if success %}
+        {{ hmctsBanner({
+          type: 'success',
+          text: success,
+          iconFallbackText: 'Success'
+        }) }}
+      {% endif %}
+
+      <h1 class="govuk-heading-xl">Linked cases</h1>
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          {% for case in linkedCases %}
+            <h2 class="govuk-heading-m">{{case.type}}</h2>
+            <p><a href="#">{{case.parties}} ({{case.id}} )</a></p>
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+{% endblock %}

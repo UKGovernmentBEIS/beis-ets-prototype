@@ -1,0 +1,77 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Send a copy of the draft consent order to the parties {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+  {{ hmctsIdentityBar({
+    title: {
+      html: casebar.parties
+    }
+  }) }}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          {% if errors %}
+            {{ govukErrorSummary({
+              titleText: 'There is a problem',
+              errorList: errors
+            }) }}
+          {% endif %}
+
+          <form method="post">
+
+            {{ govukRadios({
+              classes: 'govuk-radios--inline',
+              idPrefix: 'copyconsentorder',
+              name: 'copyconsentorder',
+              fieldset: {
+                legend: {
+                  text: 'Send a copy of the draft consent order to the parties?',
+                  isPageHeading: true,
+                  classes: 'govuk-fieldset__legend--xl'
+                }
+              },
+              hint: {
+                html: 'You’ll be able to change any comments you’ve already made or add new ones. It will be sent as an attachment to the directions order.'
+              },
+              items: [
+                {
+                  html: 'Yes<span class="govuk-visually-hidden">, send a copy of the draft consent order with comments</span>',
+                  value: 'Yes',
+                  checked: (checked('copyconsentorder', 'Yes') == 'checked')
+                },
+                {
+                  html: 'No<span class="govuk-visually-hidden">, I don’t want to send a copy of the draft consent order with comments</span>',
+                  value: 'No',
+                  checked: (checked('copyconsentorder', 'No') == 'checked')
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: 'Continue'
+            }) }}
+
+          </form>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}

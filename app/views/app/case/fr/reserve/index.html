@@ -1,0 +1,65 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Reserve case {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+  {{ hmctsIdentityBar({
+    title: {
+      html: casebar.parties
+    }
+  }) }}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <form method="post" action="/app/cases/{{_case.id}}/fr/reserve/confirmation">
+
+            {{ govukRadios({
+              classes: 'govuk-radios--inline',
+              idPrefix: 'reserve',
+              name: 'reserve',
+              fieldset: {
+                legend: {
+                  classes: 'govuk-fieldset__legend--xl',
+                  text: 'Are you sure that you want to reserve the case to yourself?',
+                  isPageHeading: true
+                }
+              },
+              items: [
+                {
+                  value: 'yes',
+                  html: 'Yes<span class="govuk-visually-hidden">, consent order approved</span>'
+                },
+                {
+                  value: 'No',
+                  html: 'No<span class="govuk-visually-hidden">, consent order not approved</span>'
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: 'Continue'
+            }) }}
+
+          </form>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}

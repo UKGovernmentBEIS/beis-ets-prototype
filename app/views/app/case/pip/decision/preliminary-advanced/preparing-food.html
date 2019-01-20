@@ -1,0 +1,116 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Daily living: Preparing food {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+  }
+}) }}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-heading-xl">
+            <span class="govuk-caption-xl">Daily living</span>
+            Preparing food
+          </h1>
+
+          {% if errorSummary.items.length %}
+            {{ govukErrorSummary({
+              titleText: 'There is a problem',
+              errorList: errorSummary.items
+            }) }}
+          {% endif %}
+
+          <form method="post">
+
+            {{ govukRadios({
+              idPrefix: 'preparing-food',
+              name: 'preparing-food',
+              errorMessage: inlineErrors.preparing-food,
+              fieldset: {
+                legend: {
+                  text: 'Select your new score',
+                  classes: 'govuk-fieldset__legend--m'
+                }
+              },
+              items: [
+                {
+                  text: 'Can prepare and cook a simple meal unaided',
+                  hint: {
+                    text: '0 points'
+                  },
+                  value: 'Can prepare and cook a simple meal unaided',
+                  checked: checked('preparing-food', 'Can prepare and cook a simple meal unaided') == 'checked'
+                },
+                {
+                  text: 'Needs to use an aid or appliance to be able to either prepare or cook a simple meal',
+                  hint: {
+                    text: '2 points'
+                  },
+                  value: 'Needs to use an aid or appliance to be able to either prepare or cook a simple meal',
+                  checked: checked('preparing-food', 'Needs to use an aid or appliance to be able to either prepare or cook a simple meal') == 'checked'
+                },
+                {
+                  text: 'Cannot cook a simple meal using a conventional cooker but is able to do so using a microwave',
+                  hint: {
+                    text: '2 points'
+                  },
+                  value: 'Cannot cook a simple meal using a conventional cooker but is able to do so using a microwave',
+                  checked: checked('preparing-food', 'Cannot cook a simple meal using a conventional cooker but is able to do so using a microwave') == 'checked'
+                },
+                {
+                  text: 'Needs prompting to be able to either prepare or cook a simple meal',
+                  hint: {
+                    text: '2 points'
+                  },
+                  value: 'Needs prompting to be able to either prepare or cook a simple meal',
+                  checked: checked('preparing-food', 'Needs prompting to be able to either prepare or cook a simple meal') == 'checked'
+                },
+                {
+                  text: 'Needs supervision or assistance to either prepare or cook a simple meal',
+                  hint: {
+                    text: '4 points'
+                  },
+                  value: 'Needs supervision or assistance to either prepare or cook a simple meal',
+                  checked: checked('preparing-food', 'Needs supervision or assistance to either prepare or cook a simple meal') == 'checked'
+                },
+                {
+                  text: 'Cannot prepare and cook food',
+                  hint: {
+                    text: '8 points'
+                  },
+                  value: 'Cannot prepare and cook food',
+                  checked: checked('preparing-food', 'Cannot prepare and cook food') == 'checked'
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: 'Continue'
+            }) }}
+
+          </form>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}

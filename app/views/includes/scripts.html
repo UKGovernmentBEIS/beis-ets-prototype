@@ -1,8 +1,33 @@
 <!-- Javascript -->
 <script src="/public/javascripts/jquery-1.11.3.js"></script>
 <script src="/node_modules/govuk-frontend/all.js"></script>
+<script src="/node_modules/hmcts-frontend/all.js"></script>
 <script src="/public/javascripts/application.js"></script>
 
 {% if useAutoStoreData %}
   <script src="/public/javascripts/auto-store-data.js"></script>
 {% endif %}
+
+<script>
+  new HMCTSFrontend.SearchToggleButton({
+    toggleButton: {
+      container: $('.hmcts-search-toggle__toggle'),
+      text: 'Find account'
+    },
+    search: {
+      container: $('.hmcts-search')
+    }
+  });
+
+  if (document.querySelector('.hmcts-menu--actions')) {
+    new HMCTSFrontend.Menu({
+      container: $('.hmcts-menu--actions'),
+      mq: '(min-width: 200em)',
+      buttonText: 'More actions',
+      buttonClasses: 'hmcts-button--secondary hmcts-menu__toggle-button--secondary',
+      menuClasses: 'hmcts-menu__wrapper--right'
+    });
+  }
+  
+
+</script>

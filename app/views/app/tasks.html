@@ -1,0 +1,140 @@
+{% extends "layouts/admin/base.html" %}
+
+{% set pageID = "your-tasks" %}
+
+{% block pageTitle %}Your tasks {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+
+<div class="jui-width-container">
+
+  <main class="govuk-main-wrapper" role="main">
+  
+  <h1 class="govuk-heading-l">Your tasks</h1>
+
+    {% if success %}
+      {{ hmctsBanner({
+          type: 'success',
+          text: success,
+          iconFallbackText: 'Success'
+        }) }}
+    {% endif %}
+
+      {% for acct in data['installations'] %}
+        <div class="action-container">
+            <div class="heading action-grid-cell">
+                <div class="title">
+                    Transfer
+                </div>
+                <div class="started">
+                    <span class="label">
+                        Started:
+                    </span>
+                    <span class="datetime">
+                        25 June 13:15pm
+                    </span>
+                </div>
+                <div class="reference">
+                    <span class="label">
+                        Reference:
+                    </span>
+                    <span class="number">
+                        QR-454-665-34
+                    </span>
+                </div>
+            </div>
+            <div class="amount action-grid-cell">
+                <div class="value">
+                    234.54
+                </div>
+                <div class="unit">
+                    General Allowance
+                </div>
+            </div>
+            <div class="proposer action-grid-cell">
+                <div class="label">
+                    Proposed by:
+                </div>
+                <div class="name">
+                    Cynthia Santilli
+                </div>
+            </div>
+            <div class="from action-grid-cell">
+                <div class="label">
+                    From:
+                </div>
+                <div class="account-number">
+                    <a href="/account/{{ acct.permitId }}/">EU-100-73432-0-76</a>
+                </div>
+                <div class="account-name">
+                    HGH Normal Trading acct
+                </div>
+            </div>
+            <div class="to action-grid-cell">
+                <div class="label">
+                    To:
+                </div>
+                <div class="account-number">
+                    <a href="/account/{{ acct.permitId }}/">EU-100-73432-0-76</a>
+                </div>
+                <div class="account-name">
+                    QRN Europe 5
+                </div>
+            </div>
+            <div class="notes action-grid-cell">
+                <div class="label">
+                    Notes
+                </div>
+                <div class="text">
+                    "Closes contract QQRN-3245 previously agreed on 25-JUN. Speak to Richard Curtis for further details"
+                </div>
+            </div>
+            <div class="action-buttons action-grid-cell">
+                <div class="accept">
+        <a href="#" role="button" draggable="false" class="govuk-button">Approve</a>
+                </div>
+                <div class="reject">
+        <a href="#" role="button" draggable="false" class="govuk-button hmcts-button--secondary">Reject</a>
+                </div>
+            </div>
+        </div>
+
+
+    {% endfor %}
+
+
+
+  </main>
+
+</div>
+
+{% endblock %}
+{% block page_scripts %}
+<script>
+    /* global $ */
+    var rejectCommentsBox = '<div class="govuk-form-group">'+
+    '<label class="govuk-label" for="more-detail">Why are you rejecting this?</label>'+
+    '<span id="more-detail-hint" class="govuk-hint">Please provide a reason.</span>'+
+    '<textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>'+
+    '</div>'
+    $('body').on( "click", '.govuk-button', function(e) {
+        var $taskItem = $(this).parents('.action-container')
+        e.preventDefault();
+        var approvedTag = '<span class="jui-status  jui-status--new">Approved</span>'
+        var rejectedTag = '<span class="jui-status  jui-status--urgent">Rejected</span>'
+        var content 
+        if ($(this).hasClass('hmcts-button--secondary')){
+            content = rejectCommentsBox + '<a href="#" role="button" draggable="false" class="govuk-button hmcts-button--secondary final-reject-btn" style="margin-bottom: 0px;">Reject</a>'
+        } else {
+            content = approvedTag
+        }
+        $taskItem.find('.action-buttons').addClass('approved-transaction').html(content)
+
+        if ($(this).hasClass('final-reject-btn')){
+            console.log($taskItem.find('.govuk-textarea'))
+            $taskItem.find('.action-buttons').addClass('approved-transaction').html(rejectedTag)
+        }
+    });
+</script>
+{% endblock %}

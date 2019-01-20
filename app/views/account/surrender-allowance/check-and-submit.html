@@ -1,0 +1,35 @@
+{% extends "layouts/admin/base-account-question.html" %}
+
+{% block pageTitle %}
+  Check before surrendering your allowance
+{% endblock %}
+
+
+{% block content %}
+
+  <h1 class="govuk-heading-xl">Check before surrendering your allowance</h1>
+    <form class="form" action="confirmation" method="post">
+
+      {{ govukTable({
+        firstCellIsHeader: true,
+        rows: [
+          [
+            {
+              text: "Surrendering amount"
+            },
+            {
+              text: data.etsSurrenderAllowance.amountToSurrender + ' units'
+            },
+            {
+              html: "<a href='surrender-amount' class='govuk-link'>Change</a>"
+            }
+          ]
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Surrender allowance"
+      }) }}
+    </form>
+
+{% endblock %}

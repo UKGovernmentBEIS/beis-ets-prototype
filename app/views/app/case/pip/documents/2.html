@@ -1,0 +1,96 @@
+{% extends "layouts/admin/casefile-pip.html" %}
+
+{% block file_content %}
+
+  <div class="jui-casefile-page-content" data-page="1">
+
+    <div class="jui-casefile-page-head">
+      <img src="/public/images/logo-hmcts.svg" alt="HM Courts &amp; Tribunals Service">
+    </div>
+
+    <div class="jui-casefile-page-body">
+
+      <h2 class="govuk-heading-l">Decision notice</h2>
+
+      <h4 class="govuk-heading-s govuk-!-margin-bottom-0">Held at</h4>
+      <p class="govuk-!-margin-top-0">Fox Court (S)</p>
+
+      <h4 class="govuk-heading-s govuk-!-margin-bottom-0">On</h4>
+      <p class="govuk-!-margin-top-0">06/06/2018</p>
+
+      <h4 class="govuk-heading-s govuk-!-margin-bottom-0">Before</h4>
+      <p class="govuk-!-margin-top-0">Judge Prita Shah</p>
+
+      <h4 class="govuk-heading-s govuk-!-margin-bottom-0">Appellant</h4>
+      <p class="govuk-!-margin-top-0">Alan Jones</p>
+
+      <h4 class="govuk-heading-s govuk-!-margin-bottom-0">National Insurance number</h4>
+      <p class="govuk-!-margin-top-0">JK 01 02 04 05 F</p>
+
+      <h4 class="govuk-heading-s govuk-!-margin-bottom-0">Tribunal Ref</h4>
+      <p class="govuk-!-margin-top-0">SC242/17</p>
+
+      <h4 class="govuk-heading-s govuk-!-margin-bottom-0">Respondent</h4>
+      <p class="govuk-!-margin-top-0">Secretary of State for Work and Pensions</p>
+
+      <h3 class="govuk-heading-m">Decision Notice</h3>
+
+      <div>
+        <ol class="govuk-list govuk-list--number">
+          <li>The appeal is allowed.</li>
+          <li>The decision made by the Secretary of State on 13/06/2017 in respect of the PIP is set aside.</li>
+          <li>Alan Jones is entitled to the daily living component at the standard rate from 12/07/2017 to 11/07/2020.</li>
+          <li>Alan Jones has limited ability to carry out activities of daily living. he scores 8 points. He satisfies the following descriptors:</li>
+        </ol>
+      </div>
+
+      {{ govukTable({
+        "firstCellIsHeader": true,
+        "captionClasses": "govuk-heading-s",
+        "classes": "govuk-!-margin-bottom-8  jui-table--fixed",
+        "rows": [
+          [
+            {"text": "Preparing food"},
+            {"text": "Needs to use an aid or appliance to be able to either prepare or cook a simple meal."},
+            {"text": "2 points"}
+          ],
+          [
+            {"text": "Washing and Bathing"},
+            {"text": "Needs to use an aid or appliance to be able to wash or bathe."},
+            {"text": "2 points"}
+          ],
+          [
+            {"text": "Managing Toilet Needs or Incontinence"},
+            {"text": "Needs to use an aid or appliance to be able to manage toilet needs or incontinence."},
+            {"text": "2 points"}
+          ],
+          [
+            {"text": "Engaging with other people face to face"},
+            {"text": "Needs prompting to be able to engage with other people."},
+            {"text": "2 points"}
+          ]
+        ]
+      }) }}
+
+      <p>Mr Alan Jones does not qualify for an award of the mobility component from 12/07/2017. He scores 4 points. This is insufficient to meet the threshold for the test.</p>
+
+      {{ govukTable({
+        "firstCellIsHeader": true,
+        "captionClasses": "govuk-heading-s",
+        "classes": "govuk-!-margin-bottom-8  jui-table--fixed",
+        "rows": [
+          [
+            {"text": "Moving Around"},
+            {"text": "Can stand and then move more than 50 metres but no more than 200 metres, either aided or unaided"},
+            {"text": "4 points"}
+          ]
+        ]
+      }) }}
+
+      <p>By reason of mental and physical health problems significantly limited. As a result Mr Alan Jones qualifies for the above award of Personal Independence Payment. In reaching its decision the Tribunal considered all of the evidence.</p>
+
+    </div>
+
+  </div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "layouts/admin/base-account-question.html" %}
+{% set newAccountId = (data.newTrustedAccount.id) | trim or '' %}
+{% set accountDetails = '' %}
+{% for item in data.existingAccounts %}
+  {% if newAccountId == (item.id) | trim %}
+    {% set accountDetails = item.name %}
+  {% endif %}
+{% endfor %}
+{% block pageTitle %}
+  Check trusted account details
+{% endblock %}
+
+
+{% block content %}
+<h1 class="govuk-heading-xl">Add a trusted account</h1>
+<p class="govuk-body-l">Add <strong>{{data.newTrustedAccount.id}}</strong> as your trusted account.</p>
+<form class="form" action="confirmation" method="post">
+{{ govukInput({
+  label: {
+    text: "Name of the account"
+  },
+  hint: {
+    text: "Give this account a memorable name"
+  },
+  id: "nickname",
+  name: "newTrustedAccount.accountNickname",
+  classes: 'govuk-!-width-two-thirds'
+}) }}
+
+{{ govukTextarea({
+  name: "newTrustedAccount.accountNotes",
+  id: "account-notes",
+  label: {
+    text: "Optional account notes"
+  },
+  hint: {
+    text: "Write notes that may help you with this trusted account in the future.",
+    classes: 'govuk-!-width-two-thirds'
+  },
+  classes: 'govuk-!-width-two-thirds'
+}) }}
+
+{{ govukButton({
+    text: "Add as a trusted account"
+}) }}
+</form>
+ 
+{% endblock %}

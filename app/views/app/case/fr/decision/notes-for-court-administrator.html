@@ -1,0 +1,63 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Notes for court administrator {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+  {{ hmctsIdentityBar({
+    title: {
+      html: casebar.parties
+    }
+  }) }}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          {% if errors %}
+            {{ govukErrorSummary({
+              titleText: 'There is a problem',
+              errorList: errors
+            }) }}
+          {% endif %}
+
+          <form method="post">
+
+            {{ govukTextarea({
+              id: 'notes-for-court-administrator',
+              name: 'notes-for-court-administrator',
+              label: {
+                text: 'Notes for court administrator (optional)',
+                isPageHeading: true,
+                classes: 'govuk-label--xl'
+              },
+              hint: {
+                text: 'This won’t be seen by the parties.'
+              },
+              value: data['notes-for-court-administrator']
+            }) }}
+
+            {{ govukButton({
+              text: 'Continue'
+            }) }}
+
+          </form>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}

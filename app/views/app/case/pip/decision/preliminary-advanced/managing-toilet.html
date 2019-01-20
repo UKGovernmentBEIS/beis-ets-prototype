@@ -1,0 +1,108 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Daily living: Managing toilet needs or incontinence {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+  }
+}) }}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-heading-xl">
+            <span class="govuk-caption-xl">Daily living</span>
+            Managing toilet needs or incontinence
+          </h1>
+
+          <form method="post">
+
+            {{ govukRadios({
+              idPrefix: 'managing-toilet',
+              name: 'managing-toilet',
+              fieldset: {
+                legend: {
+                  text: 'Select your new score',
+                  classes: 'govuk-fieldset__legend--m'
+                }
+              },
+              items: [
+                {
+                  text: 'Can manage toilet needs or incontinence unaided',
+                  hint: {
+                    text: '0 points'
+                  },
+                  value: 'Can manage toilet needs or incontinence unaided',
+                  checked: checked('managing-toilet', 'Can manage toilet needs or incontinence unaided') == 'checked'
+                },
+                {
+                  text: 'Needs to use an aid or appliance to be able to manage toilet needs or incontinence',
+                  hint: {
+                    text: '2 points'
+                  },
+                  value: 'Needs to use an aid or appliance to be able to manage toilet needs or incontinence',
+                  checked: checked('managing-toilet', 'Needs to use an aid or appliance to be able to manage toilet needs or incontinence') == 'checked'
+                },
+                {
+                  text: 'Needs supervision or prompting to be able to manage toilet needs',
+                  hint: {
+                    text: '2 points'
+                  },
+                  value: 'Needs supervision or prompting to be able to manage toilet needs',
+                  checked: checked('managing-toilet', 'Needs supervision or prompting to be able to manage toilet needs') == 'checked'
+                },
+                {
+                  text: 'Needs assistance to be able to manage toilet needs',
+                  hint: {
+                    text: '4 points'
+                  },
+                  value: 'Needs assistance to be able to manage toilet needs',
+                  checked: checked('managing-toilet', 'Needs assistance to be able to manage toilet needs') == 'checked'
+                },
+                {
+                  text: 'Needs assistance to be able to manage incontinence of either bladder and bowel',
+                  hint: {
+                    text: '6 points'
+                  },
+                  value: 'Needs assistance to be able to manage incontinence of either bladder and bowel',
+                  checked: checked('managing-toilet', 'Needs assistance to be able to manage incontinence of either bladder and bowel') == 'checked'
+                },
+                {
+                  text: 'Needs assistance to be able to manage incontinence of both bladder and bowel',
+                  hint: {
+                    text: '8 points'
+                  },
+                  value: 'Needs assistance to be able to manage incontinence of both bladder and bowel',
+                  checked: checked('managing-toilet', 'Needs assistance to be able to manage incontinence of both bladder and bowel') == 'checked'
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: 'Continue'
+            }) }}
+
+          </form>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}

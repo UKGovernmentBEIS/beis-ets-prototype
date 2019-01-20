@@ -1,0 +1,56 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Case file {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+    },
+  items: [
+    {
+      text: 'Send view or decision',
+      href: '/app/cases/'+_case.id+'/pip/decision'
+    },
+    {
+      classes: 'hmcts-button--secondary',
+      text: 'List for hearing',
+      href: '/app/cases/'+_case.id+'/pip/list-for-hearing'
+    }
+  ]
+}) }}
+
+  <div class="jui-width-container">
+
+    <main class="govuk-main-wrapper" role="main">
+
+      {{ hmctsSubNavigation({
+        label: 'Case navigation',
+        items: caseNavItems
+      }) }}
+
+      <h1 class="govuk-heading-xl">Case file</h1>
+
+      <div class="jui-casefile govuk-!-margin-bottom-6">
+
+        <div class="jui-casefile-files">
+          <ul class="jui-casefile-list">
+            {% for document in documents %}
+              <li class="jui-casefile-list__item">
+                <a class="jui-casefile-list__link" href="/app/cases/{{_case.id}}/documents/{{document.id}}" {{ 'aria-current=true' if activeDocument == document.id}}>{{document.label}}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="jui-casefile-document-wrapper">
+          {% block file_actions %}{% endblock %}
+          <div class="jui-casefile-page editable">
+            {% block file_content %}{% endblock %}
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+{% endblock %}

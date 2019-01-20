@@ -1,0 +1,57 @@
+{% extends "layouts/admin/base-account-question.html" %}
+
+{% block pageTitle %}
+  Representative details
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="index">Back</a>
+{% endblock %}
+
+{% block content %}
+      <form action='representative-details' method="POST">
+      {% set representativeID %}
+      {{ govukInput({
+        id: "id",
+        name: "newLinkedRepresentative.id",
+        classes: "govuk-!-width-one-third", 
+        label: {
+          text: "Enter the representative's ID number"
+        },
+        value: data.newLinkedRepresentative.existingEtsUserId
+      }) }}
+      {% endset -%}
+      {% call govukFieldset({
+        legend: {
+          text: "Has the representative used ETS before?",
+          classes: "govuk-fieldset__legend--xl",
+          isPageHeading: true
+        }
+      }) %}
+        {{ govukRadios({
+          idPrefix: "existing-ets-user",
+          name: "newLinkedRepresentative.existingEtsUser",
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: checked("newLinkedRepresentative.existingEtsUser", 'yes'),
+              conditional: {
+                html: representativeID
+              }
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: checked("newLinkedRepresentative.existingEtsUser", 'no')
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      {% endcall %}
+      </form>
+
+{% endblock %}

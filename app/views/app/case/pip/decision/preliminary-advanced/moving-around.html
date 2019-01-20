@@ -1,0 +1,108 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Mobility: Moving around  {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+  }
+}) }}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-heading-xl">
+            <span class="govuk-caption-xl">Mobility</span>
+            Moving around
+          </h1>
+
+          <form method="post">
+
+            {{ govukRadios({
+              idPrefix: 'moving-around',
+              name: 'moving-around',
+              fieldset: {
+                legend: {
+                  text: 'Select your new score',
+                  classes: 'govuk-fieldset__legend--m'
+                }
+              },
+              items: [
+                {
+                  text: 'Can stand and then move more than 200 metres, either aided or unaided',
+                  hint: {
+                    text: '0 points'
+                  },
+                  value: 'Can stand and then move more than 200 metres, either aided or unaided',
+                  checked: checked('moving-around', 'Can stand and then move more than 200 metres, either aided or unaided') == 'checked'
+                },
+                {
+                  text: 'Can stand and then move more than 50 metres but no more than 200 metres, either aided or unaided',
+                  hint: {
+                    text: '4 points'
+                  },
+                  value: 'Can stand and then move more than 50 metres but no more than 200 metres, either aided or unaided',
+                  checked: checked('moving-around', 'Can stand and then move more than 50 metres but no more than 200 metres, either aided or unaided') == 'checked'
+                },
+                {
+                  text: 'Can stand and then move unaided more than 20 metres but no more than 50 metres',
+                  hint: {
+                    text: '8 points'
+                  },
+                  value: 'Can stand and then move unaided more than 20 metres but no more than 50 metres',
+                  checked: checked('moving-around', 'Can stand and then move unaided more than 20 metres but no more than 50 metres') == 'checked'
+                },
+                {
+                  text: 'Can stand and then move using an aid or appliance more than 20 metres but no more than 50 metres',
+                  hint: {
+                    text: '10 points'
+                  },
+                  value: 'Can stand and then move using an aid or appliance more than 20 metres but no more than 50 metres',
+                  checked: checked('moving-around', 'Can stand and then move using an aid or appliance more than 20 metres but no more than 50 metres') == 'checked'
+                },
+                {
+                  text: 'Can stand and then move more than 1 metre but no more than 20 metres, either aided or unaided',
+                  hint: {
+                    text: '12 points'
+                  },
+                  value: 'Can stand and then move more than 1 metre but no more than 20 metres, either aided or unaided',
+                  checked: checked('moving-around', 'Can stand and then move more than 1 metre but no more than 20 metres, either aided or unaided') == 'checked'
+                },
+                {
+                  html: 'Cannot, either aided or unaided: <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0"><li>stand</li><li>move more than 1 metre</li></ul>',
+                  hint: {
+                    text: '12 points'
+                  },
+                  value: 'Cannot, either aided or unaided',
+                  checked: checked('dressing-undressing', 'Cannot, either aided or unaided') == 'checked'
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: 'Continue'
+            }) }}
+
+          </form>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}

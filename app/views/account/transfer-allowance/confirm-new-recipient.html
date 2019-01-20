@@ -1,0 +1,22 @@
+{% extends "layouts/admin/base-account-question.html" %}
+
+{% block pageTitle %}
+  Confirm {{ data.etsTransferAllowance.recepientId }} as your new recipient
+{% endblock %}
+
+
+{% block content %}
+
+      <form class="form" action="transfer-amount" method="post">
+        <h1 class="govuk-heading-xl">
+          Confirm {{ data.etsTransferAllowance.recepientId }} as your new recipient
+        </h1>
+        {{ govukButton({
+          text: "Yes, continue"
+        }) }}
+
+        <p><a href="new-recipient">No, try again</a></p>
+      </form>
+
+
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "layouts/admin/base-account-question.html" %}
+{% block pageTitle %}
+  Surrender your 2018 emission allowance
+{% endblock %}
+
+{% block content %}
+
+      <h1 class="govuk-heading-xl">
+        Surrender allowances to cover your emissions
+      </h1>
+      <form class="form" action="surrender-amount" method="post">
+
+        <p class="govuk-body govuk-!-margin-bottom-6">
+          You need to surrender the full amount by 30 April 2019. If you don't have enough allowances you may need to <a href="#">acquire additional allowance</a>.</p>
+          <table class="govuk-table">
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Your 2018  emissions</th>
+                <td class="govuk-table__cell govuk-table__cell--numeric">2,480</td>
+              </tr>
+              <tr class="govuk-table__row govuk-table__row--strong-border">
+                <th class="govuk-table__header" scope="row">
+                  Your credit<br>
+                  <span class="govuk-table__cell-hint">You surrendered too much last year. <a href='/account/{{installationID}}?view=transactionHistory'>Learn why</a></span>
+                </th>
+                <td class="govuk-table__cell govuk-table__cell--numeric">320</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">You need to surrender</th>
+                <td class="govuk-table__cell govuk-table__cell--numeric">2,160</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">You have</th>
+                <td class="govuk-table__cell govuk-table__cell--numeric">2,500</td>
+              </tr>
+            </tbody>
+          </table>
+          {% set surrenderOtherAmount %}
+            {{ govukInput({
+              id: "other-amount",
+              name: "etsSurrenderAllowance.surrender.CustomAmount",
+              classes: "govuk-input--width-5 format-number",
+              label: {
+                text: "Enter amount to surrender"
+              },
+              hint: {
+                text:  'You have 2,500 allowances'
+              },
+              value: data.etsSurrenderAllowance.surrender.CustomAmount
+            }) }}
+          {% endset -%}
+
+          {{ govukRadios({
+            idPrefix: "amount-to-surrender",
+            name: "etsSurrenderAllowance.amountToSurrender",
+            fieldset: {},
+            items: [
+              {
+                value: "2160",
+                text: "Surrender 2,160",
+                checked: checked ("etsSurrenderAllowance.amountToSurrender", '2160')
+              },
+              {
+                value: "other",
+                text: "Surrender another amount",
+                checked: checked ("etsSurrenderAllowance.amountToSurrender", 'other'),
+                conditional: {
+                  html: surrenderOtherAmount
+                }
+              }
+            ]
+          }) }}
+        {{ govukButton({
+          text: "Submit for approval"
+        }) }}
+      </form>
+
+{% endblock %}
+{% block page_scripts %}
+<script>
+    var el = document.querySelector('.format-number');
+    el.addEventListener('keyup', function (event) {
+      if (event.which >= 37 && event.which <= 40) return;
+      this.value = this.value
+                      .replace(/\D/g, '')
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    });
+</script>
+{% endblock %}

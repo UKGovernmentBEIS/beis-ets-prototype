@@ -1,0 +1,66 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}What do you want to send to the parties? {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+  }
+}) }}
+
+<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <form method="post">
+
+            {{ govukRadios({
+              idPrefix: 'whatissue',
+              name: 'whatissue',
+              fieldset: {
+                legend: {
+                  text: 'What do you want to send to the parties?',
+                  isPageHeading: true,
+                  classes: 'govuk-fieldset__legend--xl'
+                }
+              },
+              items: [
+                {
+                  html: 'Preliminary view',
+                  value: 'Preliminary view',
+                  checked: checked('whatissue', 'Preliminary view') == 'checked'
+                },
+                {
+                  html: 'Final decision',
+                  value: 'Final decision',
+                  checked: checked('whatissue', 'Final decision') == 'checked'
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: 'Continue'
+            }) }}
+
+          </form>
+
+        </div>
+
+      </div>
+
+	</main>
+
+</div>
+
+{% endblock %}

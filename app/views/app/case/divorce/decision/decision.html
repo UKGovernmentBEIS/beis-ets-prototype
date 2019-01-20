@@ -1,0 +1,74 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Make a decision {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+  }
+}) }}
+
+<div class="jui-width-container">
+
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'javascript:history.back()'
+  }) }}
+
+  <main class="govuk-main-wrapper" role="main">
+
+    <div class="govuk-grid-row">
+
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl">Make a decision</h1>
+
+        {% set legendText %}
+          <p></p>
+          <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Reason</h2>
+          <p class="govuk-!-margin-bottom-0">The applicant and respondent have been separated for two years and both parties consent to a divorce.</p>
+        {% endset %}
+
+        <form method="post">
+
+          {{ govukRadios({
+            idPrefix: 'satisfied',
+            name: 'satisfied',
+            classes: 'govuk-radios--inline',
+            fieldset: {
+              legend: {
+                classes: 'govuk-fieldset__legend--m',
+                html: 'Are you satisfied that the petitioner is entitled to a decree of divorce on the ground that the marriage has broken down irretrievably?'
+              }
+            },
+            items: [
+              {
+                html: 'Yes<span class="govuk-visually-hidden">, I am satisfied</span>',
+                value: 'Yes',
+                checked: checked('satisfied', 'Yes') == 'checked'
+              },
+              {
+                html: 'No<span class="govuk-visually-hidden">, I am not satisfied</span>',
+                value: 'No',
+                checked: checked('satisfied', 'No') == 'checked'
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+            text: 'Continue'
+          }) }}
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+{% endblock %}

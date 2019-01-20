@@ -1,0 +1,87 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Create question {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+    },
+  items: [
+    {
+      text: 'Send view or decision',
+      href: '/app/cases/'+_case.id+'/pip/decision'
+    },
+    {
+      classes: 'hmcts-button--secondary',
+      text: 'List for hearing',
+      href: '/app/cases/'+_case.id+'/pip/list-for-hearing'
+    }
+  ]
+}) }}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: './'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <div class="hmcts-add-another">
+
+            <h1 class="govuk-heading-xl">Create question</h1>
+
+            <form method="post" action="/app/cases/{{_case.id}}/questions/new">
+
+              {{ govukInput({
+                label: {
+                  text: 'Subject'
+                },
+                id: 'subject',
+                name: 'subject',
+                value: question.subject,
+                errorMessage: inlineErrors.subject
+              }) }}
+
+              {{ govukTextarea({
+                classes: 'js-editor',
+                label: {
+                  text: 'Question'
+                },
+                id: 'body',
+                name: 'body',
+                value: question.body,
+                errorMessage: inlineErrors.body
+              }) }}
+
+              <div class="hmcts-button-action">
+                {{ govukButton({
+                  text: 'Save question'
+                }) }}
+              </div>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+{% endblock %}
+
+{% block page_scripts %}
+  <script>
+    new Editor($('.js-editor'))
+  </script>
+{% endblock %}

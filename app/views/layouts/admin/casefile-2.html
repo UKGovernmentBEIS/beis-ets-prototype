@@ -1,0 +1,61 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Case file {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+  {{ juiCasebar({
+    caseId: casebar.id,
+    parties: casebar.parties,
+    caseActions: {
+      actions: caseActions
+    }
+  }) }}
+
+  <div class="jui-width-container">
+
+    <main class="govuk-main-wrapper" role="main">
+
+      {{ hmctsSubNavigation({
+        label: 'Case navigation',
+        items: caseNavItems
+      }) }}
+
+      <div class="hmcts-page-heading">
+
+        <div class="hmcts-page-heading__title-wrapper">
+          <h1 class="hmcts-page-heading__title govuk-heading-xl">Case file</h1>
+        </div>
+
+        <div class="hmcts-page-heading__actions-wrapper">
+          {{govukButton({
+            classes: 'hmcts-page-heading__button',
+            href: '/app/cases/'+_case.id+'/fr/decision',
+            text: 'Make a decision'
+          })}}
+        </div>
+
+      </div>
+
+      <div class="jui-casefile-2 govuk-!-margin-bottom-6">
+
+        <div class="jui-casefile-2-files">
+          <ul class="jui-casefile-2-list">
+            {% for document in documents %}
+              <li><a href="/app/cases/{{casenav.id}}/documents/{{document.id}}">{{document.label}}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="jui-casefile-2-document-wrapper">
+          <div class="jui-casefile-2-page editable">
+            {% block file_content %}{% endblock %}
+          </div>
+        </div>
+        <div class="jui-casefile-2-document-comments">
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "layouts/admin/base-account-question.html" %}
+
+<!-- Adds a class to increase vertical spacing for pages without a back button -->
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
+{% block pageTitle %}
+  Confirmation
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-9">
+        <h1 class="govuk-panel__title">We have received your submission to surrender allowances</h1>
+        <div class="govuk-panel__body">
+          Your reference number<br><strong>EU596032</strong>
+        </div>
+      </div>
+
+      {{ govukInsetText({
+        html: "Visit account page to <a class='govuk-link' href='/account/" + installationData['permitId'] + "/?user=approver'>check the transaction</a>."
+      }) }}
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+      <p class="govuk-body">
+        We have sent you a confirmation email.
+      </p>
+
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        Your submission to surrender allowance will need to be approved. We've sent your submission to all representatives for this account.
+
+      </strong>
+    </div>
+
+
+    </div>
+  </div>
+
+{% endblock %}

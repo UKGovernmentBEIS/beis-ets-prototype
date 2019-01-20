@@ -1,0 +1,48 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Upload amended consent order {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <form method="post" action="/app/cases/{{_case.id}}/fr/upload-2">
+
+              {{ govukFileUpload({
+                id: 'file-upload-2',
+                name: 'file-upload-2',
+                label: {
+                  text: 'Upload amended consent order',
+                  classes: 'govuk-label--l'
+                },
+                hint: {
+                  html: '<a href="/public/downloads/ConsentOrder.docx">Download latest version</a>'
+                }
+              }) }}
+
+            {{ govukButton({
+              text: 'Continue'
+            }) }}
+
+          </form>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}

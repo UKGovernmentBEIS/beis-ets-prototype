@@ -1,0 +1,41 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Decision submitted {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+  <div class="jui-width-container">
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <div class="govuk-panel govuk-panel--confirmation">
+
+            <h2 class="govuk-panel__title">Decision submitted</h2>
+
+            <div class="govuk-panel__body">
+              {{_case.id}}
+            </div>
+
+          </div>
+
+          <h2 class="govuk-heading-m">What happens next</h2>
+
+          <p>Your decision has been sent to a court administrator.</p>
+
+          <p>You still need to enter the decision details into GAPS2.</p>
+
+          <p><a href="/app/dashboard">Go to your dashboard</a></p>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+{% endblock %}

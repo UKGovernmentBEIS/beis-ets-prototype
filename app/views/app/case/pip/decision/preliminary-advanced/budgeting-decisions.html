@@ -1,0 +1,93 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Daily living: Making budgeting decisions {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+  }
+}) }}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-heading-xl">
+            <span class="govuk-caption-xl">Daily living</span>
+            Making budgeting decisions
+          </h1>
+
+          <form method="post">
+
+            {{ govukRadios({
+              idPrefix: 'budgeting-decisions',
+              name: 'budgeting-decisions',
+              errorMessage: inlineErrors.budgeting-decisions,
+              fieldset: {
+                legend: {
+                  text: 'Select your new score',
+                  classes: 'govuk-fieldset__legend--m'
+                }
+              },
+              items: [
+                {
+                  text: 'Can manage complex budgeting decisions unaided',
+                  hint: {
+                    text: '0 points'
+                  },
+                  value: 'Can manage complex budgeting decisions unaided',
+                  checked: checked('budgeting-decisions', 'Can manage complex budgeting decisions unaided') == 'checked'
+                },
+                {
+                  text: 'Needs prompting or assistance to be able to make complex budgeting decisions',
+                  hint: {
+                    text: '2 points'
+                  },
+                  value: 'Needs prompting or assistance to be able to make complex budgeting decisions',
+                  checked: checked('budgeting-decisions', 'Needs prompting or assistance to be able to make complex budgeting decisions') == 'checked'
+                },
+                {
+                  text: 'Needs prompting or assistance to be able to make simple budgeting decisions',
+                  hint: {
+                    text: '4 points'
+                  },
+                  value: 'Needs prompting or assistance to be able to make simple budgeting decisionsn',
+                  checked: checked('budgeting-decisions', 'Needs prompting or assistance to be able to make simple budgeting decisionsn') == 'checked'
+                },
+                {
+                  text: 'Cannot make any budgeting decisions at all',
+                  hint: {
+                    text: '6 points'
+                  },
+                  value: 'Cannot make any budgeting decisions at all',
+                  checked: checked('budgeting-decisions', 'Cannot make any budgeting decisions at all') == 'checked'
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: 'Continue'
+            }) }}
+
+          </form>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}

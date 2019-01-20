@@ -1,0 +1,107 @@
+{% extends "layouts/admin/base-account-question.html" %}
+
+{% block pageTitle %}
+  Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="select-verifier">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Check your answers before submitting your emissions data
+      </h1>
+
+      <!-- only add a heading for a list if there is more than one list -->
+      <h2 class="govuk-heading-m">
+        Emissions data
+      </h2>
+
+      <!-- use additional modifier class to change column widths for multiple groups of questions and answers: -->
+      <!--   * `app-check-your-answers--short` for short questions -->
+      <!--   * `app-check-your-answers__questions-long` for long questions -->
+      <!--   * none for single group of q&a -->
+      <dl class="app-check-your-answers app-check-your-answers--short">
+        {% if data.EtsSubmitEmmissions.emissions.co2 !='' %}
+         <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            CO<sub>2</sub>
+          </dt>
+          <dd class="app-check-your-answers__answer">
+             {{ data.etsSubmitEmmissions.emissions.co2 }}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="specify-amount">
+              Change<span class="govuk-visually-hidden"> Carbon dioxide</span>
+            </a>
+          </dd>
+        </div> 
+        {% endif %}
+        
+        {% if data.etsSubmitEmmissions.emissions.no2 !='' %}
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            N<sub>2</sub>O
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {{ data.etsSubmitEmmissions.emissions.no2}}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="specify-amount">
+              Change<span class="govuk-visually-hidden"> Nitrous oxide</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        {% if data.etsSubmitEmmissions.emissions.pfc != '' %}
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            PFCs
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {{ data.etsSubmitEmmissions.emissions.pfc }}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="specify-amount">
+              Change<span class="govuk-visually-hidden"> Perfluorocarbons </span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Verifier
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {% if data.etsSubmitEmmissions.selectVerifier == 'other' %}
+              {{ data.etsSubmitEmmissions.verifier }}
+            {% else %}
+              {{ data.etsSubmitEmmissions.selectVerifier }}
+            {% endif %}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="select-verifier">
+              Change<span class="govuk-visually-hidden"> verifier</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">Now submit your emissions data</h2>
+
+      <p>
+        Your submitted data will need to be verified by the verifier you have selected.
+      </p>
+
+      <a class="govuk-button" href="confirmation" role="button">
+        Submit Emissions
+      </a>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,20 +1,29 @@
 // global styles for <a> and <p> tags
 $govuk-global-styles: true;
 
+
+$hmcts-page-width: 1220px;
+
 // Import GOV.UK Frontend
 @import "node_modules/govuk-frontend/all";
+@import "node_modules/@hmcts/frontend/all";
 
 // Patterns that aren't in Frontend
 @import "patterns/check-your-answers";
 @import "patterns/step-by-step-navigation";
 @import "patterns/task-list";
 @import "patterns/related-items";
+@import "patterns/home-office-timeline";
+@import "patterns/actions";
 
 // Components that aren't in Frontend
 @import "components/cookie-banner";
 @import "components/accessible-autocomplete";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+//
+// JUI styles
+@import "jui/all";
 
 //contact-details page in /apply-for-an-account
 
@@ -55,3 +64,16 @@ $govuk-global-styles: true;
     font-weight: normal;
   }
 }
+
+.hmcts-menu--actions {
+  .hmcts-menu__wrapper--right {
+    @include govuk-media-query($until: tablet) {
+      right: auto;
+    }
+  }
+}
+
+.govuk-tag--active {
+  background-color: green;
+}
+

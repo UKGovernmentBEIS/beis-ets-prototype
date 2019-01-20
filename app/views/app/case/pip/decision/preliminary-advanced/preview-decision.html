@@ -1,0 +1,156 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Check view before sending {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+  }
+}) }}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-heading-xl">Check view before sending</h1>
+
+          {{ govukInsetText({
+            html: 'This will be sent to both the appellant and DWP.'
+          }) }}
+
+          <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+          <h2 class="govuk-heading-l">The tribunal’s view on your appeal</h2>
+
+          <div class="panel panel--information">
+
+            <p>The tribunal have considered all the information submitted by you and DWP.</p>
+
+            <p>Their view is that you’re entitled to PIP at the rate below from 3 October 2017 until 3 March 2020.</p>
+
+            {{ govukTable({
+              firstCellIsHeader: true,
+              rows: [
+                [
+                  {text: 'Daily living'},
+                  {text: data['awardliving']},
+                  {
+                    html: '<a href="/app/cases/'+_case.id+'/pip/decision/preliminary-advanced">Change<span class="govuk-visually-hidden"> daily living award for appellant</span></a>',
+                    format: 'numeric'
+                  }
+                ],
+                [
+                  {text: 'Mobility'},
+                  {text: data['awardmobility']},
+                  {
+                    html: '<a href="/app/cases/'+_case.id+'/pip/decision/preliminary-advanced">Change<span class="govuk-visually-hidden"> mobility award for appellant</span></a>',
+                    format: 'numeric'
+                  }
+                ]
+              ]
+            }) }}
+
+            <p>This is the same DWP initially awarded you.</p>
+
+            <p>If both you and DWP accept this view, you’ll be awarded PIP at the above rate.</p>
+
+          </div>
+
+          <h2 class="govuk-heading-l govuk-!-margin-top-8">Reasons for the tribunal’s view</h2>
+
+          {% set additionalReasons = data['additionalReasons'] %}
+          <!--p>{{ additionalReasons | replace('\n', '<br>') | trim | safe }}</p-->
+
+          <p>{{ additionalReasons | trim | safe }}</p>
+
+          <p><a href="/app/cases/{{_case.id}}/pip/decision/preliminary-advanced/panel-reasons">Change<span class="govuk-visually-hidden"> the reasons for the tribunal’s view</span></a></p>
+
+          <h2 class="govuk-heading-l govuk-!-margin-top-6">PIP activities and the descriptors we consider apply to your appeal</h2>
+
+          {{ govukTable({
+            classes: 'govuk-!-margin-bottom-8 jui-table',
+            caption: 'Daily living',
+            captionClasses: 'govuk-heading-m',
+            head: [
+              {text: 'Activity'},
+              {text: 'Descriptor'},
+              {text: 'Points'},
+              {text: ''}
+            ],
+            rows: [
+              [
+                {text: 'Preparing food'},
+                {text: 'Needs to use an aid or appliance to be able to prepare or cook a simple meal'},
+                {text: '2'},
+                {
+                  html: '<a href="/app/cases/'+_case.id+'/pip/decision/preliminary-advanced/preparing-food">Change<span class="govuk-visually-hidden"> new score for daily living: preparing food</span></a>',
+                  format: 'numeric'
+                }
+              ],
+              [
+                {text: 'Washing and bathing'},
+                {text: 'Needs to use an aid or appliance to be able to wash or bathe'},
+                {text: '2'},
+                {
+                  html: '<a href="/app/cases/'+_case.id+'/pip/decision/preliminary-advanced/washing-bathing">Change<span class="govuk-visually-hidden"> new score for daily living: washng and bathing</span></a>',
+                  format: 'numeric'
+                }
+              ]
+            ]
+          }) }}
+
+          {{ govukTable({
+            classes: 'govuk-!-margin-bottom-8 jui-table',
+            caption: 'Mobility',
+            captionClasses: 'govuk-heading-m',
+            head: [
+              {text: 'Activity'},
+              {text: 'Descriptor'},
+              {text: 'Points'},
+              {text: ''}
+            ],
+            rows: [
+              [
+                {text: 'Planning and following journeys'},
+                {text: 'For reasons other than psychological distress, cannot plan the route of a journey'},
+                {text: '8'},
+                {
+                  html: '<a href="/app/cases/'+_case.id+'/pip/decision/preliminary-advanced/planning-journeys">Change<span class="govuk-visually-hidden"> new score for mobility: planning and following journeys</span></a>',
+                  format: 'numeric'
+                }
+              ]
+            ]
+          }) }}
+
+          <h2 class="govuk-heading-l govuk-!-margin-top-7">What happens next</h2>
+
+          <p>You can accept the view or if you feel the view is wrong you can have a face to face hearing.</p>
+
+          <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+          <form method="post">
+            {{ govukButton({
+              text: 'Submit'
+            }) }}
+          </form>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}

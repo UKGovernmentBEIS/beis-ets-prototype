@@ -11,7 +11,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">Tell us about the account</h1>
+    <h1 class="govuk-heading-xl">Tell us about the installation or airline</h1>
 
       <form action='account-details-answer' method="POST">
 
@@ -19,7 +19,7 @@
       {{ govukInput({
         id: "urid-account-number",
         name: "ets-register[urid-account-number]",
-        classes: "govuk-!-width-one-third", 
+        classes: "govuk-!-width-one-third",
         label: {
           text: "Enter the account URID number"
         },
@@ -36,7 +36,7 @@
         {{ govukInput({
           id: "account-name",
           name: "ets-register[account-name]",
-          classes: "govuk-input--width-20", 
+          classes: "govuk-input--width-20",
           label: {
             text: "Enter the name of your account"
           },
@@ -62,7 +62,7 @@
             }
           ]
         }) }}
-        
+
 
         {{ govukButton({
           text: "Save and continue"

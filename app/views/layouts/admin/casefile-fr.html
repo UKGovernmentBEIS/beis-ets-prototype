@@ -1,0 +1,66 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Case file {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+  {{ juiCasebar({
+    caseId: casebar.id,
+    parties: casebar.parties,
+    caseActions: {
+      actions: caseActions
+    }
+  }) }}
+
+  <div class="jui-width-container">
+
+    <main class="govuk-main-wrapper" role="main">
+
+      {{ hmctsSubNavigation({
+        label: 'Case navigation',
+        items: caseNavItems
+      }) }}
+
+      <div class="hmcts-page-heading">
+
+        <div class="hmcts-page-heading__title-wrapper">
+          <h1 class="hmcts-page-heading__title govuk-heading-xl">Case file</h1>
+        </div>
+
+        <div class="hmcts-page-heading__actions-wrapper">
+          {{govukButton({
+            classes: 'hmcts-page-heading__button',
+            href: '/app/cases/'+_case.id+'/fr/decision',
+            text: 'Make a decision'
+          })}}
+        </div>
+
+      </div>
+
+      <div class="jui-casefile-actions">
+        <ul class="jui-casefile-actions__list">
+          <li class="jui-casefile-actions__list-item"><a href="#">Add comments</a></li>
+          <li class="jui-casefile-actions__list-item"><a href="/app/cases/{{_case.id}}/fr/history">View history</a></li>
+          <!--li class="jui-casefile-actions__list-item"><a download href="/public/downloads/ConsentOrder.docx">Download</a></li-->
+        </ul>
+      </div>
+
+      <div class="jui-casefile govuk-!-margin-bottom-6">
+        <div class="jui-casefile-files">
+          <ul class="jui-casefile-list">
+            {% for document in documents %}
+              <li class="jui-casefile-list__item">
+                <a class="jui-casefile-list__link" href="/app/cases/{{_case.id}}/documents/{{document.id}}" {{ 'aria-current=true' if activeDocument == document.id}}>{{document.label}}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="jui-casefile-document-wrapper">
+          <div class="jui-casefile-page editable">
+            {% block file_content %}{% endblock %}
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+{% endblock %}

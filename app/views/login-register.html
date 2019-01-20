@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Log in or register
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Your email and password</h1>
+
+
+      <form class="form" action="2fa" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "Email address",
+            classes: 'govuk-!-width-two-thirds'
+          },
+          id: "email",
+          name: "email",
+          type: "email",
+          classes: 'govuk-!-width-two-thirds'
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Password",
+            classes: 'govuk-!-width-two-thirds'
+          },
+          id: "password",
+          name: "password",
+          type: "password",
+          classes: 'govuk-!-width-two-thirds'
+        }) }}
+
+        <button class="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <aside class="app-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">Forgot your password?</h2>
+        <a class="govuk-link" href="/reset-password">
+            Forgot your password?
+        </a>
+        <h2 class="govuk-heading-m govuk-!-margin-top-6" id="subsection-title">Don't have an account?</h2>
+        <a class="govuk-link" href="/apply-for-an-account/">
+            Create an account
+        </a>
+      </aside>
+    </div>
+  </div>
+
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "layouts/admin/base.html" %}
+
+{% set pageID = "Casefile" %}
+
+{% block pageTitle %}Get new case {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+<div class="jui-width-container">
+
+  {{ govukBackLink({
+    text: 'Back',
+    href: './dashboard'
+  }) }}
+
+  <main class="govuk-main-wrapper" role="main">
+
+    <form method="post">
+
+      {{ govukRadios({
+        idPrefix: 'get-next-case',
+        name: 'getNextCase',
+        fieldset: {
+          legend: {
+            text: 'Get new case',
+            isPageHeading: true,
+            classes: 'govuk-fieldset__legend--xl'
+          }
+        },
+        hint: {
+          text: 'You’re ticketed for the following case types'
+        },
+        items: [
+          {
+            value: '1',
+            text: 'Divorce'
+          },
+          {
+            value: '2',
+            text: 'Financial remedy'
+          },
+          {
+            value: '3',
+            text: 'Civil money claims'
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: 'Get new case'
+      }) }}
+
+    </form>
+
+  </main>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "layouts/admin/base-account-question.html" %}
+
+{% block pageTitle %}
+Select recipient
+{% endblock %}
+
+
+{% block content %}
+
+
+   <h1 class="govuk-heading-l">
+  Who do you want to transfer to?
+    </h1>
+
+    <form class="form" action="select-recipient" method="post">
+      {{ govukRadios({
+        idPrefix: "selectRecipient",
+        name: "etsTransferAllowance.selectRecipient",
+        fieldset: {},
+        items: [
+          {
+            value: "existing",
+            text: "An account under the same account holder?",
+            checked: checked("etsTransferAllowance.selectRecipient",'existing')
+          },
+          {
+            value: "existing",
+            text: "A trusted account you’ve setup before?",
+            checked: checked("etsTransferAllowance.selectRecipient",'existing')
+          },
+          {
+            value: "new",
+            text: "Someone else?",
+            checked: checked("etsTransferAllowance.selectRecipient",'new')
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+
+{% endblock %}

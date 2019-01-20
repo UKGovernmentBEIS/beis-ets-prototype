@@ -1,0 +1,63 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Consent order version history {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+  {{ hmctsIdentityBar({
+    title: {
+      html: casebar.parties
+      },
+    items: [
+      {
+        text: 'Make a decision',
+        href: '/app/cases/'+_case.id+'/fr/decision'
+      }
+    ]
+  }) }}
+
+<div class="jui-width-container">
+
+  {{ govukBackLink({
+    text: 'Back',
+    href: '/app/cases/' + _case.id + '/documents'
+  }) }}
+
+  <main class="govuk-main-wrapper" role="main">
+
+    <h1 class="govuk-heading-xl">Consent order version history</h1>
+
+    {{ govukTable({
+      head: [
+        { text: 'Version' },
+        { text: 'Date'},
+        { text: 'Time'},
+        { text: 'Created by'}
+      ],
+      rows: [
+        [
+          { html: '<a href="#1">Version 3</a>' },
+          { text: '11 Jan 2018'},
+          { text: '9am'},
+          { text: 'Judge Prita Shah'}
+        ],
+        [
+        { html: '<a href="#2">Version 2</a>' },
+          { text: '11 Jan 2018'},
+          { text: '8.54am'},
+          { text: 'Judge Prita Shah'}
+        ],
+        [
+        { html: '<a href="#3">Version 1</a>' },
+          { text: '1 Jan 2018'},
+          { text: '10.31am'},
+          { text: 'Someone else'}
+        ]
+      ]
+    }) }}
+
+  </main>
+
+</div>
+
+{% endblock %}

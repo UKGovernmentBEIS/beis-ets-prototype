@@ -1,0 +1,253 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Case file {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+  {{ hmctsIdentityBar({
+    title: {
+      html: casebar.parties
+      },
+    items: [
+      {
+        text: 'Make a decision',
+        href: '/app/cases/'+_case.id+'/fr/decision'
+      }
+    ]
+  }) }}
+
+  <main class="govuk-main-wrapper govuk-!-padding-bottom-0" role="main">
+
+    <div class="jui-width-container">
+
+      {{ hmctsSubNavigation({
+        label: 'Case navigation',
+        items: caseNavItems
+      }) }}
+
+      {{ hmctsPageHeaderWithActions({
+        classes: 'govuk-!-margin-bottom-5',
+        title: {
+          html: '<h1 class="govuk-heading-xl">Case file</h1>'
+        },
+        items: [{
+          classes: 'hmcts-button--secondary',
+          text: 'Upload new item',
+          href: '/app/cases/'+_case.id+'/fr/upload-new-item'
+        }]
+      }) }}
+
+    </div>
+
+    <div class="jui-cf">
+
+      <div class="jui-cf__toolbar" role="toolbar">
+
+        <div class="jui-cf__toolbar-container">
+          <button class="jui-cf__toolbar-button jui-cf__toolbar-button--items" type="button" aria-controls="files">All items</button>
+          <button class="jui-cf__toolbar-button jui-cf__toolbar-button--comments" type="button" aria-controls="comments">Comments</button>
+        </div>
+
+      </div>
+
+      <div class="jui-cf__window">
+
+        <div class="jui-cf__window-container">
+
+          <div class="jui-cf__files" id="files">
+
+            <h2 class="govuk-visually-hidden" id="all-items">All items</h2>
+
+            <ul class="jui-tree" aria-labelledby="all-items">
+
+              <li class="jui-tree__item">
+
+                <span class="jui-tree__folder">Draft consent orders</span>
+
+                <ul class="jui-tree__folder-group">
+
+                  <li class="jui-tree__doc">
+                    <a class="jui-tree__doc-link" href="/app/cases/FR1231612322/documents/draft-consent-order">
+                      <span class="jui-tree__doc-name">Draft consent order</span>
+                      <span class="jui-tree__doc-meta">Added 27 Jan 2018 at 2:31pm</span>
+                    </a>
+                  </li>
+
+                </ul>
+
+              </li>
+
+              <li class="jui-tree__item">
+
+                <span class="jui-tree__folder">Statements of information</span>
+
+                <ul class="jui-tree__folder-group">
+
+                  <li class="jui-tree__doc">
+                    <a class="jui-tree__doc-link" href="/app/cases/FR1231612322/documents/statement-of-information">
+                      <span class="jui-tree__doc-name">Form D81 application document</span>
+                      <span class="jui-tree__doc-meta">Added 27 Jan 2018 at 2:15pm</span>
+                    </a>
+                  </li>
+
+                  <li class="jui-tree__doc">
+                    <a class="jui-tree__doc-link" href="#!">
+                      <span class="jui-tree__doc-name">Form D81 respondent document</span>
+                      <span class="jui-tree__doc-meta">Added 27 Jan 2018 at 2:23pm</span>
+                    </a>
+                  </li>
+
+                </ul>
+
+              </li>
+
+              <li class="jui-tree__item jui-tree__item--open">
+
+                <span class="jui-tree__folder">Form A</span>
+
+                <ul class="jui-tree__folder-group">
+
+                  <li class="jui-tree__doc">
+                    <a class="jui-tree__doc-link" href="/app/cases/FR1231612322/documents/form-a" aria-current="true">
+                      <span class="jui-tree__doc-name">Form A</span>
+                      <span class="jui-tree__doc-meta">Added 26 Jan 2018 at 9:56am</span>
+                    </a>
+                  </li>
+
+                </ul>
+
+              </li>
+
+
+              <li class="jui-tree__item">
+
+                <span class="jui-tree__folder">Decree nisi</span>
+
+                <ul class="jui-tree__folder-group">
+
+                  <li class="jui-tree__doc">
+                    <a class="jui-tree__doc-link" href="/app/cases/FR1231612322/documents/decree-nisi">
+                      <span class="jui-tree__doc-name">Grant of decree nisi</span>
+                      <span class="jui-tree__doc-meta">Added 26 Jan 2018 at 10:01am</span>
+                    </a>
+                  </li>
+
+                </ul>
+
+              </li>
+
+              <li class="jui-tree__item">
+
+                <span class="jui-tree__folder">Pension forms</span>
+
+                <ul class="jui-tree__folder-group">
+
+                  <li class="jui-tree__doc">
+                    <a class="jui-tree__doc-link" href="#!">
+                      <span class="jui-tree__doc-name">Form P1</span>
+                      <span class="jui-tree__doc-meta">Added 26 Jan 2018 at 11:01am</span>
+                    </a>
+                  </li>
+
+                  <li class="jui-tree__doc">
+                    <a class="jui-tree__doc-link" href="#!">
+                      <span class="jui-tree__doc-name">Form P2</span>
+                      <span class="jui-tree__doc-meta">Added 26 Jan 2018 at 11:02am</span>
+                    </a>
+                  </li>
+
+                </ul>
+
+              </li>
+
+              <li class="jui-tree__item">
+
+                <span class="jui-tree__folder">Letters</span>
+
+                <ul class="jui-tree__folder-group">
+
+                  <li class="jui-tree__doc">
+                    <a class="jui-tree__doc-link" href="#!">
+                      <span class="jui-tree__doc-name">Solicitor letter</span>
+                      <span class="jui-tree__doc-meta">Added 27 Jan 2018 at 2:31pm</span>
+                    </a>
+                  </li>
+
+                  <li class="jui-tree__doc">
+                    <a class="jui-tree__doc-link" href="#!">
+                      <span class="jui-tree__doc-name">Notice of acting</span>
+                      <span class="jui-tree__doc-meta">Added 27 Jan 2018 at 2:31pm</span>
+                    </a>
+                  </li>
+
+                </ul>
+
+              </li>
+
+              <li class="jui-tree__item">
+
+                <span class="jui-tree__folder">Other evidence</span>
+
+                <ul class="jui-tree__folder-group">
+
+                  <li class="jui-tree__doc">
+                    <a class="jui-tree__doc-link" href="#!">
+                      <span class="jui-tree__doc-name">Schedule of assets</span>
+                      <span class="jui-tree__doc-meta">Added 27 Jan 2018 at 2:31pm</span>
+                    </a>
+                  </li>
+
+                </ul>
+
+              </li>
+
+            </ul>
+
+          </div>
+
+          <div class="jui-cf__document">
+
+            <div class="jui-cf__document-comments" id="comments">
+
+              {{ hmctsBanner({
+                type: 'information',
+                text: 'Select text to add a comment.',
+                iconFallbackText: 'Success'
+              }) }}
+
+            </div>
+
+            <div class="jui-cf__document-pages">
+                <div class="jui-cf__document-page"><img src="/public/images/casefile/form-a-p1.jpg" alt="Form A page 1"></div>
+                <div class="jui-cf__document-page"><img src="/public/images/casefile/form-a-p2.jpg" alt="Form A page 2"></div>
+                <div class="jui-cf__document-page"><img src="/public/images/casefile/form-a-p3.jpg" alt="Form A page 3"></div>
+                <div class="jui-cf__document-page"><img src="/public/images/casefile/form-a-p4.jpg" alt="Form A page 4"></div>
+                <div class="jui-cf__document-page"><img src="/public/images/casefile/form-a-p5.jpg" alt="Form A page 5"></div>
+                <div class="jui-cf__document-page"><img src="/public/images/casefile/form-a-p6.jpg" alt="Form A page 6"></div>
+                <div class="jui-cf__document-page"><img src="/public/images/casefile/form-a-p7.jpg" alt="Form A page 7"></div>
+                <div class="jui-cf__document-page"><img src="/public/images/casefile/form-a-p8.jpg" alt="Form A page 8"></div>
+                <div class="jui-cf__document-page"><img src="/public/images/casefile/form-a-p9.jpg" alt="Form A page 9"></div>
+                <div class="jui-cf__document-page"><img src="/public/images/casefile/form-a-p10.jpg" alt="Form A page 10"></div>
+                <div class="jui-cf__document-page"><img src="/public/images/casefile/form-a-p11.jpg" alt="Form A page 11"></div>
+                <div class="jui-cf__document-page"><img src="/public/images/casefile/form-a-p12.jpg" alt="Form A page 12"></div>
+                <div class="jui-cf__document-page"><img src="/public/images/casefile/form-a-p13.jpg" alt="Form A page 13"></div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+{% endblock %}
+
+{% block page_scripts %}
+  <script>
+    new Casefile($('.jui-cf'));
+    new Tree($('.jui-tree'));
+  </script>
+{% endblock %}

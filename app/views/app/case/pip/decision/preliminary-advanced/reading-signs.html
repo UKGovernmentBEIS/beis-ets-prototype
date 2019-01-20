@@ -1,0 +1,101 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Daily living: Reading and understanding signs, symbols and words {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+  }
+}) }}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-heading-xl">
+            <span class="govuk-caption-xl">Daily living</span>
+            Reading and understanding signs, symbols and words
+          </h1>
+
+          <form method="post">
+
+           {{ govukRadios({
+              idPrefix: 'reading-signs',
+              name: 'reading-signs',
+              errorMessage: inlineErrors.reading-signs,
+              fieldset: {
+                legend: {
+                  text: 'Select your new score',
+                  classes: 'govuk-fieldset__legend--m'
+                }
+              },
+              items: [
+                {
+                  text: 'Can read and understand basic and complex written information either unaided or using spectacles or contact lenses',
+                  hint: {
+                    text: '0 points'
+                  },
+                  value: 'Can read and understand basic and complex written information either unaided or using spectacles or contact lenses',
+                  checked: checked('reading-signs', 'Can read and understand basic and complex written information either unaided or using spectacles or contact lenses') == 'checked'
+                },
+                {
+                  text: 'Needs to use an aid or appliance, other than spectacles or contact lenses, to be able to read or understand either basic or complex written information',
+                  hint: {
+                    text: '2 points'
+                  },
+                  value: 'Needs to use an aid or appliance, other than spectacles or contact lenses, to be able to read or understand either basic or complex written information',
+                  checked: checked('reading-signs', 'Needs to use an aid or appliance, other than spectacles or contact lenses, to be able to read or understand either basic or complex written information') == 'checked'
+                },
+                {
+                  text: 'Needs prompting to be able to read or understand complex written information',
+                  hint: {
+                    text: '2 points'
+                  },
+                  value: 'Needs prompting to be able to read or understand complex written information',
+                  checked: checked('reading-signs', 'Needs prompting to be able to read or understand complex written information') == 'checked'
+                },
+                {
+                  text: 'Needs prompting to be able to read or understand basic written information',
+                  hint: {
+                    text: '4 points'
+                  },
+                  value: 'Needs prompting to be able to read or understand basic written information',
+                  checked: checked('reading-signs', 'Needs prompting to be able to read or understand basic written information') == 'checked'
+                },
+                {
+                  text: 'Cannot read or understand signs, symbols or words at all',
+                  hint: {
+                    text: '8 points'
+                  },
+                  value: 'Cannot read or understand signs, symbols or words at all',
+                  checked: checked('reading-signs', 'Cannot read or understand signs, symbols or words at all') == 'checked'
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: 'Continue'
+            }) }}
+
+          </form>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}

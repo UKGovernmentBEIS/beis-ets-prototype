@@ -1,0 +1,136 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Which activities were relevant for the tribunal? {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+  }
+}) }}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-heading-xl">Which activities were relevant for the tribunal?</h1>
+
+          <form method="post">
+
+            {{ govukCheckboxes({
+              idPrefix: 'dailyliving',
+              name: 'dailyliving',
+              fieldset: {
+                legend: {
+                  text: 'Daily living',
+                  classes: 'govuk-fieldset__legend--m'
+                }
+              },
+              hint: {
+                text: 'Select all that apply.'
+              },
+              items: [
+                {
+                  text: 'Preparing food',
+                  value: 'Preparing food',
+                  checked: checked('dailyliving', 'Preparing food') == 'checked'
+                },
+                {
+                  text: 'Taking nutrition',
+                  value: 'Taking nutrition',
+                  checked: checked('dailyliving', 'Taking nutrition') == 'checked'
+                },
+                {
+                  text: 'Managing therapy or monitoring a health condition',
+                  value: 'Managing therapy',
+                  checked: checked('dailyliving', 'Managing therapy') == 'checked'
+                },
+                {
+                  text: 'Washing and bathing',
+                  value: 'Washing and bathing',
+                  checked: checked('dailyliving', 'Washing and bathing') == 'checked'
+                },
+                {
+                  text: 'Managing toilet needs or incontinence',
+                  value: 'Managing toilet',
+                  checked: checked('dailyliving', 'Managing toilet') == 'checked'
+                },
+                {
+                  text: 'Dressing and undressing',
+                  value: 'Dressing and undressing',
+                  checked: checked('dailyliving', 'Dressing and undressing') == 'checked'
+                },
+                {
+                  text: 'Communicating verbally',
+                  value: 'Communicating verbally',
+                  checked: checked('dailyliving', 'Communicating verbally') == 'checked'
+                },
+                {
+                  text: 'Reading and understanding signs, symbols and words',
+                  value: 'Reading signs',
+                  checked: checked('dailyliving', 'Reading signs') == 'checked'
+                },
+                {
+                  text: 'Engaging with other people face to face',
+                  value: 'Engaging face',
+                  checked: checked('dailyliving', 'Engaging face') == 'checked'
+                },
+                {
+                  text: 'Making budgeting decisions',
+                  value: 'Making budgeting',
+                  checked: checked('dailyliving', 'Making budgeting') == 'checked'
+                }
+              ]
+            }) }}
+
+            {{ govukCheckboxes({
+              idPrefix: 'mobility',
+              name: 'mobility',
+              fieldset: {
+                legend: {
+                  text: 'Mobility',
+                  classes: 'govuk-fieldset__legend--m'
+                }
+              },
+              hint: {
+                text: 'Select all that apply.'
+              },
+              items: [
+                {
+                  text: 'Planning and following journeys',
+                  value: 'Planning journeys',
+                  checked: checked('mobility', 'Planning journeys') == 'checked'
+                },
+                {
+                  text: 'Moving around',
+                  value: 'Moving around',
+                  checked: checked('mobility', 'Moving around') == 'checked'
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: 'Continue'
+            }) }}
+
+          </form>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}

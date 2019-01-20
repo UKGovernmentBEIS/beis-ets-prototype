@@ -1,0 +1,92 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Daily living: Engaging with other people face to face  {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+  }
+}) }}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-heading-xl">
+            <span class="govuk-caption-xl">Daily living</span>
+            Engaging with other people face to face
+          </h1>
+
+          <form method="post">
+
+            {{ govukRadios({
+              idPrefix: 'engaging-face',
+              name: 'engaging-face',
+              fieldset: {
+                legend: {
+                  text: 'Select your new score',
+                  classes: 'govuk-fieldset__legend--m'
+                }
+              },
+              items: [
+                {
+                  text: 'Can engage with other people unaided',
+                  hint: {
+                    text: '0 points'
+                  },
+                  value: 'Can engage with other people unaided',
+                  checked: checked('engaging-face', 'Can engage with other people unaided') == 'checked'
+                },
+                {
+                  text: 'Needs prompting to be able to engage with other people',
+                  hint: {
+                    text: '2 points'
+                  },
+                  value: 'Needs prompting to be able to engage with other people',
+                  checked: checked('engaging-face', 'Needs prompting to be able to engage with other people') == 'checked'
+                },
+                {
+                  text: 'Needs social support to be able to engage with other people',
+                  hint: {
+                    text: '4 points'
+                  },
+                  value: 'Needs social support to be able to engage with other people',
+                  checked: checked('engaging-face', 'Needs social support to be able to engage with other people') == 'checked'
+                },
+                {
+                  html: 'Cannot engage with other people due to such engagement causing either: <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0"><li>overwhelming psychological distress to the claimant</li><li>the claimant to exhibit behaviour which would result in a substantial risk of harm to the claimant or another person</li></ul>',
+                  hint: {
+                    text: '8 points'
+                  },
+                  value: 'Cannot engage with other people due to such engagement causing either',
+                  checked: checked('engaging-face', 'Cannot engage with other people due to such engagement causing either') == 'checked'
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: 'Continue'
+            }) }}
+
+          </form>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}

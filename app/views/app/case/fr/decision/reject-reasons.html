@@ -1,0 +1,242 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}What should appear in the directions order? {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+  {{ hmctsIdentityBar({
+    title: {
+      html: casebar.parties
+    }
+  }) }}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          {% if errorSummary.items.length %}
+            {{ govukErrorSummary({
+              titleText: 'There is a problem',
+              errorList: errorSummary.items
+            }) }}
+          {% endif %}
+
+          <h1 class="govuk-heading-xl">What should appear in the directions order?</h1>
+
+          <form method="post">
+
+            {% set otherReasonHtml %}
+
+              {{ govukTextarea({
+                name: 'otherReason',
+                id: 'otherReason',
+                label: {
+                  text: 'Reason',
+                  classes: 'govuk-label--m'
+                },
+                value: data.otherReason
+              }) }}
+
+            {% endset %}
+
+            {% set otherTypeOfInformationHtml %}
+
+              {{ govukTextarea({
+                name: 'otherTypeOfInformation',
+                id: 'otherTypeOfInformation',
+                label: {
+                  text: 'What information is needed?',
+                  classes: 'govuk-label--m'
+                },
+                value: data.otherTypeOfInformation
+              }) }}
+
+            {% endset %}
+
+            {% set subReasonsHtml %}
+
+              {{ govukCheckboxes({
+                idPrefix: 'rejectsub',
+                name: 'rejectsub',
+                fieldset: {
+                  legend: {
+                    text: 'Information needed',
+                    classes: 'govuk-fieldset__legend--m'
+                  }
+                },
+                items: [
+                  {
+                    html: 'What each party’s income will be, if the order is approved',
+                    value: 'What each party’s income will be, if the order is approved',
+                    checked: (checked('rejectsub', 'What each party’s income will be, if the order is approved') == 'checked')
+                  },
+                  {
+                    html: 'What each party’s pension will be, if the order is approved',
+                    value: 'wWat each party’s pension will be, if the order is approved',
+                    checked: (checked('rejectsub', 'wWat each party’s pension will be, if the order is approved') == 'checked')
+                  },
+                  {
+                    html: 'What each party’s capital position will be, if the order is approved. In other words, the total of all assets, savings and investments minus all loans or overdrafts (but not mortgages)',
+                    value: 'What each party’s capital position will be, if the order is approved',
+                    checked: (checked('rejectsub', 'What each party’s capital position will be, if the order is approved') == 'checked')
+                  },
+                  {
+                    html: 'The reasons why assets have not been split equally',
+                    value: 'The reasons why assets have not been split equally',
+                    checked: (checked('rejectsub', 'The reasons why assets have not been split equally') == 'checked')
+                  },
+                  {
+                    html: 'The parties’ and children’s housing needs, and whether they are met by the order',
+                    value: 'The parties’ and children’s housing needs, and whether they are met by the order',
+                    checked: (checked('rejectsub', 'The parties’ and children’s housing needs, and whether they are met by the order') == 'checked')
+                  },
+                  {
+                    html: 'What each property is currently worth',
+                    value: 'What each property is currently worth',
+                    checked: (checked('rejectsub', 'What each property is currently worth') == 'checked')
+                  },
+                  {
+                    html: 'What each pension fund is currently worth',
+                    value: 'What each pension fund is currently worth',
+                    checked: (checked('rejectsub', 'What each pension fund is currently worth') == 'checked')
+                  },
+                  {
+                    html: 'Other',
+                    value: 'Other',
+                    checked: (checked('rejectsub', 'Other') == 'checked'),
+                    conditional: {
+                      html: otherTypeOfInformationHtml
+                    }
+                  }
+                ]
+              }) }}
+
+            {% endset %}
+
+            {{ govukCheckboxes({
+              idPrefix: 'reject',
+              name: 'reject',
+              errorMessage: inlineErrors['reject'],
+              fieldset: {
+                legend: {
+                  text: 'Reasons the consent order was not approved',
+                  classes: 'govuk-fieldset__legend--m'
+                }
+              },
+              hint: {
+                text: 'Select all that apply.'
+              },
+              items: [
+                {
+                  html: 'The parties need to attend a hearing',
+                  value: 'The parties need to attend a hearing',
+                  checked: (checked('reject','The parties need to attend a hearing') == 'checked')
+                },
+                {
+                  html: 'Not enough information was supplied to decide if the order is fair',
+                  value: 'Not enough information was supplied to decide if the order is fair',
+                  checked: (checked('reject','Not enough information was supplied to decide if the order is fair') == 'checked'),
+                  conditional: {
+                    html: subReasonsHtml
+                  }
+                },
+                {
+                  html: 'The order doesn’t appear fair, taking account of section 25, Matrimonial Causes Act 1973',
+                  value: 'The order doesn’t appear fair, taking account of section 25, Matrimonial Causes Act 1973',
+                  checked: (checked('reject','The D81 form is incomplete') == 'checked')
+                },
+                {
+                  html: 'The D81 form is incomplete',
+                  value: 'The D81 form is incomplete',
+                  checked: (checked('reject','The D81 form is incomplete') == 'checked')
+                },
+                {
+                  html: 'The pension annex is not complete or not attached',
+                  value: 'The pension annex is not complete or not attached',
+                  checked: (checked('reject','The pension annex is not complete or not attached') == 'checked')
+                },
+                {
+                  html: 'It’s not clear if the applicant has taken independent legal advice',
+                  value: 'It’s not clear if the applicant has taken independent legal advice',
+                  checked: (checked('reject','It’s not clear if the applicant has taken independent legal advice') == 'checked')
+                },
+                {
+                  html: 'It’s not clear if the respondent has taken independent legal advice',
+                  value: 'It’s not clear if the respondent has taken independent legal advice',
+                  checked: (checked('reject','It’s not clear if the respondent has taken independent legal advice') == 'checked')
+                },
+                {
+                  html: 'Other',
+                  value: 'Other',
+                  checked: (checked('reject','Other') == 'checked'),
+                  conditional: {
+                    html: otherReasonHtml
+                  }
+                }
+              ],
+              value: data['reject-notes']
+            }) }}
+
+            {{ govukTextarea({
+              name: 'directions',
+              id: 'directions',
+              label: {
+                text: 'Directions',
+                classes: 'govuk-label--m'
+              },
+              errorMessage: inlineErrors['directions'],
+              value: data['directions']
+            }) }}
+
+            {{ govukRadios({
+              classes: 'govuk-radios--inline',
+              idPrefix: 'copyconsentorder',
+              name: 'copyconsentorder',
+              errorMessage: inlineErrors['copyconsentorder'],
+              fieldset: {
+                legend: {
+                  text: 'Do you want to include an annotated version of the draft consent order?',
+                  classes: 'govuk-fieldset__legend--m'
+                }
+              },
+              hint: {
+                html: 'You can use this to illustrate any detailed points or feedback for the parties.'
+              },
+              items: [
+                {
+                  html: 'Yes<span class="govuk-visually-hidden">, send an annotated version of the draft consent order to the parties</span>',
+                  value: 'Yes',
+                  checked: (checked('copyconsentorder', 'Yes') == 'checked')
+                },
+                {
+                  html: 'No<span class="govuk-visually-hidden">, I don’t want to send an annotated version of the draft consent order to the parties</span>',
+                  value: 'No',
+                  checked: (checked('copyconsentorder', 'No') == 'checked')
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: 'Continue'
+            }) }}
+
+          </form>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}

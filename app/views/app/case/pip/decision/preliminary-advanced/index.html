@@ -1,0 +1,128 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Select awards {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+  }
+}) }}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <h1 class="govuk-heading-xl">Select awards</h1>
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <form method="post">
+
+            {{ govukRadios({
+              idPrefix: 'awardliving',
+              name: 'awardliving',
+              fieldset: {
+                legend: {
+                  text: 'What are you considering awarding for daily living?',
+                  classes: 'govuk-fieldset__legend--m'
+                }
+              },
+              items: [
+                {
+                  html: 'No award<span class="govuk-visually-hidden"> for daily living</span>',
+                  value: 'No award',
+                  checked: checked('awardliving', 'No award') == 'checked'
+                },
+                {
+                  html: 'Standard rate<span class="govuk-visually-hidden"> is awarded for daily living</span>',
+                  value: 'Standard rate',
+                  checked: checked('awardliving', 'Standard rate') == 'checked'
+                },
+                {
+                  html: 'Enhanced rate<span class="govuk-visually-hidden"> is awarded for daily living</span>',
+                  value: 'Enhanced rate',
+                  checked: checked('awardliving', 'Enhanced rate') == 'checked'
+                }
+              ]
+            }) }}
+
+            {{ govukRadios({
+              idPrefix: 'awardmobility',
+              name: 'awardmobility',
+              fieldset: {
+                legend: {
+                  text: 'What are you considering awarding for mobility?',
+                  classes: 'govuk-fieldset__legend--m'
+                }
+              },
+              items: [
+                {
+                  html: 'No award<span class="govuk-visually-hidden"> for mobility</span>',
+                  value: 'No award',
+                  checked: checked('awardmobility', 'No award') == 'checked'
+                },
+                {
+                  html: 'Standard rate<span class="govuk-visually-hidden"> is awarded for mobility</span>',
+                  value: 'Standard rate',
+                  checked: checked('awardmobility', 'Standard rate') == 'checked'
+                },
+                {
+                  html: 'Enhanced rate<span class="govuk-visually-hidden"> is awarded for mobility</span>',
+                  value: 'Enhanced rate',
+                  checked: checked('awardmobility', 'Enhanced rate') == 'checked'
+                }
+              ]
+            }) }}
+
+            {{ govukRadios({
+              idPrefix: 'panelsdecision',
+              name: 'panelsdecision',
+              fieldset: {
+                legend: {
+                  text: 'How would this new award compare to the original DWP award?',
+                  classes: 'govuk-fieldset__legend--m'
+                }
+              },
+              items: [
+                {
+                  html: 'Higher<span class="govuk-visually-hidden"> than Department for Work and Pensions orignal decision</span>',
+                  value: 'higher',
+                  checked: checked('panelsdecision', 'higher') == 'checked'
+                },
+                {
+                  html: 'Same<span class="govuk-visually-hidden"> as Department for Work and Pensions orignal decision</span>',
+                  value: 'same',
+                  checked: checked('panelsdecision', 'same') == 'checked'
+                },
+                {
+                  html: 'Lower<span class="govuk-visually-hidden"> than Department for Work and Pensions orignal decision</span>',
+                  value: 'lower',
+                  checked: checked('panelsdecision', 'lower') == 'checked'
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: 'Continue'
+            }) }}
+
+          </form>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Provide a reason {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+  }
+}) }}
+
+<div class="jui-width-container">
+
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'javascript:history.back()'
+  }) }}
+
+  <main role="main" class="govuk-main-wrapper">
+
+    <div class="govuk-grid-row">
+
+      <div class="govuk-grid-column-two-thirds">
+
+        <form method="post">
+
+          {% set additionalInformation %}
+          {{ govukTextarea({
+            id: 'additional-information',
+            name: 'additionalInformation',
+            classes: 'govuk-input--width-30',
+            label: {
+              text: 'Additional information'
+            }
+          }) }}
+          {% endset -%}
+
+          {{ govukCheckboxes({
+            idPrefix: 'reason',
+            name: 'reason',
+            fieldset: {
+              legend: {
+                text: 'Provide a reason',
+                isPageHeading: true,
+                classes: 'govuk-fieldset__legend--xl'
+              }
+            },
+            hint: {
+              text: 'Choose at least one of the following:'
+            },
+            items: [
+              {
+                text: 'Petitioner did not provide enough information to establish that the court has jurisdiction to deal with the case.',
+                value: 'Petitioner did not provide enough information</span> The petitioner did not provide enough information to establish that the court has jurisdiction to deal with the case.'
+              },
+              {
+                text: 'Statement of Case in the petition gives insufficient detail of the fact relied on. If the petitioner wishes to proceed on this fact further details must be provided and the petition will need to be amended and re-served.',
+                value: 'Statement of case gives insufficient detail'
+              },
+              {
+                text: 'There have been previous proceedings in respect of the marriage.',
+                value: 'There have been previous proceedings'
+              },
+              {
+                text: 'The marriage certificate is not acceptable as the image or quality is in question.',
+                value: 'Marriage certificate quality not acceptable'
+              },
+              {
+                text: 'The translation of the marriage certificate is not acceptable.',
+                value: 'Marriage certificate translation not acceptable'
+              },
+              {
+                text: 'Any additional information',
+                value: 'Provide additional information',
+                conditional: {
+                  html: additionalInformation
+                }
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+            text: 'Continue',
+            element: 'button'
+          }) }}
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends "layouts/admin/base.html" %}
+
+{% set pageID = "your-accounts" %}
+
+{% block pageTitle %}Your accounts {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+<div class="jui-width-container">
+
+  <main class="govuk-main-wrapper" role="main">
+
+    {% if success %}
+      {{ hmctsBanner({
+          type: 'success',
+          text: success,
+          iconFallbackText: 'Success'
+        }) }}
+    {% endif %}
+    {% if data.taskCount > 0 %}
+      {% set bannerHtml %}
+      <h2 class="govuk-heading-m">{{ data.taskCount }} transfers have been proposed which require your approval</h2>
+      <p><a href="tasks">Review transfers</a></p>
+      {% endset %}
+
+      {{ hmctsBanner({
+      html: bannerHtml
+      }) }} 
+    {% endif %}
+      {% set titleHTML %}
+      <span class="govuk-caption-xl">
+      {% if data.userPersona == 'ea' %}
+        National Administrator
+      {% else %}
+      {{ data.userPersona | capitalize }} account
+      {% endif %}
+      </span>
+      <h1 class="govuk-heading-xl">Your accounts</h1>
+      {% endset %}
+    {{ hmctsPageHeaderWithActions({
+      title: {
+        html: titleHTML
+      },
+      items: [{
+        text: 'Add new installation',
+        href: './get-new-case'
+      }]
+    }) }}
+
+
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="col">Account Id</th>
+      <th class="govuk-table__header" scope="col">Account name</th>
+      <th class="govuk-table__header govuk-table__header--numeric" scope="col">Units</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+  {% if data.userPersona == 'trader' %}
+    {% for acct in data.installations %}
+    {% if acct.type == 'trading' %}
+      <tr class="govuk-table__row">
+        <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
+        <td class="govuk-table__cell">{{ acct.name }}</td>
+        <td class="govuk-table__cell govuk-table__cell--numeric">{{ acct.units }}</td>
+        </tr>
+    {% endif %}
+    {% endfor %}
+  {% else %}
+    {% for acct in data.installations %}
+    {% if not acct.type %}
+    <tr class="govuk-table__row">
+        <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
+        <td class="govuk-table__cell">{{ acct.name }}</td>
+        <td class="govuk-table__cell govuk-table__cell--numeric">{{ acct.units }}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+  {% endif %}
+  </tbody>
+</table>
+
+  </main>
+
+</div>
+
+{% endblock %}

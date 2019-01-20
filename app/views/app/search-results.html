@@ -1,0 +1,288 @@
+{% extends "layouts/admin/base.html" %}
+
+{% set pageID = "search-results" %}
+
+{% block pageTitle %}Search results {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+<div class="jui-width-container">
+
+  <main class="govuk-main-wrapper" role="main">
+
+    {% if success %}
+      {{ hmctsBanner({
+          type: 'success',
+          text: success,
+          iconFallbackText: 'Success'
+        }) }}
+    {% endif %}
+
+    <h1 class="govuk-heading-xl">Search results for “John”</h1>
+
+    <table class="govuk-table">
+
+
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+
+          <th class="govuk-table__header" scope="col">Case number</th>
+
+          <th class="govuk-table__header" scope="col">Parties</th>
+
+          <th class="govuk-table__header" scope="col">Type</th>
+
+          <th class="govuk-table__header" scope="col">Decision needed on</th>
+
+          <th class="govuk-table__header" scope="col">Case received</th>
+
+          <th class="govuk-table__header" scope="col">Date of last event</th>
+
+        </tr>
+      </thead>
+
+      <tbody class="govuk-table__body">
+
+        <tr class="govuk-table__row">
+
+
+          <th class="govuk-table__header" scope="row"><a href="/app/cases/FR1231612322">FR1231612322</a></th>
+
+
+
+          <td class="govuk-table__cell">John Smith<br> v Jane Smith<br></td>
+
+
+
+          <td class="govuk-table__cell">Financial remedy</td>
+
+
+
+          <td class="govuk-table__cell"><a href="/app/cases/FR1231612322/documents/draft-consent-order">Draft consent order</a></td>
+
+
+
+          <td class="govuk-table__cell">20 Nov 2017</td>
+
+
+
+          <td class="govuk-table__cell">25 Jan 2018</td>
+
+
+        </tr>
+
+        <tr class="govuk-table__row">
+
+
+          <th class="govuk-table__header" scope="row"><a href="/app/cases/SC1231612322">SC1231612322</a> <span class="jui-status  jui-status--urgent  govuk-!-margin-left-1">Urgent</span> </th>
+
+
+
+          <td class="govuk-table__cell">Warren Sutton<br> v DWP<br></td>
+
+
+
+          <td class="govuk-table__cell">PIP</td>
+
+
+
+          <td class="govuk-table__cell"><a href="/app/cases/SC1231612322/questions/">Appellant’s answers</a></td>
+
+
+
+          <td class="govuk-table__cell">20 Nov 2017</td>
+
+
+
+          <td class="govuk-table__cell">25 Jan 2018</td>
+
+
+        </tr>
+
+        <tr class="govuk-table__row">
+
+
+          <th class="govuk-table__header" scope="row"><a href="/app/cases/SC1231612323">SC1231612323</a></th>
+
+
+
+          <td class="govuk-table__cell">Alan Jones<br> v DWP<br></td>
+
+
+
+          <td class="govuk-table__cell">PIP</td>
+
+
+
+          <td class="govuk-table__cell"><a href="/app/cases/SC1231612323/questions/">Appellant’s answers</a></td>
+
+
+
+          <td class="govuk-table__cell">9 May 2018</td>
+
+
+
+          <td class="govuk-table__cell">9 May 2018</td>
+
+
+        </tr>
+
+        <tr class="govuk-table__row">
+
+
+          <th class="govuk-table__header" scope="row"><a href="/app/cases/SC1231612324">SC1231612324</a></th>
+
+
+
+          <td class="govuk-table__cell">Jennifer Langley<br> v DWP<br></td>
+
+
+
+          <td class="govuk-table__cell">PIP</td>
+
+
+
+          <td class="govuk-table__cell"><a href="/app/cases/SC1231612324/questions/">Appellant’s answers</a></td>
+
+
+
+          <td class="govuk-table__cell">9 May 2018</td>
+
+
+
+          <td class="govuk-table__cell">9 May 2018</td>
+
+
+        </tr>
+
+        <tr class="govuk-table__row">
+
+
+          <th class="govuk-table__header" scope="row"><a href="/app/cases/BV18D00150">BV18D00150</a></th>
+
+
+
+          <td class="govuk-table__cell">Susan Francis<br> v David Francis<br></td>
+
+
+
+          <td class="govuk-table__cell">Divorce</td>
+
+
+
+          <td class="govuk-table__cell"><a href="/app/cases/BV18D00150/divorce/decision">Decree nisi application</a></td>
+
+
+
+          <td class="govuk-table__cell">9 May 2018</td>
+
+
+
+          <td class="govuk-table__cell">9 May 2018</td>
+
+
+        </tr>
+
+        <tr class="govuk-table__row">
+
+
+          <th class="govuk-table__header" scope="row"><a href="/app/cases/BV18D00153">BV18D00153</a></th>
+
+
+
+          <td class="govuk-table__cell">John Smith<br> v Jane Smith<br></td>
+
+
+
+          <td class="govuk-table__cell">Divorce</td>
+
+
+
+          <td class="govuk-table__cell"><a href="#">Decree nisi application</a></td>
+
+
+
+          <td class="govuk-table__cell">9 May 2018</td>
+
+
+
+          <td class="govuk-table__cell">9 May 2018</td>
+
+
+        </tr>
+
+        <tr class="govuk-table__row">
+
+
+          <th class="govuk-table__header" scope="row"><a href="/app/cases/BV18D00156">BV18D00156</a></th>
+
+
+
+          <td class="govuk-table__cell">Margaret Blake<br> v William Blake<br></td>
+
+
+
+          <td class="govuk-table__cell">Divorce</td>
+
+
+
+          <td class="govuk-table__cell"><a href="/app/cases/BV18D00156/documents/d84">Decree nisi application</a></td>
+
+
+
+          <td class="govuk-table__cell">9 May 2018</td>
+
+
+
+          <td class="govuk-table__cell">9 May 2018</td>
+
+
+        </tr>
+
+      </tbody>
+    </table>
+
+    {{hmctsPagination({
+      results: {
+      from: 10,
+      to: 20,
+      count: 256
+      },
+
+      previous: {
+      text: 'Previous',
+      href: ''
+      },
+      next: {
+      text: 'Next',
+      href: ''
+      },
+      items: [{
+      text: '1',
+      href: '/page=1'
+      }, {
+      type: 'dots'
+      }, {
+      text: '5',
+      href: '/page=5'
+      }, {
+      text: '6',
+      href: '/page=6',
+      selected: true
+      }, {
+      text: '7',
+      href: '/page=7'
+      }, {
+      type: 'dots'
+      }, {
+      text: '10',
+      href: '/page=10'
+      }]
+      })}}
+
+
+  </main>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Check the tribunal’s view {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+  }
+}) }}
+
+  <div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-heading-xl">Check the tribunal’s view</h1>
+
+          <dl class="app-check-your-answers  app-check-your-answers--short  govuk-!-margin-bottom-6">
+
+            <div class="app-check-your-answers__contents">
+
+              <dt class="app-check-your-answers__question">What do you want to send to the parties?</dt>
+
+              <dd class="app-check-your-answers__answer">{{data['whatissue']}}</dd>
+
+              <dd class="app-check-your-answers__change">
+                <a href="/app/cases/{{_case.id}}/pip/decision/">Change <span class="govuk-visually-hidden">decision</span></a>
+              </dd>
+
+            </div>
+
+            <div class="app-check-your-answers__contents">
+
+              <dt class="app-check-your-answers__question">Preliminary view</dt>
+
+              <dd class="app-check-your-answers__answer">{{data['preliminary-decision-notes']}}</dd>
+
+              <dd class="app-check-your-answers__change">
+                <a href="/app/cases/{{_case.id}}/pip/decision/preliminary-advanced/">Change <span class="govuk-visually-hidden">decision</span></a>
+              </dd>
+
+            </div>
+
+          </dl>
+
+          <form method="post" action="/app/cases/{{_case.id}}/pip/decision/preliminary-advanced/submit">
+            {{ govukButton({
+              text: 'Submit'
+            }) }}
+          </form>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+{% endblock %}

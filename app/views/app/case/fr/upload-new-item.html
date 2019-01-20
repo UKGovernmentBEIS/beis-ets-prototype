@@ -1,0 +1,103 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Upload new item {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+  },
+  items: [{
+    text: 'Make a decision',
+    href: '/app/cases/'+_case.id+'/fr/decision'
+  }]
+}) }}
+
+<div class="jui-width-container">
+
+  {{ govukBackLink({
+    text: 'Back',
+    href: '/app/cases/' + _case.id + '/documents'
+  }) }}
+
+  <main class="govuk-main-wrapper" role="main">
+
+    <h1 class="govuk-heading-xl">Upload new item</h1>
+
+    <div class="govuk-grid-row">
+
+      <div class="govuk-grid-column-two-thirds">
+
+        {{ govukFileUpload({
+          id: 'selectfile',
+          name: 'selectfile',
+          label: {
+            text: 'Select file',
+            classes: 'govuk-label--m'
+          },
+          hint: {
+            text: 'PDF only (maximum file size 10mb)'
+          }
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: 'Full name',
+            classes: 'govuk-label--m'
+          },
+          id: 'fullname',
+          name: 'fullname'
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: 'save-to-folder',
+          name: 'save-to-folder',
+          fieldset: {
+            legend: {
+              text: 'Save to folder',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              text: 'Statement of information',
+              value: 'statement-of-information'
+            },
+            {
+              text: 'Pension forms',
+              value: 'pension-forms'
+            },
+            {
+              text: 'Letters',
+              value: 'letters'
+            },
+            {
+              text: 'Other evidence',
+              value: 'other-evidence'
+            }
+          ]
+        }) }}
+
+        {{ govukTextarea({
+          name: 'notes',
+          id: 'notes',
+          label: {
+            text: 'Add a note (optional)',
+            classes: 'govuk-label--m'
+          }
+        }) }}
+
+        {{ govukButton({
+          text: 'Upload'
+        }) }}
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+{% endblock %}

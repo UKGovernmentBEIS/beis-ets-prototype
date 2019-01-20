@@ -1,0 +1,126 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Set award dates {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+  }
+}) }}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <h1 class="govuk-heading-xl">Set award dates</h1>
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <form method="post">
+
+             {% set endAwardDate %}
+              {{ govukDateInput({
+                id: 'award-end-date',
+                name: 'award-end-date',
+                fieldset: {
+                  legend: {
+                    text: 'End date',
+                    classes: 'govuk-fieldset__legend--m'
+                  }
+                },
+                hint: {
+                  text: 'For example, 12 4 2019'
+                },
+                items: [
+                {
+                  "name": "day",
+                  "classes": "govuk-input--width-2"
+                  },
+                  {
+                  "name": "month",
+                  "classes": "govuk-input--width-2"
+                  },
+                  {
+                  "name": "year",
+                  "classes": "govuk-input--width-4"
+                  }
+                ]
+              }) }}
+            {% endset -%}
+
+            {{ govukDateInput({
+              id: 'award-start-date',
+              name: 'award-start-date',
+              fieldset: {
+                legend: {
+                  text: 'Start date',
+                  classes: 'govuk-fieldset__legend--m'
+                }
+              },
+              hint: {
+                text: 'For example, 4 9 2018'
+              },
+              items: [
+              {
+                "name": "day",
+                "classes": "govuk-input--width-2"
+                },
+                {
+                "name": "month",
+                "classes": "govuk-input--width-2"
+                },
+                {
+                "name": "year",
+                "classes": "govuk-input--width-4"
+                }
+              ]
+            }) }}
+
+            {{ govukRadios({
+              idPrefix: 'end-date-required',
+              name: 'end-date-required',
+              fieldset: {
+                legend: {
+                  text: 'What do you want to do about the end date?',
+                  classes: 'govuk-fieldset__legend--m'
+                }
+              },
+              items: [
+                {
+                  text: 'Set a date',
+                  value: 'set-a-date',
+                  conditional: {
+                    html: endAwardDate
+                  }
+                },
+                {
+                  text: 'Indefinite award',
+                  value: 'indefinite-award'
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: 'Continue'
+            }) }}
+
+          </form>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}

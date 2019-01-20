@@ -1,0 +1,111 @@
+{% extends "layouts/admin/base-account-question.html" %}
+
+{% set recipientType = data.etsTransferAllowance.selectRecipient %}
+{% set recipientURL = 'existing-recipient' if recipientType == 'existing' else 'new-recipient' %}
+{% set goBackURL = 'existing-recipient' if recipientType == 'existing' else 'transfer-amount' %}
+{% block pageTitle %}
+  Confirm transfer to an existing recipient
+{% endblock %}
+
+{% block content %}
+
+      <h1 class="govuk-heading-l">
+          Confirm transfer to
+        {% if recipientType == 'existing' %}
+          an existing
+        {% elif recipientType == 'new' %}
+        a new
+        {% endif %}
+        recipient
+      </h1>
+
+
+      <!-- use additional modifier class to change column widths for multiple groups of questions and answers: -->
+      <!--   * `app-check-your-answers--short` for short questions -->
+      <!--   * `app-check-your-answers__questions-long` for long questions -->
+      <!--   * none for single group of q&a -->
+      <dl class="app-check-your-answers app-check-your-answers--short govuk-!-margin-bottom-5">
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Transfering account
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {{installationID}}
+          </dd>
+          <dd class="app-check-your-answers__change">
+          </dd>
+        </div>
+        {% if data.etsTransferAllowance.recipient != 'Choose a recipient' %}
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Receiving account 
+          </dt>
+          <dd class="app-check-your-answers__answer">
+          {% if recipientType == 'existing' %}
+              {{ data.etsTransferAllowance.recipient}}
+          {% elif recipientType == 'new' %}
+            {{ data.etsTransferAllowance.recepientId }}
+          {% endif %}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="{{recipientURL}}">
+              Change<span class="govuk-visually-hidden"> recipient</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+      </dl>
+      <h2 class="govuk-heading-m govuk-!-margin-top-6">Review the balance</h2>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="col">&nbsp;</th>
+        {% for emission, value in data.emissionAllowance %}
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">{{ (emission).split('-').join(" ") }}</th>
+        {% endfor %}
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="row">Starting balance</th>
+          {% for emission, value in data.emissionAllowance %}
+            <td class="govuk-table__cell govuk-table__cell--numeric">{{ value.started }}</td>
+          {% endfor %}
+        </tr>
+        <tr class="govuk-table__row">	
+          <th class="govuk-table__header" scope="row">Transfering amounts</th>	
+          {% for emission, value in data.emissionAllowance %}	
+          <td class="govuk-table__cell govuk-table__cell--numeric">{{ value.moved}}</td>	
+          {% endfor %}	
+        </tr>
+        <tr class="govuk-table__row">
+        <th class="govuk-table__header" scope="row">New balance</th>
+          {% for emission, value in data.emissionAllowance %}
+            <td class="govuk-table__cell govuk-table__cell--numeric">{{ value.started - value.moved }}</td>
+          {% endfor %}
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Your transfer will be sent to another representative on your account to be approved.</p>
+      {% if recipientType == 'new' %}
+        {{ govukCheckboxes({
+          idPrefix: "save-receipient",
+          name: "etsTransferAllowance.saveReceipient",
+          fieldset: {},
+          items: [
+            {
+              value: "yes",
+              text: "Save their details to make future transfers to them faster"
+            }
+          ]
+        }) }}
+      {% endif %}
+
+
+      {{ govukButton({
+        text: "Submit transfer and send for approval",
+        href:"confirmation"
+      }) }}
+
+{% endblock %}

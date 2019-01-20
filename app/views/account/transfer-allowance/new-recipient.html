@@ -1,0 +1,52 @@
+{% extends "layouts/admin/base-account-question.html" %}
+
+{% block pageTitle %}
+  Who do you want to transfer allowance to?
+{% endblock %}
+
+{% block content %}
+
+<style>
+input, select { display: block; }
+</style>
+
+    <form class="form" action="confirm-new-recipient" method="post">
+      {% call govukFieldset({
+        legend: {
+          text: "Who do you want to transfer allowance to?",
+          classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+          isPageHeading: true
+        }
+      }) %}
+
+      {{ govukInput({
+        label: {
+          text: "Installation ID of recipient"
+        },
+        hint: {
+          text: "eg 'EU-100-47639-0-78'"
+        },
+        id: "recepient-id",
+        name: "etsTransferAllowance.recepientId",
+        classes: 'govuk-input--width-10',
+        value: data.etsTransferAllowance.recepientId
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "Help with installation ID",
+        text: "The person you are transferring to should provide you with an installaion ID. This can be found in the Settings of their accounts."
+      }) }}
+
+      {{ govukButton({
+        text: "Search for recipient"
+      }) }}
+
+      {{ govukInput({
+        name: "etsTransferAllowance.recipientType",
+        type: 'hidden',
+        value: 'new'
+      }) }}
+      {% endcall %}
+    </form>
+
+{% endblock %}

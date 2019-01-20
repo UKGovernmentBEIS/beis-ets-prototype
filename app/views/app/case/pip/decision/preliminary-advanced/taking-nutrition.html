@@ -1,0 +1,109 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Daily living: Taking nutrition {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+  }
+}) }}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-heading-xl">
+            <span class="govuk-caption-xl">Daily living</span>
+            Taking nutrition
+          </h1>
+
+          <form method="post">
+
+            {{ govukRadios({
+              idPrefix: 'taking-nutrition',
+              name: 'taking-nutrition',
+              errorMessage: inlineErrors.taking-nutrition,
+              fieldset: {
+                legend: {
+                  text: 'Select your new score',
+                  classes: 'govuk-fieldset__legend--m'
+                }
+              },
+              items: [
+                {
+                  text: 'Can take nutrition unaided',
+                  hint: {
+                    text: '0 points'
+                  },
+                  value: 'Can take nutrition unaided',
+                  checked: checked('taking-nutrition', 'Can take nutrition unaided') == 'checked'
+                },
+                {
+                  html: 'Needs either: <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0"><li>to use an aid or appliance to be able to take nutrition</li><li>supervision to be able to take nutrition</li><li>assistance to be able to cut up food</li></ul>',
+                  hint: {
+                    text: '2 points'
+                  },
+                  value: 'Needs either to use an aid',
+                  checked: checked('taking-nutrition', 'Needs either to use an aid') == 'checked'
+                },
+                {
+                  text: 'Needs a therapeutic source to be able to take nutrition',
+                  hint: {
+                    text: '2 points'
+                  },
+                  value: 'Needs a therapeutic source to be able to take nutrition',
+                  checked: checked('taking-nutrition', 'Needs a therapeutic source to be able to take nutrition') == 'checked'
+                },
+                {
+                  text: 'Needs prompting to be able to take nutrition',
+                  hint: {
+                    text: '4 points'
+                  },
+                  value: 'Needs prompting to be able to take nutrition',
+                  checked: checked('taking-nutrition', 'Needs prompting to be able to take nutrition') == 'checked'
+                },
+                {
+                  text: 'Needs assistance to be able to manage a therapeutic source to take nutrition',
+                  hint: {
+                    text: '6 points'
+                  },
+                  value: 'Needs assistance to be able to manage a therapeutic source to take nutrition',
+                  checked: checked('taking-nutrition', 'Needs assistance to be able to manage a therapeutic source to take nutrition') == 'checked'
+                },
+                {
+                  text: 'Cannot convey food and drink to their mouth and needs another person to do so',
+                  hint: {
+                    text: '10 points'
+                  },
+                  value: 'Cannot convey food and drink to their mouth and needs another person to do so',
+                  checked: checked('taking-nutrition', 'Cannot convey food and drink to their mouth and needs another person to do so') == 'checked'
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: 'Continue'
+            }) }}
+
+          </form>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Send preliminary view {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+{{ hmctsIdentityBar({
+  title: {
+    html: casebar.parties
+  }
+}) }}
+
+<div class="jui-width-container">
+
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'javascript:history.back()'
+  }) }}
+
+  <main class="govuk-main-wrapper" role="main">
+
+    <h1 class="govuk-heading-xl">Send preliminary view</h1>
+
+    <div class="govuk-grid-row">
+
+      <div class="govuk-grid-column-two-thirds">
+
+        {% if errorSummary.items.length %}
+          {{ govukErrorSummary({
+            titleText: 'There is a problem',
+            errorList: errorSummary.items
+          }) }}
+        {% endif %}
+
+        <form method="post">
+          {{ govukTextarea({
+            id: 'preliminary-decision-notes',
+            name: 'preliminary-decision-notes',
+            label: {
+              text: 'Enter the tribunal’s view',
+              classes: 'govuk-label--m'
+            },
+            value: data['preliminary-decision-notes'],
+            errorMessage: inlineErrors['preliminary-decision-notes']
+          }) }}
+
+          {{ govukButton({
+            text: 'Continue'
+          }) }}
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+{% endblock %}

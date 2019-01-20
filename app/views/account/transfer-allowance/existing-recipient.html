@@ -1,0 +1,152 @@
+{% extends "layouts/admin/base-account-question.html" %}
+
+{% block pageTitle %}
+  Transfer to an existing recipient
+{% endblock %}
+
+{% block content %}
+
+<style>
+input, select { display: block; }
+</style>
+
+    <h1 class="govuk-heading-l">
+      Transfer to an existing recipient
+    </h1>
+
+    <form class="form" action="check-and-submit-transfer" method="post">
+      {{ govukSelect({
+          id: "recipient-select",
+          name: "etsTransferAllowance.recipient",
+          label: {
+          text: "Select a recipient from the list"
+          },
+          items: [
+          {
+              text: 'Choose a recipient',
+              value: 'choose a recipient',
+              selected: checked("etsTransferAllowance.recipient",'choose a recipient')
+          },
+          {
+              value: 'EU-100-8976-0-88',
+              text: 'National Grid Gas plc, EU-100-8976-0-88',
+              selected: checked("etsTransferAllowance.recipient",'EU-100-8976-0-88')
+          },
+          {
+              value: 'EU-100-82543-0-87',
+              text: 'Conoco Phillips, EU-100-82543-0-87',
+              selected: checked("etsTransferAllowance.recipient",'EU-100-82543-0-87')
+          },
+          {
+              value: 'EU-100-625343-0-99',
+              text: 'Dalkia Utilities Services, EU-100-625343-0-99',
+              selected: checked("etsTransferAllowance.recipient",'EU-100-625343-0-99')
+          },
+          {
+              value: 'EU-100-11674-0-56',
+              text: 'Perenco UK Ltd, EU-100-11674-0-56',
+              selected: checked("etsTransferAllowance.recipient",'EU-100-11674-0-56')
+          },
+          {
+              value: 'EU-100-77732-0-76',
+              text: 'Polimeri Europa UK Limited, EU-100-77732-0-76',
+              selected: checked("etsTransferAllowance.recipient",'EU-100-77732-0-76')
+          },
+          {
+              value: 'EU-100-63522-0-03',
+              text: 'De La Rue International Ltd, EU-100-63522-0-03',
+              selected: checked("etsTransferAllowance.recipient",'EU-100-63522-0-03')
+          },
+          {
+              value: 'EU-100-99924-0-23',
+              text: 'E.ON UK CHP Ltd, EU-100-99924-0-23',
+              selected: checked("etsTransferAllowance.recipient",'EU-100-99924-0-23')
+          },
+          {
+              value: 'EU-100-38476-0-24',
+              text: 'Citigen (London) Ltd, EU-100-38476-0-24',
+              selected: checked("etsTransferAllowance.recipient",'EU-100-38476-0-24')
+          },
+          {
+              value: 'EU-100-4847-0-25',
+              text: 'Procter & Gamble Product Supply (UK) Ltd, EU-100-4847-0-25',
+              selected: checked("etsTransferAllowance.recipient",'EU-100-4847-0-25')
+          }
+          ]
+      }) }}
+      <h2 class="govuk-heading-m">Specify the amount for units you would like to transfer</h2>
+      {% for item in data.installations %}
+        {% if installationData.name == (item.name) | trim %}
+        {% for item in item.emissionAllowance %}
+          {% for type, value in item %}
+          {{ govukInput({
+            id: type,
+            name: "emissionAllowance." + type + ".moved",
+            label: {
+              text: 'Amount of ' + type.split('-').join(" ") + ' units'
+            },
+            hint: {
+              html: 'You will have <span id="newnumber"> ' + value + ' </span> units of ' + type.split('-').join(" ") +' after this transfer'
+            },
+            classes: "govuk-input--width-5 app-emmission-transfer",
+            attributes: {
+              'data-amount': value
+            },
+            value: data.emissionAllowance[type].moved
+          }) }}
+          {{ govukInput({
+            id: 'started'+type,
+            name: "emissionAllowance." + type + ".started",
+            value: value,
+            type: 'hidden'
+          }) }}
+          {% endfor %}
+          
+        {% endfor %}  
+        {% endif %}
+      {% endfor %}
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+      {{ govukInput({
+        name: "recipientType",
+        type: 'hidden',
+        value: 'existing'
+      }) }}
+    </form>
+
+{% endblock %}
+
+{% block page_scripts %}
+<script>
+/* global $ */
+  $(".app-emmission-transfer" ).each(function() {
+    var $this = $(this);
+
+    var number = $this.val();
+    var amountYouHave = $this.data('amount')
+    var amountYouWillHave;
+
+    if ( number ) {
+      amountYouWillHave = amountYouHave - number;
+    } else if ( !number) {
+      number = 0;
+      amountYouWillHave = amountYouHave;
+    }
+    $this.find('#newnumber').text( amountYouWillHave );
+
+    $this.on('input',function(e){
+      number = $this.val();  
+      if ( number ) {
+        amountYouWillHave = amountYouHave - number;
+      } else if ( !number ) {
+        number = 0
+      }
+      $this.parent().find('#newnumber').text( amountYouWillHave );
+    });
+    
+  });
+      
+</script>
+{% endblock %}

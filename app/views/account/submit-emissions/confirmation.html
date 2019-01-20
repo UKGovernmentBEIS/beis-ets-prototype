@@ -1,0 +1,45 @@
+{% extends "layouts/admin/base-account-question.html" %}
+<!-- Adds a class to increase vertical spacing for pages without a back button -->
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
+{% block pageTitle %}
+  Confirmation page example
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+
+
+      <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-7">
+        <h1 class="govuk-panel__title">We have received your 2018 emissions</h1>
+        <div class="govuk-panel__body">
+          Your reference number<br><strong>HXJ76393F</strong>
+        </div>
+      </div>
+
+      {{ govukInsetText({
+        html: "<a class='govuk-link' href='/account/" + installationData.permitId +"/?user=approver'>View your emissions for this year and previous years</a>."
+      }) }}
+      <h2 class="govuk-heading-m">What happens next</h2>
+      <p class="govuk-body">We have sent you a confirmation email.</p>
+      <p class="govuk-body">Your 2018 emissions still need to be verified by <strong>
+      {% if data.etsSubmitEmmissions.selectVerifier == 'other' %}
+        {{ data.etsSubmitEmmissions.verifier }}
+      {% else %}
+        {{ data.etsSubmitEmmissions.selectVerifier }}
+      {% endif %}</strong>before 31 March 2019. We have sent them a notification email.</p>
+
+
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+            You will also need to surrender enough allowances to cover your reported emissions by 30 April 2019 to be compliant with ETS.
+
+          </strong>
+        </div>
+
+
+{% endblock %}

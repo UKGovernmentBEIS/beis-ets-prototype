@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Manage your greenhouse gas emissions
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: "Environment",
+        href: "#"
+      },
+      {
+        text: "Climate change and energy",
+        href: "#"
+      },
+      {
+        text: "Emissions and emissions trading"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Manage your greenhouse gas emissions</h1>
+
+      <p class="govuk-body">Use this service to:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>create an account</li>
+        <li>request changes to your account</li>
+        <li>submit your emissions</li>
+        <li>surrender your allowances</li>
+        <li>transfer your allowances</li>
+        <li>more ...</li>
+      </ul>
+
+      {{ govukButton({
+        text: "Start now",
+        href: "login-register",
+        classes: "govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8"
+      }) }}
+
+  </div>
+{% endblock %}

@@ -1,0 +1,244 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}Hearing details {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+  {{ hmctsIdentityBar({
+    title: {
+      html: casebar.parties
+    }
+  }) }}
+
+	<div class="jui-width-container">
+
+    {{ govukBackLink({
+      text: 'Back',
+      href: 'javascript:history.back()'
+    }) }}
+
+    <main class="govuk-main-wrapper" role="main">
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+          {% if errors %}
+            {{ govukErrorSummary({
+              titleText: 'There is a problem',
+              errorList: errors
+            }) }}
+          {% endif %}
+
+          <h1 class="govuk-heading-xl">Hearing details</h1>
+
+          <form method="post">
+
+
+            {# {% set transferCourtYes %}
+
+              {{ govukRadios({
+                idPrefix: 'whoseCourt',
+                name: 'whoseCourt',
+                fieldset: {
+                  legend: {
+                    text: 'Whose court?',
+                    classes: 'govuk-fieldset__legend--m'
+                  }
+                },
+                items: [
+                  {
+                    value: 'Applicant',
+                    text: 'Applicant'
+                  },
+                  {
+                    value: 'Respondent',
+                    text: 'Respondent'
+                  }
+                ]
+              }) }}
+
+              {{ govukRadios({
+                idPrefix: 'whatDoYouNeedToTransfer',
+                name: 'whatDoYouNeedToTransfer',
+                fieldset: {
+                  legend: {
+                    text: 'What do you need to transfer?',
+                    classes: 'govuk-fieldset__legend--m'
+                  }
+                },
+                items: [
+                  {
+                    value: 'Financial remedy case only',
+                    text: 'Financial remedy case only'
+                  },
+                  {
+                    value: 'Entire case including divorce and financial remedy',
+                    text: 'Entire case including divorce and financial remedy'
+                  }
+                ]
+              }) }}
+
+            {% endset -%} #}
+
+
+            {# {% set caseReservedForYouYes %}
+
+              {{ govukRadios({
+                idPrefix: 'transferCourt',
+                name: 'transferCourt',
+                fieldset: {
+                  legend: {
+                    text: 'Do you need to transfer to another court for listings and directions?',
+                    classes: 'govuk-fieldset__legend--m'
+                  }
+                },
+                items: [
+                  {
+                    value: 'Yes, I need to transfer to another court for listings and directions',
+                    html: 'Yes<span class="govuk-visually-hidden">, I need to transfer to another court for listings and directions</span>',
+                    conditional: {
+                      html: transferCourtYes
+                    }
+                  },
+                  {
+                    value: 'No, I don’t need to transfer to another court for listings and directions',
+                    html: 'No<span class="govuk-visually-hidden">, I don’t need to transfer to another court for listings and directions</span>'
+                  }
+                ]
+              }) }}
+
+            {% endset %} #}
+
+
+            {{ govukInput({
+              id: 'estimateLengthOfHearing',
+              name: 'estimateLengthOfHearing',
+              label: {
+                text: 'Estimate length of hearing in minutes',
+                classes: 'govuk-label--m'
+              },
+              classes: 'govuk-input--width-3',
+              value: data.estimateLengthOfHearing
+            }) }}
+
+
+            {{ govukInput({
+              id: 'whenShouldTheHearingTakePlace',
+              name: 'whenShouldTheHearingTakePlace',
+              label: {
+                text: 'When should the hearing take place?',
+                classes: 'govuk-label--m'
+              },
+              hint: {
+                text: 'For example, ‘fix hearing for first available date’'
+              },
+              value: data.whenShouldTheHearingTakePlace
+            }) }}
+
+
+            {# {{ govukInput({
+              label: {
+                text: 'Which court?',
+                classes: 'govuk-label--m'
+              },
+              id: 'whichCourt',
+              name: 'whichCourt'
+            }) }} #}
+
+            {{ govukRadios({
+              idPrefix: 'whichCourt',
+              name: 'whichCourt',
+              fieldset: {
+                legend: {
+                  text: 'Which court?',
+                  classes: 'govuk-fieldset__legend--m'
+                }
+              },
+              items: [
+                {
+                  text: 'South West Divorce Centre',
+                  hint: {
+                    text: 'Southampton'
+                  },
+                  checked: (checked('whichCourt', 'South West Divorce Centre') == 'checked')
+                },
+                {
+                  value: 'East Midlands Divorce Centre',
+                  text: 'East Midlands Divorce Centre',
+                  hint: {
+                    text: 'Nottingham'
+                  },
+                  checked: (checked('whichCourt', 'East Midlands Divorce Centre') == 'checked')
+                },
+                {
+                  value: 'West Midlands Divorce Centre',
+                  text: 'West Midlands Divorce Centre',
+                  hint: {
+                    text: 'Stoke'
+                  },
+                  checked: (checked('whichCourt', 'West Midlands Divorce Centre') == 'checked')
+                },
+                {
+                  value: 'North West Divorce Centre',
+                  text: 'North West Divorce Centre',
+                  hint: {
+                    text: 'Liverpool'
+                  },
+                  checked: (checked('whichCourt', 'North West Divorce Centre') == 'checked')
+                }
+              ]
+            }) }}
+
+
+            {# {{ govukRadios({
+              idPrefix: 'doYouNeedToHearTheCase',
+              name: 'doYouNeedToHearTheCase',
+              fieldset: {
+                legend: {
+                  text: 'Should this case be reserved for you?',
+                  classes: 'govuk-fieldset__legend--m'
+                }
+              },
+              items: [
+                {
+                  value: 'Yes, I need to hear the case',
+                  html: 'Yes<span class="govuk-visually-hidden">, I need to hear the case</span>'
+                },
+                {
+                  value: 'No, any judge can hear the case',
+                  html: 'No<span class="govuk-visually-hidden">, any judge can hear the case</span>',
+                  conditional: {
+                    html: caseReservedForYouYes
+                  }
+                }
+              ]
+            }) }} #}
+
+
+            {{ govukTextarea({
+              id: 'reason',
+              name: 'reason',
+              label: {
+                text: 'Any other hearing details (optional)',
+                classes: 'govuk-label--m'
+              },
+              value: data['reason']
+            }) }}
+
+
+            {{ govukButton({
+              text: 'Continue'
+            }) }}
+
+          </form>
+
+        </div>
+
+      </div>
+
+		</main>
+
+	</div>
+
+{% endblock %}
