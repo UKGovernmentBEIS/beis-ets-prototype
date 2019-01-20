@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+<!-- Adds a class to increase vertical spacing for pages without a back button -->
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
+{% block pageTitle %}
+  Confirmation page example
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">We have received your 2018 emissions</h1>
+        <div class="govuk-panel__body">
+          Your reference number<br><strong>HXJ76393F</strong>
+        </div>
+      </div>
+
+
+      <h2 class="govuk-heading-m" style="margin-top:40px">What happens next</h2>
+      <p class="govuk-body">We have sent you a confirmation email.</p>
+      <p class="govuk-body">Your emissions will need to be verified by 31 March 2019. </p>
+      <p class="govuk-body">We have sent a notification to the Verifier you have selected. </p>
+      <p class="govuk-body">To be compliant you need to also surrender your allowance by 30 April 2019. You will find this information in your Verified Annual Emissions Report.
+
+    </div>
+  </div>
+
+{% endblock %}

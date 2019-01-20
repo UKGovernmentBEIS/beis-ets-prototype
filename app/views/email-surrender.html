@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  What's your email address?
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/start-surrender">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Your email and password
+      </h1>
+
+
+      <form class="form" action="/2fa-surrender" method="post">
+
+        {% from "input/macro.njk" import govukInput %}
+
+        {{ govukInput({
+          label: {
+            text: "Email address"
+          },
+
+          id: "email",
+          name: "email",
+          type: "email"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Password"
+          },
+
+          id: "password",
+          name: "password",
+          type: "password"
+        }) }}
+
+        <p><a href="#">Forgot your password?</a></p>
+
+        <button class="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

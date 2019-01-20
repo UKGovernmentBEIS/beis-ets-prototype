@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Log in
+{% endblock %}
+
+<div class="govuk-form-group">
+  <label class="govuk-label" for="email">
+    Email address
+  </label>
+
+  <input class="govuk-input" id="email" name="email" type="email" aria-describedby="email-hint">
+</div>
+
+
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/start-submit">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Your email and password
+      </h1>
+
+
+      <form class="form" action="/2fa-submit" method="post">
+
+        {% from "input/macro.njk" import govukInput %}
+
+        {{ govukInput({
+          label: {
+            text: "Email address"
+          },
+
+          id: "email",
+          name: "email",
+          type: "email"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Password"
+          },
+
+          id: "password",
+          name: "password",
+          type: "password"
+        }) }}
+
+        <p class="govuk-body"><a href='#' class='govuk-link'>Forgot your password?</a></p>
+
+        <button class="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}

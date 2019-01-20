@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Is Lucidion your verifier?
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/amount-submit">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        <span class="govuk-caption-xl">{{ data['which-installation']}}</span>
+        Is Lucideon your verifier?
+      </h1>
+
+      <form class="form" action="/check-submit" method="post">
+
+        <p>A verifier will need to review your emissions before you can surrender allowance. This needs to be the same verifier as the one who verfied your emissions report.</p>
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="how-contacted-conditional-hint">
+            <div class="govuk-radios govuk-radios--conditional" data-module="radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="how-contacted-conditional-1" name="verifier-radio" type="radio" value="Lucideon" data-aria-controls="conditional-how-contacted-conditional-1" {{ checked ('verifier-radio', 'Lucideon')}}>
+                <label class="govuk-label govuk-radios__label" for="how-contacted-conditional-1">
+                  Yes, Lucideon is my verifier
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="how-contacted-conditional-2" name="verifier-radio" type="radio" value="Other" data-aria-controls="conditional-how-contacted-conditional-2"  {{ checked ('verifier-radio', 'Other')}}>
+                <label class="govuk-label govuk-radios__label" for="how-contacted-conditional-2">
+                  No, I want to choose another verifier
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-how-contacted-conditional-2">
+                <div class="govuk-form-group">
+                  <select class="govuk-select" id="verifier-select" name="verifier-select">
+                      <option value="Choose a verifier" selected>Choose a verifier</option>
+                      <option value="BSI Assurance UK Limited">BSI Assurance UK Limited</option>
+                      <option value="Bureau Veritas Certification Holding SAS - UK Branch" selected>Bureau Veritas Certification Holding SAS - UK Branch</option>
+                      <option value="DNV GL Business Assurance UK Limited">DNV GL Business Assurance UK Limited</option>
+                      <option value="ERM Certification & Verification Services Ltd">ERM Certification & Verification Services Ltd</option>
+                      <option value="Kiwa Ltd trading as c:sense">Kiwa Ltd trading as c:sense</option>
+                      <option value="Lloyd’s Register Quality Assurance Limited">Lloyd’s Register Quality Assurance Limited</option>
+                      <option value="Lucideon CICS Limited">Lucideon CICS Limited</option>
+                      <option value="Nippon Kaiji Kyokai (Class NK)">Nippon Kaiji Kyokai (Class NK)</option>
+                      <option value="SGS United Kingdom Limited">SGS United Kingdom Limited</option>
+                      <option value="Soil Association Certification Limited">Soil Association Certification Limited</option>
+                      <option value="TUV UK Limited">TUV UK Limited</option>
+                      <option value="VERIFAVIA (UK) LTD">VERIFAVIA (UK) LTD</option>
+                    </select>
+                </div>
+
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

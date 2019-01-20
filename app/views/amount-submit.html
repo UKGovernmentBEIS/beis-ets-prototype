@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Enter your emissions
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/installation-submit">Back</a>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      <span class="govuk-caption-xl">{{ data['which-installation']}}</span>
+      Enter your 2018 emissions
+    </h1>
+
+<fieldset class="govuk-fieldset">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+
+
+<form class="form" action="/verifier-submit" method="post">
+
+      <p class="govuk-body">Your emissions data must match the same numbers that was verified in your Annual Emissions Report (AER). </p>
+
+  </legend>
+
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="emission-1">
+      Carbon dioxide (C0<sub>2</sub>)
+      <span class="govuk-visually-hidden">line 1 of 2</span>
+    </label>
+    <input class="govuk-input govuk-input--width-10" id="emission-1" name="emission-1" type="number" value="{{ data['emission-1'] }}">
+  </div>
+
+
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="emission-2">
+      Perfluorocarbons (PFCs)
+    </label>
+    <input class="govuk-input govuk-input--width-10" id="emission-2" name="emission-2" type="number" value="{{ data['emission-2'] }}">
+  </div>
+
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="emission-3">
+      Nitrous oxide (N<sub>2</sub>O)
+    </label>
+    <input class="govuk-input govuk-input--width-10" id="emission-3" name="emission-3" type="number" value="{{ data['emission-3'] }}">
+  </div>
+
+  <button class="govuk-button">Continue</button>
+
+
+</form>
+
+</fieldset>
+
+  </div>
+</div>
+
+{% endblock %}

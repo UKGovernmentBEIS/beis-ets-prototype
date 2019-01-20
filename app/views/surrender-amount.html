@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/installation-surrender">Back</a>
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        <span class="govuk-caption-xl">{{ data['whichinstallation-submit']}}</span>
+        Surrender your 2018 emission allowance
+      </h1>
+      <form class="form" action="/confirm-surrender-amount" method="post">
+
+      <p class="govuk-body" >You need to surrender <strong>2,480</strong> allowance to cover your greenhouse gas emissions in 2018. Your allowances need to be surrendered by 30 April 2019.</p>
+      <p class="govuk-body"style="margin-bottom:30px">If you don't have enough allowance you may need to <a href="#">acquire additional allowance</a>.</p>
+
+      {% from "table/macro.njk" import govukTable %}
+      <table class="govuk-table">
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="row">Your allowance</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric" style="padding-right:5px;">2,500</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="row">Your emissions</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric" style="padding-right:7px;">2,480</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="row" style="border-bottom:none"><label for="amount-to-surrender">How much allowance do you want to surrender?</label></th>
+            <td class="govuk-table__cell govuk-table__cell--numeric" style="border-bottom:none">
+
+                <input class="govuk-input govuk-input--width-5 number" id="amount-to-surrender" name="amount-to-surrender" type="text" style="text-align:right;font-family: "ntatabularnumbers", "nta", Arial, sans-serif;" value="{{ data['amount-to-surrender'] }}">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    <button class="govuk-button">Continue</button>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+  <script>
+    var el = document.querySelector('input.number');
+    el.addEventListener('keyup', function (event) {
+      if (event.which >= 37 && event.which <= 40) return;
+
+      this.value = this.value.replace(/\D/g, '')
+                             .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    });</script>
+  </form>
+
+    </div>
+  </div>
+
+{% endblock %}
