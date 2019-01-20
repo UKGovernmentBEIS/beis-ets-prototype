@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Enter your 2018 emissions
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="select-installation">Back</a>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      <span class="govuk-caption-xl">{{ data['ets-submit-emmissions']['installation']}}</span>
+      Enter your 2018 emissions
+    </h1>
+    <form class="form" action="select-verifier" method="post">
+      {% call govukFieldset({
+        legend: {
+          text: "Your emissions data must be the same as the data verified in your Annual Emissions Report (AER).",
+          classes: "govuk-body-m govuk-!-margin-bottom-6",
+          isPageHeading: false
+        }
+      }) %}
+
+        {{ govukInput({
+          label: {
+            html: 'Carbon dioxide (C0<sub>2</sub>)'
+          },
+          classes: 'govuk-input--width-10',
+          name: "ets-submit-emmissions[emissions][co2]",
+          value: data['ets-submit-emmissions']['emissions']['co2']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: 'Perfluorocarbons (PFCs)'
+          },
+          classes: 'govuk-input--width-10',
+          name: "ets-submit-emmissions[emissions][pfc]",
+          value: data['ets-submit-emmissions']['emissions']['pfc']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: 'Nitrous oxide (N<sub>2</sub>O)'
+          },
+          classes: 'govuk-input--width-10',
+          name: "ets-submit-emmissions[emissions][no2]",
+          value: data['ets-submit-emmissions']['emissions']['no2']
+        }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      {% endcall %}
+    <form>
+{% endblock %}

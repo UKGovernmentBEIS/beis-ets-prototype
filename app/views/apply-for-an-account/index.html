@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Surrender emissions allowance (ETS)
+  Apply for an ETS user account
 {% endblock %}
 
 {% block header %}
@@ -10,22 +10,24 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <div class="govuk-breadcrumbs">
-    <ol class="govuk-breadcrumbs__list">
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="#">Enviroment</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="#">Climate change and energy</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="#">Emissions and emissions trading</a>
-      </li>
-    </ol>
-  </div>
+    {{ govukBreadcrumbs({
+        items: [
+            {
+                text: "Home",
+                href: "https://www.gov.uk"
+            },
+            {
+                text: "Enviroment",
+                href: "#"
+            },
+            {
+                text: "Climate change and energy"
+            },
+            {
+                text: "Emissions and emissions trading"
+            }
+        ]
+    }) }}
 {% endblock %}
 
 {% block content %}
@@ -33,19 +35,20 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        Register for ETS
+        Apply for an ETS user account
       </h1>
 
       <p>Use this service to:</p>
 
       <ul class="govuk-list govuk-list--bullet">
-            <li>Create a new account</li>
-            <li>Create new represenatives</li>
-            <li>Manage your representatives</li>
+        <li>Create a new ETS user account</li>
       </ul>
 
-      <a href="/email-submit" role="button" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8">Start now</a>
-
+      {{ govukButton({
+        text: "Start now",
+        href: "personal-details",
+        classes: "govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8"
+      }) }}
 
     </div>
 

@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Confirm oversurrender
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="surrender-amount">Back</a>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="confirmation" method="post">
+      {{ govukCheckboxes({
+        idPrefix: "confirm-oversurrender",
+        name: "confirm-oversurrender",
+        fieldset: {
+          legend: {
+            text: " Confirm you want to surrender",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--xl"
+          }
+        },
+        hint: {
+          html: " You have selected to surrender <strong>140</strong> general allowances more than you need to for 2018. Once you surrender this additional amount you can no longer transfer this to someone else.",
+          classes:'govuk-!-margin-top-6'
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Confirm you want to surrender 140 general allowance than you need to."
+          }
+        ]
+      }) }}
+      {{ govukButton({
+        text: "Submit for approval"
+      }) }}
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

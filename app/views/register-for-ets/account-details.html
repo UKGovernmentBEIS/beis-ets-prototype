@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Account details
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="operator-selection">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Tell us about the account</h1>
+
+      <form action='account-details-answer' method="POST">
+
+      {% set uridHTML %}
+      {{ govukInput({
+        id: "urid-account-number",
+        name: "ets-register[urid-account-number]",
+        classes: "govuk-!-width-one-third", 
+        label: {
+          text: "Enter the account URID number"
+        },
+        value: data['ets-register']['urid-account-number']
+      }) }}
+      {% endset -%}
+      {% call govukFieldset({
+        legend: {
+          text: "Name of your account",
+          classes: "govuk-fieldset__legend--m",
+          isPageHeading: false
+        }
+      }) %}
+        {{ govukInput({
+          id: "account-name",
+          name: "ets-register[account-name]",
+          classes: "govuk-input--width-20", 
+          label: {
+            text: "Enter the name of your account"
+          },
+          value: data['ets-register']['account-name']
+        }) }}
+        <h2 class="govuk-heading-m">Has your authorised representative used ETS before?</h2>
+        {{ govukRadios({
+          idPrefix: "previous-ets-user",
+          name: "ets-register[is-previous-ets-user]",
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: checked("['ets-register']['is-previous-ets-user']", 'yes'),
+              conditional: {
+                html: uridHTML
+              }
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: checked("['ets-register']['is-previous-ets-user']", 'no')
+            }
+          ]
+        }) }}
+        
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      {% endcall %}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

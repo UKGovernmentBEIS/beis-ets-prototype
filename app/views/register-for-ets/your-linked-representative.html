@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Your linked representative
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="account-details">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Your linked representative</h1>
+      <form action='linked-representative-answer' method="POST">
+      {% call govukFieldset({
+        legend: {
+          text: "Select a representative you would like to add",
+          classes: "govuk-fieldset__legend--m",
+          isPageHeading: false
+        }
+      }) %}
+
+      {{ govukCheckboxes({
+          idPrefix: "linked-reps",
+          name: "ets-register[linked-reps]",
+          items: [
+            {
+            text:"Divina Glaser",
+            value:"Divina Glaser",
+            checked: checked("['ets-register']['linked-reps']","Divina Glaser")
+            },
+            {
+            text:"Luann Steppe",
+            value:"Luann Steppe",
+            checked: checked("['ets-register']['linked-reps']","Luann Steppe")
+            },
+            {
+            text:"Jimmy Pressly",
+            value:"Jimmy Pressly",
+            checked: checked("['ets-register']['linked-reps']","Jimmy Pressly")
+            },
+            {
+            text:"Tyra Lucas",
+            value:"Tyra Lucas",
+            checked: checked("['ets-register']['linked-reps']","Tyra Lucas")
+            },
+            {
+            text:"Terisa Pritchett",
+            value:"Terisa Pritchett",
+            checked: checked("['ets-register']['linked-reps']","Terisa Pritchett")
+            },
+            {
+            text:"Cecille Irving",
+            value:"Cecille Irving",
+            checked: checked("['ets-register']['linked-reps']","Cecille Irving")
+            },
+            {
+            text:"Elna Kraushaar",
+            value:"Elna Kraushaar",
+            checked: checked("['ets-register']['linked-reps']","Elna Kraushaar")
+            },
+            {
+            text:"Luella Hover",
+            value:"Luella Hover",
+            checked: checked("['ets-register']['linked-reps']","Luella Hover")
+            },
+            {
+            text:"Eloisa Albert",
+            value:"Eloisa Albert",
+            checked: checked("['ets-register']['linked-reps']","Eloisa Albert")
+            },
+            {
+            text:"Fatimah Huffines",
+            value:"Fatimah Huffines",
+            checked: checked("['ets-register']['linked-reps']","Fatimah Huffines")
+            },
+            {
+            text:"Representative is not listed",
+            value:"non-existant",
+            checked: checked("['ets-register']['linked-reps']","non-existant")
+            }
+          ]
+        }) }}
+        
+        <div class="govuk-visually-hidden selected-linked-reps">
+        <ul class="selected-linked-reps__list">
+        </ul>
+        </div>
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      {% endcall %}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+{% endblock %}

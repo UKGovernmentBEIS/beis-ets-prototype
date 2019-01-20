@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Enter contact details
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="personal-details">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action='identification-details' method="POST">
+      {% call govukFieldset({
+        legend: {
+          text: "Contact details",
+          classes: "govuk-fieldset__legend--xl",
+          isPageHeading: true
+        }
+      }) %}
+        {{ govukInput({
+          label: {
+            text: "Contact number"
+          },
+          id: "contact-number",
+          name: "ets-user-acc[contact-number]",
+          type:'number',
+          value: data['ets-user-acc']['contact-number']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Email address"
+          },
+          id: "email-address",
+          name: "ets-user-acc[email-address]",
+          type: 'email',
+          value: data['ets-user-acc']['email-address']
+        }) }}
+
+        {{ govukInsetText({
+          classes: 'show-hide-inset-text',
+          html: "An email will be sent to <strong class='replay-email'></strong>"
+        }) }}
+      
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      {% endcall %}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+$(function(){
+    
+    $("#email-address").keyup(function(e){
+      var leghthOfText = $(this).val().length
+      if (leghthOfText === 0) {
+        $('.show-hide-inset-text').css('display','none');
+      } else {
+        $('.replay-email').text($(this).val())
+        $('.show-hide-inset-text').css('display','block');
+      }
+    });
+});
+
+</script>
+{% endblock %}

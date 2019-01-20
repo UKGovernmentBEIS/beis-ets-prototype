@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% set newAccountId = (data['new-trusted-account']['id']) | trim or '' %}
+{% set accountDetails = '' %}
+{% for item in data['existing-accounts'] %}
+  {% if newAccountId == (item.id) | trim %}
+    {% set accountDetails = item.name %}
+  {% endif %}
+{% endfor %}
+{% block pageTitle %}
+  Check trusted account details
+{% endblock %}
+
+
+{% block content %}
+<p>Add <strong>{{accountDetails}}</strong> as your trusted account.</p>
+<form class="form" action="confirmation" method="post">
+{{ govukButton({
+    text: "Add as a trusted account"
+}) }}
+<input type="hidden" name="new-trusted-account[name]" value='{{accountDetails}}'>
+</form>
+ 
+{% endblock %}

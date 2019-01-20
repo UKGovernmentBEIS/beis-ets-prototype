@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Account details
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="index">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">New trusted account details</h1>
+      <form action='account-details-answer' method="POST">
+      {% if errorExists %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Account ID number is incorrect",
+              href: "#account-id"
+            }
+          ]
+        }) }}
+        {{ govukInput({
+          id: "account-id",
+          name: "new-trusted-account[id]",
+          classes: "govuk-!-width-one-third", 
+          label: {
+            text: "Enter the account's ID number"
+          },
+          errorMessage: {
+            "text": "Enter a valid account ID number"
+          },
+          value: data['new-trusted-account']['id']
+        }) }}
+      {% else %}
+        {{ govukInput({
+          id: "account-id",
+          name: "new-trusted-account[id]",
+          classes: "govuk-!-width-one-third", 
+          label: {
+            text: "Enter the account's ID number"
+          },
+          value: data['new-trusted-account']['id']
+        }) }}
+      {% endif %}
+      {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
