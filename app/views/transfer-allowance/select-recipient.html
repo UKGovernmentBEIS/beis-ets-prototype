@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Who do you want to transfer allowance to?
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="select-installation">Back</a>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+   <h1 class="govuk-heading-xl">
+      <span class="govuk-caption-xl">{{ data['ets-transfer-allowance']['installation'] }}</span>
+    Which installation do you want to transfer allowance to?
+    </h1>
+    
+    <form class="form" action="select-recipient-answer" method="post">
+      {{ govukRadios({
+        idPrefix: "select-recipient",
+        name: "ets-transfer-allowance[select-recipient]",
+        fieldset: {},
+        items: [
+          {
+            value: "existing",
+            text: "Existing recipient",
+            hint: {
+              text: "You saved this recipient before or it's an installation you manage."
+            },
+            checked: checked("['ets-transfer-allowance']['select-recipient']",'existing')
+          },
+          {
+            value: "new",
+            text: "New recipient",
+            hint: {
+              text: "You have not saved this recipient before."
+            },
+            checked: checked("['ets-transfer-allowance']['select-recipient']",'new')
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+  </div>
+  {% include "includes/sidebar.html" %}
+</div>
+
+
+{% endblock %}

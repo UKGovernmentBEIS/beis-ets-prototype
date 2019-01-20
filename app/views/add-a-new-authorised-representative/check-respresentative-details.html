@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% set newUserId = (data['new-linked-representative']['id']) | trim or '' %}
+{% set userDetails = '' %}
+{% for item in data['existing-authorised-representatives'] %}
+  {% if newUserId == (item.id) | trim %}
+    {% set userDetails = item.name %}
+    {% set userid = item.id %}
+  {% endif %}
+{% endfor %}
+{% block pageTitle %}
+  Check representative details
+{% endblock %}
+
+
+{% block content %}
+{% if userDetails == '' %}
+    <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">No user exists</span>
+            No user found
+        </strong>
+    </div>
+    <p><a href="representative-details" class="govuk-link">Go back</a> and check you have entered the correct user ID. </p>
+    
+{% else %}
+<p>Add <strong>{{userDetails}}</strong> as your authorised representative for this account.</p>
+<form class="form" action="confirmation" method="post">
+{{ govukButton({
+    text: "Add as an authorised representative"
+}) }}
+<input type="hidden" name="new-authorised-representatives[name]" value='{{userDetails}}'>
+</form>
+{% endif %}
+ 
+{% endblock %}

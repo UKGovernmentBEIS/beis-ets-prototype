@@ -1,0 +1,593 @@
+{% extends "layout.html" %}
+{% set installation = '' %}
+{% for item in data['installations'] %}
+  {% if installationID == item.permitId %}
+	{% set installation = item.name %}
+  {% endif %}
+{% endfor %}
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-three-quarters">
+		<h1 class="govuk-heading-xl">{{ installation }} </h1>
+    <p>Permit ID: {{ installationID }}</p>
+	</div>
+	<div class="govuk-grid-column-one-quarter">
+		<aside class="app-related-items" role="complementary">
+			<h2 class="govuk-heading-s" id="subsection-title">
+				Tasks
+			</h2>
+			<nav role="navigation" aria-labelledby="subsection-title">
+				<ul class="govuk-list govuk-!-font-size-16">
+          <li><a href="/account/{{installationID}}?view=transaction">Account home</a></li>
+					<li><a href="/account/{{installationID}}?view=transactionHistory">View installation history</a></li>
+          <li><a href="/account/{{installationID}}?view=representatives">View representatives</a></li>
+          <li><a href="/account/{{installationID}}?view=trustedAccounts">View trusted accounts</a></li>
+					<li><a href="/transfer-allowance/2fa">Transfer more allowance</a></li>
+          <li><a href="/surrender-allowance/2fa">Surrender more allowance</a></li>
+          <li><a href="/submit-emissions/2fa">Submit emissions</a></li>
+				</ul>
+			</nav>
+		</aside>
+	</div>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+  {% if pageView == 'transaction' %}
+    {% if data['emissionAllowance'] and data['ets-transfer-allowance']['installation'] == installation %} 
+      <h2 class="govuk-heading-l">Recent transfers</h2>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header app-width-2" scope="col">Date</th>
+            <th class="govuk-table__header app-width-1" scope="col">Reference</th>
+            <th class="govuk-table__header " scope="col">Units</th>
+            <th class="govuk-table__header " scope="col">Recipient</th>
+            <th class="govuk-table__header govuk-table__header app-width-3" scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="row">
+            {{ currentDate | date("DD MMMM YYYY") }}<br/>
+            {{ currentDate | date("h:mm:ss a") }}
+            </th>
+            <td class="govuk-table__cell">
+              BGT8723X
+            </td>
+            <td class="govuk-table__cell">
+              {% for emission, value, object in data['emissionAllowance'] %}
+                {{ (emission).split('-').join(" ") }}: <strong>{{ value.moved }}</strong> <br />
+              {% endfor %}
+            </td>
+            <td class="govuk-table__cell">
+            {% if data['ets-transfer-allowance']['recipient'] %}
+              {{ data['ets-transfer-allowance']['recipient'] }}
+            {% else %}
+              Polimeri Europa UK Limited
+            {% endif %}
+            </td>
+            <td class="govuk-table__cell">
+            {{ govukTag({
+              text: "awaiting approval"
+            }) }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    {% endif %}
+    {% if data['ets-surrender-allowance']['amount-to-surrender'] and data['ets-surrender-allowance']['installation'] == installation %}
+    <h2 class="govuk-heading-l">Recent surrenders</h2>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header app-width-2" scope="col">Date</th>
+            <th class="govuk-table__header app-width-1" scope="col">Reference</th>
+            <th class="govuk-table__header " scope="col">Units</th>
+            <th class="govuk-table__header " scope="col">Dynamic compliance status</th>
+            <th class="govuk-table__header govuk-table__header app-width-3" scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="row">
+            {{ currentDate | date("DD MMMM YYYY") }}<br/>
+            {{ currentDate | date("h:mm:ss a") }}
+            </th>
+            <td class="govuk-table__cell">
+              HDJ2123F
+            </td>
+            <td class="govuk-table__cell">
+              {% if data['ets-surrender-allowance']['surrender-custom-amount'] != '' %}
+                <strong>140</strong> units oversurrendered
+              {% else %}
+                {{ data['ets-surrender-allowance']['amount-to-surrender'] }}
+              {% endif %}
+            </td>
+            <td class="govuk-table__cell">
+              B
+            </td>
+            <td class="govuk-table__cell">
+            {{ govukTag({
+              text: "confirmed"
+            }) }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    {% endif %}
+    {% if data['ets-submit-emmissions'] and data['ets-submit-emmissions']['installation'] == installation %}
+      <h2 class="govuk-heading-l">Recent submissions</h2>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header app-width-2" scope="col">Date</th>
+            <th class="govuk-table__header app-width-1" scope="col">Reference</th>
+            <th class="govuk-table__header" scope="col">Units</th>
+            <th class="govuk-table__header" scope="col">Verifier</th>
+            <th class="govuk-table__header govuk-table__header app-width-3" scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="row">
+            {{ currentDate | date("DD MMMM YYYY") }}<br/>
+            {{ currentDate | date("h:mm:ss a") }}
+            </th>
+            <td class="govuk-table__cell">
+              BGT8723X
+            </td>
+            <td class="govuk-table__cell">
+            {% for unit, value in data['ets-submit-emmissions']['emissions'] %}
+            {% set unitName = unit %}
+            {% if unit == 'co2' %}
+              {% set unitName = 'Carbon dioxide (C0<sub>2</sub>)' %}
+            {% elif unit == 'pfc' %}
+              {% set unitName = 'Perfluorocarbons (PFCs)' %}
+            {% else %}
+              {% set unitName = 'Nitrous oxide (N<sub>2</sub>O)' %}
+            {% endif %}
+              {{ unitName | safe }}: <strong>{{ value}}</strong> <br />
+            {% endfor %}
+            </td>
+            <td class="govuk-table__cell">
+            {% if data['ets-submit-emmissions']['select-verifier'] == 'other' %}
+              {{ data['ets-submit-emmissions']['verifier'] }}
+            {% else %}
+              {{ data['ets-submit-emmissions']['select-verifier'] }}
+            {% endif %}
+            </td>
+            <td class="govuk-table__cell">
+            {{ govukTag({
+              text: "awaiting approval"
+            }) }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    {% endif %}
+  {% endif %}
+
+    {% if pageView == 'transactionHistory' %}
+      <h2 class="govuk-heading-l">Installation history</h2>
+
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        idPrefix: "installation-history",
+        name: "installation-history",
+        fieldset: {
+        },
+        items: [
+          {
+            value: "everything",
+            text: "Everything",
+            checked: true
+          },
+          {
+            value: "transactions",
+            text: "Transactions"
+          },
+          {
+            value: "compliance-period",
+            text: "Compliance period"
+          }
+        ]
+      }) }}
+
+      <table class="govuk-table" data-type="everything">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <th class="govuk-table__header" scope="col">Date</th>
+            <th class="govuk-table__header" scope="col">Type</th>
+            <th class="govuk-table__header" scope="col">Description</th>
+            <th class="govuk-table__header" scope="col">Details</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">21 Nov 2012</th>
+            <td class="govuk-table__cell">Emissions submission</td>
+            <td class="govuk-table__cell">Submission of emissions data for 2012</td>
+            <td class="govuk-table__cell"><a href="#">Show details</a></td>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">3 Oct 2013</th>
+            <td class="govuk-table__cell">Emissions submission</td>
+            <td class="govuk-table__cell">Submission of emissions data for 2013</td>
+            <td class="govuk-table__cell"><a href="#">Show details</a></td>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">3 July 2014</th>
+            <td class="govuk-table__cell">Emissions submission</td>
+            <td class="govuk-table__cell">Submission of emissions data for 2014</td>
+            <td class="govuk-table__cell"><a href="#">Show details</a></td>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">1 April 2015</th>
+            <td class="govuk-table__cell">Emissions submission</td>
+            <td class="govuk-table__cell">Submission of emissions data for 2015</td>
+            <td class="govuk-table__cell"><a href="#">Show details</a></td>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">1 Sept 2016</th>
+            <td class="govuk-table__cell">Emissions submission</td>
+            <td class="govuk-table__cell">Submission of emissions data for 2016</td>
+            <td class="govuk-table__cell"><a href="#">Show details</a></td>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">23 Jul 2017</th>
+            <td class="govuk-table__cell">Emissions submission</td>
+            <td class="govuk-table__cell">Submission of emissions data for 2017</td>
+            <td class="govuk-table__cell"><a href="#">Show details</a></td>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">4 Apr 2018</th>
+            <td class="govuk-table__cell">Transfer in</td>
+            <td class="govuk-table__cell">Transfer of 25 units from Polimeri Europa UK Limited</td>
+            <td class="govuk-table__cell"><a href="#">Show details</a></td>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">1 May 2018</th>
+            <td class="govuk-table__cell">Transfer out</td>
+            <td class="govuk-table__cell">Transfer of 2,913 units to Polimeri Europa UK Limited</td>
+            <td class="govuk-table__cell"><a href="#">Show details</a></td>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">21 Jun 2018</th>
+            <td class="govuk-table__cell">Allowance surrender</td>
+            <td class="govuk-table__cell">Surrender of 10,213 allowance units for 2018</td>
+            <td class="govuk-table__cell"><a href="#">Show details</a></td>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">18 Aug 2018</th>
+            <td class="govuk-table__cell">Transfer in</td>
+            <td class="govuk-table__cell">Transfer of 25 units from Polimeri Europa UK Limited</td>
+            <td class="govuk-table__cell"><a href="#">Show details</a></td>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">17 Sept 2018</th>
+            <td class="govuk-table__cell">Transfer out</td>
+            <td class="govuk-table__cell">Transfer of 25 units to Polimeri Europa UK Limited</td>
+            <td class="govuk-table__cell"><a href="#">Show details</a></td>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">21 Oct 2018</th>
+            <td class="govuk-table__cell">Emissions submission</td>
+            <td class="govuk-table__cell">Submission of emissions data for 2018</td>
+            <td class="govuk-table__cell"><a href="#">Show details</a></td>
+          </tr>
+          
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">2 Nov 2018</th>
+            <td class="govuk-table__cell">Transfer out</td>
+            <td class="govuk-table__cell">Transfer of 25 units to Polimeri Europa UK Limited</td>
+            <td class="govuk-table__cell"><a href="#">Show details</a></td>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">23 Nov 2018</th>
+            <td class="govuk-table__cell">Transfer in</td>
+            <td class="govuk-table__cell">Transfer of 25 units from Polimeri Europa UK Limited</td>
+            <td class="govuk-table__cell"><a href="#">Show details</a></td>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">26 Nov 2018</th>
+            <td class="govuk-table__cell">Transfer in</td>
+            <td class="govuk-table__cell">Transfer of 25 units from Polimeri Europa UK Limited</td>
+            <td class="govuk-table__cell"><a href="#">Show details</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="govuk-table" data-type="transactions">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <th class="govuk-table__header" scope="col">Date</th>
+            <th class="govuk-table__header" scope="col">Reference</th>
+            <th class="govuk-table__header " scope="col">Account ID</th>
+            <th class="govuk-table__header" scope="col">Account name</th>
+            <th class="govuk-table__header" scope="col">Unit</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">In</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Out</th>
+            <th class="govuk-table__header" scope="col">State</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">2 Aug 2018</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">HXJ76398F</td>
+            <td class="govuk-table__cell ">EU-100-77732-0-56</td>
+            <td class="govuk-table__cell" scope="row">DNV GL Business Assurance UK Limited</th>
+            <td class="govuk-table__cell" scope="row">ETS</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">342</td>
+            <td class="govuk-table__cell" scope="row">Approved</th>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">6 Aug 2018</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">HXJ76402F</td>
+            <td class="govuk-table__cell ">EU-100-77732-0-26</td>
+            <td class="govuk-table__cell" scope="row">BSI Assurance UK Limited</th>
+            <td class="govuk-table__cell" scope="row">ETS</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">45</td>
+            <td class="govuk-table__cell" scope="row">Pending</th>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">7 Aug 2018</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">HXJ76401F</td>
+            <td class="govuk-table__cell ">EU-100-77732-0-36</td>
+            <td class="govuk-table__cell" scope="row">DNV GL Business Assurance UK Limited</th>
+            <td class="govuk-table__cell" scope="row">ETS</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">98</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell" scope="row">Approved</th>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">3 Sept 2018</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">HXJ76403F</td>
+            <td class="govuk-table__cell ">EU-100-77732-0-76</td>
+            <td class="govuk-table__cell" scope="row">Polimeri Europa UK Limited</th>
+            <td class="govuk-table__cell" scope="row">ETS</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">344</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell" scope="row">Proposed</th>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">15 Sept 2018</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">HXJ76397F</td>
+            <td class="govuk-table__cell ">EU-100-77732-0-66</td>
+            <td class="govuk-table__cell" scope="row">ERM Certification & Verification Services Ltd</th>
+            <td class="govuk-table__cell" scope="row">ETS</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">144</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell" scope="row">Pending</th>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">22 Sept 2018</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">HXJ76399F</td>
+            <td class="govuk-table__cell ">EU-100-77732-0-46</td>
+            <td class="govuk-table__cell" scope="row">Lynemouth Power Station</th>
+            <td class="govuk-table__cell" scope="row">ETS</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">475</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell" scope="row">Pending</th>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">3 Oct 2018</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">HXJ76400F</td>
+            <td class="govuk-table__cell ">EU-100-77732-0-76</td>
+            <td class="govuk-table__cell" scope="row">Polimeri Europa UK Limited</th>
+            <td class="govuk-table__cell" scope="row">ETS</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">876</td>
+            <td class="govuk-table__cell" scope="row">Proposed</th>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">4 Oct 2018</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">HXJ76404F</td>
+            <td class="govuk-table__cell ">EU-100-77732-0-16</td>
+            <td class="govuk-table__cell" scope="row">Scunthorpe Integrated Iron & Steel Works</th>
+            <td class="govuk-table__cell" scope="row">ETS</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">67</td>
+            <td class="govuk-table__cell" scope="row">Approved</th>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">22 Oct 2018</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">HXJ76396F</td>
+            <td class="govuk-table__cell ">EU-100-77732-0-86</td>
+            <td class="govuk-table__cell" scope="row">Bureau Veritas Certification Holding SAS - UK Branch</th>
+            <td class="govuk-table__cell" scope="row">ETS</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">405</td>
+            <td class="govuk-table__cell" scope="row">Proposed</th>
+          </tr>
+
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">1 Nov 2018</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">HXJ76405F</td>
+            <td class="govuk-table__cell ">EU-100-77732-0-06</td>
+            <td class="govuk-table__cell" scope="row">Nevern Power Limited</th>
+            <td class="govuk-table__cell" scope="row">ETS</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">976</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell" scope="row">Pending</th>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">23 Nov 2018</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">HXJ76393F</td>
+            <td class="govuk-table__cell ">EU-100-77732-0-76</td>
+            <td class="govuk-table__cell" scope="row">Polimeri Europa UK Limited</th>
+            <td class="govuk-table__cell" scope="row">ETS</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">135</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell" scope="row">Approved</th>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">27 Nov 2018</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">HXJ76394F</td>
+            <td class="govuk-table__cell">EU-100-77732-0-96</td>
+            <td class="govuk-table__cell" scope="row">Lloyd’s Register Quality Assurance Limited</th>
+            <td class="govuk-table__cell" scope="row">ETS</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">745</td>
+            <td class="govuk-table__cell" scope="row">Proposed</th>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">28 Nov 2018</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">HXJ76395F</td>
+            <td class="govuk-table__cell ">EU-100-77732-0-76</td>
+            <td class="govuk-table__cell" scope="row">Polimeri Europa UK Limited</th>
+            <td class="govuk-table__cell" scope="row">ETS</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">123</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell" scope="row">Approved</th>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="govuk-table" data-type="compliance-period">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <th class="govuk-table__header" scope="col">Date submitted</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Year</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Emissions reported</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Allowance surrendered</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Balance</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">21 Nov 2012</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2012</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2,938</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2,938</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
+          </tr>
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">3 Oct 2013</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2013</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2,480</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2,480</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
+          </tr>
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">3 Jul 2014</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2014</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2,960</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3,050</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">90</td>
+          </tr>
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">1 April 2015</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2015</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2,560</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2,470</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">1 Sept 2016</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2016</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2,560</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2,470</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
+          </tr>
+
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">23 July 2017</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2017</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2,638</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2,638</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
+          </tr>
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <td class="govuk-table__cell" scope="row">21 Oct 2018</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2018</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3,059</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3,000</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">-41</td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    {% endif %}
+
+    {% if pageView == 'representatives' %}
+      {% if data['newAuthorisedReps'] | length == 0 %}
+        <p>You currently have no authorised representatives.</p>
+      {% else %}
+        <h2 class="govuk-heading-m">Your authorised representatives</h2>
+        <ul class='govuk-list'>
+        {% for name in data['newAuthorisedReps'] %}
+          <li>{{name}}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+      <form class="form" action="/add-a-new-authorised-representative/representative-details" method="post">
+      {{ govukButton({
+        text: "Add a new authorised representative"
+      }) }}
+      <input type="hidden" name="new-linked-representative[installation]" value='{{installation}}'>
+      </form>
+    {% endif %}
+
+    {% if pageView == 'trustedAccounts' %}
+      {% if data['newTrustedAccounts'] | length == 0 %}
+        <p>You currently have no trusted accounts.</p>
+      {% else %}
+        <h2 class="govuk-heading-m">Your trusted accounts</h2>
+        <ul class='govuk-list'>
+        {% for name in data['newTrustedAccounts'] %}
+          <li>{{name}}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+      <form class="form" action="/add-a-new-trusted-account/account-details" method="post">
+      {{ govukButton({
+        text: "Add a new trusted account"
+      }) }}
+      <input type="hidden" name="new-trusted-account[installation]" value='{{installation}}'>
+      </form>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+{% block pageScripts %}
+<script>
+  $('table[data-type]').css('display', 'none');
+  var value = $("input:checked" ).val();
+  $('table[data-type="'+value+'"]').css('display', 'block');
+  $('input:radio').on('change',function(e){
+    var value = $( "input:checked" ).val();
+    $('table[data-type]').css('display', 'none');
+    $('table[data-type="'+value+'"]').css('display', 'block');
+  });
+</script>
+{% endblock %}

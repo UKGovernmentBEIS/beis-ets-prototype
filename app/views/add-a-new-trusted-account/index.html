@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Which installation do you want to add a new trusted account for?
+{% endblock %}
+{% set serviceName = 'New trusted account' %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="account-details" method="post">
+        {{ govukRadios({
+          idPrefix: "installation",
+          name: "new-trusted-account[installation]",
+          fieldset: {
+            legend: {
+              text: "Which installation do you want to add a new trusted account for?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "Nevern Power Limited",
+              text: "Nevern Power Limited",
+              checked: checked ("['new-trusted-account']['installation']", 'Nevern Power Limited'), 
+              hint: {
+                text: "Permit ID UK-E-IN-78934"
+              }
+            },
+            {
+              value: "Scunthorpe Integrated Iron & Steel Works",
+              text: "Scunthorpe Integrated Iron & Steel Works",
+              checked: checked ("['new-trusted-account']['installation']", 'Scunthorpe Integrated Iron & Steel Works'),
+              hint: {
+                text: "Permit ID UK-E-IN-78935"
+              }
+            },
+            {
+              value: "Port Talbot Steelworks",
+              text: "Port Talbot Steelworks",
+              checked: checked ("['new-trusted-account']['installation']", 'Port Talbot Steelworks'),
+              hint: {
+                text: "Permit ID UK-E-IN-78936"
+              }
+            },
+            {
+              value: "Lynemouth Power Station",
+              text: "Lynemouth Power Station",
+              checked: checked ("['new-trusted-account']['installation']", 'Lynemouth Power Station'),
+              hint: {
+                text: "Permit ID UK-E-IN-78937"
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Your identification details
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="contact-details">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Your identification details</h1>
+
+      <form action='country-and-date-of-birth' method="POST">
+
+      {% set otherTypeHTML %}
+      {{ govukInput({
+        id: "id-document-number",
+        name: "ets-user-acc[type-of-other]",
+        classes: "govuk-!-width-one-third", 
+        label: {
+          text: "Type of other form of identification",
+          classes:'govuk-visually-hidden'
+        },
+        value: data['ets-user-acc']['type-of-other']
+      }) }}
+      {% endset -%}
+      {% call govukFieldset({
+        legend: {
+          text: "Select the type of your identification document",
+          classes: "govuk-fieldset__legend--m",
+          isPageHeading: false
+        }
+      }) %}
+        {{ govukRadios({
+          idPrefix: "identification-document",
+          name: "ets-user-acc[identification-document-type]",
+          items: [
+            {
+              value: "passport",
+              text: "Passport",
+              checked: checked("['ets-user-acc']['identification-document-type']", 'passport')
+            },
+            {
+              value: "driving-licence",
+              text: "Driving licence",
+              checked: checked("['ets-user-acc']['identification-document-type']", 'driving-licence')
+            },
+            {
+              value: "other",
+              text: "Other",
+              checked: checked("['ets-user-acc']['identification-document-type']", 'other'),
+              conditional: {
+                html: otherTypeHTML
+              }
+            }
+          ]
+        }) }}
+        <h2 class="govuk-heading-m">Document identification number</h2>
+        {{ govukInput({
+          id: "id-document-number",
+          name: "ets-user-acc[document-number]",
+          classes: "govuk-input--width-20", 
+          label: {
+            text: "Enter the document number"
+          },
+          value: data['ets-user-acc']['document-number']
+        }) }}
+
+        {{ govukDateInput({
+          name: 'ets-user-acc[document-expiry-date]',
+          fieldset: {
+            legend: {
+              text: "Document expiry date",
+              isPageHeading: false,
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2024"
+          },
+          items: [
+            {
+              classes: "govuk-input--width-2",
+              id: "ets-user-acc[document-expiry-date][day]",
+              label: 'Day',
+              name: "ets-user-acc[document-expiry-date][day]",
+              value: data['ets-user-acc']['document-expiry-date']['day']
+            },
+            {
+              classes: "govuk-input--width-2",
+              label: "Month",
+              name: "ets-user-acc[document-expiry-date][month]",
+              value: data['ets-user-acc']['document-expiry-date']['month']
+            },
+            {
+              classes: "govuk-input--width-4",
+              label: "Year",
+              name: "ets-user-acc[document-expiry-date][year]",
+              value: data['ets-user-acc']['document-expiry-date']['year'] 
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      {% endcall %}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

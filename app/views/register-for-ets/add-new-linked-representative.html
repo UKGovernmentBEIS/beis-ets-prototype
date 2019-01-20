@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Enter new representative contact details
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="your-linked-representative">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action='check-and-submit' method="POST">
+      {% call govukFieldset({
+        legend: {
+          text: "Add new linked represenative details",
+          classes: "govuk-fieldset__legend--xl",
+          isPageHeading: true
+        }
+      }) %}
+        {{ govukInput({
+          label: {
+            text: "Name"
+          },
+          id: "new-linked-rep-name",
+          name: "ets-register[new-linked-rep-name]",
+          value: data['ets-register']['new-linked-rep-name']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Email address"
+          },
+          id: "new-rep-email-email-address",
+          name: "ets-register[new-linked-rep-email-address]",
+          type: 'email',
+          value: data['ets-register']['new-linked-rep-email-address']
+        }) }}
+
+        {{ govukInsetText({
+          classes: 'show-hide-inset-text',
+          html: "An email will be sent to <strong class='replay-email'></strong>"
+        }) }}
+      
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      {% endcall %}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+$(function(){
+    
+    $("#new-rep-email-email-address").keyup(function(e){
+      var leghthOfText = $(this).val().length
+      if (leghthOfText === 0) {
+        $('.show-hide-inset-text').css('display','none');
+      } else {
+        $('.replay-email').text($(this).val())
+        $('.show-hide-inset-text').css('display','block');
+      }
+    });
+});
+
+</script>
+{% endblock %}

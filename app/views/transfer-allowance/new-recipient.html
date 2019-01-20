@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Who do you want to transfer allowance to?
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="select-recipient">Back</a>
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+input, select { display: block; }
+</style>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="confirm-new-recipient" method="post">
+      {% call govukFieldset({
+        legend: {
+          html: "<span class='govuk-caption-xl'>" + data['ets-transfer-allowance']['installation'] + "</span>Who do you want to transfer allowance to?",
+          classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+          isPageHeading: true
+        }
+      }) %}
+
+      {{ govukInput({
+        label: {
+          text: "Installation ID of recipient"
+        },
+        hint: {
+          text: "eg 'EU-100-47639-0-78'"
+        },
+        id: "recepient-id",
+        name: "ets-transfer-allowance[recepient-id]",
+        classes: 'govuk-input--width-10',
+        value: data['ets-transfer-allowance']['recepient-id']
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "Help with installation ID",
+        text: "The person you are transferring to should provide you with an installaion ID. This can be found in the Settings of their accounts."
+      }) }}
+
+      {{ govukButton({
+        text: "Search for recipient"
+      }) }}
+
+      {{ govukInput({
+        name: "ets-transfer-allowance[recipient-type]",
+        type: 'hidden',
+        value: 'new'
+      }) }}
+      {% endcall %}
+    </form>
+  </div>
+  {% include "includes/sidebar.html" %}
+</div>
+
+{% endblock %}

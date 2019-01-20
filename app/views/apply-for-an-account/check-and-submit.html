@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Your date and country of birth
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="country-and-date-of-birth">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Check your details before you submit</h1> 
+
+    <form action='confirmation' method="POST">
+    {% if data['ets-user-acc'] | length > 0 %}
+    <dl class="app-check-your-answers app-check-your-answers--short">
+       {% for item, value in data['ets-user-acc'] %}  
+       {% if value | length > 0 %}
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            {{item.split('-').join(" ") | capitalize }}
+          </dt>
+          <dd class="app-check-your-answers__answer">
+          {% if item == 'date-of-birth' or item == 'document-expiry-date' %}
+            {{value.day}} / {{value.month}} / {{value.year}}
+            {% else %} 
+            {{value}}
+            {% endif %}
+          </dd>   
+          <dd class="app-check-your-answers__change">
+            {% if item == 'given-name' or item == 'family-name' %}
+                {% set url = 'personal-details' %}
+            {% elif item == 'contact-number' or item == 'email-address' %}
+                {% set url = 'contact-details' %}
+            {% elif item == 'date-of-birth' or item == 'country-of-birth' %}
+                {% set url = 'country-and-date-of-birth' %}
+            {% else %}
+                {% set url = 'identification-details' %}
+            {% endif %}
+            <a href="{{url}}">
+              Change<span class="govuk-visually-hidden"> details</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {{ govukButton({
+            text: "Submit",
+            classes: 'govuk-!-margin-top-6'
+        }) }}
+    {% else %}
+        <p> You have not entered any details.</p>
+    {% endif %}
+
+    </form>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  How much allowance do you want to transfer?
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="confirm-new-recipient">Back</a>
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+input, select { display: block; }
+</style>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+      <span class="govuk-caption-xl">{{ data['installationName']}}</span>
+      How much allowance do you want to transfer?
+    </h1>
+    <form class="form" action="check-and-submit-transfer" method="post">
+      {% set selected = data['ets-transfer-allowance']['installation'] | trim %}
+      {% for item in data['installations'] %}
+        {% if selected == (item.name) | trim %}
+        {% for item in item.emissionAllowance %}
+          {% for type, value in item %}
+          {{ govukInput({
+            id: type,
+            name: "emissionAllowance[" + type + "][moved]",
+            label: {
+              text: 'Amount of ' + type.split('-').join(" ") + ' units'
+            },
+            hint: {
+              html: 'You will have <span id="newnumber"> ' + value + ' </span> units of ' + type.split('-').join(" ") +' after this transfer'
+            },
+            classes: "govuk-input--width-5 app-emmission-transfer",
+            attributes: {
+              'data-amount': value
+            },
+            value: data['emissionAllowance'][type]['moved']
+          }) }}
+          {{ govukInput({
+            id: 'started'+type,
+            name: "emissionAllowance[" + type + "][started]",
+            value: value,
+            type: 'hidden'
+          }) }}
+          {% endfor %}
+          
+        {% endfor %}  
+        {% endif %}
+      {% endfor %}
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+  </div>
+  {% include "includes/sidebar.html" %}
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+/* global $ */
+  $(".app-emmission-transfer" ).each(function() {
+    var $this = $(this);
+
+    var number = $this.val();
+    var amountYouHave = $this.data('amount')
+    var amountYouWillHave;
+
+    if ( number ) {
+      amountYouWillHave = amountYouHave - number;
+    } else if ( !number) {
+      number = 0;
+      amountYouWillHave = amountYouHave;
+    }
+    $this.find('#newnumber').text( amountYouWillHave );
+
+    $this.on('input',function(e){
+      number = $this.val();  
+      if ( number ) {
+        amountYouWillHave = amountYouHave - number;
+      } else if ( !number ) {
+        number = 0
+      }
+      $this.parent().find('#newnumber').text( amountYouWillHave );
+    });
+    
+  });
+      
+</script>
+{% endblock %}

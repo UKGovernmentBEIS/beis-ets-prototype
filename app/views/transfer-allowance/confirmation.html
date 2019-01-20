@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% set recipientType = data['ets-transfer-allowance']['select-recipient'] %}
+{% set selectedInstallation = data['ets-transfer-allowance']['installation'] | trim %}
+{% set installationID = '' %}
+{% for item in data['installations'] %}
+  {% if selectedInstallation == (item.name) | trim %}
+    {% set installationID = item.permitId %}
+  {% endif %}
+{% endfor %}
+{% set mainClasses = "govuk-main-wrapper--l" %}
+{% block pageTitle %}
+  Confirmation page
+{% endblock %}
+
+{% block content %} 
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-7">
+        <h1 class="govuk-panel__title">
+        {% if recipientType == 'existing' %}
+        Your proposed transfer has been submitted. 
+        {% else %}
+        We have received your submission for a transfer 
+        {% endif %}
+        </h1>
+        <div class="govuk-panel__body">
+          Your reference number<br><strong>BGT8723X</strong>
+        </div>
+      </div>
+      {{ govukInsetText({
+        html: "Visit account page to <a class='govuk-link' href='/account/" + installationID +"?view=transaction'>check the transaction</a>."
+      }) }}
+      <h2 class="govuk-heading-m"> What happens next</h2>
+      {% if recipientType == 'existing' %}
+        <p>
+          We have sent you a confirmation email about your transfer. We have notified all representatives on your account who can approve this transfer.
+        </p>
+
+        <p>
+          Once another representative has approved this transfer it will take 26 hours for the allowance to arrive in your recipient's account.
+        </p>
+      {% else %}
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          Your transfer will need to be approved.
+        </strong>
+      </div>
+      
+      <p>We've sent a notification of your transfer to all representatives for this account. Once it's approved it will take 26 hours for your transfer to be processed.<p/> 
+      {% endif %}
+      <p>You can now:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li><a href="/transfer-allowance/select-installation">Make another transfer</a></li>
+        <li><a href="/submit-emissions/select-installation">Submit emissions data for 2019</a></li>
+        <li><a href="/surrender-allowance/select-installation">Surrender allowance for your installation</a></li>
+      </ul>
+
+      <p>Learn more about <a href="https://www.gov.uk/guidance/eu-ets-allowances">how to get more allowance</a>.</p>
+
+
+    </div>
+  </div>
+{{installationID | dump(2)}}
+{% endblock %}

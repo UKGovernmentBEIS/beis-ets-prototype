@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Check your details before you submit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="add-new-linked-representative">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Check your details before you submit</h1> 
+
+    <form action='confirmation' method="POST">
+    {% if data['ets-register'] | length > 0 %}
+    <dl class="app-check-your-answers app-check-your-answers--short">
+       {% for item, value in data['ets-register'] %}  
+       {% if value | length > 0 %}
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            {{item.split('-').join(" ") | capitalize }}
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {{value}}
+          </dd>   
+          <dd class="app-check-your-answers__change">
+            {% if item == 'account-name' or item == 'is-previous-ets-user' or item == 'urid-account-number' %}
+                {% set url = 'account-details' %}
+            {% elif item == 'linked-reps' %}
+                {% set url = 'your-linked-representative' %}
+            {% elif item == 'new-linked-rep-name' or item == 'new-linked-rep-email-address' %}
+                {% set url = 'add-new-linked-representative' %}
+            {% else %}
+                {% set url = 'operator-selection' %}
+            {% endif %}
+            <a href="{{url}}">
+              Change<span class="govuk-visually-hidden"> details</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {{ govukButton({
+            text: "Submit",
+            classes: 'govuk-!-margin-top-6'
+        }) }}
+    {% else %}
+        <p> You have not entered any details.</p>
+    {% endif %}
+
+    </form>
+    </div>
+  </div>
+{% endblock %}

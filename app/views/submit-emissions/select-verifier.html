@@ -1,0 +1,135 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Select verifier
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="specify-amount">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="check-and-submit" method="POST">
+       {% call govukFieldset({
+      }) %}
+        {% set selectVerifierHTML %}
+        {{ govukSelect({
+          id: "verifier-list",
+          name: "ets-submit-emmissions[verifier]",
+          label: {
+            text: "Select a verifier from the list"
+          },
+          items: [
+            {
+              text: 'Choose a verifier',
+              value: 'choose a verifier',
+              selected: checked("['ets-submit-emmissions']['verifier']",'choose a verifier')
+            },
+            {
+              value: 'BSI Assurance UK Limited',
+              text: 'BSI Assurance UK Limited',
+              selected: checked("['ets-submit-emmissions']['verifier']",'BSI Assurance UK Limited')
+            },
+            {
+              value: 'Bureau Veritas Certification Holding SAS - UK Branch',
+              text: 'Bureau Veritas Certification Holding SAS - UK Branch',
+              selected: checked("['ets-submit-emmissions']['verifier']",'Bureau Veritas Certification Holding SAS - UK Branch')
+            },
+            {
+              value: 'DNV GL Business Assurance UK Limited',
+              text: 'DNV GL Business Assurance UK Limited',
+              selected: checked("['ets-submit-emmissions']['verifier']",'DNV GL Business Assurance UK Limited')
+            },
+            {
+              value: 'ERM Certification & Verification Services Ltd',
+              text: 'ERM Certification & Verification Services Ltd',
+              selected: checked("['ets-submit-emmissions']['verifier']",'ERM Certification & Verification Services Ltd')
+            },
+            {
+              value: 'Kiwa Ltd trading as c:sense',
+              text: 'Kiwa Ltd trading as c:sense',
+              selected: checked("['ets-submit-emmissions']['verifier']",'Kiwa Ltd trading as c:sense')
+            },
+            {
+              value: 'Lloyd’s Register Quality Assurance Limited',
+              text: 'Lloyd’s Register Quality Assurance Limited',
+              selected: checked("['ets-submit-emmissions']['verifier']",'Lloyd’s Register Quality Assurance Limited')
+            },
+            {
+              value: 'Lucideon CICS Limited',
+              text: 'Lucideon CICS Limited',
+              selected: checked("['ets-submit-emmissions']['verifier']",'Lucideon CICS Limited')
+            },
+            {
+              value: 'Nippon Kaiji Kyokai (Class NK)',
+              text: 'Nippon Kaiji Kyokai (Class NK)',
+              selected: checked("['ets-submit-emmissions']['verifier']",'Nippon Kaiji Kyokai (Class NK)')
+            },
+            {
+              value: 'SGS United Kingdom Limited',
+              text: 'SGS United Kingdom Limited',
+              selected: checked("['ets-submit-emmissions']['verifier']",'SGS United Kingdom Limited')
+            },
+            {
+              value: 'Soil Association Certification Limited',
+              text: 'Soil Association Certification Limited',
+              selected: checked("['ets-submit-emmissions']['verifier']",'Soil Association Certification Limited')
+            },
+            {
+              value: 'TUV UK Limited',
+              text: 'TUV UK Limited',
+              selected: checked("['ets-submit-emmissions']['verifier']",'TUV UK Limited')
+            },
+            {
+              value: 'VERIFAVIA (UK) LTD',
+              text: 'VERIFAVIA (UK) LTD',
+              selected: checked("['ets-submit-emmissions']['verifier']",'VERIFAVIA (UK) LTD')
+            }
+          ]
+        }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+          idPrefix: "select-verifier",
+          name: "ets-submit-emmissions[select-verifier]",
+          fieldset: {
+            legend: {
+              text: "Is Lucideon your verifier?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          hint: {
+            text: "A verifier will need to review your emissions before you can surrender allowance. This needs to be the same verifier as the one who verfied your Annual Emissions Report (AER)."
+          },
+          items: [
+            {
+              value: "Lucideon",
+              text: "Yes, Lucideon is my verifier",
+               checked: checked("['ets-submit-emmissions']['select-verifier']",'Lucideon')
+            },
+            {
+              value: "other",
+              text: "No, I want to choose another verifier",
+              checked: checked("['ets-submit-emmissions']['select-verifier']",'other'),
+              conditional: {
+                html: selectVerifierHTML
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+        {% endcall %}
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

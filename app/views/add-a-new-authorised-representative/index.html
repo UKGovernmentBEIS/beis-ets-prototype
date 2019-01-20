@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Which installation do you want to add a new authorised representative for?
+{% endblock %}
+{% set serviceName = 'New authorised representative' %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="representative-details" method="post">
+        {{ govukRadios({
+          idPrefix: "installation",
+          name: "new-linked-representative[installation]",
+          fieldset: {
+            legend: {
+              text: "Which installation do you want to add a new authorised representative for?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "Nevern Power Limited",
+              text: "Nevern Power Limited",
+              checked: checked ("['new-linked-representative']['installation']", 'Nevern Power Limited'), 
+              hint: {
+                text: "Permit ID UK-E-IN-78934"
+              }
+            },
+            {
+              value: "Scunthorpe Integrated Iron & Steel Works",
+              text: "Scunthorpe Integrated Iron & Steel Works",
+              checked: checked ("['new-linked-representative']['installation']", 'Scunthorpe Integrated Iron & Steel Works'),
+              hint: {
+                text: "Permit ID UK-E-IN-78935"
+              }
+            },
+            {
+              value: "Port Talbot Steelworks",
+              text: "Port Talbot Steelworks",
+              checked: checked ("['new-linked-representative']['installation']", 'Port Talbot Steelworks'),
+              hint: {
+                text: "Permit ID UK-E-IN-78936"
+              }
+            },
+            {
+              value: "Lynemouth Power Station",
+              text: "Lynemouth Power Station",
+              checked: checked ("['new-linked-representative']['installation']", 'Lynemouth Power Station'),
+              hint: {
+                text: "Permit ID UK-E-IN-78937"
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
