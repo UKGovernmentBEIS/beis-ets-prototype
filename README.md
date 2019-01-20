@@ -5,3 +5,4 @@ Latest live version:
 
 Review archived versions:
 - https://ets-alpha-v1.herokuapp.com/
+- https://ets-alpha-v2.herokuapp.com/

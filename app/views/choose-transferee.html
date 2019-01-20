@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/installation-transfer">Back</a>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+   <h1 class="govuk-heading-xl">
+      <span class="govuk-caption-xl">{{ data['whichinstallation']}}</span>
+
+    </h1>
+
+
+    <form class="form" action="/existing-transfer" method="post">
+
+    <p class="govuk-body-l"><a href="#">View transaction history</a></p>
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h2 class="govuk-fieldset__heading">
+        Who do you want to transfer allowance to?
+      </h2>
+    </legend>
+    <div class="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="whichinstallation-1" name="whichinstallation" type="radio" value="Nevern Power Limited" {{ checked ('whichinstallation', 'Nevern Power Limited')}}>
+        <label class="govuk-label govuk-radios__label" for="which-installation-1">
+          Existing account
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="whichinstallation-2" name="whichinstallation" type="radio" value="Scunthorpe Integrated Iron & Steel Works" {{ checked ('whichinstallation', 'Scunthorpe Integrated Iron & Steel Works')}}>
+        <label class="govuk-label govuk-radios__label" for="whichinstallation-2">
+          New account
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="whichinstallation-3" name="whichinstallation" type="radio" value="Port Talbot Steelworks" {{ checked ('whichinstallation', 'Port Talbot Steelworks')}}>
+        <label class="govuk-label govuk-radios__label" for="which-installation-3">
+          Delete allowances
+        </label>
+
+            </div>
+          </fieldset>
+        </div>
+
+
+<button class="govuk-button">Continue</button>
+
+</form>
+
+</div>
+</div>
+
+
+{% endblock %}

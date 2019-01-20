@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+<!-- Adds a class to increase vertical spacing for pages without a back button -->
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
+{% block pageTitle %}
+  Confirmation page example
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">Your transfer to a new recepient has been successful</h1>
+        <div class="govuk-panel__body">
+          Your reference number<br><strong>HXJ76393F</strong>
+        </div>
+      </div>
+
+
+      <h2 class="govuk-heading-m" style="margin-top:40px">What happens next</h2>
+      <p class="govuk-body">We have sent you a confirmation email.</p>
+      <p>You can now:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+
+          <li><a href="/installation-transfer">Make another transfer or cancellation</a></li>
+          <li><a href="/installation-submit">Submit emissions data for 2019</a></li>
+          <li><a href="/installation-surrender">Surrender allowance for your installation</a></li>
+      </ul>
+
+
+      <p class="govuk-body">Learn more about <a href="#">how to get more allowance</a>.</p>
+
+    </div>
+  </div>
+
+{% endblock %}
