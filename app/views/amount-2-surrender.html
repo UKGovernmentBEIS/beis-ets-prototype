@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/installation-surrender">Back</a>
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+            <span class="govuk-caption-xl">{{ data['whichinstallation']}}</span>
+        Surrender your 2018 emission allowance
+      </h1>
+      <form class="form" action="/amount-surrender-route" id="amount-surrender-route" method="post">
+
+      <p class="govuk-body"style="margin-bottom:30px">You need to surrender the full amount by 30 April 2019. If you don't have enough allowance you may need to <a href="#">acquire additional allowance</a>.</p>
+
+      {% from "table/macro.njk" import govukTable %}
+      <table class="govuk-table">
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="row">Your 2018  emissions</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric" style="padding-right:5px;">2,480</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="row" style="    border-bottom-color: black;
+    border-bottom-width: 2px;">Your credit<br><span style="font-weight:normal !important;color: #6f777b;">You surrendered too much last year. <a href="/transaction-history-transfer">Learn why</a></span></th>
+            <td class="govuk-table__cell govuk-table__cell--numeric" style="border-bottom-color: black;
+    border-bottom-width: 2px;padding-right:5px;">320</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="row">You need to surrender</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric" style="padding-right:7px;">2,160</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="row">You have</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric" style="padding-right:7px;">2,500</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="how-contacted-conditional-hint">
+          <div class="govuk-radios govuk-radios--conditional" data-module="radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="how-surrender-conditional-1" name="surrender-radio" type="radio" value="Everything" data-aria-controls="conditional-how-surrender-conditional-1" {{ checked ('surrender-radio', 'Everything')}}>
+              <label class="govuk-label govuk-radios__label" for="how-surrender-conditional-1">
+                Surrender 2,160
+              </label>
+              <span id="nationality-1-item-hint" class="govuk-hint govuk-radios__hint">
+                You will have 340 left
+              </span>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="how-surrender-conditional-2" name="surrender-radio" type="radio" value="Other" data-aria-controls="conditional-how-surrender-conditional-2"  {{ checked ('surrender-radio', 'Other')}}>
+              <label class="govuk-label govuk-radios__label" for="how-surrender-conditional-2">
+                Surrender another amount
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-how-surrender-conditional-2">
+              <div class="govuk-form-group">
+                  <input class="govuk-input govuk-input--width-5 number" id="amount-to-surrender" name="amount-to-surrender" type="text" style="text-align:right;font-family: "ntatabularnumbers", "nta", Arial, sans-serif;" value="{{ data['amount-to-surrender'] }}">
+
+                  <span id="balance" class="govuk-hint" style="margin-top:10px">
+                    You have 2,500 allowances
+                    </span>
+
+              </div>
+
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+    <button class="govuk-button">Submit for approval</button>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+
+
+  <script>
+    var el = document.querySelector('input.number');
+    el.addEventListener('keyup', function (event) {
+      if (event.which >= 37 && event.which <= 40) return;
+
+      this.value = this.value.replace(/\D/g, '')
+                             .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    });</script>
+  </form>
+
+    </div>
+    {% include "includes/sidebar.html" %}
+  </div>
+
+{% endblock %}

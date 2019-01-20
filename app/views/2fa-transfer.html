@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  What's your phone code?
+  What is your phone code?
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/email-surrender">Back</a>
+  <a class="govuk-back-link" href="/email-transfer">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,7 @@
       </h1>
 
 
-      <form class="form" action="/installation-surrender" method="post">
+      <form class="form" action="/installation-transfer" method="post">
 
         {% from "input/macro.njk" import govukInput %}
 
@@ -28,16 +28,16 @@
           hint: {
             text: 'We sent a 6-digit code to a number ending with **72.'
           },
-          id: "two-fa-surrender",
-          name: "two-fa-surrender",
+          id: "two-fa-submit",
+          name: "two-fa-submit",
           type: "number"
         }) }}
 
         <button class="govuk-button">Continue</button>
 
-      </form>
+        <p><a href="#">Didn't receive a text message?</a></p>
 
-      <p><a href="#">Didn't receive a text message?</a></p>
+      </form>
 
     </div>
   </div>

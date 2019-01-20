@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Check your answers
+  Confirm transfer to an existing recipient
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/verifier-submit">Back</a>
+  <a class="govuk-back-link" href="/existing-transfer">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -13,13 +13,10 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        Check your answers before submitting your emissions data
+        <span class="govuk-caption-xl">{{ data['installationName']}}</span>
+        Confirm transfer to an existing recipient
       </h1>
 
-      <!-- only add a heading for a list if there is more than one list -->
-      <h2 class="govuk-heading-m">
-        Emissions data
-      </h2>
 
       <!-- use additional modifier class to change column widths for multiple groups of questions and answers: -->
       <!--   * `app-check-your-answers--short` for short questions -->
@@ -28,75 +25,94 @@
       <dl class="app-check-your-answers app-check-your-answers--short">
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
-            CO<sub>2</sub>
+            Recipient
           </dt>
           <dd class="app-check-your-answers__answer">
-             {{ data['emission-1']}}
+             {{ data['recipient-select']}}
           </dd>
           <dd class="app-check-your-answers__change">
-            <a href="/amount-submit">
-              Change<span class="govuk-visually-hidden"> Carbon dioxide</span>
+            <a href="/existing-transfer">
+              Change<span class="govuk-visually-hidden"> recipient</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['recipient-select'] != 'Choose a recipient' %}
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Recipient ID
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            EU-100-77739-1-31
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="/existing-transfer">
+              Change<span class="govuk-visually-hidden"> Amount</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+
+        {% if data['unitName'] %}
+          <div class="app-check-your-answers__contents">
+            <dt class="app-check-your-answers__question">
+            Unit
+            </dt>
+            <dd class="app-check-your-answers__answer">
+              {{ data['unitName']}}
+            </dd>
+            <dd class="app-check-your-answers__change">
+              <a href="/existing-transfer">
+                Change<span class="govuk-visually-hidden"> Amount</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Amount
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {{ data['amount-1']}}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="/existing-transfer">
+              Change<span class="govuk-visually-hidden"> Amount</span>
             </a>
           </dd>
         </div>
 
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
-            N<sub>2</sub>O
+           New balance
           </dt>
           <dd class="app-check-your-answers__answer">
-            {{ data['emission-2']}}
-          </dd>
-          <dd class="app-check-your-answers__change">
-            <a href="amount-submit">
-              Change<span class="govuk-visually-hidden"> Nitrous oxide</span>
-            </a>
-          </dd>
-        </div>
-
-        <div class="app-check-your-answers__contents">
-          <dt class="app-check-your-answers__question">
-            PFCs
-          </dt>
-          <dd class="app-check-your-answers__answer">
-            {{ data['emission-3']}}
-          </dd>
-          <dd class="app-check-your-answers__change">
-            <a href="amount-submit">
-              Change<span class="govuk-visually-hidden"> Perfluorocarbons </span>
-            </a>
-          </dd>
-        </div>
-
-        <div class="app-check-your-answers__contents">
-          <dt class="app-check-your-answers__question">
-            Verifier
-          </dt>
-          <dd class="app-check-your-answers__answer">
-            {% if data['verifier-radio'] == 'Other' %}
-              {{ data['verifier-select'] }}
+            {% if data['allowanceUnitValue'] %}
+              {{ data['allowanceUnitValue'] - data['amount-1'] }}
             {% else %}
-              {{ data['verifier-radio'] }}
+              {{ data['allowanceValue'] - data['amount-1'] }}
             {% endif %}
+            </script>
+
+
           </dd>
           <dd class="app-check-your-answers__change">
-            <a href="verifier-submit">
-              Change<span class="govuk-visually-hidden"> verifier</span>
+            <a href="/existing-transfer">
             </a>
           </dd>
         </div>
       </dl>
 
-      <h2 class="govuk-heading-m">Now submit your emissions data</h2>
 
-      <p>
-        Your submitted data will need to be verified by the verifier you have selected.
+      <p style="margin-top:-30px">
+        Your transfer will be sent to another representative on your account to be approved.
       </p>
 
-      <a class="govuk-button" href="/confirmation-submit" role="button">
-        Submit Emissions
+      <a class="govuk-button" href="/confirmation-transfer" role="button">
+        Submit transfer and send for approval
       </a>
 
     </div>
+    {% include "includes/sidebar.html" %}
   </div>
 {% endblock %}
