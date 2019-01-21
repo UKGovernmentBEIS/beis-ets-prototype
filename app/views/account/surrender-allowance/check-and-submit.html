@@ -1,13 +1,13 @@
 {% extends "layouts/admin/base-account-question.html" %}
 
 {% block pageTitle %}
-  Check before surrendering your allowance
+  Check before surrendering your allowances
 {% endblock %}
 
 
 {% block content %}
 
-  <h1 class="govuk-heading-xl">Check before surrendering your allowance</h1>
+  <h1 class="govuk-heading-xl">Check before surrendering your allowances</h1>
     <form class="form" action="confirmation" method="post">
 
       {{ govukTable({
@@ -28,7 +28,7 @@
       }) }}
 
       {{ govukButton({
-        text: "Surrender allowance"
+        text: "Surrender allowances"
       }) }}
     </form>
 
