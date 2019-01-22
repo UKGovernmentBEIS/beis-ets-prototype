@@ -13,7 +13,7 @@ awaiting approval
 
       <h2 class="govuk-heading-m">Holdings</h2>
       <P>You have <strong>2500</strong> units. <!-- You need to surrender <strong>2160</strong> units by 20 April 2019.--></p>
-      {% if data.userPersona == 'operator' or data.userPersona == 'ea' %}
+      {% if not data.userPersona or data.userPersona == 'ea' %}
       <h2 class="govuk-heading-m">Compliance History</h2>
       <table class="govuk-table" data-type="compliance-period">
         <thead class="govuk-table__head">
