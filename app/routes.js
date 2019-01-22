@@ -54,12 +54,6 @@ router.get('/account/:id/:page/:subPage', function (req, res, next) {
   res.render('account/' + req.params.page + '/' + req.params.subPage)
 })
 
-router.get('/resetSessionData', function (req, res) {
-    var sessionDataDefaultsFile = path.join(__dirname, '/../../app/data/session-data-defaults.js')
-    req.session.data = {}
-    req.session.data = Object.assign({}, sessionDataDefaults, req.session.data) // load default data from file and insert into session.
-    res.redirect('/');
-})
 
 router.post('/account/:id/submit-emissions/specify-amount', function (req, res) {
     console.log(req.session.data.etsSubmitEmmissions);
