@@ -32,7 +32,7 @@
       {% if data.userPersona == 'ea' %}
         National Administrator
       {% else %}
-      {{ data.userPersona | capitalize }} account
+      {{ data.userPersona | d('operator') | capitalize }} account
       {% endif %}
       </span>
       <h1 class="govuk-heading-xl">Your accounts</h1>
