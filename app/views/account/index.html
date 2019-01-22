@@ -66,7 +66,7 @@ awaiting approval
           <tr class="govuk-table__row govuk-!-font-size-16">
             <td class="govuk-table__cell" scope="row">
                 {% if data.etsSubmitEmmissions %}
-                15 January 2019
+                {{ currentDate | date("DD MMMM YYYY") }}
                 {% else %}
                 N/A
                 {% endif %}
