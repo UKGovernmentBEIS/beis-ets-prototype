@@ -38,7 +38,7 @@
           {% set surrenderOtherAmount %}
             {{ govukInput({
               id: "other-amount",
-              name: "etsSurrenderAllowance.surrender.CustomAmount",
+              name: "etsSurrenderAllowance.surrender.customAmount",
               classes: "govuk-input--width-5 format-number",
               label: {
                 text: "Enter amount to surrender"
@@ -46,7 +46,7 @@
               hint: {
                 text:  'You have 2,500 allowances'
               },
-              value: data.etsSurrenderAllowance.surrender.CustomAmount
+              value: data.etsSurrenderAllowance.surrender.customAmount
             }) }}
           {% endset -%}
 

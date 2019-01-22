@@ -115,7 +115,7 @@ awaiting approval
               </td>
               <td class="govuk-table__cell ">10-02 Surrender Allowances</td>
               <td class="govuk-table__cell govuk-table__cell--numeric ">
-              {% if data.etsSurrenderAllowance.surrenderCustomAmount == ' ' %}
+              {% if data.etsSurrenderAllowance.amountToSurrender == 'other' %}
                 <strong>140</strong> units oversurrendered
               {% else %}
                 {{ data.etsSurrenderAllowance.amountToSurrender }}
