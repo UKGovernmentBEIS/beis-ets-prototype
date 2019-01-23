@@ -87,6 +87,7 @@ awaiting approval
       </table>
       {% endif %}
       <h2 class="govuk-heading-m">Transaction History</h2>
+
 <table class="govuk-table" data-type="transactions">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row govuk-!-font-size-16">
@@ -143,9 +144,18 @@ awaiting approval
                 {{ currentDate | date("h:mm:ss a") }}
               </td>
               <td class="govuk-table__cell ">10-05 Transfer Allowances</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric " colspan="2">
-              {% for emission, value, object in data.emissionAllowance %}
-                {{ (emission).split('-').join(" ") }}: <strong>{{ value.moved | default(0)}}</strong> <br />
+              <td class="govuk-table__cell govuk-table__cell--numeric ">
+              {% for emission, value in data.emissionAllowance %}
+                {{ value.moved | default(0) }} <br />
+              {% endfor %}
+              </td>
+              <td class="govuk-table__cell govuk-table__cell--numeric ">
+              {% for emission, value in data.emissionAllowance %}
+                {% if emission == 'generalAllowance' %}
+                  GA
+                {% else %}
+                  {{ emission }}
+                {% endif %} <br />
               {% endfor %}
               </td>
               <td class="govuk-table__cell ">{{installationID}}</td>
@@ -179,8 +189,12 @@ awaiting approval
 
         </tbody>
       </table>
-
+      {{ govukButton({
+        text: "Download transactions as CVS"
+      }) }}
       <h2 id="trusted-accounts" class="govuk-heading-m">Trusted Accounts</h2>
+
+
 <table class="govuk-table" data-type="trustedAccounts">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row govuk-!-font-size-16">
