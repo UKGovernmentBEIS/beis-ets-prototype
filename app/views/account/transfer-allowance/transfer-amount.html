@@ -13,7 +13,7 @@ input, select { display: block; }
 </style>
 
     <h1 class="govuk-heading-xl">
-      How much allowance do you want to transfer?
+      How many allowances do you want to transfer?
     </h1>
     <form class="form" action="check-and-submit-transfer" method="post">
       {% for item in data['installations'] %}
@@ -42,8 +42,8 @@ input, select { display: block; }
             type: 'hidden'
           }) }}
           {% endfor %}
-          
-        {% endfor %}  
+
+        {% endfor %}
         {% endif %}
       {% endfor %}
       {{ govukButton({
@@ -73,7 +73,7 @@ input, select { display: block; }
     $this.find('#newnumber').text( amountYouWillHave );
 
     $this.on('input',function(e){
-      number = $this.val();  
+      number = $this.val();
       if ( number ) {
         amountYouWillHave = amountYouHave - number;
       } else if ( !number ) {
@@ -81,8 +81,8 @@ input, select { display: block; }
       }
       $this.parent().find('#newnumber').text( amountYouWillHave );
     });
-    
+
   });
-      
+
 </script>
 {% endblock %}

@@ -11,15 +11,15 @@
 {% block beforeContent %}
 {% endblock %}
 
-{% block content %} 
+{% block content %}
 
 
       <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-7">
         <h1 class="govuk-panel__title">
         {% if recipientType == 'existing' %}
-        Your proposed transfer has been submitted. 
+        Your proposed transfer has been submitted.
         {% else %}
-        We have received your submission for a transfer 
+        We have received your submission for a transfer
         {% endif %}
         </h1>
         <div class="govuk-panel__body">
@@ -36,7 +36,7 @@
         </p>
 
         <p>
-          Once another representative has approved this transfer it will take 26 hours for the allowance to arrive in your recipient's account.
+          Once another representative has approved this transfer it will take 26 hours for the allowances to arrive in your recipient's account.
         </p>
       {% else %}
       <div class="govuk-warning-text">
@@ -46,11 +46,11 @@
           Your transfer will need to be approved.
         </strong>
       </div>
-      
-      <p>We've sent a notification of your transfer to all representatives for this account. Once it's approved it will take 26 hours for your transfer to be processed.<p/> 
+
+      <p>We've sent a notification of your proposed transfer to representatives for this account. Once approved, the transfer will take 26 hours to be completed. The 26 hours will only start during business hours.<p/>
       {% endif %}
 
-      <p>Learn more about <a href="https://www.gov.uk/guidance/eu-ets-allowances">how to get more allowance</a>.</p>
+      <p>Learn more about <a href="https://www.gov.uk/guidance/eu-ets-allowances">how to get more allowances</a>.</p>
 
 
     </div>

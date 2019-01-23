@@ -13,7 +13,7 @@ input, select { display: block; }
     <form class="form" action="confirm-new-recipient" method="post">
       {% call govukFieldset({
         legend: {
-          text: "Who do you want to transfer allowance to?",
+          text: "Who do you want to transfer allowances to?",
           classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
           isPageHeading: true
         }
@@ -21,7 +21,7 @@ input, select { display: block; }
 
       {{ govukInput({
         label: {
-          text: "Installation ID of recipient"
+          text: "Account ID of recipient"
         },
         hint: {
           text: "eg 'EU-100-47639-0-78'"
@@ -34,7 +34,7 @@ input, select { display: block; }
 
       {{ govukDetails({
         summaryText: "Help with installation ID",
-        text: "The person you are transferring to should provide you with an installaion ID. This can be found in the Settings of their accounts."
+        text: "The person you are transferring to should provide you with an Account ID. This can be found on their Accounts page."
       }) }}
 
       {{ govukButton({
