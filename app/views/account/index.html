@@ -186,6 +186,7 @@ awaiting approval
           <tr class="govuk-table__row govuk-!-font-size-16">
             <th class="govuk-table__header" scope="col">Account</th>
             <th class="govuk-table__header" scope="col">Name</th>
+            <th class="govuk-table__header " scope="col">Note</th>
             <th class="govuk-table__header " scope="col">Legal Entity</th>
             <th class="govuk-table__header " scope="col">Status</th>
           </tr>
@@ -196,8 +197,11 @@ awaiting approval
               <tr class="govuk-table__row govuk-!-font-size-16">
               <th class="govuk-table__cell" scope="row"><a href="#">EU-100-70694-0-13</a>
               </th>
-              <td class="govuk-table__cell ">{{ item.nickname }} <br />
-              <i>{{ item.note }}</i>
+              <td class="govuk-table__cell ">
+                {{ item.nickname }}
+              </td>
+              <td class="govuk-table__cell ">
+                {{ item.note }}
               </td>
               <td class="govuk-table__cell ">Green Stripe Food and Drinks Limited</td>
               <td class="govuk-table__cell ">
@@ -212,6 +216,7 @@ awaiting approval
           <tr class="govuk-table__row govuk-!-font-size-16">
               <th class="govuk-table__cell" scope="row"><a href="#">{{ ea.id }}</th>
               <td class="govuk-table__cell ">{{ ea.name }}</td>
+              <td class="govuk-table__cell ">Currently no notes exist</td>
               <td class="govuk-table__cell ">{{ ea.legalEntity }}</td>
               <td class="govuk-table__cell ">
                 {{ govukTag({

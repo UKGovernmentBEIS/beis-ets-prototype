@@ -9,15 +9,22 @@
 {% endblock %}
 
 {% block content %}
-        <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-9">
+      <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-9">
         <h1 class="govuk-panel__title">Task completed</h1>
         <div class="govuk-panel__body">
           You have successfully requested for a new trusted account to be added.
         </div>
       </div>
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          An authorised representative on your account will need to approve this request.
+        </strong>
+      </div>
 
       {{ govukInsetText({
-        html: "Visit account page to <a class='govuk-link' href='/account/" + installationID +"'>manage trusted accounts</a>."
+        html: "Visit account page to <a class='govuk-link' href='/account/" + installationID +"'>check the status of your trusted accounts.</a>."
       }) }}
 
 {% endblock %}
