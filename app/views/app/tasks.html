@@ -64,6 +64,14 @@
             </div>
           </div>
           {% if task.type == 'Transfer' %}
+          <div class="transfer-completion action-grid-cell hidden">
+            <div class="label">
+              Expected completion on:
+            </div>
+            <div class="date">
+              {{ currentDate  | date("add", 7, "days") | date("DD MMMM YYYY") }}
+            </div>
+          </div>
           <div class="from action-grid-cell">
             <div class="label">
               From:
@@ -165,6 +173,7 @@
             content = approvedTag
         }
         $taskItem.find('.action-buttons').addClass('approved-transaction').html(content)
+        $taskItem.find('.transfer-completion').show()
 
         if ($(this).hasClass('final-reject-btn')){
             console.log($taskItem.find('.govuk-textarea'))

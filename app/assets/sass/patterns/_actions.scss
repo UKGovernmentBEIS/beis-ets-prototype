@@ -100,6 +100,23 @@ div .action-container .proposer .label {
     @include govuk-font($size: 16, $weight: light);
 }
 
+div .action-container .transfer-completion {
+  grid-column: 1 / span 1;
+  @include govuk-media-query($from: tablet) {  
+    grid-column: 1 / span 1;
+  }
+  margin-top: 15px;
+}
+
+div .action-container .transfer-completion.hidden {
+    display: none;
+}
+
+
+div .action-container .transfer-completion .label {
+    @include govuk-font($size: 16, $weight: light);
+}
+
 div .action-container .from {
   grid-column: 2 / span 1;
   @include govuk-media-query($from: tablet) {
