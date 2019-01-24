@@ -20,7 +20,7 @@ Example usage:
 module.exports = {
 
   // Insert values here
-      'accountsNavItems': [
+  'accountsNavItems': [
 				{
 					href: '',
 					text: 'Summary',
@@ -138,106 +138,106 @@ module.exports = {
     }
   ],
   'transactions': [
- {
-   "transactionId": "EU472379",
-   "started": "31/12/18 15:12",
-   "lastUpdated": "31/12/18 15:12",
-   "type": "10-72 Receipt of Allowances for Exchange",
-   "units": 363,
-   "unitType": "GA",
-   "transferringAccount": "EU-110-54234-0-22",
-   "acquiringAccount": "this",
-   "status": "4-COMPLETED"
- },
- {
-   "transactionId": "EU429591",
-   "started": "27/12/18 16:47",
-   "lastUpdated": "31/12/18 12:07",
-   "type": "10-00 Internal Transfer",
-   "units": 224,
-   "unitType": "CER",
-   "transferringAccount": "this",
-   "acquiringAccount": "EU-110-56193-0-12",
-   "status": "4-COMPLETED"
- },
- {
-   "transactionId": "EU647943",
-   "started": "25/04/18 20:24",
-   "lastUpdated": "25/04/18 20:24",
-   "type": "10-02 Surrender Allowances",
-   "units": 34523,
-   "unitType": "GA",
-   "transferringAccount": "this",
-   "acquiringAccount": "EU-110-63222-0-12",
-   "status": "4-COMPLETED"
- },
- {
-   "transactionId": "EU104957",
-   "started": "24/02/18 01:46",
-   "lastUpdated": "24/02/18 02:19",
-   "type": "10-36 Allocation General Allowances",
-   "units": 56612,
-   "unitType": "GA",
-   "transferringAccount": "EU-110-93932-0-11",
-   "acquiringAccount": "this",
-   "status": "4-COMPLETED"
- },
- {
-   "transactionId": "EU672244",
-   "started": "02/07/13 16:28",
-   "lastUpdated": "02/07/13 16:28",
-   "type": "01-34 Issuance General Allowances Banking",
-   "units": 9756,
-   "unitType": "GA",
-   "transferringAccount": "EU-110-93932-0-11",
-   "acquiringAccount": "this",
-   "status": "4-COMPLETED"
- },
- {
-   "transactionId": "EU289247",
-   "started": "02/07/13 16:28",
-   "lastUpdated": "02/07/13 16:28",
-   "type": "01-34 Issuance General Allowances Banking",
-   "units": 4244,
-   "unitType": "GA",
-   "transferringAccount": "EU-110-93932-0-11",
-   "acquiringAccount": "this",
-   "status": "4-COMPLETED"
- },
- {
-   "transactionId": "EU345954",
-   "started": "02/07/13 16:28",
-   "lastUpdated": "02/07/13 16:28",
-   "type": "10-34 Deletion General Allowances Banking",
-   "units": 1122,
-   "unitType": "GA",
-   "transferringAccount": "this",
-   "acquiringAccount": "EU-110-59193-0-12",
-   "status": "4-COMPLETED"
- },
- {
-   "transactionId": "EU345090",
-   "started": "19/04/13 12:38",
-   "lastUpdated": "22/04/13 14:38",
-   "type": "10-00 Internal Transfer",
-   "units": 553423,
-   "unitType": "GA",
-   "transferringAccount": "this",
-   "acquiringAccount": "EU-110-59193-0-12",
-   "status": "4-COMPLETED"
- },
- {
-   "transactionId": "EU945398",
-   "started": "05/06/12 00:00",
-   "lastUpdated": "05/06/12 00:00",
-   "type": "01-32 Decoupling",
-   "units": 678654,
-   "unitType": "GA",
-   "transferringAccount": "EU-110-56193-0-12",
-   "acquiringAccount": "this",
-   "status": "4-COMPLETED"
- }
-],
+    {
+      "transactionId": "EU472379",
+      "started": "31/12/18 15:12",
+      "lastUpdated": "31/12/18 15:12",
+      "type": "10-72 Receipt of Allowances for Exchange",
+      "units": 363,
+      "unitType": "GA",
+      "transferringAccount": "EU-110-54234-0-22",
+      "acquiringAccount": "this",
+      "status": "4-COMPLETED"
+    },
+    {
+      "transactionId": "EU429591",
+      "started": "27/12/18 16:47",
+      "lastUpdated": "31/12/18 12:07",
+      "type": "10-00 Internal Transfer",
+      "units": 224,
+      "unitType": "CER",
+      "transferringAccount": "this",
+      "acquiringAccount": "EU-110-56193-0-12",
+      "status": "4-COMPLETED"
+    },
+    {
+      "transactionId": "EU647943",
+      "started": "25/04/18 20:24",
+      "lastUpdated": "25/04/18 20:24",
+      "type": "10-02 Surrender Allowances",
+      "units": 34523,
+      "unitType": "GA",
+      "transferringAccount": "this",
+      "acquiringAccount": "EU-110-63222-0-12",
+      "status": "4-COMPLETED"
+    },
+    {
+      "transactionId": "EU104957",
+      "started": "24/02/18 01:46",
+      "lastUpdated": "24/02/18 02:19",
+      "type": "10-36 Allocation General Allowances",
+      "units": 56612,
+      "unitType": "GA",
+      "transferringAccount": "EU-110-93932-0-11",
+      "acquiringAccount": "this",
+      "status": "4-COMPLETED"
+    },
+    {
+      "transactionId": "EU672244",
+      "started": "02/07/13 16:28",
+      "lastUpdated": "02/07/13 16:28",
+      "type": "01-34 Issuance General Allowances Banking",
+      "units": 9756,
+      "unitType": "GA",
+      "transferringAccount": "EU-110-93932-0-11",
+      "acquiringAccount": "this",
+      "status": "4-COMPLETED"
+    },
+    {
+      "transactionId": "EU289247",
+      "started": "02/07/13 16:28",
+      "lastUpdated": "02/07/13 16:28",
+      "type": "01-34 Issuance General Allowances Banking",
+      "units": 4244,
+      "unitType": "GA",
+      "transferringAccount": "EU-110-93932-0-11",
+      "acquiringAccount": "this",
+      "status": "4-COMPLETED"
+    },
+    {
+      "transactionId": "EU345954",
+      "started": "02/07/13 16:28",
+      "lastUpdated": "02/07/13 16:28",
+      "type": "10-34 Deletion General Allowances Banking",
+      "units": 1122,
+      "unitType": "GA",
+      "transferringAccount": "this",
+      "acquiringAccount": "EU-110-59193-0-12",
+      "status": "4-COMPLETED"
+    },
+    {
+      "transactionId": "EU345090",
+      "started": "19/04/13 12:38",
+      "lastUpdated": "22/04/13 14:38",
+      "type": "10-00 Internal Transfer",
+      "units": 553423,
+      "unitType": "GA",
+      "transferringAccount": "this",
+      "acquiringAccount": "EU-110-59193-0-12",
+      "status": "4-COMPLETED"
+    },
+    {
+      "transactionId": "EU945398",
+      "started": "05/06/12 00:00",
+      "lastUpdated": "05/06/12 00:00",
+      "type": "01-32 Decoupling",
+      "units": 678654,
+      "unitType": "GA",
+      "transferringAccount": "EU-110-56193-0-12",
+      "acquiringAccount": "this",
+      "status": "4-COMPLETED"
+    }
+  ],
   'existingAccounts': [
     {
       name: 'National Grid Gas plc',
@@ -283,6 +283,85 @@ module.exports = {
       name: 'Procter & Gamble Product Supply (UK) Ltd',
       legalEntity: 'P&G Group plc',
       id: 'EU-100-4847-0-25'
+    }
+  ],
+  'tasks': [
+    {
+      type: 'Transfer',
+      startDate: '15 January 13:15pm',
+      referenceNumber: 'QR-454-665-34',
+      units: [
+        {
+          unitType: 'General Allowance',
+          unitAmount: '234'
+        }
+      ],
+      proposer: 'Divina Glaser',
+      accountFromID: 'EU-100-73432-0-76',
+      accountFromName: 'Nevern Power Limited',
+      accountToID: 'EU-100-77732-0-76',
+      accountToName: 'Lynemouth Power Station',
+      notes: 'Closes contract QQRN-3245 previously agreed on 25-JUN. Speak to Richard Curtis for further details',
+      status: 'open'
+    },
+    {
+      type: 'Surrender',
+      startDate: '12 January 20:55pm',
+      referenceNumber: 'EU596032',
+      units: [
+        {
+          unitType: 'General Allowance',
+          unitAmount: '2160'
+        }
+      ],
+      proposer: 'Luann Steppe',
+      accountFromID: 'EU-100-82345-0-76',
+      accountFromName: 'Scunthorpe Integrated Iron & Steel Works',
+      notes: 'Surrendering for year 2018',
+      status: 'open'
+    },
+    {
+      type: 'Submission',
+      startDate: '18 January 10:19pm',
+      referenceNumber: 'HXJ76393F',
+      units: [
+        {
+          unitType: 'Carbon dioxide (C0<sub>2</sub>)',
+          unitAmount: '2800'
+        },
+        {
+          unitType: 'Perfluorocarbons (PFCs)',
+          unitAmount: '568'
+        },
+        {
+          unitType: 'Nitrous oxide (N<sub>2</sub>O)',
+          unitAmount: '43'
+        }
+      ],
+      proposer: 'Tyra Lucas',
+      accountFromID: 'EU-100-77732-0-76',
+      accountFromName: 'Lynemouth Power Station',
+      verifier: 'Lucideon',
+      notes: 'Submitting emission for 2018',
+      status: 'open'
+    },
+    {
+      type: 'Transfer',
+      startDate: '16 January 7:55pm',
+      referenceNumber: 'QR-054-103-90',
+      units: [
+        {
+          unitType: 'CER',
+          unitAmount: '303'
+        }
+      ],
+      proposer: 'Tyra Lucas',
+      accountFromID: 'EU-100-73104-0-76',
+      accountFromName: 'Port Talbot Steelworks',
+      accountToID: 'EU-100-82345-0-76',
+      accountToName: 'Scunthorpe Integrated Iron & Steel Works',
+      notes: 'Shortfall covering',
+      status: 'open'
     }
   ]
 }

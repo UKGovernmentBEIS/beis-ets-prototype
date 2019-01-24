@@ -19,8 +19,8 @@
     {% endif %}
     {% if data.taskCount > 0 %}
       {% set bannerHtml %}
-      <h2 class="govuk-heading-m">{{ data.taskCount }} transfers have been proposed which require your approval</h2>
-      <p><a href="tasks">Review transfers</a></p>
+      <h2 class="govuk-heading-m">You have {{ data.taskCount }} outstanding tasks </h2>
+      <p><a href="tasks">Review tasks</a></p>
       {% endset %}
 
       {{ hmctsBanner({

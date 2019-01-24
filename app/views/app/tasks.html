@@ -20,91 +20,126 @@
           iconFallbackText: 'Success'
         }) }}
     {% endif %}
-
-      {% for acct in data['installations'] %}
+      <ul class='govuk-list'>
+        {% for task in data.tasks %}
+        <li>
         <div class="action-container">
-            <div class="heading action-grid-cell">
-                <div class="title">
-                    Transfer
-                </div>
-                <div class="started">
-                    <span class="label">
-                        Started:
-                    </span>
-                    <span class="datetime">
-                        25 June 13:15pm
-                    </span>
-                </div>
-                <div class="reference">
-                    <span class="label">
-                        Reference:
-                    </span>
-                    <span class="number">
-                        QR-454-665-34
-                    </span>
-                </div>
+          <div class="heading action-grid-cell">
+            <div class="title">
+              {{task.type}}
             </div>
-            <div class="amount action-grid-cell">
-                <div class="value">
-                    234.54
-                </div>
-                <div class="unit">
-                    General Allowance
-                </div>
+            <div class="started">
+              <span class="label">
+                Started:
+              </span>
+              <span class="datetime">
+                {{task.startDate}}
+              </span>
             </div>
-            <div class="proposer action-grid-cell">
-                <div class="label">
-                    Proposed by:
-                </div>
-                <div class="name">
-                    Cynthia Santilli
-                </div>
+            <div class="reference">
+              <span class="label">
+                Reference:
+              </span>
+              <span class="number">
+                {{task.referenceNumber}}
+              </span>
             </div>
-            <div class="from action-grid-cell">
-                <div class="label">
-                    From:
-                </div>
-                <div class="account-number">
-                    <a href="/account/{{ acct.permitId }}/">EU-100-73432-0-76</a>
-                </div>
-                <div class="account-name">
-                    HGH Normal Trading acct
-                </div>
+          </div>
+          <div class="amount action-grid-cell">
+            {% for unit in task.units %}
+              <div class="value">
+                {{unit.unitAmount}}
+              </div>
+              <div class="unit">
+                {{unit.unitType | safe}}
+              </div>
+            {% endfor %}
+          </div>
+          <div class="proposer action-grid-cell">
+            <div class="label">
+              Proposed by:
             </div>
-            <div class="to action-grid-cell">
-                <div class="label">
-                    To:
-                </div>
-                <div class="account-number">
-                    <a href="/account/{{ acct.permitId }}/">EU-100-73432-0-76</a>
-                </div>
-                <div class="account-name">
-                    QRN Europe 5
-                </div>
+            <div class="name">
+              {{task.proposer}}
             </div>
-            <div class="notes action-grid-cell">
-                <div class="label">
-                    Notes
-                </div>
-                <div class="text">
-                    "Closes contract QQRN-3245 previously agreed on 25-JUN. Speak to Richard Curtis for further details"
-                </div>
+          </div>
+          {% if task.type == 'Transfer' %}
+          <div class="from action-grid-cell">
+            <div class="label">
+              From:
             </div>
-            <div class="action-buttons action-grid-cell">
-                <div class="accept">
-        <a href="#" role="button" draggable="false" class="govuk-button">Approve</a>
-                </div>
-                <div class="reject">
-        <a href="#" role="button" draggable="false" class="govuk-button hmcts-button--secondary">Reject</a>
-                </div>
+            <div class="account-number">
+              <a href="#">{{task.accountFromID}}</a>
+            </div>
+            <div class="account-name">
+              {{task.accountFromName}}
+            </div>
+          </div>
+          <div class="to action-grid-cell">
+            <div class="label">
+              To:
+            </div>
+            <div class="account-number">
+              <a href="#">{{task.accountToID}}</a>
+            </div>
+            <div class="account-name">
+              {{task.accountToName}}
+            </div>
+          </div>
+          {% endif %}
+          {% if task.type == 'Surrender' %}
+          <div class="from action-grid-cell">
+            <div class="label">
+              From:
+            </div>
+            <div class="account-number">
+              <a href="#">{{task.accountFromID}}</a>
+            </div>
+            <div class="account-name">
+              {{task.accountFromName}}
+            </div>
+          </div>
+          {% endif %}
+          {% if task.type == 'Submission' %}
+          <div class="from action-grid-cell">
+            <div class="label">
+              From:
+            </div>
+            <div class="account-number">
+              <a href="#">{{task.accountFromID}}</a>
+            </div>
+            <div class="account-name">
+              {{task.accountFromName}}
+            </div>
+          </div>
+          <div class="to action-grid-cell">
+            <div class="label">
+              Verifier:
+            </div>
+            <div class="account-number">
+              {{task.verifier}}
+            </div>
+          </div>
+          {% endif %}
+          <div class="notes action-grid-cell">
+            <div class="label">
+                Notes
+            </div>
+            <div class="text">
+              <p>{{task.notes}}</p>
+            </div>
+          </div>
+          <div class="action-buttons action-grid-cell">
+            <div class="accept">
+              <a href="#" role="button" draggable="false" class="govuk-button">Approve</a>
+            </div>
+            <div class="reject">
+              <a href="#" role="button" draggable="false" class="govuk-button hmcts-button--secondary">Reject</a>
             </div>
         </div>
-
-
-    {% endfor %}
-
-
-
+        </li>
+        {% endfor %}
+      </ul>
   </main>
 
 </div>

@@ -27,10 +27,10 @@
       <dl class="app-check-your-answers app-check-your-answers--short govuk-!-margin-bottom-5">
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
-            Transfering account
+            From
           </dt>
           <dd class="app-check-your-answers__answer">
-            {{installationID}}
+            {{installationData.name}} <br/>{{installationID}}
           </dd>
           <dd class="app-check-your-answers__change">
           </dd>
@@ -38,11 +38,13 @@
         {% if data.etsTransferAllowance.recipient != 'Choose a recipient' %}
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
-            Receiving account
+
+            To 
+
           </dt>
           <dd class="app-check-your-answers__answer">
           {% if recipientType == 'existing' %}
-              {{ data.etsTransferAllowance.recipient}}
+              {{ data.etsTransferAllowance.recipient | replace(",", "<br />") | safe }}
           {% elif recipientType == 'new' %}
             {{ data.etsTransferAllowance.recepientId }}
           {% endif %}
