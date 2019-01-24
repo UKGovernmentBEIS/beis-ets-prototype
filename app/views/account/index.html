@@ -2,13 +2,7 @@
 {% set recipientType = data.etsTransferAllowance.selectRecipient %}
 
 {% block pageTitle %}Summary {{'- ' + serviceName}}{% endblock %}
-{% set tagText %}
-{%- if data.userPersona == 'proposer' -%}
-  approved
-{%- else -%} 
-awaiting approval
-{%- endif -%}
-{% endset %}
+
 {% block content %}
 
       <h2 class="govuk-heading-m">Holdings</h2>
@@ -127,7 +121,7 @@ awaiting approval
               <td class="govuk-table__cell ">EU-110-93932-0-11</td>
               <td class="govuk-table__cell ">
                 {{ govukTag({
-                text: tagText
+                text: 'awaiting approval'
               }) }}
               </td>
           </tr>
@@ -168,7 +162,7 @@ awaiting approval
             </td>
               <td class="govuk-table__cell ">
                 {{ govukTag({
-                text: tagText
+                text: 'awaiting approval'
               }) }}
               </td>
           </tr>
