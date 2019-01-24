@@ -1,4 +1,5 @@
 {% extends "layouts/admin/base-account.html" %}
+{% set columnWidth = 'full' %}
 {% set recipientType = data.etsTransferAllowance.selectRecipient %}
 
 {% block pageTitle %}Summary {{'- ' + serviceName}}{% endblock %}
@@ -13,10 +14,10 @@
         <thead class="govuk-table__head">
           <tr class="govuk-table__row govuk-!-font-size-16">
             <th class="govuk-table__header" scope="col">Date submitted</th>
-            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Year</th>
-            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Emissions reported</th>
-            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Allowance surrendered</th>
-            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Balance</th>
+            <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-20 " scope="col">Year</th>
+            <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-20 " scope="col">Emissions reported</th>
+            <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-20 " scope="col">Allowance surrendered</th>
+            <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-20 " scope="col">Balance</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -85,15 +86,15 @@
 <table class="govuk-table" data-type="transactions">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row govuk-!-font-size-16">
-            <th class="govuk-table__header" scope="col">Reference</th>
-            <th class="govuk-table__header" scope="col">Started</th>
-            <th class="govuk-table__header " scope="col">Last updated</th>
-            <th class="govuk-table__header " scope="col">Type</th>
-            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Units</th>
-            <th class="govuk-table__header" scope="col">Unit Type</th>
-            <th class="govuk-table__header" scope="col">Transferring Acct</th>
-            <th class="govuk-table__header" scope="col">Acquiring Acct</th>
-            <th class="govuk-table__header" scope="col">Status</th>
+            <th class="govuk-table__header govuk-!-width-10" scope="col">Reference</th>
+            <th class="govuk-table__header govuk-!-width-10" scope="col">Started</th>
+            <th class="govuk-table__header govuk-!-width-10" scope="col">Last updated</th>
+            <th class="govuk-table__header govuk-!-width-10" scope="col">Type</th>
+            <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-10" scope="col">Units</th>
+            <th class="govuk-table__header govuk-!-width-10" scope="col">Unit Type</th>
+            <th class="govuk-table__header govuk-!-width--15" scope="col">Transferring Acct</th>
+            <th class="govuk-table__header govuk-!-width-15" scope="col">Acquiring Acct</th>
+            <th class="govuk-table__header govuk-!-width-10 govuk-table__header--numeric" scope="col">Status</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -177,7 +178,7 @@
               <td class="govuk-table__cell ">{{ tx.unitType }}</td>
               <td class="govuk-table__cell ">{% if tx.transferringAccount == "this" %}{{ installationData.permitId }}{% else %}{{ tx.transferringAccount }}{% endif %}</td>
               <td class="govuk-table__cell ">{% if tx.acquiringAccount == "this" %}{{ installationData.permitId }}{% else %}{{ tx.acquiringAccount }}{% endif %}</td>
-              <td class="govuk-table__cell ">{{ tx.status }}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">{{ tx.status }}</td>
           </tr>
             {% endfor %}
 
@@ -192,11 +193,11 @@
 <table class="govuk-table" data-type="trustedAccounts">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row govuk-!-font-size-16">
-            <th class="govuk-table__header" scope="col">Account</th>
-            <th class="govuk-table__header" scope="col">Name</th>
-            <th class="govuk-table__header " scope="col">Note</th>
-            <th class="govuk-table__header " scope="col">Legal Entity</th>
-            <th class="govuk-table__header " scope="col">Status</th>
+            <th class="govuk-table__header govuk-!-width-20" scope="col">Account</th>
+            <th class="govuk-table__header govuk-!-width-20" scope="col">Name</th>
+            <th class="govuk-table__header govuk-!-width-20" scope="col">Note</th>
+            <th class="govuk-table__header govuk-!-width-20" scope="col">Legal Entity</th>
+            <th class="govuk-table__header govuk-!-width-20 govuk-table__header--numeric" scope="col">Status</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -212,7 +213,7 @@
                 {{ item.note }}
               </td>
               <td class="govuk-table__cell ">Green Stripe Food and Drinks Limited</td>
-              <td class="govuk-table__cell ">
+              <td class="govuk-table__cell govuk-table__cell--numeric">
               {{ govukTag({
                 text: "approval pending"
               }) }}
@@ -226,7 +227,7 @@
               <td class="govuk-table__cell ">{{ ea.name }}</td>
               <td class="govuk-table__cell ">Currently no notes exist</td>
               <td class="govuk-table__cell ">{{ ea.legalEntity }}</td>
-              <td class="govuk-table__cell ">
+              <td class="govuk-table__cell govuk-table__cell--numeric">
                 {{ govukTag({
                   "text": "trusted",
                   "classes": "govuk-tag--active"
@@ -245,7 +246,7 @@
             <th class="govuk-table__header" scope="col">Name</th>
             <th class="govuk-table__header " scope="col">Job Title</th>
             <th class="govuk-table__header " scope="col">Contact</th>
-            <th class="govuk-table__header " scope="col">Status</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Status</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -257,7 +258,7 @@
               <td class="govuk-table__cell ">{{ name }}</td>
               <td class="govuk-table__cell ">Account Manager</td> 
               <td class="govuk-table__cell ">joe.brown@blue.com <br />Tel: 07823 423242</td>
-              <td class="govuk-table__cell ">
+              <td class="govuk-table__cell govuk-table__cell--numeric">
                 {{ govukTag({
                   text: "approval pending"
                 }) }} 
@@ -271,7 +272,7 @@
               <td class="govuk-table__cell ">{{ ta.name }}</td>
               <td class="govuk-table__cell ">{{ ta.jobTitle }}</td>
               <td class="govuk-table__cell ">{{ ta.email }}<br/>Tel: {{ ta.phone }}</td>
-              <td class="govuk-table__cell ">
+              <td class="govuk-table__cell govuk-table__cell--numeric">
                 {{ govukTag({
                   "text": "authorised",
                   "classes": "govuk-tag--active"

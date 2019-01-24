@@ -77,3 +77,18 @@ $hmcts-page-width: 1220px;
   background-color: green;
 }
 
+// new width classes:
+$table-column-widths: (
+  10: 10%,
+  15: 15%,
+  20: 20%,
+  30: 30%,
+  40: 40%
+);
+
+@each $key, $value in $table-column-widths {
+  .govuk-\!-width-#{$key} {
+    width: #{$value};
+  }
+}
+

@@ -148,39 +148,31 @@
 </div>
 
 <div class="jui-width-container">
-
   <main class="govuk-main-wrapper" role="main">
-
-{% block beforeContent %}
-{% endblock %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-    {%- block content %}
-    {% endblock -%}
-    </div>
-    <div class="govuk-grid-column-one-third">
-    {% block timeline %}
+    {% block beforeContent %}
     {% endblock %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-{{ columnWidth | d('two-thirds') }}">
+        {%- block content %}
+        {% endblock -%}
+      </div>
     </div>
-  </div>
-  
   </main>
-
 </div>
 
-    {%- block footer %}
-      {% include "includes/footer.html" %}
-    {% endblock -%}
+{%- block footer %}
+  {% include "includes/footer.html" %}
+{% endblock -%}
 
-    {% block bodyEnd %}
-      {% block scripts %}
-        {% include "includes/scripts.html" %}
-        {% block page_scripts %}{% endblock %}
-      {% endblock %}
-      {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
-      <script>GOVUKFrontend.initAll()</script>
-      <!-- <script>if (typeof window.GOVUK === 'undefined') document.body.className = document.body.className.replace('js-enabled', '');</script> -->
-    {% endblock %}
+{% block bodyEnd %}
+  {% block scripts %}
+    {% include "includes/scripts.html" %}
+    {% block page_scripts %}{% endblock %}
+  {% endblock %}
+  {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
+  <script>GOVUKFrontend.initAll()</script>
+  <!-- <script>if (typeof window.GOVUK === 'undefined') document.body.className = document.body.className.replace('js-enabled', '');</script> -->
+{% endblock %}
 
     <!-- GOV.UK Prototype kit {{releaseVersion}} -->
   </body>
