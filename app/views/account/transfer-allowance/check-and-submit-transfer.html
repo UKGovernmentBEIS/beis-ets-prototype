@@ -4,7 +4,7 @@
 {% set recipientURL = 'existing-recipient' if recipientType == 'existing' else 'new-recipient' %}
 {% set goBackURL = 'existing-recipient' if recipientType == 'existing' else 'transfer-amount' %}
 {% block pageTitle %}
-  Confirm transfer to an existing recipient
+  Confirm transfer to a trusted account
 {% endblock %}
 
 {% block content %}
@@ -38,7 +38,9 @@
         {% if data.etsTransferAllowance.recipient != 'Choose a recipient' %}
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
+
             To 
+
           </dt>
           <dd class="app-check-your-answers__answer">
           {% if recipientType == 'existing' %}
@@ -72,11 +74,11 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">{{ value.started }}</td>
           {% endfor %}
         </tr>
-        <tr class="govuk-table__row">	
-          <th class="govuk-table__header" scope="row">Transfering amounts</th>	
-          {% for emission, value in data.emissionAllowance %}	
-          <td class="govuk-table__cell govuk-table__cell--numeric">{{ value.moved}}</td>	
-          {% endfor %}	
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="row">Transferring amounts</th>
+          {% for emission, value in data.emissionAllowance %}
+          <td class="govuk-table__cell govuk-table__cell--numeric">{{ value.moved}}</td>
+          {% endfor %}
         </tr>
         <tr class="govuk-table__row">
         <th class="govuk-table__header" scope="row">New balance</th>
@@ -104,7 +106,7 @@
 
 
       {{ govukButton({
-        text: "Submit transfer and send for approval",
+        text: "Propose transfer and send for approval",
         href:"confirmation"
       }) }}
 

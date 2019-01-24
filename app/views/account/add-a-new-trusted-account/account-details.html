@@ -13,7 +13,7 @@
           titleText: "There is a problem",
           errorList: [
             {
-              text: "Account ID number is incorrect",
+              text: "Account ID is incorrect",
               href: "#account-id"
             }
           ]
@@ -21,15 +21,15 @@
         {{ govukInput({
           id: "account-id",
           name: "newTrustedAccount.id",
-          classes: "govuk-!-width-one-third", 
+          classes: "govuk-!-width-one-third",
           label: {
-            text: "Enter the account ID number"
+            text: "Enter the account ID"
           },
           hint: {
             text: 'For example EU-100-38476-0-XX'
           },
           errorMessage: {
-            "text": "Enter a valid account ID number"
+            "text": "Enter a valid account ID"
           },
           value: data.newTrustedAccount.id
         }) }}
@@ -37,9 +37,9 @@
         {{ govukInput({
           id: "account-id",
           name: "newTrustedAccount.id",
-          classes: "govuk-!-width-one-third", 
+          classes: "govuk-!-width-one-third",
           label: {
-            text: "Enter the account ID number"
+            text: "Enter the account ID"
           },
           hint: {
             text: 'For example EU-100-38476-0-XX'
@@ -48,7 +48,7 @@
         }) }}
       {% endif %}
       {{ govukButton({
-          text: "Save and continue"
+          text: "Continue"
         }) }}
       </form>
 

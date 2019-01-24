@@ -11,7 +11,7 @@ input, select { display: block; }
 </style>
 
     <h1 class="govuk-heading-l">
-      Transfer to an existing recipient
+      Transfer to a trusted account
     </h1>
 
     <form class="form" action="check-and-submit-transfer" method="post">
@@ -19,11 +19,11 @@ input, select { display: block; }
           id: "recipient-select",
           name: "etsTransferAllowance.recipient",
           label: {
-          text: "Select a recipient from the list"
+          text: "Select a trusted account from the list"
           },
           items: [
           {
-              text: 'Choose a recipient',
+              text: 'Choose a trusted account',
               value: 'choose a recipient',
               selected: checked("etsTransferAllowance.recipient",'choose a recipient')
           },
@@ -74,7 +74,7 @@ input, select { display: block; }
           }
           ]
       }) }}
-      <h2 class="govuk-heading-m">Specify the amount for units you would like to transfer</h2>
+      <h2 class="govuk-heading-m">Specify the amount you would like to transfer</h2>
       {% for item in data.installations %}
         {% if installationData.name == (item.name) | trim %}
         {% for item in item.emissionAllowance %}
@@ -101,8 +101,8 @@ input, select { display: block; }
             type: 'hidden'
           }) }}
           {% endfor %}
-          
-        {% endfor %}  
+
+        {% endfor %}
         {% endif %}
       {% endfor %}
       {{ govukButton({
@@ -137,7 +137,7 @@ input, select { display: block; }
     $this.find('#newnumber').text( amountYouWillHave );
 
     $this.on('input',function(e){
-      number = $this.val();  
+      number = $this.val();
       if ( number ) {
         amountYouWillHave = amountYouHave - number;
       } else if ( !number ) {
@@ -145,8 +145,8 @@ input, select { display: block; }
       }
       $this.parent().find('#newnumber').text( amountYouWillHave );
     });
-    
+
   });
-      
+
 </script>
 {% endblock %}
