@@ -1,13 +1,22 @@
 {% extends "layouts/admin/base-account.html" %}
 {% set columnWidth = 'full' %}
-{% set recipientType = data.etsTransferAllowance.selectRecipient %}
 
 {% block pageTitle %}Summary {{'- ' + serviceName}}{% endblock %}
 
 {% block content %}
 
       <h2 class="govuk-heading-m">Holdings</h2>
-      <P>You have <strong>2500</strong> units. <!-- You need to surrender <strong>2160</strong> units by 20 April 2019.--></p>
+
+      <p>This account holds 
+      {% for item in installationData.holdings %}
+          {% for unit, value in item %}
+          {% set unit = 'general allowance' if unit == 'generalAllowance' else unit %}
+          {% if loop.length > 1 and loop.last %} and {% endif %}
+          <strong>{{ value }} </strong>{{ unit }}s{% if loop.last %}.{% else %},{% endif %}
+          {% endfor %}
+      {% endfor %}
+      </p>
+
       {% if not data.userPersona or data.userPersona == 'ea' %}
       <h2 class="govuk-heading-m">Compliance History</h2>
       <table class="govuk-table" data-type="compliance-period">
@@ -127,9 +136,9 @@
               </td>
           </tr>
           {% endif %}
-          {% if data.emissionAllowance %}
+          {% if data.etsTransferAllowance %}
           <tr class="govuk-table__row govuk-!-font-size-16">
-              <th class="govuk-table__cell" scope="row"><a href="#">EU580697</th>
+              <th class="govuk-table__cell" scope="row">EU580697</th>
               <td class="govuk-table__cell ">
                 {{ currentDate | date("DD MMMM YYYY") }}<br/>
                 {{ currentDate | date("h:mm:ss a") }}
@@ -140,37 +149,41 @@
               </td>
               <td class="govuk-table__cell ">10-05 Transfer Allowances</td>
               <td class="govuk-table__cell govuk-table__cell--numeric ">
-              {% for emission, value in data.emissionAllowance %}
-                {{ value.moved | default(0) }} <br />
-              {% endfor %}
+            {% for unit, value in data.etsTransferAllowance.holdings %}
+                {% set unitDisplayName = 'General Allowance' if unit == 'generalAllowance' else unit %}
+                {% if unit == data.etsTransferAllowance.unitType %}
+                {{ value.moved }}
+                {% endif %}
+            {% endfor %}
               </td>
-              <td class="govuk-table__cell govuk-table__cell--numeric ">
-              {% for emission, value in data.emissionAllowance %}
-                {% if emission == 'generalAllowance' %}
-                  GA
-                {% else %}
-                  {{ emission }}
-                {% endif %} <br />
-              {% endfor %}
+              <td class="govuk-table__cell ">
+            {% for unit, value in data.etsTransferAllowance.holdings %}
+                {% set unitDisplayName = 'General Allowance' if unit == 'generalAllowance' else unit %}
+                {% if unit == data.etsTransferAllowance.unitType %}
+                {{ unitDisplayName }}
+                {% endif %}
+            {% endfor %}
               </td>
               <td class="govuk-table__cell ">{{installationID}}</td>
               <td class="govuk-table__cell ">
-              {% if recipientType == 'existing' %}
+              {% if data.etsTransferAllowance.recipientType == 'existing' %}
                 {{ data.etsTransferAllowance.recipient}}
-              {% elif recipientType == 'new' %}
+              {% elif data.etsTransferAllowance.recipientType == 'new' %}
                 {{ data.etsTransferAllowance.recepientId }}
               {% endif %}
             </td>
               <td class="govuk-table__cell ">
-                {{ govukTag({
-                text: 'awaiting approval'
-              }) }}
+                  {% if data.etsTransferAllowance.approved == 'Yes' %}
+                  <span class="jui-status  jui-status--new  govuk-!-margin-left-1">Delayed until {{ currentDate | date("DD MMMM YYYY") }}</span>
+                  {% else %}
+                <span class="jui-status  jui-status--new  govuk-!-margin-left-1" >Awaiting Approval</span>
+                  {% endif %}
               </td>
           </tr>
           {% endif %}
-            {% for tx in data.transactions %}
+            {% for tx in data.transactions.slice(0,3) %}
           <tr class="govuk-table__row govuk-!-font-size-16">
-              <th class="govuk-table__cell" scope="row"><a href="#">{{ tx.transactionId }}</th>
+              <th class="govuk-table__cell" scope="row">{{ tx.transactionId }}</th>
               <td class="govuk-table__cell ">{{ tx.started }}</td>
               <td class="govuk-table__cell ">{{ tx.lastUpdated }}</td>
               <td class="govuk-table__cell ">{{ tx.type }}</td>
@@ -184,11 +197,12 @@
 
         </tbody>
       </table>
-      {{ govukButton({
-        text: "Download transactions as CSV"
-      }) }}
-      <h2 id="trusted-accounts" class="govuk-heading-m">Trusted Accounts</h2>
+      <p style="margin-top: -10px;">
 
+      <a href="#">View all transactions</a><a href="#" style="margin-left: 30px;">Export all transactions</a>
+      </p>
+
+      <h2 id="trusted-accounts" class="govuk-heading-m">Trusted Accounts</h2>
 
 <table class="govuk-table" data-type="trustedAccounts">
         <thead class="govuk-table__head">

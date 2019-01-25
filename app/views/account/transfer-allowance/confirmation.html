@@ -1,6 +1,5 @@
 {% extends "layouts/admin/base-account-question.html" %}
 
-{% set recipientType = data['ets-transfer-allowance']['select-recipient'] %}
 {% set installationID = '' %}
     {% set installationID = selectedInstallation.permitId %}
 {% set mainClasses = "govuk-main-wrapper--l" %}
@@ -16,7 +15,7 @@
 
       <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-7">
         <h1 class="govuk-panel__title">
-        {% if recipientType == 'existing' %}
+        {% if data.etsTransferAllowance.recipientType == 'existing' %}
         Your proposed transfer has been submitted.
         {% else %}
         We have received your submission for a transfer
@@ -30,7 +29,7 @@
         html: "Visit account page to <a class='govuk-link' href='/account/" + installationData.permitId +"/'>check the transaction</a>."
       }) }}
       <h2 class="govuk-heading-m"> What happens next</h2>
-      {% if recipientType == 'existing' %}
+      {% if data.etsTransferAllowance.recipientType == 'existing' %}
         <p>
           We have sent you a confirmation email about your transfer. We have notified all representatives on your account who can approve this transfer.
         </p>

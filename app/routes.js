@@ -76,10 +76,10 @@ router.post('/account/:id/transfer-allowance/select-installation', function (req
 })
 
 router.post('/account/:id/transfer-allowance/select-recipient', function (req, res) {
-  var recipientType = req.session.data.etsTransferAllowance.selectRecipient
+  var recipientType = req.session.data.etsTransferAllowance.recipientType
 
   if (recipientType === 'existing') {
-    res.redirect('existing-recipient')
+    res.redirect('amount')
   } else {
     res.redirect('new-recipient')
   }

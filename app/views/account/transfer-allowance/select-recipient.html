@@ -14,24 +14,24 @@ Select recipient
 
     <form class="form" action="select-recipient" method="post">
       {{ govukRadios({
-        idPrefix: "selectRecipient",
-        name: "etsTransferAllowance.selectRecipient",
+        idPrefix: "recipientType",
+        name: "etsTransferAllowance.recipientType",
         fieldset: {},
         items: [
           {
             value: "existing",
             text: "An account under the same account holder?",
-            checked: checked("etsTransferAllowance.selectRecipient",'existing')
+            checked: checked("etsTransferAllowance.recipientType",'existing')
           },
           {
             value: "existing",
             text: "A trusted account you’ve setup before?",
-            checked: checked("etsTransferAllowance.selectRecipient",'existing')
+            checked: checked("etsTransferAllowance.recipientType",'existing')
           },
           {
             value: "new",
             text: "Someone else?",
-            checked: checked("etsTransferAllowance.selectRecipient",'new')
+            checked: checked("etsTransferAllowance.recipientType",'new')
           }
         ]
       }) }}
