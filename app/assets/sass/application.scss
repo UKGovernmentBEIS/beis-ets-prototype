@@ -91,4 +91,7 @@ $table-column-widths: (
     width: #{$value};
   }
 }
-
+.govuk-table__header,
+.govuk-table__cell {
+  vertical-align: top;
+}
