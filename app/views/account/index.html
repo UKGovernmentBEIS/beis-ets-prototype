@@ -298,6 +298,17 @@
         </tbody>
       </table>
 {% endblock %}
-{% block timeline %}
-
-{% endblock timeline %}
+{% block page_scripts %}
+<script>
+  var $trustedAccountsTable = $('[data-type="trustedAccounts"]')
+  var notTop3tableRows = $trustedAccountsTable.find('.govuk-table__row:nth-child(n+4)')
+  var viewAllButton = $('<p style="margin-top: -10px;"><a class="govuk-link js-show-all-trusted-accounts" href="#">View all trusted accounts</a></p>')
+  notTop3tableRows.hide()
+  $trustedAccountsTable.after(viewAllButton)
+  $('body').on('click', '.js-show-all-trusted-accounts', function(e){
+    e.preventDefault()
+    notTop3tableRows.show()
+    viewAllButton.remove()
+  })
+</script>
+{% endblock %}
