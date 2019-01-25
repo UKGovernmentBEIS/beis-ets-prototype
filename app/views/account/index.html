@@ -5,7 +5,7 @@
 
 {% block content %}
 
-      <h2 class="govuk-heading-m">Holdings</h2>
+      <h2 class="govuk-heading-l">Holdings</h2>
 
       <p>This account holds 
       {% for item in installationData.holdings %}
@@ -18,7 +18,7 @@
       </p>
 
       {% if not data.userPersona or data.userPersona == 'ea' %}
-      <h2 class="govuk-heading-m">Compliance History</h2>
+      <h2 class="govuk-heading-l">Compliance History</h2>
       <table class="govuk-table" data-type="compliance-period">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row govuk-!-font-size-16">
@@ -90,7 +90,7 @@
         </tbody>
       </table>
       {% endif %}
-      <h2 class="govuk-heading-m">Transaction History</h2>
+      <h2 class="govuk-heading-l">Transaction History</h2>
 
 <table class="govuk-table" data-type="transactions">
         <thead class="govuk-table__head">
@@ -202,7 +202,7 @@
       <a href="#">View all transactions</a><a href="#" style="margin-left: 30px;">Export all transactions</a>
       </p>
 
-      <h2 id="trusted-accounts" class="govuk-heading-m">Trusted Accounts</h2>
+      <h2 id="trusted-accounts" class="govuk-heading-l">Trusted Accounts</h2>
 
 <table class="govuk-table" data-type="trustedAccounts">
         <thead class="govuk-table__head">
@@ -242,17 +242,14 @@
               <td class="govuk-table__cell ">Currently no notes exist</td>
               <td class="govuk-table__cell ">{{ ea.legalEntity }}</td>
               <td class="govuk-table__cell govuk-table__cell--numeric">
-                {{ govukTag({
-                  "text": "trusted",
-                  "classes": "govuk-tag--active"
-                }) }}
+                <span class="jui-status  jui-status--new  govuk-!-margin-left-1">TRUSTED</span>
               </td>
           </tr>
             {% endfor %}
 
         </tbody>
       </table>
-      <h2 id="representatives" class="govuk-heading-m">Representatives</h2>
+      <h2 id="representatives" class="govuk-heading-l">Representatives</h2>
       <table class="govuk-table" data-type="representatives">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row govuk-!-font-size-16">
@@ -287,10 +284,7 @@
               <td class="govuk-table__cell ">{{ ta.jobTitle }}</td>
               <td class="govuk-table__cell ">{{ ta.email }}<br/>Tel: {{ ta.phone }}</td>
               <td class="govuk-table__cell govuk-table__cell--numeric">
-                {{ govukTag({
-                  "text": "authorised",
-                  "classes": "govuk-tag--active"
-                }) }}
+                <span class="jui-status  jui-status--new  govuk-!-margin-left-1">AUTHORISED</span>
               </td>
           </tr>
             {% endfor %}
