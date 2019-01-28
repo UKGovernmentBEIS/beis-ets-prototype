@@ -1,0 +1,42 @@
+{% extends "layouts/admin/base-account-question.html" %}
+
+{% block pageTitle %}
+What name do you want to use to refer to the account?
+{% endblock %}
+
+{% block content %}
+
+<style>
+input, select { display: block; }
+</style>
+
+    <form class="form" action="amount" method="post">
+      {% call govukFieldset({
+        legend: {
+          text: "What name do you want to use to refer to the account?",
+          classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+          isPageHeading: true
+        }
+      }) %}
+
+      {{ govukInput({
+        label: {
+          text: "Nickname for the account"
+        },
+        hint: {
+          text: "eg 'Sue's power station 1'"
+        },
+        id: "nickname",
+        name: "etsTransferAllowance.nickname",
+        classes: 'govuk-input--width-10',
+        value: data.etsTransferAllowance.nickname
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+      {% endcall %}
+    </form>
+
+{% endblock %}
