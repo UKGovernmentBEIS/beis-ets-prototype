@@ -78,7 +78,7 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">2018</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">
                 {% if data.etsSubmitEmmissions %}
-                {{ data.etsSubmitEmmissions.total }} <br />
+                {{ data.etsSubmitEmmissions.total | formatNumber }} <br />
                 {% else %}
                 <span class="jui-status  jui-status--new  govuk-!-margin-left-1">Due 11 March</span>
                 {% endif %}

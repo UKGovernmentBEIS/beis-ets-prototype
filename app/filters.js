@@ -7,6 +7,9 @@ module.exports = function (env) {
    * @type {Object}
    */
   var filters = {}
+  filters.formatNumber = function (x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  }
 
   /* ------------------------------------------------------------------
     add your methods to the filters obj below this comment block:
