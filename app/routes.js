@@ -46,6 +46,12 @@ router.get('/register-for-ets/:page', function (req, res, next) {
   next()
 })
 
+router.get('/account/:id/surrender-allowance/surrender-amount', function (req, res, next) {
+  req.session.data.etsSurrenderAllowance = req.session.data.etsSurrenderAllowance || {};
+  req.session.data.etsSurrenderAllowance.totalAmountSurrendered = req.session.data.etsSurrenderAllowance.totalAmountSurrendered || 0;
+  console.log(req.session.data.etsSurrenderAllowance.totalAmountSurrendered + "Ues");
+  next()
+});
 
 router.get('/account/:id/:page/:subPage', function (req, res, next) {
   if (req.query.error) {
@@ -61,14 +67,23 @@ router.post('/account/:id/submit-emissions/specify-amount', function (req, res) 
     res.redirect('/account/' + req.params.id + '/submit-emissions/select-verifier');
 })
 
-router.post('/account/:id/surrender-allowance/surrender-amount', function (req, res) {
-  var amountToSurrender = req.session.data.etsSurrenderAllowance.amountToSurrender
 
-  if (amountToSurrender === 'other') {
-    res.redirect('confirm-oversurrender')
-  } else {
-    res.redirect('check-and-submit')
-  }
+router.post('/account/:id/surrender-allowance/surrender-amount', function (req, res) {
+    if (req.session.data.etsSurrenderAllowance.surrenderMethod === 'fullAmount') {
+        req.session.data.etsSurrenderAllowance.amountToSurrender = req.session.data.etsSubmitEmmissions.total - parseInt(req.session.data.etsSurrenderAllowance.totalAmountSurrendered)
+        req.session.data.etsSurrenderAllowance.totalAmountSurrendered = parseInt(req.session.data.etsSurrenderAllowance.totalAmountSurrendered) + parseInt(req.session.data.etsSubmitEmmissions.total);
+        req.session.data.etsSurrenderAllowance.surrenderMethod = ''
+        res.redirect('check-and-submit') }
+    else {
+      req.session.data.etsSurrenderAllowance.surrenderMethod = ''
+        // req.session.data.etsSurrenderAllowance.amountToSurrender is set automatically when the form data is posted...
+        req.session.data.etsSurrenderAllowance.totalAmountSurrendered = parseInt(req.session.data.etsSurrenderAllowance.totalAmountSurrendered) + parseInt(req.session.data.etsSurrenderAllowance.amountToSurrender);
+        res.redirect('check-and-submit') }
+})
+
+router.post('/account/:id/surrender-allowance/check-and-submit', function (req, res) {
+    req.session.data.etsSurrenderAllowance.amountToSurrender = '';
+    res.redirect('confirmation');
 })
 
 router.post('/account/:id/transfer-allowance/select-installation', function (req, res) {

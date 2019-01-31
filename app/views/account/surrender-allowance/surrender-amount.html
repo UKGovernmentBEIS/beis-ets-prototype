@@ -1,75 +1,75 @@
 {% extends "layouts/admin/base-account-question.html" %}
 {% block pageTitle %}
-  Surrender your 2018 emission allowance
+  Surrender your General Allowances
 {% endblock %}
 
 {% block content %}
-
       <h1 class="govuk-heading-xl">
-        Surrender allowances to cover your emissions
+        Surrender your General Allowances
       </h1>
       <form class="form" action="surrender-amount" method="post">
 
-        <p class="govuk-body govuk-!-margin-bottom-6">
-          You need to surrender the full amount before 16 March 2019. If you don't have enough allowances you may need to <a href="#">acquire additional allowances</a>.</p>
-          <table class="govuk-table">
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <th class="govuk-table__header" scope="row">Your 2018  emissions</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">2,480</td>
-              </tr>
-              <tr class="govuk-table__row govuk-table__row--strong-border">
-                <th class="govuk-table__header" scope="row">
-                  Your credit<br>
-                  <span class="govuk-table__cell-hint"><a href='/account/{{installationID}}?view=transactionHistory'>Check how much you surrendered in previous years</a></span>
-                </th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">320</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <th class="govuk-table__header" scope="row">You need to surrender</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">2,160</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <th class="govuk-table__header" scope="row">You have</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">2,500</td>
-              </tr>
-            </tbody>
-          </table>
-          {% set surrenderOtherAmount %}
-            {{ govukInput({
-              id: "other-amount",
-              name: "etsSurrenderAllowance.surrender.customAmount",
-              classes: "govuk-input--width-5 format-number",
-              label: {
-                text: "Enter amount to surrender"
-              },
-              hint: {
-                text:  'You have 2,500 allowances'
-              },
-              value: data.etsSurrenderAllowance.surrender.customAmount
-            }) }}
-          {% endset -%}
+                {% if data.etsSubmitEmmissions.total %}
+                    {% if data.etsSubmitEmmissions.total - data.etsSurrenderAllowance.totalAmountSurrendered <= 0 %} 
+                    <p>You have already surrendered <strong>{{ data.etsSurrenderAllowance.totalAmountSurrendered }}</strong> allowances.</p><p>This is enough to meet your obligations. You can surrender more if you want to.</p>
+                    {% else %}
+                       <p>You need to surrender <strong>{{ data.etsSubmitEmmissions.total - data.etsSurrenderAllowance.totalAmountSurrendered | d(0) }}</strong> units to cover your emissions for 2018.</p> 
+                       <ul class="govuk-list govuk-list--bullet">
+                          <li>You need to do this before the deadline or [consequences]</li>
+                          <li>You may also choose to surrender more than the required amount. </li>
+                          <li>You can do this in multiple transactions.</li>
+                       </ul>
+                    {% endif %}
+                {% else %}
+                    <p>You have not yet declared you emissions but you can still surrender allowance.</p>
+                    {% if data.etsSurrenderAllowance.totalAmountSurrendered > 0 %}
+                    <p>You have already surrendered <strong>{{ data.etsSurrenderAllowance.totalAmountSurrendered }}</strong> allowances.</p>
+                    {% endif %}
+                {% endif %}
+                {% set amountToSurrender %}
+                    {{ govukInput({
+                    id: "other-amount",
+                    name: "etsSurrenderAllowance.amountToSurrender",
+                    classes: "govuk-input--width-5 format-number",
+                    label: {
+                        text: "Enter amount to surrender"
+                    },
+                    hint: {
+                        text:  'You have ' + installationData.holdings[0].generalAllowance | formatNumber + ' general allowances available.'
+                    },
+                    value: data.etsSurrenderAllowance.amountToSurrender
+                    }) }}
+                {% endset -%}
 
-          {{ govukRadios({
-            idPrefix: "amount-to-surrender",
-            name: "etsSurrenderAllowance.amountToSurrender",
-            fieldset: {},
-            items: [
-              {
-                value: "2160",
-                text: "Surrender 2,160",
-                checked: checked ("etsSurrenderAllowance.amountToSurrender", '2160')
-              },
-              {
-                value: "other",
-                text: "Surrender another amount",
-                checked: checked ("etsSurrenderAllowance.amountToSurrender", 'other'),
-                conditional: {
-                  html: surrenderOtherAmount
-                }
-              }
-            ]
-          }) }}
+                {% if data.etsSubmitEmmissions.total %}
+                    {% if data.etsSubmitEmmissions.total - data.etsSurrenderAllowance.totalAmountSurrendered <= 0 %} 
+                        {{ amountToSurrender | safe }}
+                    {% else %}
+                        {{ govukRadios({
+                          idPrefix: "surrender-method",
+                          name: "etsSurrenderAllowance.surrenderMethod",
+                          fieldset: {},
+                          items: [
+                            {
+                              value: "fullAmount",
+                              text: "Surrender the full amount",
+                              checked: checked ("etsSurrenderAllowance.surrenderMethod", 'fullAmount')
+                            },
+                            {
+                              value: "customAmount",
+                              text: "Surrender a different amount",
+                              checked: checked ("etsSurrenderAllowance.surrenderMethod", 'customAmount'),
+                              conditional: {
+                                html: amountToSurrender
+                              }
+                            }
+                          ]
+                        }) }}
+                    {% endif %}
+                {% else %}
+                    {{ amountToSurrender | safe }}
+                {% endif %}
+
         {{ govukButton({
           text: "Submit for approval"
         }) }}

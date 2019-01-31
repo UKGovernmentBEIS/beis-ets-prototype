@@ -8,24 +8,9 @@
 {% block content %}
 
   <h1 class="govuk-heading-xl">Check before surrendering your allowances</h1>
-    <form class="form" action="confirmation" method="post">
+    <form class="form" action="check-and-submit" method="post">
 
-      {{ govukTable({
-        firstCellIsHeader: true,
-        rows: [
-          [
-            {
-              text: "Surrendering amount"
-            },
-            {
-              text: data.etsSurrenderAllowance.amountToSurrender + ' units'
-            },
-            {
-              html: "<a href='surrender-amount' class='govuk-link'>Change</a>"
-            }
-          ]
-        ]
-      }) }}
+        <p>You are about to surrender <strong>{{ data.etsSurrenderAllowance.amountToSurrender }}</strong> General Allowances.</p><p> The transaction will be reflected in your balance immediately, but will not be finalised until it has been approved.</p>
 
       {{ govukButton({
         text: "Surrender allowances"
