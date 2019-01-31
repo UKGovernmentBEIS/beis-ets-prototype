@@ -46,6 +46,7 @@
           {% elif data.etsTransferAllowance.recipientType == 'new' %}
             {{ data.etsTransferAllowance.recepientId }}
           {% endif %}
+          {% if data.etsTransferAllowance.nickname %} ({{data.etsTransferAllowance.nickname}}){% endif %}
           </dd>
           <dd class="app-check-your-answers__change">
         <a href="#" onclick="javascript:history.go(-1)">Change
