@@ -101,6 +101,7 @@
         {% endif %} account</span>
         </span>
     </div>
+    {% block buttons %}
     <div class="hmcts-identity-bar__actions">
     {% if data.userPersona == 'trader' %}
     <div class="hmcts-menu">
@@ -147,6 +148,7 @@
       </div>
     {% endif %}
     </div>
+    {% endblock buttons %}
   </div>
 </div>
 
