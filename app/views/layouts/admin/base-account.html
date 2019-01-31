@@ -120,10 +120,13 @@
       {# primary actions #}
       <div class="hmcts-menu">
         <div class="hmcts-menu__wrapper">
+            {{ data.etsSubmitEmmissions.submissionComplete }}
+          {% if not data.etsSubmitEmmissions.submissionComplete %}
           <a href="/account/{{installationID}}/submit-emissions/specify-amount" role="button" class="govuk-button hmcts-menu__item  ">
             Submit emissions
           </a>
-          <a href="/account/{{installationID}}/surrender-allowance/surrender-amount" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary govuk-!-margin-right-2">
+          {% endif %}
+          <a href="/account/{{installationID}}/surrender-allowance/surrender-amount" role="button" class="govuk-button hmcts-menu__item {% if not data.etsSubmitEmmissions.submissionComplete %} hmcts-button--secondary {% endif %} govuk-!-margin-right-2">
             Surrender allowance
           </a>
         </div>
@@ -151,6 +154,7 @@
   <main class="govuk-main-wrapper" role="main">
     {% block beforeContent %}
     {% endblock %}
+
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-{{ columnWidth | d('two-thirds') }}">
         {%- block content %}

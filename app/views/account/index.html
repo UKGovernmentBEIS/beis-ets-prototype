@@ -26,7 +26,6 @@
             <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-20 " scope="col">Year</th>
             <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-20 " scope="col">Emissions reported</th>
             <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-20 " scope="col">Allowance surrendered</th>
-            <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-20 " scope="col">Balance</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -35,28 +34,24 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">2013</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2,938</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2,938</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
           </tr>
           <tr class="govuk-table__row govuk-!-font-size-16">
               <td class="govuk-table__cell" scope="row">20 March 2015</th>
             <td class="govuk-table__cell govuk-table__cell--numeric">2014</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2,480</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2,480</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
           </tr>
           <tr class="govuk-table__row govuk-!-font-size-16">
             <td class="govuk-table__cell" scope="row">29 March 2016</th>
             <td class="govuk-table__cell govuk-table__cell--numeric">2015</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2,960</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">3,050</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">90</td>
           </tr>
           <tr class="govuk-table__row govuk-!-font-size-16">
             <td class="govuk-table__cell" scope="row">29 March 2017</th>
             <td class="govuk-table__cell govuk-table__cell--numeric">2016</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2,560</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2,470</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
           </tr>
 
           <tr class="govuk-table__row govuk-!-font-size-16">
@@ -64,7 +59,6 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">2017</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2,560</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2,470</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
           </tr>
 
           <tr class="govuk-table__row govuk-!-font-size-16">
@@ -83,8 +77,14 @@
                 <span class="jui-status  jui-status--new  govuk-!-margin-left-1">Due 11 March</span>
                 {% endif %}
             </td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><span class="jui-status  jui-status--new  govuk-!-margin-left-1">Due 15 March</span></td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">N/A</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+                {% if data.etsSurrenderAllowance.totalAmountSurrendered > 0 %}
+                    {{ data.etsSurrenderAllowance.totalAmountSurrendered | formatNumber }}
+                {% else %}
+                <span class="jui-status  jui-status--new  govuk-!-margin-left-1">
+                    Due 15 March
+                </span></td>
+                {% endif %}
           </tr>
 
         </tbody>

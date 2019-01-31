@@ -49,9 +49,13 @@ router.get('/register-for-ets/:page', function (req, res, next) {
 router.get('/account/:id/surrender-allowance/surrender-amount', function (req, res, next) {
   req.session.data.etsSurrenderAllowance = req.session.data.etsSurrenderAllowance || {};
   req.session.data.etsSurrenderAllowance.totalAmountSurrendered = req.session.data.etsSurrenderAllowance.totalAmountSurrendered || 0;
-  console.log(req.session.data.etsSurrenderAllowance.totalAmountSurrendered + "Ues");
   next()
 });
+
+router.get('/account/:id/submit-emissions/confirmation', function (req, res, next) {
+    req.session.data.etsSubmitEmmissions.submissionComplete = "Yes";
+    next();
+})
 
 router.get('/account/:id/:page/:subPage', function (req, res, next) {
   if (req.query.error) {
@@ -62,10 +66,10 @@ router.get('/account/:id/:page/:subPage', function (req, res, next) {
 
 
 router.post('/account/:id/submit-emissions/specify-amount', function (req, res) {
-    console.log(req.session.data.etsSubmitEmmissions);
     req.session.data.etsSubmitEmmissions.total = parseInt(req.session.data.etsSubmitEmmissions.emissions.co2) + parseInt(req.session.data.etsSubmitEmmissions.emissions.pfc) + parseInt(req.session.data.etsSubmitEmmissions.emissions.no2);
     res.redirect('/account/' + req.params.id + '/submit-emissions/select-verifier');
 })
+
 
 
 router.post('/account/:id/surrender-allowance/surrender-amount', function (req, res) {
