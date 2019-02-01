@@ -13,10 +13,24 @@
       <span class="govuk-caption-xl">{{ data.etsSubmitEmmissions.installation}}</span>
       Enter your 2018 emissions
     </h1>
+    <p>
+    Your emissions data must be the same as the data verified in your Annual Emissions Report (AER).
+    </p>
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+        Read more about Annual Emissions Reports
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+      [Content, links to gov.uk ]
+  </div>
+</details>
+
     <form class="form" action="specify-amount" method="post">
       {% call govukFieldset({
         legend: {
-          text: "Your emissions data must be the same as the data verified in your Annual Emissions Report (AER).",
+          text: "",
           classes: "govuk-body-m govuk-!-margin-bottom-6",
           isPageHeading: false
         }
@@ -26,6 +40,9 @@
           label: {
             html: 'Carbon dioxide (C0<sub>2</sub>)'
           },
+          hint: {
+              text: "Metric tonnes"
+            },
           classes: 'govuk-input--width-10',
           name: "etsSubmitEmmissions.emissions.co2",
           value: data.etsSubmitEmmissions.emissions.co2
@@ -35,6 +52,9 @@
           label: {
             html: 'Perfluorocarbons (PFCs)'
           },
+          hint: {
+              text: "Metric tonnes"
+            },
           classes: 'govuk-input--width-10',
           name: "etsSubmitEmmissions.emissions.pfc",
           value: data.etsSubmitEmmissions.emissions.pfc
@@ -44,6 +64,9 @@
           label: {
             html: 'Nitrous oxide (N<sub>2</sub>O)'
           },
+          hint: {
+              text: "Metric tonnes"
+            },
           classes: 'govuk-input--width-10',
           name: "etsSubmitEmmissions.emissions.no2",
           value: data.etsSubmitEmmissions.emissions.no2

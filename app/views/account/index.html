@@ -47,7 +47,7 @@
             <th class="govuk-table__header" scope="col">Date submitted</th>
             <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-20 " scope="col">Year</th>
             <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-20 " scope="col">Emissions reported</th>
-            <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-20 " scope="col">Allowance surrendered</th>
+            <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-20 " scope="col">UKGA surrendered</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -209,8 +209,8 @@
               <td class="govuk-table__cell ">{{ tx.type }}</td>
               <td class="govuk-table__cell govuk-table__cell--numeric ">{{ tx.units }}</td>
               <td class="govuk-table__cell ">{{ tx.unitType }}</td>
-              <td class="govuk-table__cell ">{% if tx.transferringAccount == "this" %}{{ installationData.permitId }}{% else %}{{ tx.transferringAccount }}{% endif %}</td>
-              <td class="govuk-table__cell ">{% if tx.acquiringAccount == "this" %}{{ installationData.permitId }}{% else %}{{ tx.acquiringAccount }}{% endif %}</td>
+              <td class="govuk-table__cell "><a href="#">{% if tx.transferringAccount == "this" %}{{ installationData.permitId }}{% else %}{{ tx.transferringAccount }}{% endif %}</a></td>
+              <td class="govuk-table__cell "><a href="#">{% if tx.acquiringAccount == "this" %}{{ installationData.permitId }}{% else %}{{ tx.acquiringAccount }}{% endif %}</a></td>
               <td class="govuk-table__cell govuk-table__cell--numeric">{{ tx.status }}</td>
           </tr>
             {% endfor %}
@@ -262,18 +262,17 @@
               <td class="govuk-table__cell ">Currently no notes exist</td>
               <td class="govuk-table__cell ">{{ ea.legalEntity }}</td>
               <td class="govuk-table__cell govuk-table__cell--numeric">
-                <span class="jui-status  jui-status--new  govuk-!-margin-left-1">TRUSTED</span>
               </td>
           </tr>
             {% endfor %}
 
         </tbody>
       </table>
-      <h2 id="representatives" class="govuk-heading-l">Representatives</h2>
+      <h2 id="representatives" class="govuk-heading-l">Authorised Representatives</h2>
       <table class="govuk-table" data-type="representatives">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row govuk-!-font-size-16">
-            <th class="govuk-table__header" scope="col">Id</th>
+            <th class="govuk-table__header" scope="col">Representative</th>
             <th class="govuk-table__header" scope="col">Name</th>
             <th class="govuk-table__header " scope="col">Job Title</th>
             <th class="govuk-table__header " scope="col">Contact</th>
@@ -304,13 +303,17 @@
               <td class="govuk-table__cell ">{{ ta.jobTitle }}</td>
               <td class="govuk-table__cell ">{{ ta.email }}<br/>Tel: {{ ta.phone }}</td>
               <td class="govuk-table__cell govuk-table__cell--numeric">
-                <span class="jui-status  jui-status--new  govuk-!-margin-left-1">AUTHORISED</span>
               </td>
           </tr>
             {% endfor %}
 
         </tbody>
       </table>
+
+      <p style="margin-top: -10px;">
+
+      <a href="#">Manage representatives</a>
+      </p>
 {% endblock %}
 {% block page_scripts %}
 <script>
