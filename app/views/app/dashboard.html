@@ -53,6 +53,8 @@
     <tr class="govuk-table__row">
       <th class="govuk-table__header" scope="col">Account Id</th>
       <th class="govuk-table__header" scope="col">Account name</th>
+      <th class="govuk-table__header" scope="col">Account Holder</th>
+      <th class="govuk-table__header" scope="col">Compliance Status</th>
       <th class="govuk-table__header govuk-table__header--numeric" scope="col">GA</th>
       <th class="govuk-table__header govuk-table__header--numeric" scope="col">CER</th>
       <th class="govuk-table__header govuk-table__header--numeric" scope="col">ERU</th>
@@ -65,6 +67,8 @@
       <tr class="govuk-table__row">
         <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
         <td class="govuk-table__cell">{{ acct.name }}</td>
+        <td class="govuk-table__cell">{{ acct.accountHolder }}</td>
+        <td class="govuk-table__cell">{{ acct.complianceStatusCode }}</td>
     <!-- GENERAL ALLOWANCES -->
         <td class="govuk-table__cell govuk-table__cell--numeric">
             {% for item in acct.holdings %}
@@ -107,6 +111,8 @@
     <tr class="govuk-table__row">
         <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
         <td class="govuk-table__cell">{{ acct.name }}</td>
+        <td class="govuk-table__cell">{{ acct.accountHolder }}</td>
+        <td class="govuk-table__cell">{{ acct.complianceStatusCode }}</td>
     <!-- GENERAL ALLOWANCES -->
         <td class="govuk-table__cell govuk-table__cell--numeric">
             {% for item in acct.holdings %}
