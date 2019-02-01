@@ -28,13 +28,6 @@
       }) }} 
     {% endif %}
       {% set titleHTML %}
-      <span class="govuk-caption-xl">
-      {% if data.userPersona == 'ea' %}
-        National Administrator
-      {% else %}
-      {{ data.userPersona | d('operator') | capitalize }} account
-      {% endif %}
-      </span>
       <h1 class="govuk-heading-xl">Your accounts</h1>
       {% endset %}
     {{ hmctsPageHeaderWithActions({
