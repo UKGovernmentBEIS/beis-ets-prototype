@@ -22,13 +22,13 @@
 
       {% if data.etsSubmitEmmissions.total %}
         {% if data.etsSubmitEmmissions.total - data.etsSurrenderAllowance.totalAmountSurrendered <= 0 %} 
-            <p>This account is compliant. You have already surrendered <strong>{{ data.etsSurrenderAllowance.totalAmountSurrendered }}</strong> allowances. This is enough to meet your obligations.</p>
+            <p>This account is compliant (code C). You have already surrendered <strong>{{ data.etsSurrenderAllowance.totalAmountSurrendered }}</strong> allowances. This is enough to meet your obligations.</p>
         {% else %}
             <div class="govuk-warning-text">
               <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
               <strong class="govuk-warning-text__text">
                 <span class="govuk-warning-text__assistive">Warning</span>
-                This account is not compliant. You must surrender <strong>{{ data.etsSubmitEmmissions.total - data.etsSurrenderAllowance.totalAmountSurrendered | d(0) }}</strong> General Allowances before 15 March 2018 to be compliant.
+                This account is not compliant (code B). You must surrender <strong>{{ data.etsSubmitEmmissions.total - data.etsSurrenderAllowance.totalAmountSurrendered | d(0) }}</strong> General Allowances before 15 March 2018 to be compliant.
               </strong>
             </div>
         {% endif %}
@@ -37,7 +37,7 @@
               <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
               <strong class="govuk-warning-text__text">
                 <span class="govuk-warning-text__assistive">Warning</span>
-                This account is not compliant. Emissions for the 2018 have not yet been submitted.
+                This account is not compliant (code A). Emissions for the 2018 have not yet been submitted.
               </strong>
             </div>
       {% endif %}
