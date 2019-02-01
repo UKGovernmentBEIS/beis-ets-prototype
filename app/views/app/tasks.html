@@ -161,6 +161,10 @@
     '<span id="more-detail-hint" class="govuk-hint">Please provide a reason.</span>'+
     '<textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>'+
     '</div>'
+    var defaultState = '<div class="accept">'+'<a href="#" role="button" draggable="false" class="govuk-button">Approve</a>'+
+            '</div><div class="reject">'+
+              '<a href="#" role="button" draggable="false" class="govuk-button hmcts-button--secondary">Reject</a>'
+            '</div>'
     $('body').on( "click", '.govuk-button', function(e) {
         var $taskItem = $(this).parents('.action-container')
         e.preventDefault();
@@ -168,7 +172,8 @@
         var rejectedTag = '<span class="jui-status  jui-status--urgent">Rejected</span>'
         var content 
         if ($(this).hasClass('hmcts-button--secondary')){
-            content = rejectCommentsBox + '<a href="#" role="button" draggable="false" class="govuk-button hmcts-button--secondary final-reject-btn" style="margin-bottom: 0px;">Reject</a>'
+            content = rejectCommentsBox + '<a href="#" role="button" draggable="false" class="govuk-button hmcts-button--primary final-reject-btn" style="margin-bottom: 0px;">Reject</a>'+
+            '<a href="#" role="button" draggable="false" class="govuk-button govuk-!-margin-left-2 hmcts-button--secondary cancel-btn" style="margin-bottom: 0px;">Cancel</a>'
         } else {
             content = approvedTag
         }
@@ -176,8 +181,10 @@
         $taskItem.find('.transfer-completion').show()
 
         if ($(this).hasClass('final-reject-btn')){
-            console.log($taskItem.find('.govuk-textarea'))
             $taskItem.find('.action-buttons').addClass('approved-transaction').html(rejectedTag)
+        }
+        if ($(this).hasClass('cancel-btn')){
+            $taskItem.find('.action-buttons').html(defaultState)
         }
     });
 </script>
