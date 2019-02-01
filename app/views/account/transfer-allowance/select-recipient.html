@@ -9,7 +9,7 @@ Select recipient
 
 
    <h1 class="govuk-heading-l">
-  Who do you want to transfer to?
+  Where do you want to make the transfer?
     </h1>
 
     <form class="form" action="select-recipient" method="post">
@@ -20,17 +20,12 @@ Select recipient
         items: [
           {
             value: "existing",
-            text: "An account under the same account holder?",
-            checked: checked("etsTransferAllowance.recipientType",'existing')
-          },
-          {
-            value: "existing",
-            text: "A trusted account you’ve setup before?",
+            text: "To a trusted account",
             checked: checked("etsTransferAllowance.recipientType",'existing')
           },
           {
             value: "new",
-            text: "Someone else?",
+            text: "To somewhere else",
             checked: checked("etsTransferAllowance.recipientType",'new')
           }
         ]
