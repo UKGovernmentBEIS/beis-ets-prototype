@@ -32,16 +32,16 @@ router.post('/app/transactions/search', function (req, res, next) {
     res.redirect('search?query=blah')
 })
 
-router.get('/app/representatives/search', function (req, res, next) {
+router.get('/app/users/search', function (req, res, next) {
     if ( req.query.query ) {
         res.locals.searchQuery = req.query.query;
-        res.render('app/representatives-search-results');
+        res.render('app/users-search-results');
     } else {
-        res.render('app/representatives-search');
+        res.render('app/users-search');
     }
 })
 
-router.post('/app/representatives/search', function (req, res, next) {
+router.post('/app/users/search', function (req, res, next) {
     res.redirect('search?query=blah')
 })
 
