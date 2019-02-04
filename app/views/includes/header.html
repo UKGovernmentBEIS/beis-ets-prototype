@@ -57,15 +57,26 @@
   {{ hmctsPrimaryNavigation({
     label: 'Primary navigation',
     classes: 'govuk-!-margin-bottom-0',
-    items: [{
-      text: 'Your accounts',
-      href: '/app/dashboard',
-      active: pageID == 'your-accounts'
-    },
+    items: [
     {
       text: 'Your tasks',
       href: '/app/tasks',
       active: pageID == 'your-tasks'
+    },
+    {
+      text: 'Accounts',
+      href: '/app/dashboard',
+      active: pageID == 'accounts'
+    },
+    {
+      text: 'Representatives',
+      href: '/app/representatives/search',
+      active: pageID == 'representatives'
+    },
+    {
+      text: 'Transactions',
+      href: '/app/transactions/search',
+      active: pageID == 'transactions'
     }
     ],
     searchHtml: toggleSearchHtml

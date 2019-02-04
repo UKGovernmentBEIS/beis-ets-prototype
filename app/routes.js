@@ -19,6 +19,32 @@ router.get('/', function (req, res, next) {
   next()
 })
 
+router.get('/app/transactions/search', function (req, res, next) {
+    if ( req.query.query ) {
+        res.locals.searchQuery = req.query.query;
+        res.render('app/transactions-search-results');
+    } else {
+        res.render('app/transactions-search');
+    }
+})
+
+router.post('/app/transactions/search', function (req, res, next) {
+    res.redirect('search?query=blah')
+})
+
+router.get('/app/representatives/search', function (req, res, next) {
+    if ( req.query.query ) {
+        res.locals.searchQuery = req.query.query;
+        res.render('app/representatives-search-results');
+    } else {
+        res.render('app/representatives-search');
+    }
+})
+
+router.post('/app/representatives/search', function (req, res, next) {
+    res.redirect('search?query=blah')
+})
+
 router.get('/account/:id/:page?/:subPage?', function (req, res, next) {
   res.locals['currentDate'] = Date.now()
   res.locals['installationID'] = req.params.id

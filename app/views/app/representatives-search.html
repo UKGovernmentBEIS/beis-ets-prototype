@@ -1,0 +1,64 @@
+{% extends "layouts/admin/base.html" %}
+
+{% set pageID = "representatives" %}
+
+{% block pageTitle %}Representatives {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+
+<div class="jui-width-container">
+
+  <main class="govuk-main-wrapper" role="main">
+  <h1 class="govuk-heading-l">Representative search
+  </h1>
+<form action='search' method="POST">
+      {% if errorExists %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Account ID is incorrect",
+              href: "#account-id"
+            }
+          ]
+        }) }}
+        {{ govukInput({
+          id: "account-id",
+          name: "newTrustedAccount.id",
+          classes: "govuk-!-width-one-third",
+          label: {
+            text: "Enter the account ID"
+          },
+          hint: {
+            text: 'For example EU-100-38476-0-XX'
+          },
+          errorMessage: {
+            "text": "Enter a valid account ID"
+          },
+          value: data.newTrustedAccount.id
+        }) }}
+      {% else %}
+        {{ govukInput({
+          id: "representative-id",
+          name: "search.representative.id",
+          classes: "govuk-!-width-one-third",
+          label: {
+            text: "Enter the representative ID"
+          },
+          value: data.search.representative.id
+        }) }}
+      {% endif %}
+      {{ govukButton({
+          text: "Search"
+        }) }}
+      </form>
+
+  </main>
+
+</div>
+
+{% endblock %}
+{% block page_scripts %}
+
+{% endblock %}

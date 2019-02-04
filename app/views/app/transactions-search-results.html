@@ -1,0 +1,161 @@
+{% extends "layouts/admin/base.html" %}
+
+{% set pageID = "transactions" %}
+
+{% block pageTitle %}Transactions {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+
+<div class="jui-width-container">
+
+  <main class="govuk-main-wrapper" role="main">
+  <h1 class="govuk-heading-l">Transaction search results
+  </h1>
+
+<table class="govuk-table" data-type="transactions">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <th class="govuk-table__header govuk-!-width-10" scope="col">Reference</th>
+            <th class="govuk-table__header govuk-!-width-10" scope="col">Started</th>
+            <th class="govuk-table__header govuk-!-width-10" scope="col">Last updated</th>
+            <th class="govuk-table__header govuk-!-width-10" scope="col">Type</th>
+            <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-10" scope="col">Units</th>
+            <th class="govuk-table__header govuk-!-width-10" scope="col">Unit Type</th>
+            <th class="govuk-table__header govuk-!-width--15" scope="col">Transferring Acct</th>
+            <th class="govuk-table__header govuk-!-width-15" scope="col">Acquiring Acct</th>
+            <th class="govuk-table__header govuk-!-width-10 govuk-table__header--numeric" scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+        {% if data.etsSurrenderAllowance.totalAmountSurrendered %}
+          <tr class="govuk-table__row govuk-!-font-size-16">
+              <th class="govuk-table__cell" scope="row"><a href="#">EU596032</th>
+              <td class="govuk-table__cell ">
+                {{ currentDate | date("DD MMMM YYYY") }}<br/>
+                {{ currentDate | date("h:mm:ss a") }}
+              </td>
+              <td class="govuk-table__cell ">
+                {{ currentDate | date("DD MMMM YYYY") }}<br/>
+                {{ currentDate | date("h:mm:ss a") }}
+              </td>
+              <td class="govuk-table__cell ">10-02 Surrender Allowances</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric ">
+              {% if data.etsSurrenderAllowance.amountToSurrender == 'other' %}
+                <strong>140</strong> units oversurrendered
+              {% else %}
+                {{ data.etsSurrenderAllowance.amountToSurrender }}
+              {% endif %}
+              </td>
+              <td class="govuk-table__cell ">GA</td>
+              <td class="govuk-table__cell ">{{installationID}}</td>
+              <td class="govuk-table__cell "><span style="color: #8A8A8A; letter-spacing: .5px;">SURRENDER</span></td>
+              <td class="govuk-table__cell ">
+                <span class="jui-status  jui-status--new  govuk-!-margin-left-1" >Awaiting Approval</span>
+              </td>
+          </tr>
+          {% endif %}
+          {% if data.etsTransferAllowance %}
+          <tr class="govuk-table__row govuk-!-font-size-16">
+              <th class="govuk-table__cell" scope="row">EU580697</th>
+              <td class="govuk-table__cell ">
+                {{ currentDate | date("DD MMMM YYYY") }}<br/>
+                {{ currentDate | date("h:mm:ss a") }}
+              </td>
+              <td class="govuk-table__cell ">
+                {{ currentDate | date("DD MMMM YYYY") }}<br/>
+                {{ currentDate | date("h:mm:ss a") }}
+              </td>
+              <td class="govuk-table__cell ">10-05 Transfer Allowances</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric ">
+            {% for unit, value in data.etsTransferAllowance.holdings %}
+                {% set unitDisplayName = 'General Allowance' if unit == 'generalAllowance' else unit %}
+                {% if unit == data.etsTransferAllowance.unitType %}
+                {{ value.moved }}
+                {% endif %}
+            {% endfor %}
+              </td>
+              <td class="govuk-table__cell ">
+            {% for unit, value in data.etsTransferAllowance.holdings %}
+                {% set unitDisplayName = 'General Allowance' if unit == 'generalAllowance' else unit %}
+                {% if unit == data.etsTransferAllowance.unitType %}
+                {{ unitDisplayName }}
+                {% endif %}
+            {% endfor %}
+              </td>
+              <td class="govuk-table__cell ">{{installationID}}</td>
+              <td class="govuk-table__cell ">
+              {% if data.etsTransferAllowance.recipientType == 'existing' %}
+                {{ data.etsTransferAllowance.recipient}}
+              {% elif data.etsTransferAllowance.recipientType == 'new' %}
+                {{ data.etsTransferAllowance.recepientId }}
+              {% endif %}
+            </td>
+              <td class="govuk-table__cell ">
+                  {% if data.etsTransferAllowance.approved == 'Yes' %}
+                  <span class="jui-status  jui-status--new  govuk-!-margin-left-1">Delayed until {{ currentDate | date("DD MMMM YYYY") }}</span>
+                  {% else %}
+                <span class="jui-status  jui-status--new  govuk-!-margin-left-1" >Awaiting Approval</span>
+                  {% endif %}
+              </td>
+          </tr>
+          {% endif %}
+            {% for tx in data.transactions.slice(0,3) %}
+          <tr class="govuk-table__row govuk-!-font-size-16">
+              <th class="govuk-table__cell" scope="row">{{ tx.transactionId }}</th>
+              <td class="govuk-table__cell ">{{ tx.started }}</td>
+              <td class="govuk-table__cell ">{{ tx.lastUpdated }}</td>
+              <td class="govuk-table__cell ">{{ tx.type }}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric ">{{ tx.units }}</td>
+              <td class="govuk-table__cell ">{{ tx.unitType }}</td>
+              <td class="govuk-table__cell "><a href="#">{% if tx.transferringAccount == "this" %}{{ installationData.permitId }}{% else %}{{ tx.transferringAccount }}{% endif %}</a></td>
+              <td class="govuk-table__cell "><a href="#">{% if tx.acquiringAccount == "this" %}{{ installationData.permitId }}{% else %}{{ tx.acquiringAccount }}{% endif %}</a></td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">{{ tx.status }}</td>
+          </tr>
+            {% endfor %}
+
+        </tbody>
+      </table>
+
+  </main>
+
+</div>
+
+{% endblock %}
+{% block page_scripts %}
+<script>
+    /* global $ */
+    var rejectCommentsBox = '<div class="govuk-form-group">'+
+    '<label class="govuk-label" for="more-detail">Why are you rejecting this?</label>'+
+    '<span id="more-detail-hint" class="govuk-hint">Please provide a reason.</span>'+
+    '<textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>'+
+    '</div>'
+    var defaultState = '<div class="accept">'+'<a href="#" role="button" draggable="false" class="govuk-button approve-btn">Approve</a>'+
+            '</div><div class="reject">'+
+              '<a href="#" role="button" draggable="false" class="govuk-button hmcts-button--secondary reject-btn">Reject</a>'
+            '</div>'
+    $('body').on( "click", '.govuk-button', function(e) {
+        var $taskItem = $(this).parents('.action-container')
+        e.preventDefault();
+        var approvedTag = '<span class="jui-status  jui-status--new">Approved</span>'
+        var rejectedTag = '<span class="jui-status  jui-status--urgent">Rejected</span>'
+        var content 
+        if ($(this).hasClass('reject-btn')){
+            content = rejectCommentsBox + '<a href="#" role="button" draggable="false" class="govuk-button hmcts-button--primary final-reject-btn" style="margin-bottom: 0px;">Reject</a>'+
+            '<a href="#" role="button" draggable="false" class="govuk-button govuk-!-margin-left-2 hmcts-button--secondary cancel-btn" style="margin-bottom: 0px;">Cancel</a>'
+            $taskItem.find('.action-buttons').html(content)
+        }
+        if ($(this).hasClass('approve-btn')){
+          $taskItem.find('.action-buttons').addClass('approved-transaction').html(approvedTag)
+          $taskItem.find('.transfer-completion').show()
+        }
+
+        if ($(this).hasClass('final-reject-btn')){
+            $taskItem.find('.action-buttons').addClass('approved-transaction').html(rejectedTag)
+        }
+        if ($(this).hasClass('cancel-btn')){
+            $taskItem.find('.action-buttons').html(defaultState)
+        }
+    });
+</script>
+{% endblock %}
