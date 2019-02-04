@@ -36,21 +36,6 @@
         </div> 
         {% endif %}
         
-        {% if data.etsSubmitEmmissions.emissions.no2 !='' %}
-        <div class="app-check-your-answers__contents">
-          <dt class="app-check-your-answers__question">
-            Nitrous oxide (N<sub>2</sub>O)
-          </dt>
-          <dd class="app-check-your-answers__answer">
-            {{ data.etsSubmitEmmissions.emissions.no2}}
-          </dd>
-          <dd class="app-check-your-answers__change">
-            <a href="specify-amount">
-              Change<span class="govuk-visually-hidden"> Nitrous oxide</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
         {% if data.etsSubmitEmmissions.emissions.pfc != '' %}
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
@@ -66,6 +51,23 @@
           </dd>
         </div>
         {% endif %}
+        
+        {% if data.etsSubmitEmmissions.emissions.no2 !='' %}
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Nitrous oxide (N<sub>2</sub>O)
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {{ data.etsSubmitEmmissions.emissions.no2}}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="specify-amount">
+              Change<span class="govuk-visually-hidden"> Nitrous oxide</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        
 
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">

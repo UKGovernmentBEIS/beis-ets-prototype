@@ -77,7 +77,7 @@ module.exports = {
       'permitId': 'EU-100-73104-0-76',
       'holdings': [
         {
-          'generalAllowance': 1406
+          'generalAllowance': 2480
         }
       ]
     },
