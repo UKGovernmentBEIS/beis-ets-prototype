@@ -5,28 +5,17 @@
 {% endblock %}
 
 {% block content %}
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-
     <h1 class="govuk-heading-xl">
-      <span class="govuk-caption-xl">{{ data.etsSubmitEmmissions.installation}}</span>
+      <span class="govuk-caption-xl">{{ installationData.name}}</span>
       Enter your 2018 emissions
     </h1>
     <p>
     Your emissions data must be the same as the data verified in your Annual Emissions Report (AER).
     </p>
-<details class="govuk-details">
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-        Read more about Annual Emissions Reports
-    </span>
-  </summary>
-  <div class="govuk-details__text">
-      [Content, links to gov.uk ]
-  </div>
-</details>
-
+    {{ govukDetails({
+      summaryText: "Read more about Annual Emissions Reports",
+      html: "<p><a rel='nofollow' target='_blank' href='https://data.gov.uk/dataset/9a1e58e5-d1b6-457d-a414-335ca546d52c/uk-greenhouse-gas-emissions-annual-data'>UK greenhouse gas emissions: annual data</a></p>"
+    }) }}
     <form class="form" action="specify-amount" method="post">
       {% call govukFieldset({
         legend: {
