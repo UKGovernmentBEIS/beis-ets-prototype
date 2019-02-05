@@ -337,11 +337,13 @@
 
   {# expand compliance table #}
   var $complianceTable = $('[data-type="compliance-period"]')
-  var previousYears = $complianceTable.find('.govuk-table__row:nth-child(-n+5)')
+  var previousYears = $complianceTable.find('.govuk-table__body .govuk-table__row:nth-child(-n+5)')
+  var summaryRow = $complianceTable.find('.govuk-table__body .govuk-table__row:nth-child(6)')
   previousYears.hide()
   $('body').on('click', '.js-expand-previous-years', function(e){
     e.preventDefault()
     previousYears.show()
+    summaryRow.hide()
     $(this).hide()
   })
 </script>
