@@ -1,19 +1,12 @@
 $base-grey-light: #F9F9F9;
 
 .action-container {
-  background-color: $base-grey-light;
-  margin-bottom: 1em;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
   padding: 10px;
-  grid-gap: 10px;
+  background-color: $base-grey-light;
   margin-bottom: 30px;
--webkit-box-shadow: 1px 1px 10px 4px rgba(230,230,230,1);
--moz-box-shadow: 1px 1px 10px 2px rgba(230,230,230,1);
-box-shadow: 2px 2px 10px 1px rgba(230,230,230,1);
-}
-
-.action-container {
+  -webkit-box-shadow: 1px 1px 10px 4px rgba(230,230,230,1);
+  -moz-box-shadow: 1px 1px 10px 2px rgba(230,230,230,1);
+  box-shadow: 2px 2px 10px 1px rgba(230,230,230,1);
     @include govuk-text-colour;
     @include govuk-font($size: 19, $weight: light);
     margin-left: -30px;
@@ -21,166 +14,154 @@ box-shadow: 2px 2px 10px 1px rgba(230,230,230,1);
     margin-right: -30px;
     padding-right: 30px;
     padding-top: 15px;
-}
-
-.action-container > div {
-}
-
-.action-container .action-grid-cell {
-    background-color: $base-grey-light;
-}
-
-div .action-container .label {
-    color: #4A4A4A;
-
-}
-
-div .action-container .heading {
-  grid-column: 1 / span 4;
-  @include govuk-media-query($from: tablet) {
-    grid-column: 1 / span 4;
-  }
-  border-bottom: 1px #c0c0c0 solid;
- 
-}
-
-div .action-container .heading .title {
-    @include govuk-font($size: 36, $weight: light);
-    display: block
-}
-
-div .action-container .heading {
-    padding-bottom: 5px;
-    margin-bottom: 20px;
-}
-
-div .action-container .heading .title, .started, .reference {
-    float: left;
-}
-
-div .action-container .heading .started {
-    @include govuk-font($size: 16, $weight: light);
-    padding-left: 60px;
-    position: relative;
-    top: 16px;
-}
-
-div .action-container .heading .reference {
-    @include govuk-font($size: 16, $weight: light);
-    padding-left: 60px;
-    position: relative;
-    top: 16px;
-}
-
-div .action-container .amount {
-  grid-column: 1 / span 1;
-  @include govuk-media-query($from: tablet) {  
-    grid-column: 1 / span 1;
-  }
-  margin-top: 0px;
-}
-
-div .action-container .amount .value {
-    @include govuk-font($size: 36, $weight: bold);
-}
-
-div .action-container .amount .unit {
-    @include govuk-font($size: 16, $weight: light);
-}
-
-div .action-container .proposer {
-  grid-column: 1 / span 1;
-  @include govuk-media-query($from: tablet) {  
-    grid-column: 1 / span 1;
-  }
-  margin-top: 20px;
-}
-
-div .action-container .proposer .label {
-    @include govuk-font($size: 16, $weight: light);
-}
-
-div .action-container .transfer-completion {
-  grid-column: 1 / span 1;
-  @include govuk-media-query($from: tablet) {  
-    grid-column: 1 / span 1;
-  }
-  margin-top: 15px;
-}
-
-div .action-container .transfer-completion.hidden {
-    display: none;
-}
-
-
-div .action-container .transfer-completion .label {
-    @include govuk-font($size: 16, $weight: light);
-}
-
-div .action-container .from {
-  grid-column: 2 / span 1;
-  @include govuk-media-query($from: tablet) {
-    grid-column: 2 / span 1;
-    grid-row: 2 / span 2;
-  }
-}
-
-div .action-container .to {
-  grid-column: 3 / span 1;
-  @include govuk-media-query($from: tablet) {
-    grid-column: 3 / span 1;
-    grid-row: 2 / span 2;
-  }
-}
-
-div .action-container .to .account-name {
-    @include govuk-font($size: 16, $weight: light);
-}
-
-div .action-container .from .account-name {
-    @include govuk-font($size: 16, $weight: light);
-}
-
-div .action-container .notes .text {
-    @include govuk-font($size: 16, $weight: light);
-}
-
-div .action-container .notes {
-  grid-column: 4 / span 1;
-  @include govuk-media-query($from: tablet) {
-    grid-column: 4 / span 1;
-    grid-row: 2 / span 2;
-  }
-  padding-right: 15px;
-}
-
-div .action-container .action-buttons {
-  grid-column: 1 / span 4;
-  grid-row: 4 / span 1;
-    @include govuk-media-query($from: tablet) {
-      grid-column: 1 / span 4;
-      grid-row: 4 / span 1;
+    @include govuk-media-query($from: tablet) { 
+      @supports (display: grid) {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 10px;
+      }
     }
-  padding-top: 20px;
-  }
 
-div .action-container .action-buttons .accept {
-    float: left;
-  }
+    .action-grid-cell {
+      background-color: $base-grey-light;
+      @include govuk-clearfix;
+    }
 
+    .label {
+      color: #4A4A4A;
+      @include govuk-font($size: 16, $weight: light);
+    }
 
-div .action-container .action-buttons .reject {
-    padding-left: 120px;
-  }
+    .title {
+      @include govuk-font($size: 36, $weight: light);
+    }
+    .value {
+      @include govuk-font($size: 36, $weight: bold);
+    }
+    .unit {
+      @include govuk-font($size: 16, $weight: light);
+    }
 
-div .action-container .action-buttons .accept a {
-    margin-bottom: 15px;
-  }
+    .jui-status {
+      font-size: 1rem;
+    }
 
-div .action-container .action-buttons .reject a {
-    margin-bottom: 15px;
-  }
+    > div {
+      margin-bottom: 10px;
+    }
 
-.action-options.approved-transaction .jui-status {
-  font-size: 1rem;
+    .heading {
+      @supports(display: grid ) {
+        grid-column: 1 / span 4;
+        @include govuk-media-query($from: tablet) {
+          grid-column: 1 / span 4;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+        border-bottom: 1px #c0c0c0 solid;
+      }
+      .title {
+        @include govuk-media-query($from: tablet) {
+          grid-column: 1 / span 2;
+        }
+        @include govuk-media-query($from: desktop) {
+          grid-column: 1 / span 1;
+        }
+      }
+    }
+
+    .reference, .started {
+      @include govuk-font($size: 16, $weight: light);
+      padding-top: 8px;
+    }
+
+    .account-name, .text {
+      @include govuk-font($size: 16, $weight: light);
+    }
+
+    .proposer {
+      @supports(display: grid ) {
+        @include govuk-media-query($from: tablet) {  
+          grid-column: 1 / span 2;
+        }
+      }
+    }
+
+    .amount {
+      @supports(display: grid ) {
+        @include govuk-media-query($from: tablet) {  
+          grid-column: 1 / span 1;
+        }
+      }
+    }
+
+    .transfer-completion {
+      &.hidden {
+        display: none;
+      }
+      @supports(display: grid ) {
+        @include govuk-media-query($from: tablet) {  
+          grid-column: 1 / span 1;
+        }
+      }
+    }
+
+    .from {
+      @supports(display: grid ) {
+        @include govuk-media-query($from: tablet) {
+          grid-column: 3 / span 1;
+          grid-row: 2 / span 2;
+        }
+
+        @include govuk-media-query($from: desktop) {
+          grid-column: 2 / span 1;
+          grid-row: 2 / span 2;
+        }
+      }
+    }
+
+    .to {
+      @supports(display: grid ) {
+        @include govuk-media-query($from: tablet) {
+          grid-column: 4 / span 1;
+          grid-row: 2 / span 2;
+        }
+        @include govuk-media-query($from: desktop) {
+          grid-column: 3 / span 1;
+          grid-row: 2 / span 2;
+        }
+      }
+    }
+
+    .notes {
+      @supports(display: grid ) {
+        @include govuk-media-query($from: tablet) {
+          grid-column: 1 / span 4;
+        }
+
+        @include govuk-media-query($from: desktop) {
+          grid-column: 4 / span 1;
+          grid-row: 2 / span 3;
+        }
+      }
+    }
+
+    .action-buttons {
+      padding-top: 20px;
+      @supports(display: grid ) {
+        @include govuk-media-query($from: tablet) {
+          grid-column: 1 / span 4;
+        }
+      }
+    }
+    .accept, .reject {
+      @include govuk-media-query($from: tablet) {
+        display: inline-block;
+      }
+    }
+    .reject {
+      @include govuk-media-query($from: tablet) {
+        margin-left: 20px;
+      }
+    }
 }
