@@ -57,7 +57,7 @@ module.exports = {
     {
       'name': 'ETS Trades',
       'accountHolder': 'MRC Trading Ltd.',
-      'complianceStatusCode': 'A',
+      'complianceStatusCode': 'C',
       'units': 2500,
       'permitId': 'EU-100-82345-0-757',
       'type': 'trading',
@@ -72,7 +72,7 @@ module.exports = {
     {
       'name': 'Port Talbot Steelworks',
       'accountHolder': 'British Steel Plc.',
-      'complianceStatusCode': 'B',
+      'complianceStatusCode': 'C',
       'units': 2364,
       'permitId': 'EU-100-73104-0-76',
       'holdings': [
@@ -84,7 +84,7 @@ module.exports = {
     {
       'name': 'Lynemouth Power Station',
       'accountHolder': 'Global Power Inc.',
-      'complianceStatusCode': 'A',
+      'complianceStatusCode': 'C',
       'units': 2364,
       'permitId': 'EU-100-77732-0-76',
       'holdings': [

@@ -61,7 +61,15 @@
         <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
         <td class="govuk-table__cell">{{ acct.name }}</td>
         <td class="govuk-table__cell">{{ acct.accountHolder }}</td>
-        <td class="govuk-table__cell">{{ acct.complianceStatusCode }}</td>
+        <td class="govuk-table__cell">
+            {% if acct.complianceStatusCode == "A" %}
+                <span class="jui-status  jui-status--new">SURRENDER DUE</span>
+            {% elif acct.complianceStatusCode == "B" %}
+                <span class="jui-status  jui-status--new">SUBMISSIONS DUE</span>
+            {% elif acct.complianceStatusCode == "C" %}
+            OK
+            {% endif %}
+        </td>
     <!-- GENERAL ALLOWANCES -->
         <td class="govuk-table__cell govuk-table__cell--numeric">
             {% for item in acct.holdings %}
@@ -105,7 +113,15 @@
         <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
         <td class="govuk-table__cell">{{ acct.name }}</td>
         <td class="govuk-table__cell">{{ acct.accountHolder }}</td>
-        <td class="govuk-table__cell">{{ acct.complianceStatusCode }}</td>
+        <td class="govuk-table__cell">
+            {% if acct.complianceStatusCode == "A" %}
+                <span class="jui-status  jui-status--new">SURRENDER DUE</span>
+            {% elif acct.complianceStatusCode == "B" %}
+                <span class="jui-status  jui-status--new">SUBMISSIONS DUE</span>
+            {% elif acct.complianceStatusCode == "C" %}
+            OK
+            {% endif %}
+</td>
     <!-- GENERAL ALLOWANCES -->
         <td class="govuk-table__cell govuk-table__cell--numeric">
             {% for item in acct.holdings %}
