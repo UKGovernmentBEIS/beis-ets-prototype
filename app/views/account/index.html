@@ -51,7 +51,6 @@
           </tr>
         </thead>
         <tbody class="govuk-table__body">
-            <!--
           <tr class="govuk-table__row govuk-!-font-size-16">
             <td class="govuk-table__cell">2013</td>
             <td class="govuk-table__cell" scope="row">19 March 2014</th>
@@ -83,10 +82,9 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">2,780</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2,680 (-100)</td>
           </tr>
-          -->
 
           <tr class="govuk-table__row govuk-!-font-size-16">
-              <td class="govuk-table__cell">2013-2017 <a href="#" style="margin-left: 10px;">Expand ▼</a></td>
+              <td class="govuk-table__cell">2013-2017 <a class="js-expand-previous-years" href="#" style="margin-left: 10px;">Expand ▼</a></td>
             <td class="govuk-table__cell" scope="row">Various dates</th>
             <td class="govuk-table__cell govuk-table__cell--numeric">13,718</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">13,818 (+100)</td>
@@ -154,7 +152,7 @@
               {% if data.etsSurrenderAllowance.amountToSurrender == 'other' %}
                 <strong>140</strong> units oversurrendered
               {% else %}
-                {{ data.etsSurrenderAllowance.amountToSurrender }}
+                {{ data.etsSurrenderAllowance.totalAmountSurrendered }}
               {% endif %}
               </td>
               <td class="govuk-table__cell ">GA</td>
@@ -335,6 +333,18 @@
     e.preventDefault()
     notTop3tableRows.show()
     viewAllButton.remove()
+  })
+
+  {# expand compliance table #}
+  var $complianceTable = $('[data-type="compliance-period"]')
+  var previousYears = $complianceTable.find('.govuk-table__body .govuk-table__row:nth-child(-n+5)')
+  var summaryRow = $complianceTable.find('.govuk-table__body .govuk-table__row:nth-child(6)')
+  previousYears.hide()
+  $('body').on('click', '.js-expand-previous-years', function(e){
+    e.preventDefault()
+    previousYears.show()
+    summaryRow.hide()
+    $(this).hide()
   })
 </script>
 {% endblock %}
