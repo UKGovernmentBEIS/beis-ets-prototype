@@ -182,8 +182,9 @@ $base-grey-light: #F9F9F9;
 .tile-container.transaction-search {
     @include govuk-media-query($from: tablet) {
       @supports (display: grid) {
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 50px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-column-gap: 30px;
+        grid-row-gap: 0px;
       }
     }
 }
@@ -204,10 +205,18 @@ $base-grey-light: #F9F9F9;
       }
 }
 
-.tile-container.transaction-search .account-and-user {
+.tile-container.transaction-search .account {
       @supports(display: grid ) {
         @include govuk-media-query($from: tablet) {  
           grid-column: 3 / span 1;
+        }
+      }
+}
+
+.tile-container.transaction-search .user {
+      @supports(display: grid ) {
+        @include govuk-media-query($from: tablet) {  
+          grid-column: 4 / span 1;
         }
       }
 }

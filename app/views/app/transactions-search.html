@@ -17,12 +17,13 @@
 
         <div class="tile-container transaction-search">
 <div class="transaction tile-grid-cell">
+    <h2 class="govuk-heading-m">Transaction details</h2>
         {{ govukInput({
           id: "transaction-id",
           name: "search.transaction.id",
           classes: "govuk-!-width-full",
           label: {
-            text: "Enter the transaction ID"
+            text: "Transaction ID"
           },
           hint: {
             text: "eg. EX-12343-442423"
@@ -34,7 +35,7 @@
               id: "transaction-type",
               name: "search.transaction.type",
               label: {
-              text: "Choose a type of transactions to search for"
+              text: "Transaction type"
               },
               items: [{
                   value: 'Choose a transaction type',
@@ -46,6 +47,7 @@
           </div>
 
           <div class="date tile-grid-cell">
+    <h2 class="govuk-heading-m">Date</h2>
         {{ govukInput({
           id: "date-from",
           name: "search.date.from",
@@ -69,13 +71,14 @@
           value: data.search.from
         }) }}
           </div>
-<div class="account-and-user tile-grid-cell">
+<div class="account tile-grid-cell">
+    <h2 class="govuk-heading-m">Account</h2>
         {{ govukInput({
           id: "",
           name: "search.transaction.account.sending",
           classes: "govuk-!-width-full",
           label: {
-            text: "Enter the account ID of the sending account"
+            text: "Sending account ID"
           },
           hint: {
             text: "eg. UK-12-1443-424253-23"
@@ -87,17 +90,23 @@
           name: "search.transaction.account.receiving",
           classes: "govuk-!-width-full",
           label: {
-            text: "Enter the account ID of the receiving account"
+            text: "Receiving account ID"
           },
           value: data.search.transaction.account.receiving
         }) }}
 
+</div>
+<div class="user tile-grid-cell">
+    <h2 class="govuk-heading-m">User</h2>
         {{ govukInput({
           id: "",
           name: "search.transaction.proposer",
           classes: "govuk-!-width-full",
           label: {
-            text: "Enter the user ID of the proposer"
+            text: "Proposer User ID"
+          },
+          hint: {
+            text: "eg. UID-253-2543-2235"
           },
           value: data.search.transaction.proposer
         }) }}
@@ -107,19 +116,22 @@
           name: "search.transaction.approver",
           classes: "govuk-!-width-full",
           label: {
-            text: "Enter the user ID of the approver"
+            text: "Approver User ID"
           },
           value: data.search.transaction.approver
         }) }}
+
           </div>
-          <div class="tile-buttons tile-grid-cell">
+
+                <a href="">Advanced Search</a>
+ <div class="tile-buttons tile-grid-cell">
               <div class="accept">
-                <a href="#" role="button" draggable="false" class="govuk-button approve-btn">Search</a>
+                <a href="search?query=xyz" role="button" draggable="false" class="govuk-button approve-btn">Search</a>
               </div>
               <div class="reject">
                 <a href="#" role="button" draggable="false" class="govuk-button hmcts-button--secondary reject-btn">Clear Search</a>
               </div>
-        </div>
+        </div>         
         </div>
 
 
