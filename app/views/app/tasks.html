@@ -23,8 +23,8 @@
       <ul class='govuk-list'>
         {% for task in data.tasks %}
         <li>
-        <div class="action-container">
-          <div class="heading action-grid-cell">
+        <div class="tile-container">
+          <div class="heading tile-grid-cell">
             <div class="title">
               {{task.type}}
             </div>
@@ -45,7 +45,7 @@
               </span>
             </div>
           </div>
-          <div class="amount action-grid-cell">
+          <div class="amount tile-grid-cell">
             {% for unit in task.units %}
               <div class="value">
                 {{unit.unitAmount}}
@@ -55,7 +55,7 @@
               </div>
             {% endfor %}
           </div>
-          <div class="proposer action-grid-cell">
+          <div class="proposer tile-grid-cell">
             <div class="label">
               Proposed by:
             </div>
@@ -64,7 +64,7 @@
             </div>
           </div>
           {% if task.type == 'Transfer' %}
-          <div class="transfer-completion action-grid-cell hidden">
+          <div class="transfer-completion tile-grid-cell hidden">
             <div class="label">
               Expected completion on:
             </div>
@@ -72,7 +72,7 @@
               {{ currentDate  | date("add", 7, "days") | date("DD MMMM YYYY") }}
             </div>
           </div>
-          <div class="from action-grid-cell">
+          <div class="from tile-grid-cell">
             <div class="label">
               From:
             </div>
@@ -83,7 +83,7 @@
               {{task.accountFromName}}
             </div>
           </div>
-          <div class="to action-grid-cell">
+          <div class="to tile-grid-cell">
             <div class="label">
               To:
             </div>
@@ -96,7 +96,7 @@
           </div>
           {% endif %}
           {% if task.type == 'Surrender' %}
-          <div class="from action-grid-cell">
+          <div class="from tile-grid-cell">
             <div class="label">
               From:
             </div>
@@ -109,7 +109,7 @@
           </div>
           {% endif %}
           {% if task.type == 'Submission' %}
-          <div class="from action-grid-cell">
+          <div class="from tile-grid-cell">
             <div class="label">
               From:
             </div>
@@ -120,7 +120,7 @@
               {{task.accountFromName}}
             </div>
           </div>
-          <div class="to action-grid-cell">
+          <div class="to tile-grid-cell">
             <div class="label">
               Verifier:
             </div>
@@ -129,7 +129,7 @@
             </div>
           </div>
           {% endif %}
-          <div class="notes action-grid-cell">
+          <div class="notes tile-grid-cell">
             <div class="label">
                 Notes
             </div>
@@ -137,7 +137,7 @@
               <p>{{task.notes}}</p>
             </div>
           </div>
-          <div class="action-buttons action-grid-cell">
+          <div class="tile-buttons tile-grid-cell">
             <div class="accept">
               <a href="#" role="button" draggable="false" class="govuk-button approve-btn">Approve</a>
             </div>
@@ -166,7 +166,7 @@
               '<a href="#" role="button" draggable="false" class="govuk-button hmcts-button--secondary reject-btn">Reject</a>'
             '</div>'
     $('body').on( "click", '.govuk-button', function(e) {
-        var $taskItem = $(this).parents('.action-container')
+        var $taskItem = $(this).parents('.tile-container')
         e.preventDefault();
         var approvedTag = '<span class="jui-status  jui-status--new">Approved</span>'
         var rejectedTag = '<span class="jui-status  jui-status--urgent">Rejected</span>'
@@ -174,18 +174,18 @@
         if ($(this).hasClass('reject-btn')){
             content = rejectCommentsBox + '<a href="#" role="button" draggable="false" class="govuk-button hmcts-button--primary final-reject-btn" style="margin-bottom: 0px;">Reject</a>'+
             '<a href="#" role="button" draggable="false" class="govuk-button govuk-!-margin-left-2 hmcts-button--secondary cancel-btn" style="margin-bottom: 0px;">Cancel</a>'
-            $taskItem.find('.action-buttons').html(content)
+            $taskItem.find('.tile-buttons').html(content)
         }
         if ($(this).hasClass('approve-btn')){
-          $taskItem.find('.action-buttons').addClass('approved-transaction').html(approvedTag)
+          $taskItem.find('.tile-buttons').addClass('approved-transaction').html(approvedTag)
           $taskItem.find('.transfer-completion').show()
         }
 
         if ($(this).hasClass('final-reject-btn')){
-            $taskItem.find('.action-buttons').addClass('approved-transaction').html(rejectedTag)
+            $taskItem.find('.tile-buttons').addClass('approved-transaction').html(rejectedTag)
         }
         if ($(this).hasClass('cancel-btn')){
-            $taskItem.find('.action-buttons').html(defaultState)
+            $taskItem.find('.tile-buttons').html(defaultState)
         }
     });
 </script>
