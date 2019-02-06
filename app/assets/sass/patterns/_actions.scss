@@ -41,10 +41,6 @@ $base-grey-light: #F9F9F9;
       color: #4A4A4A;
       @include govuk-font($size: 16, $weight: light);
     }
-
-    .title {
-      @include govuk-font($size: 36, $weight: light);
-    }
     .value {
       @include govuk-font($size: 36, $weight: bold);
     }
@@ -62,27 +58,31 @@ $base-grey-light: #F9F9F9;
 
     .heading {
       @supports(display: grid ) {
-        grid-column: 1 / span 4;
         @include govuk-media-query($from: tablet) {
           grid-column: 1 / span 4;
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr 1fr;
         }
         border-bottom: 1px #c0c0c0 solid;
       }
-      .title {
-        @include govuk-media-query($from: tablet) {
-          grid-column: 1 / span 2;
-        }
-        @include govuk-media-query($from: desktop) {
-          grid-column: 1 / span 1;
-        }
+      @include govuk-media-query($from: tablet) {
+        margin-bottom: 20px;
       }
     }
 
     .reference, .started {
       @include govuk-font($size: 16, $weight: light);
       padding-top: 8px;
+      @include govuk-media-query($from: tablet) {
+        display: inline-block;
+        margin-left: 60px;
+        padding-bottom: 8px;
+      }
+    }
+
+    .title {
+      @include govuk-font($size: 36, $weight: light);
+      @include govuk-media-query($from: tablet) {
+        display: inline-block;
+      }
     }
 
     .account-name, .text {
@@ -92,10 +92,10 @@ $base-grey-light: #F9F9F9;
     .proposer {
       @supports(display: grid ) {
         @include govuk-media-query($from: tablet) {  
-          grid-column: 3 / span 2;
+          grid-column: 3 / span 1;
         }
         @include govuk-media-query($from: desktop) {  
-          grid-column: 1 / span 2;
+          grid-column: 1 / span 1;
         }
       }
     }
@@ -127,7 +127,7 @@ $base-grey-light: #F9F9F9;
 
         @include govuk-media-query($from: desktop) {
           grid-column: 2 / span 1;
-          grid-row: 2 / span 2;
+          grid-row: 2/ span 2;
         }
       }
     }
@@ -136,10 +136,11 @@ $base-grey-light: #F9F9F9;
       @supports(display: grid ) {
         @include govuk-media-query($from: tablet) {
           grid-column: 3 / span 2;
+          
         }
         @include govuk-media-query($from: desktop) {
           grid-column: 3 / span 1;
-          grid-row: 2 / span 2;
+          grid-row: 2 / span 2
         }
       }
     }
