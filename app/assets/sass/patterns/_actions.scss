@@ -14,13 +14,14 @@ $base-grey-light: #F9F9F9;
     margin-right: -30px;
     padding-right: 30px;
     padding-top: 15px;
-    @include govuk-media-query($from: tablet) { 
+    @include govuk-media-query($from: tablet) {
       @supports (display: grid) {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-gap: 10px;
       }
     }
+
 
     .tile-grid-cell {
       background-color: $base-grey-light;
@@ -146,6 +147,7 @@ $base-grey-light: #F9F9F9;
       }
     }
 
+
     .tile-buttons {
       padding-top: 20px;
       @supports(display: grid ) {
@@ -165,3 +167,37 @@ $base-grey-light: #F9F9F9;
       }
     }
 }
+
+.tile-container.transaction-search {
+    @include govuk-media-query($from: tablet) {
+      @supports (display: grid) {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 50px;
+      }
+    }
+}
+
+.tile-container.transaction-search .transaction {
+      @supports(display: grid ) {
+        @include govuk-media-query($from: tablet) {  
+          grid-column: 1 / span 1;
+        }
+      }
+}
+
+.tile-container.transaction-search .date {
+      @supports(display: grid ) {
+        @include govuk-media-query($from: tablet) {  
+          grid-column: 2 / span 1;
+        }
+      }
+}
+
+.tile-container.transaction-search .account-and-user {
+      @supports(display: grid ) {
+        @include govuk-media-query($from: tablet) {  
+          grid-column: 3 / span 1;
+        }
+      }
+}
+
