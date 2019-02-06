@@ -10,35 +10,52 @@
 <div class="jui-width-container">
 
   <main class="govuk-main-wrapper" role="main">
-  <h1 class="govuk-heading-l">Transaction search
-  </h1>
+  <h1 class="govuk-heading-l">Search for transactions by:</h1>
 <form action='search' method="POST">
-      {% if errorExists %}
-        {{ govukErrorSummary({
-          titleText: "There is a problem",
-          errorList: [
-            {
-              text: "Account ID is incorrect",
-              href: "#account-id"
-            }
-          ]
-        }) }}
+
+
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+        <strong>Date range</strong>
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+
         {{ govukInput({
-          id: "account-id",
-          name: "newTrustedAccount.id",
-          classes: "govuk-!-width-one-third",
+          id: "date-from",
+          name: "search.date.from",
+          classes: "govuk-!-width-one-quarter",
           label: {
-            text: "Enter the account ID"
+            text: "From"
           },
           hint: {
-            text: 'For example EU-100-38476-0-XX'
+            text: "For example: 10/12/2018"
           },
-          errorMessage: {
-            "text": "Enter a valid account ID"
-          },
-          value: data.newTrustedAccount.id
+          value: data.search.from
         }) }}
-      {% else %}
+
+        {{ govukInput({
+          id: "date-to",
+          name: "search.date.to",
+          classes: "govuk-!-width-one-quarter",
+          label: {
+            text: "To"
+          },
+          value: data.search.from
+        }) }}
+
+  </div>
+</details>
+
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+        <strong>Transaction ID or type</strong>
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+
         {{ govukInput({
           id: "transaction-id",
           name: "search.transaction.id",
@@ -48,7 +65,93 @@
           },
           value: data.search.transaction.id
         }) }}
-      {% endif %}
+
+          {{ govukSelect({
+              id: "transaction-type",
+              name: "search.transaction.type",
+              label: {
+              text: "Choose a type of transactions to search for"
+              },
+              items: [{
+                  value: 'Choose a transaction type',
+                  text: 'Choose a transaction type',
+                  selected: checked("",'')
+              }
+              ]
+              }) }}
+  </div>
+</details>
+
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+        <strong>Receiving account</strong>
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+
+        {{ govukInput({
+          id: "",
+          name: "search.transaction.account.receiving",
+          classes: "govuk-!-width-one-third",
+          label: {
+            text: "Enter the account ID of the receiving account"
+          },
+          value: data.search.transaction.account.receiving
+        }) }}
+  </div>
+</details>
+
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+        <strong>Sending account</strong>
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+
+        {{ govukInput({
+          id: "",
+          name: "search.transaction.account.sending",
+          classes: "govuk-!-width-one-third",
+          label: {
+            text: "Enter the account ID of the sending account"
+          },
+          value: data.search.transaction.account.sending
+        }) }}
+  </div>
+</details>
+
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+        <strong>User</strong>
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+
+        {{ govukInput({
+          id: "",
+          name: "search.transaction.proposer",
+          classes: "govuk-!-width-one-third",
+          label: {
+            text: "Enter the user ID of the proposer"
+          },
+          value: data.search.transaction.proposer
+        }) }}
+
+        {{ govukInput({
+          id: "",
+          name: "search.transaction.approver",
+          classes: "govuk-!-width-one-third",
+          label: {
+            text: "Enter the user ID of the approver"
+          },
+          value: data.search.transaction.approver
+        }) }}
+  </div>
+</details>
+
       {{ govukButton({
           text: "Search"
         }) }}
