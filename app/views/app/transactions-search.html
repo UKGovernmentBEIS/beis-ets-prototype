@@ -9,6 +9,16 @@
 
 <div class="jui-width-container">
 
+{% if query.returnAccount %}
+{{ govukBreadcrumbs({
+  items: [
+    {
+      text: "▲ Return to account " + query.returnAccount,
+      href: "/account/" + query.returnAccount
+    }
+  ]
+}) }}
+{% endif %}
   <main class="govuk-main-wrapper" role="main">
   <h1 class="govuk-heading-l">Search for transactions by:</h1>
 <form action='search' method="POST">
@@ -128,7 +138,7 @@
                 
  <div class="tile-buttons tile-grid-cell">
               <div class="accept">
-                <a href="search?q=xyz" role="button" draggable="false" class="govuk-button approve-btn">Search</a>
+                  <a href="search?q=xyz{% if query.returnAccount %}&returnAccount={{query.returnAccount}}&persist=No{% endif %}" role="button" draggable="false" class="govuk-button approve-btn">Search</a>
               </div>
               <div class="reject">
                 <a href="#" role="button" draggable="false" class="govuk-button hmcts-button--secondary reject-btn">Clear Search</a>
