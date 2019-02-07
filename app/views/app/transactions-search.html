@@ -51,7 +51,7 @@
         {{ govukInput({
           id: "date-from",
           name: "search.date.from",
-          classes: "govuk-!-width-two-thirds",
+          classes: "",
           label: {
             text: "From"
           },
@@ -64,7 +64,7 @@
         {{ govukInput({
           id: "date-to",
           name: "search.date.to",
-          classes: "govuk-!-width-two-thirds",
+          classes: "",
           label: {
             text: "To"
           },
@@ -122,8 +122,10 @@
         }) }}
 
           </div>
-
-                <a href="">Advanced Search</a>
+        <div class="advanced-search tile-grid-cell">
+            <a href="#">Advanced Search</a>
+        </div>
+                
  <div class="tile-buttons tile-grid-cell">
               <div class="accept">
                 <a href="search?q=xyz" role="button" draggable="false" class="govuk-button approve-btn">Search</a>
