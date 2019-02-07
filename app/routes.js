@@ -20,8 +20,7 @@ router.get('/', function (req, res, next) {
 })
 
 router.get('/app/transactions/search', function (req, res, next) {
-    if ( req.query.query ) {
-        res.locals.searchQuery = req.query.query;
+    if ( req.query.q ) {
         res.render('app/transactions-search-results');
     } else {
         res.render('app/transactions-search');
@@ -29,12 +28,11 @@ router.get('/app/transactions/search', function (req, res, next) {
 })
 
 router.post('/app/transactions/search', function (req, res, next) {
-    res.redirect('search?query=blah')
+    res.redirect('search?q=blah')
 })
 
 router.get('/app/users/search', function (req, res, next) {
-    if ( req.query.query ) {
-        res.locals.searchQuery = req.query.query;
+    if ( req.query.q ) {
         res.render('app/users-search-results');
     } else {
         res.render('app/users-search');
@@ -42,7 +40,7 @@ router.get('/app/users/search', function (req, res, next) {
 })
 
 router.post('/app/users/search', function (req, res, next) {
-    res.redirect('search?query=blah')
+    res.redirect('search?q=blah')
 })
 
 router.get('/account/:id/:page?/:subPage?', function (req, res, next) {
