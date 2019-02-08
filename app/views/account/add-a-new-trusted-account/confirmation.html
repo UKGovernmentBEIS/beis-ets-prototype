@@ -11,7 +11,7 @@
 {% block content %}
 
         <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-9">
-        <h1 class="govuk-panel__title">Your new trusted account proposal has been submitted</h1>
+        <h1 class="govuk-panel__title">We have received your trusted account proposal.</h1>
 
         <div class="govuk-panel__body">
 
@@ -19,13 +19,7 @@
 
         </div>
       </div>
-      <div class="govuk-warning-text">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <strong class="govuk-warning-text__text">
-          <span class="govuk-warning-text__assistive">Warning</span>
-          An authorised representative on your account will need to approve this request.
-        </strong>
-      </div>
+
 
       {{ govukInsetText({
         html: "Visit account page to <a class='govuk-link' href='/account/" + installationID +"'>check the status of your trusted accounts.</a>."
@@ -40,6 +34,6 @@
         </strong>
       </div>
 
-      <p>We've sent a notification of your proposed transfer to representatives for this account. Once it's approved it will take 7 working days to be completed.<p/>
+      <p>We’ve sent a notification of your proposal to representatives for this account. Once it’s approved it will take 7 working days to complete. <p/>
 
 {% endblock %}

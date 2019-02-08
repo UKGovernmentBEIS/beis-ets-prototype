@@ -16,7 +16,7 @@
       <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-7">
         <h1 class="govuk-panel__title">
         {% if data.etsTransferAllowance.recipientType == 'existing' %}
-        Your proposed transfer has been submitted.
+        We have received your submission for a transfer
         {% else %}
         We have received your submission for a transfer
         {% endif %}
@@ -30,13 +30,18 @@
       }) }}
       <h2 class="govuk-heading-m"> What happens next</h2>
       {% if data.etsTransferAllowance.recipientType == 'existing' %}
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          Your transfer will need to be approved.
+        </strong>
+      </div>
         <p>
-          We have sent you a confirmation email about your transfer. We have notified all representatives on your account who can approve this transfer.
+          We've sent a notification of your proposed transfer to representatives for this account. Once approved, the transfer will take 26 hours to be completed. The 26 hours will only start during business hours.
         </p>
 
-        <p>
-          Once another representative has approved this transfer it will take 26 hours for the allowances to arrive in your recipient's account.
-        </p>
+      
       {% else %}
       <div class="govuk-warning-text">
         <span class="govuk-warning-text__icon" aria-hidden="true">!</span>

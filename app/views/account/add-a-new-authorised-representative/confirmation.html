@@ -23,14 +23,21 @@
           href: '/account/' + installationID
         }) }}
       {% else %}
-        <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-9">
-        <h1 class="govuk-panel__title">Task completed</h1>
-        <div class="govuk-panel__body">
-          Your have requested a new authorised representative to be added to your account.
-        </div>
+      <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-9">
+      <h1 class="govuk-panel__title">We’re received your request to add a representative to your account.</h1>
+
+      <div class="govuk-panel__body">
+
+      Your reference number<br><strong>EU613749</strong>
+
       </div>
+    </div>
 
       {% endif %}
+
+      {{ govukInsetText({
+        html: "Visit account page to <a class='govuk-link' href='/account/" + installationID +"'>check the status of your request</a>."
+      }) }}
 
       <h2 class="govuk-heading-m">What happens next</h2>
 
@@ -39,7 +46,7 @@
       <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
       <strong class="govuk-warning-text__text">
         <span class="govuk-warning-text__assistive">Warning</span>
-        Your proposal to add a new authorised reprersentative to your account will need to be approved. Visit your account page to <a class='govuk-link' href="/account/{{installationID}}/">see the status of your requst</a>
+        Your proposal to add a new authorised reprersentative to your account will need to be approved. </a>
 
       </strong>
 

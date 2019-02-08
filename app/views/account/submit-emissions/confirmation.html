@@ -19,28 +19,31 @@
         </div>
       </div>
 
+      {{ govukInsetText({
+        html: "<a class='govuk-link' href='/account/" + installationData.permitId +"/'>Visit account page to view your emissions for this year and previous years</a>."
+      }) }}
+
       <h2 class="govuk-heading-m">What happens next</h2>
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          You will also need to surrender enough allowances to cover your verified emissions before 16 March 2019 to be compliant with ETS.
+
+        </strong>
+      </div>
+
       <p class="govuk-body">We have sent you a confirmation email.</p>
-      <p class="govuk-body">Your 2018 emissions still need to be verified by <strong>
+      <p class="govuk-body">Your 2018 emissions still need to be verified <strong>
       {% if data.etsSubmitEmmissions.selectVerifier == 'other' %}
         {{ data.etsSubmitEmmissions.verifier }}
       {% else %}
         {{ data.etsSubmitEmmissions.selectVerifier }}
-      {% endif %}</strong>before 12 March 2019. We have sent them a notification email.</p>
+      {% endif %}</strong>before 12 March 2019.We have sent your verifier a notification email.</p>
 
 
-        <div class="govuk-warning-text">
-          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-          <strong class="govuk-warning-text__text">
-            <span class="govuk-warning-text__assistive">Warning</span>
-            You will also need to surrender enough allowances to cover your verified emissions before 16 March 2019 to be compliant with ETS.
 
-          </strong>
-        </div>
-
-      {{ govukInsetText({
-        html: "<a class='govuk-link' href='/account/" + installationData.permitId +"/'>View your emissions for this year and previous years</a>."
-      }) }}
 
 
 {% endblock %}
