@@ -67,11 +67,11 @@
             OK
             {% endif %}
         </td>
-    <!-- GENERAL ALLOWANCES -->
+    <!-- allowanceS -->
         <td class="govuk-table__cell govuk-table__cell--numeric">
             {% for item in acct.holdings %}
               {% for unit, value in item %}
-               {% set unitDisplayName = 'general allowance' if unit == 'generalAllowance' else unit %}
+               {% set unitDisplayName = 'allowance' if unit == 'generalAllowance' else unit %}
                {% if unit == "generalAllowance" %}
                     {{ value }}
                 {% endif %}
@@ -97,11 +97,11 @@
             OK
             {% endif %}
 </td>
-    <!-- GENERAL ALLOWANCES -->
+    <!-- allowanceS -->
         <td class="govuk-table__cell govuk-table__cell--numeric">
             {% for item in acct.holdings %}
               {% for unit, value in item %}
-               {% set unitDisplayName = 'general allowance' if unit == 'generalAllowance' else unit %}
+               {% set unitDisplayName = 'allowance' if unit == 'generalAllowance' else unit %}
                {% if unit == "generalAllowance" %}
                     {{ value }}
                 {% endif %}

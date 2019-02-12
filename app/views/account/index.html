@@ -7,10 +7,10 @@
 
       <h2 class="govuk-heading-l">Holdings</h2>
 
-      <p>This account holds 
+      <p>This account holds
       {% for item in installationData.holdings %}
           {% for unit, value in item %}
-          {% set unit = 'general allowance' if unit == 'generalAllowance' else unit %}
+          {% set unit = 'allowance' if unit == 'generalAllowance' else unit %}
           {% if loop.length > 1 and loop.last %} and {% endif %}
           <strong>{{ value }} </strong>{{ unit }}s{% if loop.last %}.{% else %},{% endif %}
           {% endfor %}
@@ -28,7 +28,7 @@
               <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
               <strong class="govuk-warning-text__text">
                 <span class="govuk-warning-text__assistive">Warning</span>
-                This account is not compliant (code B). You must surrender <strong>{{ data.etsSubmitEmmissions.total - data.etsSurrenderAllowance.totalAmountSurrendered | d(0) }}</strong> General Allowances before 15 March 2018 to be compliant.
+                This account is not compliant (code B). You must surrender <strong>{{ data.etsSubmitEmmissions.total - data.etsSurrenderAllowance.totalAmountSurrendered | d(0) }}</strong> allowances before 15 March 2018 to be compliant.
               </strong>
             </div>
         {% endif %}
@@ -46,8 +46,8 @@
           <tr class="govuk-table__row govuk-!-font-size-16">
             <th class="govuk-table__header govuk-!-width-20 " scope="col">Year</th>
             <th class="govuk-table__header" scope="col">Date submitted</th>
-            <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-20 " scope="col">Emissions reported</th>
-            <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-20 " scope="col">UKGA surrendered</th>
+            <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-20 " scope="col">Emissions reported (CO2e)</th>
+            <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-20 " scope="col">Allowances surrendered</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -177,7 +177,7 @@
               <td class="govuk-table__cell ">10-05 Transfer Allowances</td>
               <td class="govuk-table__cell govuk-table__cell--numeric ">
             {% for unit, value in data.etsTransferAllowance.holdings %}
-                {% set unitDisplayName = 'General Allowance' if unit == 'generalAllowance' else unit %}
+                {% set unitDisplayName = 'Allowance' if unit == 'generalAllowance' else unit %}
                 {% if unit == data.etsTransferAllowance.unitType %}
                 {{ value.moved }}
                 {% endif %}
@@ -185,7 +185,7 @@
               </td>
               <td class="govuk-table__cell ">
             {% for unit, value in data.etsTransferAllowance.holdings %}
-                {% set unitDisplayName = 'General Allowance' if unit == 'generalAllowance' else unit %}
+                {% set unitDisplayName = 'Allowance' if unit == 'generalAllowance' else unit %}
                 {% if unit == data.etsTransferAllowance.unitType %}
                 {{ unitDisplayName }}
                 {% endif %}

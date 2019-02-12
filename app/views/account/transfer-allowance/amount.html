@@ -104,7 +104,7 @@ input, select { display: block; }
           <option value="" {{ 'selected' if checked('etsTransferAllowance.unitType', '') }}>Choose unit</option>
         {% for item in installationData.holdings %}
           {% for unit, value in item %}
-           {% set unitDisplayName = 'General Allowance' if unit == 'generalAllowance' else unit %}
+           {% set unitDisplayName = 'Allowance' if unit == 'generalAllowance' else unit %}
             <option value="{{ unit }}" {{ 'selected' if checked('etsTransferAllowance.unitType', unit) }}>{{ unitDisplayName }}</option>
           {% endfor %}
         {% endfor %}
@@ -112,7 +112,7 @@ input, select { display: block; }
 </div>
         {% for item in installationData.holdings %}
           {% for type, value in item %}
-          {% set unitDisplayName = 'General Allowance' if type == 'generalAllowance' else type %}
+          {% set unitDisplayName = 'Allowance' if type == 'generalAllowance' else type %}
           <div id="unit-{{ type }}">
             {{ govukInput({
               id: type,

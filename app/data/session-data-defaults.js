@@ -185,7 +185,7 @@ module.exports = {
       "transactionId": "EU104957",
       "started": "24/02/18 01:46",
       "lastUpdated": "24/02/18 02:19",
-      "type": "10-36 Allocation General Allowances",
+      "type": "10-36 Allocation Allowances",
       "units": 56612,
       "unitType": "GA",
       "transferringAccount": "EU-110-93932-0-11",
@@ -196,7 +196,7 @@ module.exports = {
       "transactionId": "EU672244",
       "started": "02/07/13 16:28",
       "lastUpdated": "02/07/13 16:28",
-      "type": "01-34 Issuance General Allowances Banking",
+      "type": "01-34 Issuance Allowances Banking",
       "units": 9756,
       "unitType": "GA",
       "transferringAccount": "EU-110-93932-0-11",
@@ -207,7 +207,7 @@ module.exports = {
       "transactionId": "EU289247",
       "started": "02/07/13 16:28",
       "lastUpdated": "02/07/13 16:28",
-      "type": "01-34 Issuance General Allowances Banking",
+      "type": "01-34 Issuance Allowances Banking",
       "units": 4244,
       "unitType": "GA",
       "transferringAccount": "EU-110-93932-0-11",
@@ -218,7 +218,7 @@ module.exports = {
       "transactionId": "EU345954",
       "started": "02/07/13 16:28",
       "lastUpdated": "02/07/13 16:28",
-      "type": "10-34 Deletion General Allowances Banking",
+      "type": "10-34 Deletion Allowances Banking",
       "units": 1122,
       "unitType": "GA",
       "transferringAccount": "this",
@@ -302,7 +302,7 @@ module.exports = {
       referenceNumber: 'QR-454-665-34',
       units: [
         {
-          unitType: 'General Allowance',
+          unitType: 'Allowance',
           unitAmount: '234'
         }
       ],
@@ -320,7 +320,7 @@ module.exports = {
       referenceNumber: 'EU596032',
       units: [
         {
-          unitType: 'General Allowance',
+          unitType: 'Allowance',
           unitAmount: '2160'
         }
       ],

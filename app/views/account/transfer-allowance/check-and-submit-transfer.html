@@ -62,7 +62,7 @@
           </dt>
           <dd class="app-check-your-answers__answer">
             {% for unit, value in data.etsTransferAllowance.holdings %}
-                {% set unitDisplayName = 'General Allowance' if unit == 'generalAllowance' else unit %}
+                {% set unitDisplayName = 'Allowance' if unit == 'generalAllowance' else unit %}
                 {% if unit == data.etsTransferAllowance.unitType %}
                 {{ value.moved }}<span class="govuk-hint">{{ unitDisplayName }}s</span>
                 {% endif %}
@@ -79,7 +79,7 @@
 
       <p>When this transaction has completed, your balance will be
           {% for unit, value in data.etsTransferAllowance.holdings %}
-            {% set unitDisplayName = 'General Allowance' if unit == 'generalAllowance' else unit %}
+            {% set unitDisplayName = 'Allowance' if unit == 'generalAllowance' else unit %}
             {% if unit == data.etsTransferAllowance.unitType %}
             <strong>{{ value.started - value.moved }}</strong> {{ unitDisplayName }}s.
             {% endif %}
