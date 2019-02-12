@@ -56,7 +56,7 @@
                 {% endif %}
               </td>
               <td class="govuk-table__cell govuk-table__cell--numeric">
-                <div class="hmcts-menu hmcts-menu--actions">
+                <div class="hmcts-menu hmcts-menu--user-item user-item-{{loop.index0}}">
                         <div class="hmcts-menu__wrapper">
                           <a href="" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary govuk-!-margin-right-2">
                               Suspend User
@@ -80,38 +80,15 @@
 {% endblock %}
 {% block page_scripts %}
 <script>
-    /* global $ */
-    var rejectCommentsBox = '<div class="govuk-form-group">'+
-    '<label class="govuk-label" for="more-detail">Why are you rejecting this?</label>'+
-    '<span id="more-detail-hint" class="govuk-hint">Please provide a reason.</span>'+
-    '<textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>'+
-    '</div>'
-    var defaultState = '<div class="accept">'+'<a href="#" role="button" draggable="false" class="govuk-button approve-btn">Approve</a>'+
-            '</div><div class="reject">'+
-              '<a href="#" role="button" draggable="false" class="govuk-button hmcts-button--secondary reject-btn">Reject</a>'
-            '</div>'
-    $('body').on( "click", '.govuk-button', function(e) {
-        var $taskItem = $(this).parents('.action-container')
-        e.preventDefault();
-        var approvedTag = '<span class="jui-status  jui-status--new">Approved</span>'
-        var rejectedTag = '<span class="jui-status  jui-status--urgent">Rejected</span>'
-        var content 
-        if ($(this).hasClass('reject-btn')){
-            content = rejectCommentsBox + '<a href="#" role="button" draggable="false" class="govuk-button hmcts-button--primary final-reject-btn" style="margin-bottom: 0px;">Reject</a>'+
-            '<a href="#" role="button" draggable="false" class="govuk-button govuk-!-margin-left-2 hmcts-button--secondary cancel-btn" style="margin-bottom: 0px;">Cancel</a>'
-            $taskItem.find('.action-buttons').html(content)
-        }
-        if ($(this).hasClass('approve-btn')){
-          $taskItem.find('.action-buttons').addClass('approved-transaction').html(approvedTag)
-          $taskItem.find('.transfer-completion').show()
-        }
-
-        if ($(this).hasClass('final-reject-btn')){
-            $taskItem.find('.action-buttons').addClass('approved-transaction').html(rejectedTag)
-        }
-        if ($(this).hasClass('cancel-btn')){
-            $taskItem.find('.action-buttons').html(defaultState)
-        }
+$(".hmcts-menu--user-item").each(function( index ) {
+  var containerClass = '.user-item-' + index
+  new HMCTSFrontend.Menu({
+      container: $(containerClass),
+      mq: '(min-width: 200em)',
+      buttonText: 'More actions',
+      buttonClasses: 'hmcts-button--secondary hmcts-menu__toggle-button--secondary',
+      menuClasses: 'hmcts-menu__wrapper--right'
     });
+});
 </script>
 {% endblock %}
