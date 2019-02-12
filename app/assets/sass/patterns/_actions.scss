@@ -178,7 +178,8 @@ $base-grey-light: #F9F9F9;
       }
     }
 }
-.tile-container.transaction-search {
+
+.tile-container.search {
     @include govuk-media-query($from: tablet) {
       display: flex;
       flex-direction: row;
@@ -193,7 +194,7 @@ $base-grey-light: #F9F9F9;
     }
 }
 
-.tile-container.transaction-search .advanced-search {
+.tile-container.search .advanced-search {
   flex: 0 0 100%;
   
   @supports(display: grid ) {
@@ -203,11 +204,11 @@ $base-grey-light: #F9F9F9;
   }
 }
 
-.tile-container.transaction-search .tile-buttons {
+.tile-container.search .tile-buttons {
   flex: 0 0 100%;
 }
 
-.tile-container.transaction-search .transaction {
+.tile-container.search .first-cell {
   @supports(display: grid ) {
     @include govuk-media-query($from: tablet) {  
       grid-column: 1 / span 2;
@@ -218,7 +219,7 @@ $base-grey-light: #F9F9F9;
   }
 }
 
-.tile-container.transaction-search .date {
+.tile-container.search .second-cell {
   @supports(display: grid ) {
     @include govuk-media-query($from: tablet) {  
       grid-column: 3 / span 2;
@@ -229,7 +230,7 @@ $base-grey-light: #F9F9F9;
   }
 }
 
-.tile-container.transaction-search .account {
+.tile-container.search .third-cell {
   @supports(display: grid ) {
     @include govuk-media-query($from: tablet) {  
       grid-column: 1 / span 2;
@@ -240,7 +241,7 @@ $base-grey-light: #F9F9F9;
   }
 }
 
-.tile-container.transaction-search .user {
+.tile-container.search .fourth-cell {
   @supports(display: grid ) {
     @include govuk-media-query($from: tablet) {  
       grid-column: 3 / span 2;

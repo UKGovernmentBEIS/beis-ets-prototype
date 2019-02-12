@@ -9,50 +9,120 @@
 
 <div class="jui-width-container">
 
+{% if query.returnAccount %}
+{{ govukBreadcrumbs({
+  items: [
+    {
+      text: "▲ Return to account " + query.returnAccount,
+      href: "/account/" + query.returnAccount
+    }
+  ]
+}) }}
+{% endif %}
   <main class="govuk-main-wrapper" role="main">
-  <h1 class="govuk-heading-l">User search
-  </h1>
+  <h1 class="govuk-heading-l">Search for users by:</h1>
 <form action='search' method="POST">
-      {% if errorExists %}
-        {{ govukErrorSummary({
-          titleText: "There is a problem",
-          errorList: [
-            {
-              text: "Account ID is incorrect",
-              href: "#account-id"
-            }
-          ]
-        }) }}
+
+
+
+        <div class="tile-container search">
+
+
+          <div class="first-cell tile-grid-cell">
+              <h2 class="govuk-heading-m">Account</h2>
         {{ govukInput({
-          id: "account-id",
-          name: "newTrustedAccount.id",
-          classes: "govuk-!-width-one-third",
+          id: "account-name",
+          name: "search.user.account.name",
+          classes: "",
           label: {
-            text: "Enter the account ID"
+            text: "Account name"
           },
           hint: {
-            text: 'For example EU-100-38476-0-XX'
+            text: "Use wildcards"
           },
-          errorMessage: {
-            "text": "Enter a valid account ID"
-          },
-          value: data.newTrustedAccount.id
+          value: data.search.user.account.name
         }) }}
-      {% else %}
+
         {{ govukInput({
-          id: "representative-id",
-          name: "search.representative.id",
-          classes: "govuk-!-width-one-third",
+          id: "account-name",
+          name: "search.user.accountHolder.name",
+          classes: "",
           label: {
-            text: "Enter the representative ID"
+            text: "Account Holder name"
           },
-          value: data.search.representative.id
+          value: data.search.user.accountHolder.name
         }) }}
-      {% endif %}
-      {{ govukButton({
-          text: "Search"
+          </div>
+<div class="second-cell tile-grid-cell">
+    <h2 class="govuk-heading-m">_</h2>
+        {{ govukInput({
+          id: "",
+          name: "search.user.account",
+          classes: "govuk-!-width-full",
+          label: {
+            text: "Account ID"
+          },
+          hint: {
+            text: "eg. UK-12-1443-424253-23"
+          },
+          value: data.search.user.account
         }) }}
-      </form>
+
+          {{ govukSelect({
+              id: "user-role",
+              name: "search.user.role",
+              label: {
+              text: "User's role on account"
+              },
+              items: [{
+                  value: 'Choose a user role',
+                  text: 'Choose a user role',
+                  selected: checked("",'')
+              }
+              ]
+              }) }}
+</div>
+<div class="third-cell tile-grid-cell">
+    <h2 class="govuk-heading-m">User</h2>
+        {{ govukInput({
+          id: "",
+          name: "search.user.name",
+          classes: "govuk-!-width-full",
+          label: {
+            text: "Name"
+          },
+          hint: {
+            text: "Wildcards work"
+          },
+          value: data.search.user.name
+        }) }}
+
+        {{ govukInput({
+          id: "",
+          name: "search.user.email",
+          classes: "govuk-!-width-full",
+          label: {
+            text: "Email address"
+          },
+          value: data.search.user.email
+        }) }}
+
+          </div>
+        <div class="advanced-search tile-grid-cell">
+            <a href="#">Advanced Search</a>
+        </div>
+                
+ <div class="tile-buttons tile-grid-cell">
+              <div class="accept">
+                  <a href="search?q=xyz{% if query.returnAccount %}&returnAccount={{query.returnAccount}}&persist=No{% endif %}" role="button" draggable="false" class="govuk-button approve-btn">Search</a>
+              </div>
+              <div class="reject">
+                <a href="#" role="button" draggable="false" class="govuk-button hmcts-button--secondary reject-btn">Clear Search</a>
+              </div>
+        </div>         
+        </div>
+
+
 
   </main>
 

@@ -19,7 +19,8 @@
             <th class="govuk-table__header" scope="col">Name</th>
             <th class="govuk-table__header " scope="col">Job Title</th>
             <th class="govuk-table__header " scope="col">Contact</th>
-            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Status</th>
+            <th class="govuk-table__header" scope="col">Status</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Actions</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -31,10 +32,12 @@
               <td class="govuk-table__cell ">{{ name }}</td>
               <td class="govuk-table__cell ">Account Manager</td> 
               <td class="govuk-table__cell ">joe.brown@blue.com <br />Tel: 07823 423242</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">
+              <td class="govuk-table__cell">
                 {{ govukTag({
                   text: "approval pending"
                 }) }} 
+              </td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
               </td>
             </tr>
           {% endfor %}
@@ -45,7 +48,24 @@
               <td class="govuk-table__cell ">{{ ta.name }}</td>
               <td class="govuk-table__cell ">{{ ta.jobTitle }}</td>
               <td class="govuk-table__cell ">{{ ta.email }}<br/>Tel: {{ ta.phone }}</td>
+              <td class="govuk-table__cell">
+                  {% if loop.index == 2 %}
+                {{ govukTag({
+                  text: "approval pending"
+                }) }} 
+                {% endif %}
+              </td>
               <td class="govuk-table__cell govuk-table__cell--numeric">
+                <div class="hmcts-menu hmcts-menu--actions">
+                        <div class="hmcts-menu__wrapper">
+                          <a href="" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary govuk-!-margin-right-2">
+                              Suspend User
+                          </a>
+                          <a href="" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary govuk-!-margin-right-2">
+                              View account permissions
+                          </a>
+                        </div>
+                      </div>
               </td>
           </tr>
             {% endfor %}
