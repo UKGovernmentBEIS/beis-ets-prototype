@@ -154,7 +154,7 @@ module.exports = {
       "lastUpdated": "31/12/18 15:12",
       "type": "10-72 Receipt of Allowances for Exchange",
       "units": 363,
-      "unitType": "GA",
+      "unitType": "Allowances",
       "transferringAccount": "EU-110-54234-0-22",
       "acquiringAccount": "this",
       "status": "4-COMPLETED"
@@ -176,7 +176,7 @@ module.exports = {
       "lastUpdated": "25/04/18 20:24",
       "type": "10-02 Surrender Allowances",
       "units": 34523,
-      "unitType": "GA",
+      "unitType": "Allowances",
       "transferringAccount": "this",
       "acquiringAccount": "EU-110-63222-0-12",
       "status": "4-COMPLETED"
@@ -187,7 +187,7 @@ module.exports = {
       "lastUpdated": "24/02/18 02:19",
       "type": "10-36 Allocation Allowances",
       "units": 56612,
-      "unitType": "GA",
+      "unitType": "Allowances",
       "transferringAccount": "EU-110-93932-0-11",
       "acquiringAccount": "this",
       "status": "4-COMPLETED"
@@ -198,7 +198,7 @@ module.exports = {
       "lastUpdated": "02/07/13 16:28",
       "type": "01-34 Issuance Allowances Banking",
       "units": 9756,
-      "unitType": "GA",
+      "unitType": "Allowances",
       "transferringAccount": "EU-110-93932-0-11",
       "acquiringAccount": "this",
       "status": "4-COMPLETED"
@@ -209,7 +209,7 @@ module.exports = {
       "lastUpdated": "02/07/13 16:28",
       "type": "01-34 Issuance Allowances Banking",
       "units": 4244,
-      "unitType": "GA",
+      "unitType": "Allowances",
       "transferringAccount": "EU-110-93932-0-11",
       "acquiringAccount": "this",
       "status": "4-COMPLETED"
@@ -220,7 +220,7 @@ module.exports = {
       "lastUpdated": "02/07/13 16:28",
       "type": "10-34 Deletion Allowances Banking",
       "units": 1122,
-      "unitType": "GA",
+      "unitType": "Allowances",
       "transferringAccount": "this",
       "acquiringAccount": "EU-110-59193-0-12",
       "status": "4-COMPLETED"
@@ -231,7 +231,7 @@ module.exports = {
       "lastUpdated": "22/04/13 14:38",
       "type": "10-00 Internal Transfer",
       "units": 553423,
-      "unitType": "GA",
+      "unitType": "Allowances",
       "transferringAccount": "this",
       "acquiringAccount": "EU-110-59193-0-12",
       "status": "4-COMPLETED"
@@ -242,7 +242,7 @@ module.exports = {
       "lastUpdated": "05/06/12 00:00",
       "type": "01-32 Decoupling",
       "units": 678654,
-      "unitType": "GA",
+      "unitType": "Allowances",
       "transferringAccount": "EU-110-56193-0-12",
       "acquiringAccount": "this",
       "status": "4-COMPLETED"
