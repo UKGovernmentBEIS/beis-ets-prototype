@@ -1,0 +1,42 @@
+{% extends "layouts/admin/base-account.html" %}
+{% block content %}
+<h1 class="govuk-heading-xl">Edit account details for {{installation.name}}</h1>
+{% set url = "/account/"+ installation.permitId +"/details/confirmation" %}
+<form action={{url}} method="post">
+  {{ govukInput({
+    label: {
+      text: 'Entity name'
+    },
+    id: 'entityName',
+    name: 'entityName',
+    value: installation.name
+  }) }}
+  {{ govukTextarea({
+  name: "address",
+  id: "address",
+  label: {
+      text: 'Registered address'
+    },
+  value: installation.address.street+'\n'+installation.address.city+'\n'+installation.address.postcode
+  }) }}
+  {{ govukInput({
+      label: {
+        text: 'Contact person'
+      },
+      id: 'contactPerson',
+      name: 'contactPerson',
+      value: installation.contact.person
+  }) }}
+  {{ govukInput({
+      label: {
+        text: 'Contact number'
+      },
+      id: 'contactNumber',
+      name: 'contactNumber',
+      value: installation.contact.number
+    }) }}
+  {{ govukButton({
+    text: "Request change"
+  }) }}
+</form>
+{% endblock %}
