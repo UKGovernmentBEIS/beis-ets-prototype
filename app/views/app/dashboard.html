@@ -7,9 +7,7 @@
 {% block content %}
 
 <div class="jui-width-container">
-
   <main class="govuk-main-wrapper" role="main">
-
     {% if success %}
       {{ hmctsBanner({
           type: 'success',
@@ -39,84 +37,125 @@
         href: '#'
       }]
     }) }}
-
-<table class="govuk-table">
-  <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-      <th class="govuk-table__header" scope="col">Account</th>
-      <th class="govuk-table__header" scope="col">Account name</th>
-      <th class="govuk-table__header" scope="col">Account Holder</th>
-      <th class="govuk-table__header" scope="col">Compliance Status</th>
-      <th class="govuk-table__header govuk-table__header--numeric" scope="col">Allowances</th>
-    </tr>
-  </thead>
-  <tbody class="govuk-table__body">
-  {% if data.userPersona == 'trader' %}
-    {% for acct in data.installations %}
-    {% if acct.type == 'trading' %}
-      <tr class="govuk-table__row">
-        <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
-        <td class="govuk-table__cell">{{ acct.name }}</td>
-        <td class="govuk-table__cell">{{ acct.accountHolder }}</td>
-        <td class="govuk-table__cell">
-            {% if acct.complianceStatusCode == "A" %}
-                <span class="jui-status  jui-status--new">SURRENDER DUE</span>
-            {% elif acct.complianceStatusCode == "B" %}
-                <span class="jui-status  jui-status--new">SUBMISSIONS DUE</span>
-            {% elif acct.complianceStatusCode == "C" %}
-            OK
+    {% if data.userPersona == 'ea' %}
+        <label class='govuk-label' for="account-search">Find an account</label>
+        <div id="account-search" class="account-search-wrapper govuk-!-width-two-thirds"></div>
+    {% else %}
+    <table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Account</th>
+            <th class="govuk-table__header" scope="col">Account name</th>
+            <th class="govuk-table__header" scope="col">Account Holder</th>
+            <th class="govuk-table__header" scope="col">Compliance Status</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Allowances</th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+        {% if data.userPersona == 'trader' %}
+            {% for acct in data.installations %}
+            {% if acct.type == 'trading' %}
+            <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
+                <td class="govuk-table__cell">{{ acct.name }}</td>
+                <td class="govuk-table__cell">{{ acct.accountHolder }}</td>
+                <td class="govuk-table__cell">
+                    {% if acct.complianceStatusCode == "A" %}
+                        <span class="jui-status  jui-status--new">SURRENDER DUE</span>
+                    {% elif acct.complianceStatusCode == "B" %}
+                        <span class="jui-status  jui-status--new">SUBMISSIONS DUE</span>
+                    {% elif acct.complianceStatusCode == "C" %}
+                    OK
+                    {% endif %}
+                </td>
+            <!-- allowanceS -->
+                <td class="govuk-table__cell govuk-table__cell--numeric">
+                    {% for item in acct.holdings %}
+                    {% for unit, value in item %}
+                    {% set unitDisplayName = 'allowance' if unit == 'generalAllowance' else unit %}
+                    {% if unit == "generalAllowance" %}
+                            {{ value }}
+                        {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+                </td>
+                </tr>
             {% endif %}
-        </td>
-    <!-- allowanceS -->
-        <td class="govuk-table__cell govuk-table__cell--numeric">
-            {% for item in acct.holdings %}
-              {% for unit, value in item %}
-               {% set unitDisplayName = 'allowance' if unit == 'generalAllowance' else unit %}
-               {% if unit == "generalAllowance" %}
-                    {{ value }}
-                {% endif %}
-              {% endfor %}
             {% endfor %}
-        </td>
-        </tr>
-    {% endif %}
-    {% endfor %}
-  {% else %}
-    {% for acct in data.installations %}
-    {% if not acct.type %}
-    <tr class="govuk-table__row">
-        <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
-        <td class="govuk-table__cell">{{ acct.name }}</td>
-        <td class="govuk-table__cell">{{ acct.accountHolder }}</td>
-        <td class="govuk-table__cell">
-            {% if acct.complianceStatusCode == "A" %}
-                <span class="jui-status  jui-status--new">SURRENDER DUE</span>
-            {% elif acct.complianceStatusCode == "B" %}
-                <span class="jui-status  jui-status--new">SUBMISSIONS DUE</span>
-            {% elif acct.complianceStatusCode == "C" %}
-            OK
-            {% endif %}
-</td>
-    <!-- allowanceS -->
-        <td class="govuk-table__cell govuk-table__cell--numeric">
-            {% for item in acct.holdings %}
-              {% for unit, value in item %}
-               {% set unitDisplayName = 'allowance' if unit == 'generalAllowance' else unit %}
-               {% if unit == "generalAllowance" %}
-                    {{ value }}
+        {% else %}
+            {% for acct in data.installations %}
+                {% if not acct.type %}
+                    <tr class="govuk-table__row">
+                        <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
+                        <td class="govuk-table__cell">{{ acct.name }}</td>
+                        <td class="govuk-table__cell">{{ acct.accountHolder }}</td>
+                        <td class="govuk-table__cell">
+                            {% if acct.complianceStatusCode == "A" %}
+                                <span class="jui-status  jui-status--new">SURRENDER DUE</span>
+                            {% elif acct.complianceStatusCode == "B" %}
+                                <span class="jui-status  jui-status--new">SUBMISSIONS DUE</span>
+                            {% elif acct.complianceStatusCode == "C" %}
+                            OK
+                            {% endif %}
+                        </td>
+                        <!-- allowances -->
+                        <td class="govuk-table__cell govuk-table__cell--numeric">
+                            {% for item in acct.holdings %}
+                                {% for unit, value in item %}
+                                    {% set unitDisplayName = 'allowance' if unit == 'generalAllowance' else unit %}
+                                    {% if unit == "generalAllowance" %}
+                                        {{ value }}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </td>
+                    </tr>
                 {% endif %}
-              {% endfor %}
             {% endfor %}
-        </td>
-    </tr>
+        {% endif %}
+        </tbody>
+    </table>
     {% endif %}
-    {% endfor %}
-  {% endif %}
-  </tbody>
-</table>
-
   </main>
 
 </div>
 
+{% endblock %}
+{% block page_scripts %}
+    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+  <script type="text/javascript">
+    /*global accessibleAutocomplete*/
+      var element = document.querySelector('#account-search')
+      if (element) {
+       var id = 'account-search'
+      function customResults (query, matchedResults) {
+        var installations = {{ data.installations | dump | safe }}
+        var checkMatch = installations.filter(function (result) {
+        return result.name.toLowerCase().indexOf(query.toLowerCase()) !== -1 || result.permitId.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+        })
+        matchedResults(checkMatch)
+      }
+       function inputValueTemplate (result) {
+        return result && result.name
+      }
+       function suggestionTemplate (result) {
+        return result && '<strong>' + result.permitId + '</strong> ' + result.name +
+          ' (<span units=' + result.units + '>' + result.units + ' units</span>)'
+      }
+       function handleOnConfirm (result) {
+        window.location.href = '/account/' + result.permitId + '/' 
+      }
+       accessibleAutocomplete({
+        element: element,
+        id: id,
+        source: customResults,
+        onConfirm: handleOnConfirm,
+        templates: {
+            inputValue: inputValueTemplate,
+            suggestion: suggestionTemplate
+        }
+      })
+      }
+      
+  </script>
 {% endblock %}
