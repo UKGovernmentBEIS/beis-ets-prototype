@@ -40,7 +40,6 @@
       }]
     }) }}
 
-
 <table class="govuk-table">
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
@@ -49,8 +48,6 @@
       <th class="govuk-table__header" scope="col">Account Holder</th>
       <th class="govuk-table__header" scope="col">Compliance Status</th>
       <th class="govuk-table__header govuk-table__header--numeric" scope="col">UKGA</th>
-      <th class="govuk-table__header govuk-table__header--numeric" scope="col">CER</th>
-      <th class="govuk-table__header govuk-table__header--numeric" scope="col">ERU</th>
     </tr>
   </thead>
   <tbody class="govuk-table__body">
@@ -81,28 +78,6 @@
               {% endfor %}
             {% endfor %}
         </td>
-    <!-- CER -->
-        <td class="govuk-table__cell govuk-table__cell--numeric">
-            {% for item in acct.holdings %}
-              {% for unit, value in item %}
-               {% set unitDisplayName = 'general allowance' if unit == 'generalAllowance' else unit %}
-               {% if unit == "CER" %}
-                    {{ value }}
-                {% endif %}
-              {% endfor %}
-            {% endfor %}
-        </td>
-    <!-- ERU -->
-        <td class="govuk-table__cell govuk-table__cell--numeric">
-            {% for item in acct.holdings %}
-              {% for unit, value in item %}
-               {% set unitDisplayName = 'general allowance' if unit == 'generalAllowance' else unit %}
-               {% if unit == "ERU" %}
-                    {{ value }}
-                {% endif %}
-              {% endfor %}
-            {% endfor %}
-        </td>
         </tr>
     {% endif %}
     {% endfor %}
@@ -128,28 +103,6 @@
               {% for unit, value in item %}
                {% set unitDisplayName = 'general allowance' if unit == 'generalAllowance' else unit %}
                {% if unit == "generalAllowance" %}
-                    {{ value }}
-                {% endif %}
-              {% endfor %}
-            {% endfor %}
-        </td>
-    <!-- CER -->
-        <td class="govuk-table__cell govuk-table__cell--numeric">
-            {% for item in acct.holdings %}
-              {% for unit, value in item %}
-               {% set unitDisplayName = 'general allowance' if unit == 'generalAllowance' else unit %}
-               {% if unit == "CER" %}
-                    {{ value }}
-                {% endif %}
-              {% endfor %}
-            {% endfor %}
-        </td>
-    <!-- ERU -->
-        <td class="govuk-table__cell govuk-table__cell--numeric">
-            {% for item in acct.holdings %}
-              {% for unit, value in item %}
-               {% set unitDisplayName = 'general allowance' if unit == 'generalAllowance' else unit %}
-               {% if unit == "ERU" %}
                     {{ value }}
                 {% endif %}
               {% endfor %}
