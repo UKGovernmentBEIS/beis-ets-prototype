@@ -33,9 +33,10 @@
               <td class="govuk-table__cell ">Account Manager</td> 
               <td class="govuk-table__cell ">joe.brown@blue.com <br />Tel: 07823 423242</td>
               <td class="govuk-table__cell">
-                {{ govukTag({
-                  text: "approval pending"
-                }) }} 
+                <span class="jui-status  jui-status--new  govuk-!-margin-left-1">
+                    APPROVAL PENDING
+                </span></td>
+
               </td>
               <td class="govuk-table__cell govuk-table__cell--numeric">
               </td>
@@ -50,9 +51,9 @@
               <td class="govuk-table__cell ">{{ ta.email }}<br/>Tel: {{ ta.phone }}</td>
               <td class="govuk-table__cell">
                   {% if loop.index == 2 %}
-                {{ govukTag({
-                  text: "approval pending"
-                }) }} 
+                <span class="jui-status  jui-status--new  govuk-!-margin-left-1">
+                    APPROVAL PENDING
+                </span></td>
                 {% endif %}
               </td>
               <td class="govuk-table__cell govuk-table__cell--numeric">
