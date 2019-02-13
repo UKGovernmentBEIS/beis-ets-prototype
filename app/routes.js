@@ -46,19 +46,17 @@ router.post('/app/users/search', function (req, res, next) {
 router.get('/account/:id/:page?/:subPage?', function (req, res, next) {
   res.locals['currentDate'] = Date.now()
   res.locals['installationID'] = req.params.id
-  var permitId = req.params.id;
 
-  res.locals.installationData = req.session.data.installations.filter(function (installation, permitID) {
-      if (installation.permitId == permitId) {
-          return installation;
-      }
-  })[0];
+  res.locals.installationData = req.session.data.installations.filter(function (installation) {
+    if (installation.permitId === req.params.id) {
+      return installation
+    }
+  })[0]
 
   if (!req.params.page) { // if someone goes to /account/EU-100-73432-0-76/
-      res.render('account/index')
-  }
-  else { // if someone goes to /account/EU-100-73432-0-76/foo or else { // if someone goes to /account/EU-100-73432-0-76/foo/bar
-      next(); // do nothing and move along to the page specific route.
+    res.render('account/index')
+  } else { // if someone goes to /account/EU-100-73432-0-76/foo or else { // if someone goes to /account/EU-100-73432-0-76/foo/bar
+    next() // do nothing and move along to the page specific route.
   }
 })
 
@@ -85,9 +83,13 @@ router.get('/account/:id/:page/:subPage', function (req, res, next) {
   if (req.query.error) {
     res.locals.errorExists = req.query.error
   }
+  res.locals.installation = req.session.data.installations.filter(function (installation) {
+    if (installation.permitId === req.params.id) {
+      return installation
+    }
+  })[0]
   res.render('account/' + req.params.page + '/' + req.params.subPage)
 })
-
 
 router.post('/account/:id/submit-emissions/specify-amount', function (req, res) {
     req.session.data.etsSubmitEmmissions.total = parseInt(req.session.data.etsSubmitEmmissions.emissions.co2) + parseInt(req.session.data.etsSubmitEmmissions.emissions.pfc) + parseInt(req.session.data.etsSubmitEmmissions.emissions.no2);

@@ -1,0 +1,81 @@
+{% extends "layouts/admin/base-account.html" %}
+{% from "summary-list/macro.njk" import govukSummaryList %}
+{% set hasSidebar = true %}
+{% block headerContent %}
+  <h1 class="govuk-heading-xl">Account Details for {{installation.name}}</h1>
+{% endblock %}
+{% block mainContent %}
+{% set installationAddress %}
+{% for key,value in installation.address %}
+    {{value}}</br>
+{% endfor %}
+{% endset %}
+{% set installationContact %}
+{% for key,value in installation.contact %}
+    <p>{{value}}</p>
+{% endfor %}
+{% endset %}
+
+{{ govukSummaryList({
+  classes: 'govuk-summary-list--no-border',
+  rows: [
+    {
+      key: {
+        text: "Entity name"
+      },
+      value: {
+        text: installation.name
+      }
+    },
+    {
+      key: {
+        text: "Permit ID"
+      },
+      value: {
+        text: installation.permitId
+      }
+    },
+    {
+      key: {
+        text: "Registered address"
+      },
+      value: {
+        html: installationAddress
+      }
+    },
+    {
+      key: {
+        text: "Contact details"
+      },
+      value: {
+        html: installationContact
+      }
+    }
+  ]
+}) }}
+
+{% endblock %}
+
+{% block sideContent %}
+<p>
+  {{ govukButton({
+    text: "Edit details",
+    href: '/account/'+ installation.permitId +'/details/edit/',
+    classes: 'govuk-!-margin-bottom-0'
+  }) }}
+</p>
+<p>
+{{ govukButton({
+  text: "Suspend account",
+   href: '#',
+   classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
+}) }}
+</p>
+</p>
+{{ govukButton({
+  text: "Delete account",
+   href: '#',
+   classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
+}) }}
+</p>
+{% endblock %}

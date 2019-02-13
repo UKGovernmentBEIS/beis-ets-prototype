@@ -38,7 +38,16 @@ module.exports = {
         {
           'generalAllowance': 52834
         }
-      ]
+      ],
+      address: {
+        street: '41 Station Road',
+        city: 'SOUTH WEST LONDON',
+        postcode: 'SW46 1OM'
+      },
+      contact: {
+        person: 'sarah.phillips@example.com',
+        number: '07700 900457'
+      }
     },
     {
       'name': 'Scunthorpe Integrated Iron & Steel Works',

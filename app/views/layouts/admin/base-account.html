@@ -152,6 +152,9 @@
           <a href="#" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary ">
             Delete allowances
           </a>
+          <a href="/account/{{installationID}}/details/view" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary ">
+            Manage account
+          </a>
         </div>
       </div>
     {% endif %}
@@ -164,13 +167,30 @@
   <main class="govuk-main-wrapper" role="main">
     {% block beforeContent %}
     {% endblock %}
-
+    {% if hasSidebar %}
     <div class="govuk-grid-row">
-      <div class="govuk-grid-column-{{ columnWidth | d('two-thirds') }}">
+      <div class="govuk-grid-column-full">
+        {%- block headerContent %}
+        {% endblock -%}
+      </div>
+      <div class="govuk-grid-column-two-thirds">
+        {%- block mainContent %}
+        {% endblock -%}
+     </div>
+     <div class="govuk-grid-column-one-third">
+        {%- block sideContent %}
+        {% endblock -%}
+      </div>
+    </div>
+    {% else %}
+    <div class="govuk-grid-row">
+      {% set columnWidth = columnWidth | d('two-thirds') %}
+      <div class="govuk-grid-column-{{ columnWidth }}">
         {%- block content %}
         {% endblock -%}
       </div>
     </div>
+    {% endif %}
   </main>
 </div>
 
