@@ -19,6 +19,18 @@ router.get('/', function (req, res, next) {
   next()
 })
 
+router.post('/login-register', function (req, res, next) {
+    res.redirect('2fa');
+})
+
+router.post('/2fa', function (req, res, next) {
+    if (req.session.data.continue_url) {
+        res.redirect(req.session.data.continue_url);
+    } else {
+        res.redirect('/app/dashboard')
+    }
+})
+
 router.get('/app/transactions/search', function (req, res, next) {
     if ( req.query.q ) {
         res.render('app/transactions-search-results');

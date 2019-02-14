@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% set columnWidth = 'two-thirds' %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/">Back</a>
+{% endblock %}
+
+
+{% block pageTitle %}Summary {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+<div class="gov-uk-column-one-third">
+
+      <h2 class="govuk-heading-l">Register to join the UK Emissions Trading Scheme</h2>
+ <ol class="app-task-list">
+        <li>
+            <!--
+          <h2 class="app-task-list__section">
+            <span class="app-task-list__section-number">1. </span> Set up an account holder
+          </h2>
+            -->
+          <ul class="app-task-list__items">
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="#" aria-describedby="eligibility-completed">
+                  Set up an account holder
+              </a>
+              <strong class="govuk-tag app-task-list__task-completed" id="eligibility-completed">Completed</strong>
+            </li>
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="#" aria-describedby="read-declaration-completed">
+                  Set up an installation account
+              </a>
+              <strong class="govuk-tag app-task-list__task-completed" id="read-declaration-completed">Completed</strong>
+            </li>
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="#" aria-describedby="read-declaration-completed">
+                  Invite additional Authorised Representatives to use the Registry
+              </a>
+              <strong class="govuk-tag app-task-list__task-completed" id="read-declaration-completed">Completed</strong>
+            </li>
+          </ul>
+        </li>
+        
+        
+      </ol>
+      <p>You are now ready to start using the system</p>
+
+      <form class="form" action="../app/dashboard" method="post">
+          <button class="govuk-button">Start using the registry</button>
+      </form>
+</div>
+{% endblock %}
+
