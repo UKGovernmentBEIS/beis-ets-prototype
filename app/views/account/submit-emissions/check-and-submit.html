@@ -12,7 +12,6 @@
       <h1 class="govuk-heading-xl">
         Check your answers before submitting your emissions data
       </h1>
-
       <!-- only add a heading for a list if there is more than one list -->
 
       <!-- use additional modifier class to change column widths for multiple groups of questions and answers: -->
@@ -20,7 +19,7 @@
       <!--   * `app-check-your-answers__questions-long` for long questions -->
       <!--   * none for single group of q&a -->
       <dl class="app-check-your-answers app-check-your-answers--short">
-        {% if data.EtsSubmitEmmissions.emissions.co2 !='' %}
+        {% if data.etsSubmitEmmissions.emissions.co2 != '' %}
          <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
             Carbon dioxide (C0<sub>2</sub>)
@@ -52,7 +51,7 @@
         </div>
         {% endif %}
         
-        {% if data.etsSubmitEmmissions.emissions.no2 !='' %}
+        {% if data.etsSubmitEmmissions.emissions.no2 != '' %}
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
             Nitrous oxide (N<sub>2</sub>O)
