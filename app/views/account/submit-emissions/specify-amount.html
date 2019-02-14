@@ -34,7 +34,7 @@
             },
           classes: 'govuk-input--width-10',
           name: "etsSubmitEmmissions.emissions.co2",
-          value: data.etsSubmitEmmissions.emissions.co2
+          value: data.etsSubmitEmmissions.emissions.co2 | d(0)
         }) }}
 
         {{ govukInput({
@@ -46,7 +46,7 @@
             },
           classes: 'govuk-input--width-10',
           name: "etsSubmitEmmissions.emissions.pfc",
-          value: data.etsSubmitEmmissions.emissions.pfc
+          value: data.etsSubmitEmmissions.emissions.pfc | d(0)
         }) }}
 
         {{ govukInput({
@@ -58,7 +58,7 @@
             },
           classes: 'govuk-input--width-10',
           name: "etsSubmitEmmissions.emissions.no2",
-          value: data.etsSubmitEmmissions.emissions.no2
+          value: data.etsSubmitEmmissions.emissions.no2 | d(0)
         }) }}
 
         {{ govukButton({
