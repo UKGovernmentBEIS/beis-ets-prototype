@@ -1,0 +1,132 @@
+{% extends "layouts/admin/base.html" %}
+
+{% set pageID = "users" %}
+
+{% block pageTitle %}Users {{'- ' + serviceName}}{% endblock %}
+
+{% block content %}
+
+
+<div class="jui-width-container">
+
+  <main class="govuk-main-wrapper" role="main">
+  <h1 class="govuk-heading-l">Admin
+  </h1>
+  <h2 class="govuk-heading-m">Account Holders
+  </h2>
+<table class="govuk-table" data-type="account-holders">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <th class="govuk-table__header" scope="col">Company</th>
+            <th class="govuk-table__header" scope="col">Registration number</th>
+            <th class="govuk-table__header " scope="col">Accounts</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+            {% for ta in data.accountHolders %}
+          <tr class="govuk-table__row govuk-!-font-size-16">
+              <th class="govuk-table__cell" scope="row"><a href="#">{{ ta.id }}</th>
+              <td class="govuk-table__cell ">{{ ta.name }}</td>
+              <td class="govuk-table__cell ">{{ ta.jobTitle }}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+                <div class="hmcts-menu hmcts-menu--user-item user-item-{{loop.index0}}">
+                        <div class="hmcts-menu__wrapper">
+                          <a href="" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary govuk-!-margin-right-2">
+                              Suspend User
+                          </a>
+                          <a href="" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary govuk-!-margin-right-2">
+                              View account permissions
+                          </a>
+                        </div>
+                      </div>
+              </td>
+          </tr>
+            {% endfor %}
+
+        </tbody>
+      </table>
+
+  <h2 class="govuk-heading-m">Users
+  </h2>
+<table class="govuk-table" data-type="representatives">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row govuk-!-font-size-16">
+            <th class="govuk-table__header" scope="col">Representative</th>
+            <th class="govuk-table__header" scope="col">Name</th>
+            <th class="govuk-table__header " scope="col">Job Title</th>
+            <th class="govuk-table__header " scope="col">Contact</th>
+            <th class="govuk-table__header" scope="col">Status</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          {% if data.newAuthorisedReps %}
+          {% for name in data.newAuthorisedReps %}
+            <tr class="govuk-table__row govuk-!-font-size-16">
+              <th class="govuk-table__cell" scope="row"><a href="#">939-216-693</a>
+              </th>
+              <td class="govuk-table__cell ">{{ name }}</td>
+              <td class="govuk-table__cell ">Account Manager</td> 
+              <td class="govuk-table__cell ">joe.brown@blue.com <br />Tel: 07823 423242</td>
+              <td class="govuk-table__cell">
+                <span class="jui-status  jui-status--new  govuk-!-margin-left-1">
+                    APPROVAL PENDING
+                </span></td>
+
+              </td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+              </td>
+            </tr>
+          {% endfor %}
+          {% endif %}
+            {% for ta in data.existingAuthorisedRepresentatives %}
+          <tr class="govuk-table__row govuk-!-font-size-16">
+              <th class="govuk-table__cell" scope="row"><a href="#">{{ ta.id }}</th>
+              <td class="govuk-table__cell ">{{ ta.name }}</td>
+              <td class="govuk-table__cell ">{{ ta.jobTitle }}</td>
+              <td class="govuk-table__cell ">{{ ta.email }}<br/>Tel: {{ ta.phone }}</td>
+              <td class="govuk-table__cell">
+                  {% if loop.index == 2 %}
+                <span class="jui-status  jui-status--new  govuk-!-margin-left-1">
+                    APPROVAL PENDING
+                </span></td>
+                {% endif %}
+              </td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+                <div class="hmcts-menu hmcts-menu--user-item user-item-{{loop.index0}}">
+                        <div class="hmcts-menu__wrapper">
+                          <a href="" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary govuk-!-margin-right-2">
+                              Suspend User
+                          </a>
+                          <a href="" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary govuk-!-margin-right-2">
+                              View account permissions
+                          </a>
+                        </div>
+                      </div>
+              </td>
+          </tr>
+            {% endfor %}
+
+        </tbody>
+      </table>
+
+  </main>
+
+</div>
+
+{% endblock %}
+{% block page_scripts %}
+<script>
+$(".hmcts-menu--user-item").each(function( index ) {
+  var containerClass = '.user-item-' + index
+  new HMCTSFrontend.Menu({
+      container: $(containerClass),
+      mq: '(min-width: 200em)',
+      buttonText: 'Actions',
+      buttonClasses: 'hmcts-button--secondary hmcts-menu__toggle-button--secondary',
+      menuClasses: 'hmcts-menu__wrapper--right'
+    });
+});
+</script>
+{% endblock %}
