@@ -92,7 +92,7 @@ router.get('/account/:id/:page/:subPage', function (req, res, next) {
 })
 
 router.post('/account/:id/submit-emissions/specify-amount', function (req, res) {
-    req.session.data.etsSubmitEmmissions.total = parseInt(req.session.data.etsSubmitEmmissions.emissions.co2) + parseInt(req.session.data.etsSubmitEmmissions.emissions.pfc) + parseInt(req.session.data.etsSubmitEmmissions.emissions.no2);
+    req.session.data.etsSubmitEmmissions.total = parseInt(req.session.data.etsSubmitEmmissions.emissions.co2 || 0) + parseInt(req.session.data.etsSubmitEmmissions.emissions.pfc || 0) + parseInt(req.session.data.etsSubmitEmmissions.emissions.no2 || 0);
     res.redirect('/account/' + req.params.id + '/submit-emissions/select-verifier');
 })
 
