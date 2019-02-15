@@ -114,7 +114,7 @@
               </td>
           </tr>
           {% endif %}
-            {% for tx in data.transactions.slice(0,3) %}
+            {% for tx in data.transactions | sort(false, false, 'units') %}
           <tr class="govuk-table__row govuk-!-font-size-16">
               <th class="govuk-table__cell" scope="row">{{ tx.transactionId }}</th>
               <td class="govuk-table__cell ">{{ tx.started }}</td>
