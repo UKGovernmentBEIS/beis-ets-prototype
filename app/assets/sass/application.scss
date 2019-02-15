@@ -95,3 +95,16 @@ $table-column-widths: (
 .govuk-table__cell {
   vertical-align: top;
 }
+
+.app-header__navigation {
+  @include govuk-media-query($from: tablet) {
+    float: right;
+  }
+}
+
+.app-header__navigation-link, 
+.app-header__navigation-link:visited,
+.app-header__navigation-link:active  {
+  color: govuk-colour("white");
+  text-decoration: underline;
+}
