@@ -66,7 +66,6 @@ router.get('/account/:id/:page?/:subPage?', function (req, res, next) {
   })[0]
 
   if (!req.params.page) { // if someone goes to /account/EU-100-73432-0-76/
-      console.log(req.session.data.transactions);
     res.render('account/index')
   } else { // if someone goes to /account/EU-100-73432-0-76/foo or else { // if someone goes to /account/EU-100-73432-0-76/foo/bar
     next() // do nothing and move along to the page specific route.
