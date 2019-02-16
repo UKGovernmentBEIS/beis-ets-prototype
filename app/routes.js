@@ -66,6 +66,7 @@ router.get('/account/:id/:page?/:subPage?', function (req, res, next) {
   })[0]
 
   if (!req.params.page) { // if someone goes to /account/EU-100-73432-0-76/
+      console.log(req.session.data.transactions);
     res.render('account/index')
   } else { // if someone goes to /account/EU-100-73432-0-76/foo or else { // if someone goes to /account/EU-100-73432-0-76/foo/bar
     next() // do nothing and move along to the page specific route.
@@ -85,6 +86,12 @@ router.get('/account/:id/surrender-allowance/surrender-amount', function (req, r
   req.session.data.etsSurrenderAllowance.totalAmountSurrendered = req.session.data.etsSurrenderAllowance.totalAmountSurrendered || 0;
   next()
 });
+
+router.post('/account/:id/submit-emissions/check-and-submit', function (req, res, next) {
+    req.session.data.etsSurrenderAllowance = req.session.data.etsSurrenderAllowance || {}
+    req.session.data.etsSurrenderAllowance.surrenderAmountDue = req.session.data.etsSubmitEmmissions.total;
+    res.redirect('confirmation');
+})
 
 router.get('/account/:id/submit-emissions/confirmation', function (req, res, next) {
     req.session.data.etsSubmitEmmissions.submissionComplete = "Yes";
@@ -111,20 +118,34 @@ router.post('/account/:id/submit-emissions/specify-amount', function (req, res) 
 
 
 router.post('/account/:id/surrender-allowance/surrender-amount', function (req, res) {
-    if (req.session.data.etsSurrenderAllowance.surrenderMethod === 'fullAmount') {
-        req.session.data.etsSurrenderAllowance.amountToSurrender = req.session.data.etsSubmitEmmissions.total - parseInt(req.session.data.etsSurrenderAllowance.totalAmountSurrendered)
-        req.session.data.etsSurrenderAllowance.totalAmountSurrendered = parseInt(req.session.data.etsSurrenderAllowance.totalAmountSurrendered) + parseInt(req.session.data.etsSubmitEmmissions.total);
-        req.session.data.etsSurrenderAllowance.surrenderMethod = ''
+    if (req.session.data.etsSurrenderAllowance.draft.surrenderMethod === 'fullAmount') {
+        req.session.data.etsSurrenderAllowance.draft.amountToSurrender = parseInt(req.session.data.etsSurrenderAllowance.surrenderAmountDue) - parseInt(req.session.data.etsSurrenderAllowance.totalAmountSurrendered)
         res.redirect('check-and-submit') }
     else {
-      req.session.data.etsSurrenderAllowance.surrenderMethod = ''
-        // req.session.data.etsSurrenderAllowance.amountToSurrender is set automatically when the form data is posted...
-        req.session.data.etsSurrenderAllowance.totalAmountSurrendered = parseInt(req.session.data.etsSurrenderAllowance.totalAmountSurrendered) + parseInt(req.session.data.etsSurrenderAllowance.amountToSurrender);
         res.redirect('check-and-submit') }
 })
 
 router.post('/account/:id/surrender-allowance/check-and-submit', function (req, res) {
-    req.session.data.etsSurrenderAllowance.amountToSurrender = '';
+    // Only generate a transaction if there's an amount to surrender
+    if (req.session.data.etsSurrenderAllowance.draft.amountToSurrender) {
+        var newSurrenderTransaction = {
+          "transactionId": "EU429591",
+          "started": Date.now(),
+          "lastUpdated": Date.now(),
+          "type": "Surrender",
+          "units": parseInt(req.session.data.etsSurrenderAllowance.draft.amountToSurrender.replace(/,/g, '')),
+          "unitType": "Allowances",
+          "transferringAccount": "this",
+          "acquiringAccount": "EU-110-56193-0-12",
+          "status": "Awaiting Approval"
+        }
+        // push newly generated transaction onto transactions table
+        req.session.data.transactions.push(newSurrenderTransaction)
+        // calculate the total amount surrendered so far being careful to strip out commas from the units submitted
+        req.session.data.etsSurrenderAllowance.totalAmountSurrendered = parseInt(req.session.data.etsSurrenderAllowance.totalAmountSurrendered) + parseInt(req.session.data.etsSurrenderAllowance.draft.amountToSurrender.replace(/,/g, ''));
+        // clear the draft data store so it's empty for next time.
+        req.session.data.etsSurrenderAllowance.draft = {};
+    }
     res.redirect('confirmation');
 })
 

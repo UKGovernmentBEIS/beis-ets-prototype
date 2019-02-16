@@ -114,17 +114,35 @@
               </td>
           </tr>
           {% endif %}
-            {% for tx in data.transactions | sort(false, false, 'units') %}
+            {% for tx in data.transactions | sort(false, false, 'started') %}
           <tr class="govuk-table__row govuk-!-font-size-16">
               <th class="govuk-table__cell" scope="row">{{ tx.transactionId }}</th>
-              <td class="govuk-table__cell ">{{ tx.started }}</td>
-              <td class="govuk-table__cell ">{{ tx.lastUpdated }}</td>
+              <td class="govuk-table__cell ">
+                {{ tx.started | date("DD MMMM YYYY") }}<br/>
+                {{ tx.started | date("h:mm:ss a") }}
+              </td>
+              <td class="govuk-table__cell ">
+                {{ tx.lastUpdated | date("DD MMMM YYYY") }}<br/>
+                {{ tx.lastUpdated | date("h:mm:ss a") }}
+              </td>
               <td class="govuk-table__cell ">{{ tx.type }}</td>
               <td class="govuk-table__cell govuk-table__cell--numeric ">{{ tx.units }}</td>
               <td class="govuk-table__cell ">{{ tx.unitType }}</td>
               <td class="govuk-table__cell "><a href="#">{% if tx.transferringAccount == "this" %}{{ installationData.permitId }}{% else %}{{ tx.transferringAccount }}{% endif %}</a></td>
-              <td class="govuk-table__cell "><a href="#">{% if tx.acquiringAccount == "this" %}{{ installationData.permitId }}{% else %}{{ tx.acquiringAccount }}{% endif %}</a></td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">{{ tx.status }}</td>
+              <td class="govuk-table__cell ">
+                  {% if tx.type == "Surrender" %}
+                    <span style="color: #8A8A8A; letter-spacing: .5px;">SURRENDER</span>
+                  {% else %}
+                    <a href="#">{% if tx.acquiringAccount == "this" %}{{ installationData.permitId }}{% else %}{{ tx.acquiringAccount }}{% endif %}</a>
+                  {% endif %}
+              </td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+                  {% if tx.status != "4-COMPLETED" %}
+                    <span class="jui-status  jui-status--new  govuk-!-margin-left-1" >{{ tx.status }}</span>
+                  {% else %}
+                    Completed
+                  {% endif %}
+              </td>
           </tr>
             {% endfor %}
 
