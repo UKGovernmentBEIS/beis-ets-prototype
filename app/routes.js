@@ -127,12 +127,13 @@ router.post('/account/:id/surrender-allowance/surrender-amount', function (req, 
 router.post('/account/:id/surrender-allowance/check-and-submit', function (req, res) {
     // Only generate a transaction if there's an amount to surrender
     if (req.session.data.etsSurrenderAllowance.draft.amountToSurrender) {
+        // Attempt to replace any commas if it's a string, otherwise just force it to be an integer
         var newSurrenderTransaction = {
           "transactionId": "EU429591",
           "started": Date.now(),
           "lastUpdated": Date.now(),
           "type": "Surrender",
-          "units": parseInt(req.session.data.etsSurrenderAllowance.draft.amountToSurrender.replace(/,/g, '')),
+          "units": parseInt(req.session.data.etsSurrenderAllowance.draft.amountToSurrender.toString().replace(/,/g, '')),
           "unitType": "Allowances",
           "transferringAccount": "this",
           "acquiringAccount": "EU-110-56193-0-12",
@@ -141,7 +142,7 @@ router.post('/account/:id/surrender-allowance/check-and-submit', function (req, 
         // push newly generated transaction onto transactions table
         req.session.data.transactions.push(newSurrenderTransaction)
         // calculate the total amount surrendered so far being careful to strip out commas from the units submitted
-        req.session.data.etsSurrenderAllowance.totalAmountSurrendered = parseInt(req.session.data.etsSurrenderAllowance.totalAmountSurrendered) + parseInt(req.session.data.etsSurrenderAllowance.draft.amountToSurrender.replace(/,/g, ''));
+        req.session.data.etsSurrenderAllowance.totalAmountSurrendered = parseInt(req.session.data.etsSurrenderAllowance.totalAmountSurrendered) + parseInt(req.session.data.etsSurrenderAllowance.draft.amountToSurrender.toString().replace(/,/g, ''));
         // clear the draft data store so it's empty for next time.
         req.session.data.etsSurrenderAllowance.draft = {};
     }
