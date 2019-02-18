@@ -87,11 +87,11 @@
                         <td class="govuk-table__cell">{{ acct.accountHolder }}</td>
                         <td class="govuk-table__cell">
                             {% if acct.complianceStatusCode == "A" %}
-                                <span class="jui-status  jui-status--new">SURRENDER DUE</span>
+                                <span class="jui-status  jui-status--urgent">SURRENDER DUE</span>
                             {% elif acct.complianceStatusCode == "B" %}
-                                <span class="jui-status  jui-status--new">SUBMISSIONS DUE</span>
+                                <span class="jui-status  jui-status--urgent">SUBMISSIONS DUE</span>
                             {% elif acct.complianceStatusCode == "C" %}
-                            OK
+                            <span class="jui-status  jui-status--ok">COMPLIANT</span>
                             {% endif %}
                         </td>
                         <!-- allowances -->

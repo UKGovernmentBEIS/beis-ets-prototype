@@ -12,14 +12,26 @@
   vertical-align: middle;
 }
 
+.jui-status {
+    padding-top: 2px;
+    border: 1.1px solid;
+    font-weight: 100;
+    border-radius: 2px;
+}
 
 .jui-status--urgent {
-  border-color: govuk-colour("red");
+  border: 2px solid govuk-colour("red");
   color: govuk-colour("red");
+  font-weight: bold;
 }
 
 
-.jui-status--new {
+.jui-status--ok {
   border-color: govuk-colour("green");
   color: govuk-colour("green");
+}
+
+.jui-status--inprogress {
+  border-color: govuk-colour("blue");
+  color: govuk-colour("blue");
 }
