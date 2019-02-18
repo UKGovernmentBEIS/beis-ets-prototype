@@ -103,14 +103,14 @@
                 {% if data.etsSubmitEmmissions %}
                 {{ data.etsSubmitEmmissions.total | formatNumber }} <br />
                 {% else %}
-                <span class="jui-status  jui-status--new  govuk-!-margin-left-1">Due 11 March</span>
+                <span class="jui-status  jui-status--urgent  govuk-!-margin-left-1">Due 11 March</span>
                 {% endif %}
             </td>
             <td class="govuk-table__cell govuk-table__cell--numeric">
                 {% if data.etsSurrenderAllowance.totalAmountSurrendered > 0 %}
                     {{ data.etsSurrenderAllowance.totalAmountSurrendered | formatNumber }}
                 {% else %}
-                <span class="jui-status  jui-status--new  govuk-!-margin-left-1">
+                <span class="jui-status  jui-status--urgent  govuk-!-margin-left-1">
                     Due 15 March
                 </span></td>
                 {% endif %}
@@ -125,24 +125,19 @@
         <thead class="govuk-table__head">
           <tr class="govuk-table__row govuk-!-font-size-16">
             <th class="govuk-table__header govuk-!-width-10" scope="col">Reference</th>
-            <th class="govuk-table__header govuk-!-width-10" scope="col">Started</th>
             <th class="govuk-table__header govuk-!-width-10" scope="col">Last updated</th>
-            <th class="govuk-table__header govuk-!-width-10" scope="col">Type</th>
+            <th class="govuk-table__header govuk-!-width-15" scope="col">Type</th>
             <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-10" scope="col">Allowances</th>
             <th class="govuk-table__header govuk-!-width-10" scope="col">Unit Type</th>
-            <th class="govuk-table__header govuk-!-width--15" scope="col">Transferring Acct</th>
+            <th class="govuk-table__header govuk-!-width-15" scope="col">Transferring Acct</th>
             <th class="govuk-table__header govuk-!-width-15" scope="col">Acquiring Acct</th>
-            <th class="govuk-table__header govuk-!-width-10 govuk-table__header--numeric" scope="col">Status</th>
+            <th class="govuk-table__header govuk-!-width-15 govuk-table__header--numeric" scope="col">Status</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
           {% if data.etsTransferAllowance %}
           <tr class="govuk-table__row govuk-!-font-size-16">
               <th class="govuk-table__cell" scope="row">EU580697</th>
-              <td class="govuk-table__cell ">
-                {{ currentDate | date("DD MMMM YYYY") }}<br/>
-                {{ currentDate | date("h:mm:ss a") }}
-              </td>
               <td class="govuk-table__cell ">
                 {{ currentDate | date("DD MMMM YYYY") }}<br/>
                 {{ currentDate | date("h:mm:ss a") }}
@@ -185,10 +180,6 @@
           <tr class="govuk-table__row govuk-!-font-size-16">
               <th class="govuk-table__cell" scope="row">{{ tx.transactionId }}</th>
               <td class="govuk-table__cell ">
-                {{ tx.started | date("DD-MMM-YY") }}<br/>
-                {{ tx.started | date("HH:mm:ss") }}
-              </td>
-              <td class="govuk-table__cell ">
                 {{ tx.lastUpdated | date("DD-MMM-YY") }}<br/>
                 {{ tx.lastUpdated | date("HH:mm:ss") }}
               </td>
@@ -205,10 +196,12 @@
                   {% endif %}
               </td>
               <td class="govuk-table__cell govuk-table__cell--numeric">
-                  {% if tx.status != "Completed" %}
-                    <span class="jui-status  jui-status--new  govuk-!-margin-left-1" >{{ tx.status }}</span>
+                  {% if tx.status == "Completed" %}
+                    <span class="jui-status  jui-status--complete  govuk-!-margin-left-1" >{{ tx.status }}</span>
+                  {% elif tx.status == "Failed" %}
+                    <span class="jui-status  jui-status--urgent  govuk-!-margin-left-1" >{{ tx.status }}</span>
                   {% else %}
-                    <span style="color: #8A8A8A; letter-spacing: .5px;">COMPLETED</span>
+                    <span class="jui-status  jui-status--pending  govuk-!-margin-left-1" >{{ tx.status }}</span>
                   {% endif %}
               </td>
           </tr>

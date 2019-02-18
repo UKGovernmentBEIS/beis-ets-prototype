@@ -243,7 +243,7 @@ module.exports = {
       "unitType": "Allowances",
       "transferringAccount": "this",
       "acquiringAccount": "EU-110-59193-0-12",
-      "status": "Completed"
+      "status": "Failed"
     },
     {
       "transactionId": "EU945398",

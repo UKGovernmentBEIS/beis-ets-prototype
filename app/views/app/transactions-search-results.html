@@ -137,10 +137,12 @@
                   {% endif %}
               </td>
               <td class="govuk-table__cell govuk-table__cell--numeric">
-                  {% if tx.status != "4-COMPLETED" %}
-                    <span class="jui-status  jui-status--new  govuk-!-margin-left-1" >{{ tx.status }}</span>
+                  {% if tx.status == "Completed" %}
+                    <span class="jui-status  jui-status--complete  govuk-!-margin-left-1" >{{ tx.status }}</span>
+                  {% elif tx.status == "Failed" %}
+                    <span class="jui-status  jui-status--urgent  govuk-!-margin-left-1" >{{ tx.status }}</span>
                   {% else %}
-                    Completed
+                    <span class="jui-status  jui-status--pending  govuk-!-margin-left-1" >{{ tx.status }}</span>
                   {% endif %}
               </td>
           </tr>
