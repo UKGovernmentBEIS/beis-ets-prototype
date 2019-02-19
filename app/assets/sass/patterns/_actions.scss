@@ -2,13 +2,12 @@ $base-grey-light: #F9F9F9;
 
 .tile-container {
   padding-top: 15px;
-  padding-bottom: 15px;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: -15px;
   margin-left: -15px;
+  margin-bottom: 60px;
   background-color: $base-grey-light;
-  margin-bottom: 30px;
   -webkit-box-shadow: 1px 1px 10px 4px rgba(230,230,230,1);
   -moz-box-shadow: 1px 1px 10px 2px rgba(230,230,230,1);
   box-shadow: 2px 2px 10px 1px rgba(230,230,230,1);
@@ -33,7 +32,6 @@ $base-grey-light: #F9F9F9;
 
 
     .tile-grid-cell {
-      background-color: $base-grey-light;
       @include govuk-clearfix;
     }
 
@@ -160,7 +158,6 @@ $base-grey-light: #F9F9F9;
 
 
     .tile-buttons {
-      padding-top: 20px;
       @supports(display: grid ) {
         @include govuk-media-query($from: tablet) {
           grid-column: 1 / span 4;
@@ -194,9 +191,18 @@ $base-grey-light: #F9F9F9;
     }
 }
 
+.tile-container.search.nobackground {
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  margin-bottom: 0px;
+}
+
+
 .tile-container.search .advanced-search {
   flex: 0 0 100%;
-  
+  padding-bottom: 20px;
   @supports(display: grid ) {
     @include govuk-media-query($from: tablet) {  
       grid-column: 1 / span 4;

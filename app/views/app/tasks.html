@@ -1,8 +1,8 @@
 {% extends "layouts/admin/base.html" %}
 
-{% set pageID = "your-tasks" %}
+{% set pageID = "tasks" %}
 
-{% block pageTitle %}Your tasks {{'- ' + serviceName}}{% endblock %}
+{% block pageTitle %}Tasks {{'- ' + serviceName}}{% endblock %}
 
 {% block content %}
 
@@ -10,16 +10,89 @@
 <div class="jui-width-container">
 
   <main class="govuk-main-wrapper" role="main">
-  
-  <h1 class="govuk-heading-l">Your tasks</h1>
+  <h1 class="govuk-heading-l">Tasks filtered by:<D-^><D-^></h1>
 
-    {% if success %}
-      {{ hmctsBanner({
-          type: 'success',
-          text: success,
-          iconFallbackText: 'Success'
+<form action='search' method="POST">
+<div class="tile-container search nobackground">
+<div class="first-cell tile-grid-cell">
+
+        {{ govukInput({
+          id: "assigned-to",
+          name: "search.assignee",
+          classes: "",
+          label: {
+            text: "Assigned to"
+          },
+          value: "Chris Neale"
         }) }}
-    {% endif %}
+          </div>
+
+          <div class="second-cell tile-grid-cell">
+
+          {{ govukSelect({
+              id: "Task type",
+              name: "search.task.type",
+              label: {
+              text: "Task type"
+              },
+              items: [{
+                  value: 'any-type',
+                  text: 'Any type',
+                  selected: checked("",'')
+              },{
+                  value: 'approve-submission',
+                  text: 'Approve Submission',
+                  selected: checked("",'')
+              },{
+                  value: 'approve-transfer',
+                  text: 'Approve Transfer',
+                  selected: checked("",'')
+              },{
+                  value: 'approve-surrender',
+                  text: 'Approve Surrender',
+                  selected: checked("",'')
+              }
+              ]
+              }) }}
+          </div>
+<div class="third-cell tile-grid-cell">
+        {{ govukInput({
+          id: "",
+          name: "search.tasks.age",
+          classes: "govuk-!-width-full",
+          label: {
+            text: "Older than (days)"
+          },
+          value: data.search.tasks.age
+        }) }}
+
+</div>
+<div class="fourth-cell tile-grid-cell">
+
+        {{ govukInput({
+          id: "",
+          name: "search.tasks.accountID",
+          classes: "govuk-!-width-full",
+          label: {
+            text: "Account ID"
+          },
+          value: data.search.tasks.accountID
+        }) }}
+
+          </div>
+ <div class="tile-buttons tile-grid-cell">
+              <div class="accept">
+                  <a href="search?q=xyz{% if query.returnAccount %}&returnAccount={{query.returnAccount}}&persist=No{% endif %}" role="button" draggable="false" class="govuk-button approve-btn">Update results</a>
+              </div>
+              <div class="reject">
+                <a href="#" role="button" draggable="false" class="govuk-button hmcts-button--secondary reject-btn">Clear Search</a>
+              </div>
+        <hr />
+        </div>         
+        </div>
+</form>
+        <h2 class="govuk-heading-s">Filtered tasks</h2>
+
       <ul class='govuk-list'>
         {% for task in data.tasks %}
         <li>
@@ -151,6 +224,7 @@
   </main>
 
 </div>
+</form>
 
 {% endblock %}
 {% block page_scripts %}
