@@ -10,8 +10,9 @@
 <div class="jui-width-container">
 
   <main class="govuk-main-wrapper" role="main">
-  <h1 class="govuk-heading-l">Tasks filtered by:<D-^><D-^></h1>
+  <h1 class="govuk-heading-l">Tasks</h1>
 
+{% set searchForm %}
 <form action='search' method="POST">
 <div class="tile-container search nobackground">
 <div class="first-cell tile-grid-cell">
@@ -25,6 +26,24 @@
           },
           value: "Chris Neale"
         }) }}
+
+          {{ govukSelect({
+              id: "Task Status",
+              name: "search.task.type",
+              label: {
+              text: "Task type"
+              },
+              items: [{
+                  value: 'open',
+                  text: 'Open',
+                  selected: checked("",'')
+              },{
+                  value: 'closed',
+                  text: 'Closed',
+                  selected: checked("",'')
+                  }
+              ]
+              }) }}
           </div>
 
           <div class="second-cell tile-grid-cell">
@@ -87,11 +106,18 @@
               <div class="reject">
                 <a href="#" role="button" draggable="false" class="govuk-button hmcts-button--secondary reject-btn">Clear Search</a>
               </div>
-        <hr />
-        </div>         
+        </div>
         </div>
 </form>
-        <h2 class="govuk-heading-s">Filtered tasks</h2>
+{% endset %}
+
+<p>Showing all open tasks assigned to you</p>
+
+{{ govukDetails({
+  summaryText: "Change filter",
+  html: searchForm
+}) }}
+
 
       <ul class='govuk-list'>
         {% for task in data.tasks %}
