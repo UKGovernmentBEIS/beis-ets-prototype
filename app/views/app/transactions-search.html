@@ -42,14 +42,14 @@
         }) }}
 
           {{ govukSelect({
-              id: "transaction-type",
-              name: "search.transaction.type",
+              id: "transaction-status",
+              name: "search.transaction.status",
               label: {
-              text: "Transaction type"
+              text: "Transaction status"
               },
               items: [{
-                  value: 'Choose a transaction type',
-                  text: 'Choose a transaction type',
+                  value: 'Choose a transaction status',
+                  text: 'Choose a transaction status',
                   selected: checked("",'')
               }
               ]
@@ -133,7 +133,27 @@
 
           </div>
         <div class="advanced-search tile-grid-cell">
-            <a href="#">Advanced Search</a>
+            <details class="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  Advanced search
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                {{ govukSelect({
+                  id: "transaction-type",
+                  name: "search.transaction.type",
+                  label: {
+                    text: "Transaction type"
+                  },
+                  items: [{
+                      value: 'Choose a transaction type',
+                      text: 'Choose a transaction type',
+                      selected: checked("",'')
+                    }]
+                }) }}
+              </div>
+            </details>
         </div>
                 
  <div class="tile-buttons tile-grid-cell">
