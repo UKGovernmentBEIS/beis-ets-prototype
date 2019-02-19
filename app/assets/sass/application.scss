@@ -108,3 +108,12 @@ $table-column-widths: (
   color: govuk-colour("white");
   text-decoration: underline;
 }
+
+//scrollable tables on smaller viewports
+.app-table--overflow {
+  @include govuk-media-query($until: desktop) {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  }
+}
