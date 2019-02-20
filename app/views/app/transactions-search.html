@@ -20,14 +20,11 @@
 }) }}
 {% endif %}
   <main class="govuk-main-wrapper" role="main">
-  <h1 class="govuk-heading-l">Search for transactions by:</h1>
-<form action='search' method="POST">
-
-
-
-        <div class="tile-container search">
-<div class="first-cell tile-grid-cell">
-    <h2 class="govuk-heading-m">Transaction details</h2>
+    <h1 class="govuk-heading-l">Search for transactions by:</h1>
+    <form action='search' method="POST">
+    <div class="tile-container search">
+      <div class="first-cell tile-grid-cell">
+        <h2 class="govuk-heading-m">Transaction details</h2>
         {{ govukInput({
           id: "transaction-id",
           name: "search.transaction.id",
@@ -40,24 +37,42 @@
           },
           value: data.search.transaction.id
         }) }}
-
-          {{ govukSelect({
-              id: "transaction-status",
-              name: "search.transaction.status",
-              label: {
-              text: "Transaction status"
-              },
-              items: [{
-                  value: 'Choose a transaction status',
-                  text: 'Choose a transaction status',
-                  selected: checked("",'')
-              }
-              ]
-              }) }}
-          </div>
-
-          <div class="second-cell tile-grid-cell">
-    <h2 class="govuk-heading-m">Date</h2>
+        {{ govukSelect({
+          id: "transaction-status",
+          name: "search.transaction.status",
+          label: {
+          text: "Transaction status"
+          },
+          items: [{
+              value: 'Choose a transaction status',
+              text: 'Choose a transaction status',
+              selected: checked("",'')
+          },
+          {
+              value: 'Approved',
+              text: 'Approved',
+              selected: checked("search.transaction.status",'Approved')
+          },
+          {
+              value: 'Awaiting approval',
+              text: 'Awaiting approval',
+              selected: checked("search.transaction.status",'Awaiting approval')
+          },
+          {
+              value: 'Completed',
+              text: 'Completed',
+              selected: checked("search.transaction.status",'Completed')
+          },
+          {
+              value: 'Failed',
+              text: 'Failed',
+              selected: checked("search.transaction.status",'Failed')
+          }
+          ]
+        }) }}
+      </div>
+      <div class="second-cell tile-grid-cell">
+        <h2 class="govuk-heading-m">Date</h2>
         {{ govukInput({
           id: "date-from",
           name: "search.date.from",
@@ -80,9 +95,9 @@
           },
           value: data.search.from
         }) }}
-          </div>
-<div class="third-cell tile-grid-cell">
-    <h2 class="govuk-heading-m">Account</h2>
+      </div>
+      <div class="third-cell tile-grid-cell">
+        <h2 class="govuk-heading-m">Account</h2>
         {{ govukInput({
           id: "",
           name: "search.transaction.account.sending",
@@ -104,10 +119,9 @@
           },
           value: data.search.transaction.account.receiving
         }) }}
-
-</div>
-<div class="fourth-cell tile-grid-cell">
-    <h2 class="govuk-heading-m">User</h2>
+      </div>
+      <div class="fourth-cell tile-grid-cell">
+        <h2 class="govuk-heading-m">User</h2>
         {{ govukInput({
           id: "",
           name: "search.transaction.proposer",
@@ -131,47 +145,44 @@
           value: data.search.transaction.approver
         }) }}
 
+      </div>
+      <div class="advanced-search tile-grid-cell">
+        <details class="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Advanced search
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            {{ govukSelect({
+              id: "transaction-type",
+              name: "search.transaction.type",
+              label: {
+                text: "Transaction type"
+              },
+              items: [{
+                  value: 'Choose a transaction type',
+                  text: 'Choose a transaction type',
+                  selected: checked("",'')
+                }]
+            }) }}
           </div>
-        <div class="advanced-search tile-grid-cell">
-            <details class="govuk-details">
-              <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                  Advanced search
-                </span>
-              </summary>
-              <div class="govuk-details__text">
-                {{ govukSelect({
-                  id: "transaction-type",
-                  name: "search.transaction.type",
-                  label: {
-                    text: "Transaction type"
-                  },
-                  items: [{
-                      value: 'Choose a transaction type',
-                      text: 'Choose a transaction type',
-                      selected: checked("",'')
-                    }]
-                }) }}
-              </div>
-            </details>
+        </details>
+      </div>            
+      <div class="tile-buttons tile-grid-cell">
+        <div class="accept">
+          <button type="submit" class="govuk-button">
+              Continue
+          </button>
         </div>
-                
- <div class="tile-buttons tile-grid-cell">
-              <div class="accept">
-                  <a href="search?q=xyz{% if query.returnAccount %}&returnAccount={{query.returnAccount}}&persist=No{% endif %}" role="button" draggable="false" class="govuk-button approve-btn">Search</a>
-              </div>
-              <div class="reject">
-                <a href="#" role="button" draggable="false" class="govuk-button hmcts-button--secondary reject-btn">Clear Search</a>
-              </div>
-        </div>         
+        <div class="reject">
+          <a href="#" role="button" draggable="false" class="govuk-button hmcts-button--secondary reject-btn">Clear Search</a>
         </div>
-
-
-
+      </div>         
+    </div>
+    </form>
   </main>
-
 </div>
-
 {% endblock %}
 {% block page_scripts %}
 

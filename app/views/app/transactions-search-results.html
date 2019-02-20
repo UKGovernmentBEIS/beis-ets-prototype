@@ -6,7 +6,6 @@
 
 {% block content %}
 
-
 <div class="jui-width-container">
 {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
 {% if query.returnAccount %}
@@ -27,7 +26,7 @@
   <a href="search{% if query.returnAccount %}?returnAccount={{ query.returnAccount }}&persist=No{% endif %}">Refine search query</a>
   </p>
 
-<table class="govuk-table app-table--overflow" data-type="transactions">
+<table class="govuk-table app-table--overflow" id="transactions" data-type="transactions">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row govuk-!-font-size-16">
             <th class="govuk-table__header govuk-!-width-10" scope="col">Reference</th>
@@ -157,4 +156,21 @@
 
 {% endblock %}
 {% block page_scripts %}
+<script>
+var table = document.getElementById('transactions');
+var trArray = Array.prototype.slice.call(table.querySelectorAll('tbody tr'));
+var filterTable = function filterTable(event) {
+  var filterValue = "{{ data.search.transaction.status }}".toLowerCase();
+  trArray.forEach(function (row) {
+    row.classList.add('hidden');
+    var tdArray = Array.prototype.slice.call(row.getElementsByTagName('td'));
+    tdArray.forEach(function (cell) {
+      if (cell.innerText.toLowerCase().indexOf(filterValue) > -1) {
+        row.classList.remove('hidden');
+      }
+    });
+  });
+};
+filterTable();
+</script>
 {% endblock %}

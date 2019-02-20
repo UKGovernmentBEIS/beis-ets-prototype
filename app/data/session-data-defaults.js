@@ -249,12 +249,23 @@ module.exports = {
       "transactionId": "EU945398",
       "started": 1550251388941,
       "lastUpdated": 1550251388941,
-      "type": "01-32 Decoupling",
+      "type": "10-00 Internal Transfer",
       "units": 678654,
       "unitType": "Allowances",
       "transferringAccount": "EU-110-56193-0-12",
       "acquiringAccount": "this",
       "status": "Completed"
+    },
+    {
+      "transactionId": "EU903339",
+      "started": 1545302806000,
+      "lastUpdated": 1545302806000,
+      "type": "10-00 Internal Transfer",
+      "units": 678654,
+      "unitType": "allowances",
+      "transferringAccount": "EU-110-56193-0-12",
+      "acquiringAccount": "this",
+      "status": "Awaiting approval"
     }
   ],
   'existingAccounts': [
