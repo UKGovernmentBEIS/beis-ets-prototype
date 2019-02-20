@@ -162,13 +162,15 @@ var trArray = Array.prototype.slice.call(table.querySelectorAll('tbody tr'));
 var filterTable = function filterTable(event) {
   var filterValue = "{{ data.search.transaction.status }}".toLowerCase();
   trArray.forEach(function (row) {
-    row.classList.add('hidden');
-    var tdArray = Array.prototype.slice.call(row.getElementsByTagName('td'));
-    tdArray.forEach(function (cell) {
-      if (cell.innerText.toLowerCase().indexOf(filterValue) > -1) {
-        row.classList.remove('hidden');
-      }
-    });
+    if(filterValue !== 'choose a transaction status'){
+      row.classList.add('hidden');
+      var tdArray = Array.prototype.slice.call(row.getElementsByTagName('td'));
+      tdArray.forEach(function (cell) {
+        if (cell.innerText.toLowerCase().indexOf(filterValue) > -1) {
+          row.classList.remove('hidden');
+        }
+      });
+    }
   });
 };
 filterTable();
