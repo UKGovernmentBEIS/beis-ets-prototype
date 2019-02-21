@@ -176,7 +176,7 @@
               </td>
           </tr>
           {% endif %}
-            {% for tx in data.transactions | sort(true, false, 'started') %}
+            {% for tx in data.transactions.slice(0,3)  | sort(true, false, 'started') %}
           <tr class="govuk-table__row govuk-!-font-size-16">
               <th class="govuk-table__cell" scope="row">{{ tx.transactionId }}</th>
               <td class="govuk-table__cell ">
