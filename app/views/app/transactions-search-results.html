@@ -160,14 +160,20 @@ var table = document.getElementById('transactions');
 var trArray = Array.prototype.slice.call(table.querySelectorAll('tbody tr'));
 var filterTable = function filterTable() {
 
-  function hideRows(value, row){
+  function hideRows(value, row, number){
     row.classList.add('hidden');
       var tdArray = Array.prototype.slice.call(row.getElementsByTagName('td'));
+      if (number !== null) {
+        if (tdArray[number].innerText.toLowerCase().indexOf(value) > -1) {
+          row.classList.remove('hidden');
+        }
+      } else {
       tdArray.forEach(function (cell) {
         if (cell.innerText.toLowerCase().indexOf(value) > -1) {
           row.classList.remove('hidden');
         }
       });
+      }
   }
   var filterValue = "{{ data.search.transaction.status }}".toLowerCase()
   var sendingAccount = "{{data.search.transaction.account.sending}}".toLowerCase()
@@ -176,10 +182,10 @@ var filterTable = function filterTable() {
       return
     }
     if(filterValue !== 'choose a transaction status'){
-      hideRows(filterValue, row)
+      hideRows(filterValue, row, null)
     }
     if( sendingAccount.length > 0 ) {
-      hideRows(sendingAccount, row)
+      hideRows(sendingAccount, row, 5)
     }
   });
 };
