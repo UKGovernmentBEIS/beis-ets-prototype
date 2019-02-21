@@ -5,7 +5,6 @@
 {% block pageTitle %}Transactions {{'- ' + serviceName}}{% endblock %}
 
 {% block content %}
-
 <div class="jui-width-container">
 {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
 {% if query.returnAccount %}
@@ -159,17 +158,34 @@
 <script>
 var table = document.getElementById('transactions');
 var trArray = Array.prototype.slice.call(table.querySelectorAll('tbody tr'));
-var filterTable = function filterTable(event) {
-  var filterValue = "{{ data.search.transaction.status }}".toLowerCase();
-  trArray.forEach(function (row) {
-    if(filterValue !== 'choose a transaction status'){
-      row.classList.add('hidden');
+var filterTable = function filterTable() {
+
+  function hideRows(value, row, number){
+    row.classList.add('hidden');
       var tdArray = Array.prototype.slice.call(row.getElementsByTagName('td'));
+      if (number !== null) {
+        if (tdArray[number].innerText.toLowerCase().indexOf(value) > -1) {
+          row.classList.remove('hidden');
+        }
+      } else {
       tdArray.forEach(function (cell) {
-        if (cell.innerText.toLowerCase().indexOf(filterValue) > -1) {
+        if (cell.innerText.toLowerCase().indexOf(value) > -1) {
           row.classList.remove('hidden');
         }
       });
+      }
+  }
+  var filterValue = "{{ data.search.transaction.status }}".toLowerCase()
+  var sendingAccount = "{{data.search.transaction.account.sending}}".toLowerCase()
+  trArray.forEach(function (row) {
+    if( filterValue === 'choose a transaction status' && sendingAccount.length === 0) {
+      return
+    }
+    if(filterValue !== 'choose a transaction status'){
+      hideRows(filterValue, row, null)
+    }
+    if( sendingAccount.length > 0 ) {
+      hideRows(sendingAccount, row, 5)
     }
   });
 };
