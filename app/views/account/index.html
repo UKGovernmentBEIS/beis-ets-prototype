@@ -8,27 +8,27 @@
       <h2 class="govuk-heading-l">Holdings</h2>
 
       <p>This account holds
-      {% for item in installationData.holdings %}
-          {% for unit, value in item %}
-          {% set unit = 'allowance' if unit == 'generalAllowance' else unit %}
-          {% if loop.length > 1 and loop.last %} and {% endif %}
-          <strong>{{ value }} </strong>{{ unit }}s{% if loop.last %}.{% else %},{% endif %}
-          {% endfor %}
-      {% endfor %}
+        {% for item in installationData.holdings %}
+           {%- for unit, value in item -%}
+           {% set unit = 'allowance' if unit == 'generalAllowance' else unit %}
+           {%- if loop.length > 1 %}{% if loop.last %} and {% endif %}{% if not loop.last and not loop.first -%}, {% endif %}{%- endif -%}
+           <strong>{{ value | formatNumber }}</strong> {{ unit }}s
+           {%- endfor -%}.
+       {% endfor %}
       </p>
 
       {% if not data.userPersona or data.userPersona == 'ea' %}
-      <h2 class="govuk-heading-l">Compliance History</h2>
+      <h2 class="govuk-heading-l">Compliance history</h2>
 
       {% if data.etsSubmitEmmissions.total %}
-        {% if data.etsSubmitEmmissions.total - data.etsSurrenderAllowance.totalAmountSurrendered <= 0 %} 
-            <p>This account is compliant (code C). You have already surrendered <strong>{{ data.etsSurrenderAllowance.totalAmountSurrendered }}</strong> allowances. This is enough to meet your obligations.</p>
+        {% if data.etsSubmitEmmissions.total - data.etsSurrenderAllowance.totalAmountSurrendered <= 0 %}
+            <p>You have already surrendered <strong>{{ data.etsSurrenderAllowance.totalAmountSurrendered }}</strong> allowances, so have met your obligations.</p>
         {% else %}
             <div class="govuk-warning-text">
               <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
               <strong class="govuk-warning-text__text">
                 <span class="govuk-warning-text__assistive">Warning</span>
-                This account is not compliant (code B). You must surrender <strong>{{ data.etsSubmitEmmissions.total - data.etsSurrenderAllowance.totalAmountSurrendered | d(0) }}</strong> allowances before 15 March 2018 to be compliant.
+                You must surrender <strong>{{ data.etsSubmitEmmissions.total - data.etsSurrenderAllowance.totalAmountSurrendered | d(0) }}</strong> allowances before 11:59pm 15 March 2019.
               </strong>
             </div>
         {% endif %}
@@ -37,7 +37,7 @@
               <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
               <strong class="govuk-warning-text__text">
                 <span class="govuk-warning-text__assistive">Warning</span>
-                This account is not compliant (code A). Emissions for the 2018 have not yet been submitted.
+                You need to submit your emissions for 2018.
               </strong>
             </div>
       {% endif %}
@@ -46,7 +46,7 @@
           <tr class="govuk-table__row govuk-!-font-size-16">
             <th class="govuk-table__header govuk-!-width-20 " scope="col">Year</th>
             <th class="govuk-table__header" scope="col">Date submitted</th>
-            <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-20 " scope="col">Emissions reported (CO<sub>2</sub>e)</th>
+            <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-20 " scope="col">Emissions reported (CO2e)</th>
             <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-20 " scope="col">Allowances surrendered</th>
           </tr>
         </thead>
@@ -119,7 +119,7 @@
         </tbody>
       </table>
       {% endif %}
-      <h2 class="govuk-heading-l">Transaction History</h2>
+      <h2 class="govuk-heading-l">Transaction history</h2>
 
 <table class="govuk-table app-table--overflow" data-type="transactions">
         <thead class="govuk-table__head">
@@ -128,9 +128,9 @@
             <th class="govuk-table__header govuk-!-width-10" scope="col">Last updated</th>
             <th class="govuk-table__header govuk-!-width-15" scope="col">Type</th>
             <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-10" scope="col">Allowances</th>
-            <th class="govuk-table__header govuk-!-width-10" scope="col">Unit Type</th>
-            <th class="govuk-table__header govuk-!-width-15" scope="col">Transferring Acct</th>
-            <th class="govuk-table__header govuk-!-width-15" scope="col">Acquiring Acct</th>
+            <th class="govuk-table__header govuk-!-width-10" scope="col">Unit type</th>
+            <th class="govuk-table__header govuk-!-width-15" scope="col">Transferring acct</th>
+            <th class="govuk-table__header govuk-!-width-15" scope="col">Acquiring acct</th>
             <th class="govuk-table__header govuk-!-width-15 govuk-table__header--numeric" scope="col">Status</th>
           </tr>
         </thead>
@@ -139,13 +139,13 @@
           <tr class="govuk-table__row govuk-!-font-size-16">
               <th class="govuk-table__cell" scope="row">EU580697</th>
               <td class="govuk-table__cell ">
-                {{ currentDate | date("DD MMMM YYYY") }}<br/>
+                {{ currentDate | date("DD-MMM-YY") }}<br/>
                 {{ currentDate | date("h:mm:ss a") }}
               </td>
-              <td class="govuk-table__cell ">10-05 Transfer Allowances</td>
+              <td class="govuk-table__cell ">10-05 Transfer allowances</td>
               <td class="govuk-table__cell govuk-table__cell--numeric ">
             {% for unit, value in data.etsTransferAllowance.holdings %}
-                {% set unitDisplayName = 'Allowance' if unit == 'generalAllowance' else unit %}
+                {% set unitDisplayName = 'allowances' if unit == 'generalAllowance' else unit %}
                 {% if unit == data.etsTransferAllowance.unitType %}
                 {{ value.moved }}
                 {% endif %}
@@ -153,7 +153,7 @@
               </td>
               <td class="govuk-table__cell ">
             {% for unit, value in data.etsTransferAllowance.holdings %}
-                {% set unitDisplayName = 'Allowance' if unit == 'generalAllowance' else unit %}
+                {% set unitDisplayName = 'allowances' if unit == 'generalAllowance' else unit %}
                 {% if unit == data.etsTransferAllowance.unitType %}
                 {{ unitDisplayName }}
                 {% endif %}
@@ -171,7 +171,7 @@
                   {% if data.etsTransferAllowance.approved == 'Yes' %}
                   <span class="jui-status  jui-status--new  govuk-!-margin-left-1">Delayed until {{ currentDate | date("DD MMMM YYYY") }}</span>
                   {% else %}
-                <span class="jui-status  jui-status--new  govuk-!-margin-left-1" >Awaiting Approval</span>
+                <span class="jui-status  jui-status--new  govuk-!-margin-left-1" >Awaiting approval</span>
                   {% endif %}
               </td>
           </tr>
@@ -214,15 +214,15 @@
       <a href="/app/transactions/search?q=all&returnAccount={{ installationData.permitId }}">View all transactions</a><a href="" style="margin-left: 30px;">Export all transactions</a>
       </p>
 
-      <h2 id="trusted-accounts" class="govuk-heading-l">Trusted Accounts</h2>
+      <h2 id="trusted-accounts" class="govuk-heading-l">Trusted accounts</h2>
 
 <table class="govuk-table app-table--overflow" data-type="trustedAccounts">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row govuk-!-font-size-16">
             <th class="govuk-table__header govuk-!-width-20" scope="col">Account</th>
-            <th class="govuk-table__header govuk-!-width-20" scope="col">Name</th>
-            <th class="govuk-table__header govuk-!-width-20" scope="col">Note</th>
-            <th class="govuk-table__header govuk-!-width-20" scope="col">Legal Entity</th>
+            <th class="govuk-table__header govuk-!-width-20" scope="col">Nickname</th>
+            <th class="govuk-table__header govuk-!-width-20" scope="col">Notes</th>
+            <th class="govuk-table__header govuk-!-width-20" scope="col">Legal entity</th>
             <th class="govuk-table__header govuk-!-width-20 govuk-table__header--numeric" scope="col">Status</th>
           </tr>
         </thead>
@@ -260,13 +260,13 @@
 
         </tbody>
       </table>
-      <h2 id="representatives" class="govuk-heading-l">Authorised Representatives</h2>
+      <h2 id="representatives" class="govuk-heading-l">Authorised representatives</h2>
       <table class="govuk-table app-table--overflow" data-type="representatives">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row govuk-!-font-size-16">
-            <th class="govuk-table__header" scope="col">Representative</th>
+            <th class="govuk-table__header" scope="col">Representative's ID</th>
             <th class="govuk-table__header" scope="col">Name</th>
-            <th class="govuk-table__header " scope="col">Job Title</th>
+            <th class="govuk-table__header " scope="col">Job title</th>
             <th class="govuk-table__header " scope="col">Contact</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Status</th>
           </tr>
@@ -278,7 +278,7 @@
               <th class="govuk-table__cell" scope="row"><a href="#">939-216-693</a>
               </th>
               <td class="govuk-table__cell ">{{ name }}</td>
-              <td class="govuk-table__cell ">Account Manager</td> 
+              <td class="govuk-table__cell ">Account Manager</td>
               <td class="govuk-table__cell ">joe.brown@blue.com <br />Tel: 07823 423242</td>
               <td class="govuk-table__cell govuk-table__cell--numeric">
                 <span class="jui-status  jui-status--new  govuk-!-margin-left-1">

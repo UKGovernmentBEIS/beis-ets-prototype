@@ -1,7 +1,7 @@
 {% extends "layouts/admin/base-account-question.html" %}
 
 {% block pageTitle %}
-  Transfer to an existing recipient
+  Transfer to a trusted account
 {% endblock %}
 
 {% block content %}
@@ -13,7 +13,7 @@ input, select { display: block; }
       <h1 class="govuk-heading-l">
           Transfer to
         {% if data.etsTransferAllowance.recipientType == 'existing' %}
-          an existing
+          a trusted
         {% elif data.etsTransferAllowance.recipientType == 'new' %}
         a new
         {% endif %}
@@ -89,7 +89,7 @@ input, select { display: block; }
         To:
   </label>
   <p>
-  {{ data.etsTransferAllowance.recepientId }} ({{ data.etsTransferAllowance.nickname }}) 
+  {{ data.etsTransferAllowance.recepientId }} ({{ data.etsTransferAllowance.nickname }})
         <br />
         <a href="#" onclick="javascript:history.go(-1)">Change</a>
   </p>
@@ -98,7 +98,7 @@ input, select { display: block; }
 
 <div class="govuk-form-group">
   <label class="govuk-label" for="available-unit-types">
-    Select which type of unit you would like to transfer
+    Select which type of unit you want to transfer
   </label>
   <select class="govuk-select" id="available-unit-types" name="etsTransferAllowance.unitType" >
           <option value="" {{ 'selected' if checked('etsTransferAllowance.unitType', '') }}>Choose unit</option>
@@ -112,16 +112,16 @@ input, select { display: block; }
 </div>
         {% for item in installationData.holdings %}
           {% for type, value in item %}
-          {% set unitDisplayName = 'Allowance' if type == 'generalAllowance' else type %}
+          {% set unitDisplayName = 'allowance' if type == 'generalAllowance' else type %}
           <div id="unit-{{ type }}">
             {{ govukInput({
               id: type,
               name: "etsTransferAllowance.holdings." + type + ".moved",
               label: {
-                text: 'Enter the number of units you would like to transfer'
+                text: 'Enter the number of units you want to transfer'
               },
               hint: {
-                html: 'You will have <span id="newnumber"> ' + value + ' </span> units of ' + unitDisplayName +' after this transfer'
+                html: 'You will have <span id="newnumber"> ' + value | formatNumber + ' </span> units of ' + unitDisplayName +' after this transfer'
               },
               classes: "govuk-input--width-5 app-emmission-transfer",
               attributes: {

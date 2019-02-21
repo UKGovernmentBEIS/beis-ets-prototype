@@ -13,7 +13,7 @@
 
 {% block content %}
 <h1 class="govuk-heading-xl">Add a trusted account</h1>
-<p class="govuk-body-l">Add <strong>{{data.newTrustedAccount.id}}</strong> as your trusted account.</p>
+<p class="govuk-body-l">Add <strong>{{data.newTrustedAccount.id}}</strong> as a trusted account.</p>
 <form class="form" action="confirmation" method="post">
 {{ govukInput({
   label: {
@@ -31,10 +31,10 @@
   name: "newTrustedAccount.accountNotes",
   id: "account-notes",
   label: {
-    text: "Optional account notes"
+    text: "Optional notes"
   },
   hint: {
-    text: "Write notes that may help you with this trusted account in the future.",
+    text: "Add some notes about this account.",
     classes: 'govuk-!-width-two-thirds'
   },
   classes: 'govuk-!-width-two-thirds'

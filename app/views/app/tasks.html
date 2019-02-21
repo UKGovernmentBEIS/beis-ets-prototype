@@ -60,15 +60,15 @@
                   selected: checked("",'')
               },{
                   value: 'approve-submission',
-                  text: 'Approve Submission',
+                  text: 'Approve submission',
                   selected: checked("",'')
               },{
                   value: 'approve-transfer',
-                  text: 'Approve Transfer',
+                  text: 'Approve transfer',
                   selected: checked("",'')
               },{
                   value: 'approve-surrender',
-                  text: 'Approve Surrender',
+                  text: 'Approve surrender',
                   selected: checked("",'')
               }
               ]
@@ -147,7 +147,7 @@
           <div class="amount tile-grid-cell">
             {% for unit in task.units %}
               <div class="value">
-                {{unit.unitAmount}}
+                {{unit.unitAmount | formatNumber }}
               </div>
               <div class="unit">
                 {{unit.unitType | safe}}
@@ -156,7 +156,7 @@
           </div>
           <div class="proposer tile-grid-cell">
             <div class="label">
-              Proposed by:
+              Requested by:
             </div>
             <div class="name">
               {{task.proposer}}
@@ -165,7 +165,7 @@
           {% if task.type == 'Transfer' %}
           <div class="transfer-completion tile-grid-cell hidden">
             <div class="label">
-              Expected completion on:
+              Expected completion:
             </div>
             <div class="date">
               {{ currentDate  | date("add", 7, "days") | date("DD MMMM YYYY") }}
@@ -230,7 +230,7 @@
           {% endif %}
           <div class="notes tile-grid-cell">
             <div class="label">
-                Notes
+                Notes:
             </div>
             <div class="text">
               <p>{{task.notes}}</p>

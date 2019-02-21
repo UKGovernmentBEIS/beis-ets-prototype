@@ -22,7 +22,7 @@
         </strong>
     </div>
     <p><a href="representative-details" class="govuk-link">Go back</a> and check you have entered the correct user ID. </p>
-    
+
 {% else %}
 <p>Add <strong>{{userDetails}}</strong> as your authorised representative for this account.</p>
 <form class="form" action="confirmation" method="post">
@@ -32,5 +32,5 @@
 <input type="hidden" name="newAuthorisedRepresentatives.name" value='{{userDetails}}'>
 </form>
 {% endif %}
- 
+
 {% endblock %}

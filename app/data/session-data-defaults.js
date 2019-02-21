@@ -51,7 +51,7 @@ module.exports = {
     },
     {
       'name': 'Scunthorpe Integrated Iron & Steel Works',
-      'accountHolder': 'British Steel Plc.',
+      'accountHolder': 'British Steel plc',
       'complianceStatusCode': 'B',
       'units': 2364,
       'permitId': 'EU-100-82345-0-76',
@@ -65,7 +65,7 @@ module.exports = {
     },
     {
       'name': 'ETS Trades',
-      'accountHolder': 'MRC Trading Ltd.',
+      'accountHolder': 'MRC Trading Ltd',
       'complianceStatusCode': 'C',
       'units': 2500,
       'permitId': 'EU-100-82345-0-757',
@@ -80,7 +80,7 @@ module.exports = {
     },
     {
       'name': 'Port Talbot Steelworks',
-      'accountHolder': 'British Steel Plc.',
+      'accountHolder': 'British Steel plc',
       'complianceStatusCode': 'C',
       'units': 2364,
       'permitId': 'EU-100-73104-0-76',
@@ -161,9 +161,9 @@ module.exports = {
       "transactionId": "EU472379",
       "started": 1550251388943,
       "lastUpdated": 1550251388941,
-      "type": "10-72 Receipt of Allowances for Exchange",
+      "type": "10-72 Receipt of allowances for exchange",
       "units": 363,
-      "unitType": "Allowances",
+      "unitType": "allowances",
       "transferringAccount": "EU-110-54234-0-22",
       "acquiringAccount": "this",
       "status": "Completed"
@@ -172,7 +172,7 @@ module.exports = {
       "transactionId": "EU429591",
       "started": 1550251388943,
       "lastUpdated": 1550251388941,
-      "type": "10-00 Internal Transfer",
+      "type": "10-00 Internal transfer",
       "units": 224,
       "unitType": "CER",
       "transferringAccount": "this",
@@ -183,9 +183,9 @@ module.exports = {
       "transactionId": "EU647943",
       "started": 1550251388943,
       "lastUpdated": 1550251388941,
-      "type": "10-02 Surrender Allowances",
+      "type": "10-02 Surrender allowances",
       "units": 34523,
-      "unitType": "Allowances",
+      "unitType": "allowances",
       "transferringAccount": "this",
       "acquiringAccount": "EU-110-63222-0-12",
       "status": "Completed"
@@ -194,9 +194,9 @@ module.exports = {
       "transactionId": "EU104957",
       "started": 1550251388943,
       "lastUpdated": 1550251388941,
-      "type": "10-36 Allocation Allowances",
+      "type": "10-36 Allocation allowances",
       "units": 56612,
-      "unitType": "Allowances",
+      "unitType": "allowances",
       "transferringAccount": "EU-110-93932-0-11",
       "acquiringAccount": "this",
       "status": "Completed"
@@ -205,9 +205,9 @@ module.exports = {
       "transactionId": "EU672244",
       "started": 1550251388999,
       "lastUpdated": 1550251388941,
-      "type": "01-34 Issuance Allowances Banking",
+      "type": "01-34 Issuance allowances banking",
       "units": 9756,
-      "unitType": "Allowances",
+      "unitType": "allowances",
       "transferringAccount": "EU-110-93932-0-11",
       "acquiringAccount": "this",
       "status": "Completed"
@@ -216,9 +216,9 @@ module.exports = {
       "transactionId": "EU289247",
       "started": 1550251388943,
       "lastUpdated": 1550251388941,
-      "type": "01-34 Issuance Allowances Banking",
+      "type": "01-34 Issuance allowances banking",
       "units": 4244,
-      "unitType": "Allowances",
+      "unitType": "allowances",
       "transferringAccount": "EU-110-93932-0-11",
       "acquiringAccount": "this",
       "status": "Completed"
@@ -227,9 +227,9 @@ module.exports = {
       "transactionId": "EU345954",
       "started": 1550251388943,
       "lastUpdated": 1550251388941,
-      "type": "10-34 Deletion Allowances Banking",
+      "type": "10-34 Deletion allowances banking",
       "units": 1122,
-      "unitType": "Allowances",
+      "unitType": "allowances",
       "transferringAccount": "this",
       "acquiringAccount": "EU-110-59193-0-12",
       "status": "Completed"
@@ -238,9 +238,9 @@ module.exports = {
       "transactionId": "EU345090",
       "started": 1550251388999,
       "lastUpdated": 1550251388941,
-      "type": "10-00 Internal Transfer",
+      "type": "10-00 Internal transfer",
       "units": 553423,
-      "unitType": "Allowances",
+      "unitType": "allowances",
       "transferringAccount": "this",
       "acquiringAccount": "EU-110-59193-0-12",
       "status": "Failed"
@@ -251,7 +251,7 @@ module.exports = {
       "lastUpdated": 1550251388941,
       "type": "10-00 Internal Transfer",
       "units": 678654,
-      "unitType": "Allowances",
+      "unitType": "allowances",
       "transferringAccount": "EU-110-56193-0-12",
       "acquiringAccount": "this",
       "status": "Completed"
@@ -318,11 +318,11 @@ module.exports = {
   'tasks': [
     {
       type: 'Transfer',
-      startDate: '15 January 13:15pm',
+      startDate: '15 January 2019 1:15pm',
       referenceNumber: 'QR-454-665-34',
       units: [
         {
-          unitType: 'Allowance',
+          unitType: 'allowances',
           unitAmount: '234'
         }
       ],
@@ -336,11 +336,11 @@ module.exports = {
     },
     {
       type: 'Surrender',
-      startDate: '12 January 20:55pm',
+      startDate: '12 January 2019 8:55pm',
       referenceNumber: 'EU596032',
       units: [
         {
-          unitType: 'Allowance',
+          unitType: 'allowances',
           unitAmount: '2160'
         }
       ],
@@ -352,11 +352,11 @@ module.exports = {
     },
     {
       type: 'Submission',
-      startDate: '18 January 10:19pm',
+      startDate: '18 January 2019 10:19am',
       referenceNumber: 'HXJ76393F',
       units: [
         {
-          unitType: 'Carbon dioxide (C0<sub>2</sub>)',
+          unitType: 'Carbon dioxide (C02)',
           unitAmount: '2800'
         },
         {
@@ -364,7 +364,7 @@ module.exports = {
           unitAmount: '568'
         },
         {
-          unitType: 'Nitrous oxide (N<sub>2</sub>O)',
+          unitType: 'Nitrous oxide (N2O)',
           unitAmount: '43'
         }
       ],
@@ -377,7 +377,7 @@ module.exports = {
     },
     {
       type: 'Transfer',
-      startDate: '16 January 7:55pm',
+      startDate: '16 January 2019 7:55pm',
       referenceNumber: 'QR-054-103-90',
       units: [
         {

@@ -16,9 +16,9 @@
       <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-7">
         <h1 class="govuk-panel__title">
         {% if data.etsTransferAllowance.recipientType == 'existing' %}
-        We have received your submission for a transfer
+        We've received your transfer request
         {% else %}
-        We have received your submission for a transfer
+        We've received your transfer request
         {% endif %}
         </h1>
         <div class="govuk-panel__body">
@@ -26,7 +26,7 @@
         </div>
       </div>
       {{ govukInsetText({
-        html: "Visit account page to <a class='govuk-link' href='/account/" + installationData.permitId +"/'>check the transaction</a>."
+        html: "Visit the account page to <a class='govuk-link' href='/account/" + installationData.permitId +"/'>view the transaction</a>."
       }) }}
       <h2 class="govuk-heading-m"> What happens next</h2>
       {% if data.etsTransferAllowance.recipientType == 'existing' %}
@@ -34,27 +34,30 @@
         <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
         <strong class="govuk-warning-text__text">
           <span class="govuk-warning-text__assistive">Warning</span>
-          Your transfer will need to be approved.
+          Your transfer is awaiting approval.
         </strong>
       </div>
         <p>
-          We've sent a notification of your proposed transfer to representatives for this account. Once approved, the transfer will take 26 hours to be completed. The 26 hours will only start during business hours.
+          We've sent your transfer request to the account representatives for approval.</p>
+          <p>Once approved, transfers will be made immediately on working days between 10am and 4pm CET. Outside these hours, it will be held until the next working day.
+
         </p>
 
-      
+
       {% else %}
       <div class="govuk-warning-text">
         <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
         <strong class="govuk-warning-text__text">
           <span class="govuk-warning-text__assistive">Warning</span>
-          Your transfer will need to be approved.
+          Your transfer is awaiting approval.
         </strong>
       </div>
 
-      <p>We've sent a notification of your proposed transfer to representatives for this account. Once approved, the transfer will take 26 hours to be completed. The 26 hours will only start during business hours.<p/>
+      <p>We've sent your transfer request to the account representatives for approval.</p>
+        <p>Once approved, transfers between 10am and 4pm CET working days will be made immediately. Outside these hours, it will be held until the next working period.<p/>
       {% endif %}
 
-      <p>Learn more about <a href="https://www.gov.uk/guidance/eu-ets-allowances">how to get more allowances</a>.</p>
+
 
 
     </div>

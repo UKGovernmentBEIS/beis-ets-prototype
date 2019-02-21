@@ -1,7 +1,7 @@
 {% extends "layouts/admin/base-account-question.html" %}
 
 {% block pageTitle %}
-  Who do you want to transfer allowance to?
+  Transfer to a new account
 {% endblock %}
 
 {% block content %}
@@ -13,7 +13,7 @@ input, select { display: block; }
     <form class="form" action="add-nickname" method="post">
       {% call govukFieldset({
         legend: {
-          text: "Who do you want to transfer allowances to?",
+          text: "Transfer to a new account",
           classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
           isPageHeading: true
         }
@@ -34,7 +34,7 @@ input, select { display: block; }
 
       {{ govukDetails({
         summaryText: "Help with account ID",
-        text: "The person you are transferring to should provide you with an Account ID. This can be found on their Accounts page."
+        text: "The person you are transferring to should provide you with an account ID."
       }) }}
 
       {{ govukButton({

@@ -14,40 +14,35 @@
           <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
           <strong class="govuk-warning-text__text">
             <span class="govuk-warning-text__assistive">Warning</span>
-            Ask the user to create an account first.
+            They need to create an account first.
           </strong>
         </div>
-        <p>Once they have created their user account, please complete these steps again to add them as an authorised representative.</p>
+        <p>Once they have created their account, use their ID number to add them as an authorised representative.</p>
         {{ govukButton({
           text: "Back to the home page",
           href: '/account/' + installationID
         }) }}
       {% else %}
       <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-9">
-      <h1 class="govuk-panel__title">We’re received your request to add a representative to your account.</h1>
+        <h1 class="govuk-panel__title">We’ve received your request to add a representative to your account.</h1>
 
-      <div class="govuk-panel__body">
-
-      Your reference number<br><strong>EU613749</strong>
-
+        <div class="govuk-panel__body">
+            Your reference number<br><strong>EU613749</strong>
+        </div>
       </div>
-    </div>
-
-      {% endif %}
-
       {{ govukInsetText({
-        html: "Visit account page to <a class='govuk-link' href='/account/" + installationID +"'>check the status of your request</a>."
+        html: "Visit the account page to <a class='govuk-link' href='/account/" + installationID +"'>check the status of your request</a>."
       }) }}
 
       <h2 class="govuk-heading-m">What happens next</h2>
 
 
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        Your proposal to add a new authorised reprersentative to your account will need to be approved. </a>
-
-      </strong>
-
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          Your request to add a new authorised representative to your account is awaiting approval.
+        </strong>
+      </div>
+      {% endif %}
 {% endblock %}

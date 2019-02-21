@@ -109,7 +109,7 @@
     <div class="hmcts-menu">
         <div class="hmcts-menu__wrapper">
           <a href="/account/{{installationID}}/transfer-allowance/select-recipient" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary govuk-!-margin-right-2">
-            Transfer allowance
+            Make a transfer
           </a>
           <a href="/account/{{installationID}}/add-a-new-authorised-representative/representative-details" role="button"  class="govuk-button hmcts-menu__item hmcts-button--secondary ">
             Add an authorised representative
@@ -128,7 +128,7 @@
             Submit emissions
           </a>
           {% endif %}
-          <a href="/account/{{installationID}}/surrender-allowance/surrender-amount" role="button" class="govuk-button hmcts-menu__item 
+          <a href="/account/{{installationID}}/surrender-allowance/surrender-amount" role="button" class="govuk-button hmcts-menu__item
               {% if not data.etsSubmitEmmissions.submissionComplete %}
               hmcts-button--secondary
               {% elif not data.etsSubmitEmmissions.total - data.etsSurrenderAllowance.totalAmountSurrendered <= 0 %}
@@ -143,7 +143,7 @@
       <div class="hmcts-menu hmcts-menu--actions">
         <div class="hmcts-menu__wrapper">
           <a href="/account/{{installationID}}/transfer-allowance/select-recipient" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary govuk-!-margin-right-2">
-            Transfer allowances
+            Make a transfer
           </a>
           <a href="/account/{{installationID}}/add-a-new-authorised-representative/representative-details" role="button"  class="govuk-button hmcts-menu__item hmcts-button--secondary ">
             Add an authorised representative
@@ -152,7 +152,7 @@
             Add a trusted account
           </a>
           <a href="#" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary ">
-            Delete allowances
+            Delete allowances or units
           </a>
           <a href="/account/{{installationID}}/details/view" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary ">
             Manage account

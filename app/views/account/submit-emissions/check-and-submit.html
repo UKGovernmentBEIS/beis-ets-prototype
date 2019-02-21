@@ -10,7 +10,7 @@
 
 {% block content %}
       <h1 class="govuk-heading-xl">
-        Check your answers before submitting your emissions data
+        Check and submit your emissions data
       </h1>
       <!-- only add a heading for a list if there is more than one list -->
 
@@ -20,11 +20,11 @@
       <!--   * none for single group of q&a -->
       <dl class="app-check-your-answers app-check-your-answers--short">
 
-      <form class="form" action="check-and-submit" method="post">
+      <form class="form" action="confirmation" method="post">
         {% if data.etsSubmitEmmissions.emissions.co2 != '' %}
          <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
-            Carbon dioxide (C0<sub>2</sub>)
+            Carbon dioxide (C02)
           </dt>
           <dd class="app-check-your-answers__answer">
              {{ data.etsSubmitEmmissions.emissions.co2 }}
@@ -34,9 +34,9 @@
               Change<span class="govuk-visually-hidden"> Carbon dioxide</span>
             </a>
           </dd>
-        </div> 
+        </div>
         {% endif %}
-        
+
         {% if data.etsSubmitEmmissions.emissions.pfc != '' %}
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
@@ -52,11 +52,11 @@
           </dd>
         </div>
         {% endif %}
-        
+
         {% if data.etsSubmitEmmissions.emissions.no2 != '' %}
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
-            Nitrous oxide (N<sub>2</sub>O)
+            Nitrous oxide (N2O)
           </dt>
           <dd class="app-check-your-answers__answer">
             {{ data.etsSubmitEmmissions.emissions.no2}}
@@ -68,7 +68,7 @@
           </dd>
         </div>
         {% endif %}
-        
+
 
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
@@ -86,6 +86,6 @@
       </dl>
 
         {{ govukButton({
-          text: "Submit emissions"
+          text: "Submit emissions data"
         }) }}
 {% endblock %}

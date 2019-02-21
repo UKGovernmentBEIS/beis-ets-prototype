@@ -89,7 +89,7 @@ router.get('/account/:id/surrender-allowance/surrender-amount', function (req, r
 router.post('/account/:id/submit-emissions/check-and-submit', function (req, res, next) {
     req.session.data.etsSurrenderAllowance = req.session.data.etsSurrenderAllowance || {}
     req.session.data.etsSurrenderAllowance.surrenderAmountDue = req.session.data.etsSubmitEmmissions.total;
-    res.redirect('confirmation');
+    next()
 })
 
 router.get('/account/:id/submit-emissions/confirmation', function (req, res, next) {
@@ -134,7 +134,7 @@ router.post('/account/:id/surrender-allowance/check-and-submit', function (req, 
           "lastUpdated": Date.now(),
           "type": "Surrender",
           "units": parseInt(req.session.data.etsSurrenderAllowance.draft.amountToSurrender.toString().replace(/,/g, '')),
-          "unitType": "Allowances",
+          "unitType": "allowances",
           "transferringAccount": "this",
           "acquiringAccount": "EU-110-56193-0-12",
           "status": "Awaiting Approval"

@@ -12,14 +12,14 @@
 
 {% block content %}
       <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-9">
-        <h1 class="govuk-panel__title">We have received your submission to surrender allowances</h1>
+        <h1 class="govuk-panel__title">We've received your request to surrender allowances</h1>
         <div class="govuk-panel__body">
           Your reference number<br><strong>EU596032</strong>
         </div>
       </div>
 
       {{ govukInsetText({
-        html: "Visit account page to <a class='govuk-link' href='/account/" + installationData.permitId + "/'>check the transaction</a>."
+        html: "Visit the account page to <a class='govuk-link' href='/account/" + installationData.permitId + "/'>view the transaction</a>."
       }) }}
 
       <h2 class="govuk-heading-m">What happens next</h2>
@@ -28,15 +28,18 @@
         <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
         <strong class="govuk-warning-text__text">
           <span class="govuk-warning-text__assistive">Warning</span>
-          Your proposal to surrender allowances will need to be approved.
+          Your request to surrender allowances is awaiting approval.
 
         </strong>
       </div>
 
       <p class="govuk-body">
-        We have sent you a confirmation email. We've sent your proposal to all representatives for this account.
-      </p>
+        We've sent your request to the account representatives.</p>
 
+<p>We’ve also sent you a confirmation email.
+
+      </p>
+<p>Learn more about <a href="https://www.gov.uk/guidance/eu-ets-allowances">how to get more allowances</a>.</p>
 
 
 {% endblock %}

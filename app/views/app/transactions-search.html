@@ -33,7 +33,7 @@
             text: "Transaction ID"
           },
           hint: {
-            text: "eg. EX-12343-442423"
+            text: "eg EX-12343-442423"
           },
           value: data.search.transaction.id
         }) }}
@@ -81,7 +81,7 @@
             text: "From"
           },
           hint: {
-            text: "For example: 10/12/2018"
+            text: "eg 10/12/2018"
           },
           value: data.search.from
         }) }}
@@ -106,7 +106,7 @@
             text: "Sending account ID"
           },
           hint: {
-            text: "eg. UK-12-424253-23"
+            text: "eg UK-12-424253-23"
           },
           value: data.search.transaction.account.sending
         }) }}
@@ -127,10 +127,10 @@
           name: "search.transaction.proposer",
           classes: "govuk-!-width-full",
           label: {
-            text: "Proposer User ID"
+            text: "Requester's ID"
           },
           hint: {
-            text: "eg. UID-253-2543-2235"
+            text: "eg UID-253-2543-2235"
           },
           value: data.search.transaction.proposer
         }) }}
@@ -140,7 +140,7 @@
           name: "search.transaction.approver",
           classes: "govuk-!-width-full",
           label: {
-            text: "Approver User ID"
+            text: "Approver's ID"
           },
           value: data.search.transaction.approver
         }) }}
@@ -168,7 +168,7 @@
             }) }}
           </div>
         </details>
-      </div>            
+      </div>
       <div class="tile-buttons tile-grid-cell">
         <div class="accept">
           <button type="submit" class="govuk-button">
@@ -178,7 +178,7 @@
         <div class="reject">
           <a href="#" role="button" draggable="false" class="govuk-button hmcts-button--secondary reject-btn">Clear Search</a>
         </div>
-      </div>         
+      </div>
     </div>
     </form>
   </main>

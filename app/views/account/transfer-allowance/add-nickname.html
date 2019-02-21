@@ -1,7 +1,7 @@
 {% extends "layouts/admin/base-account-question.html" %}
 
 {% block pageTitle %}
-What name do you want to use to refer to the account?
+Name of new account
 {% endblock %}
 
 {% block content %}
@@ -13,7 +13,7 @@ input, select { display: block; }
     <form class="form" action="amount" method="post">
       {% call govukFieldset({
         legend: {
-          text: "What name do you want to use to refer to the account?",
+          text: "Name of new account",
           classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
           isPageHeading: true
         }

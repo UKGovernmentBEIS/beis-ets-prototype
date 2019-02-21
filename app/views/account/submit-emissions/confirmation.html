@@ -13,14 +13,14 @@
 
 
       <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-7">
-        <h1 class="govuk-panel__title">We have received your 2018 emissions</h1>
+        <h1 class="govuk-panel__title">We've received your 2018 emissions data</h1>
         <div class="govuk-panel__body">
           Your reference number<br><strong>HXJ76393F</strong>
         </div>
       </div>
 
       {{ govukInsetText({
-        html: "<a class='govuk-link' href='/account/" + installationData.permitId +"/'>Visit account page to view your emissions for this year and previous years</a>."
+        html: "<a class='govuk-link' href='/account/" + installationData.permitId +"/'>Visit the account page to see your previous emissions data</a>."
       }) }}
 
       <h2 class="govuk-heading-m">What happens next</h2>
@@ -29,18 +29,18 @@
         <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
         <strong class="govuk-warning-text__text">
           <span class="govuk-warning-text__assistive">Warning</span>
-          You will also need to surrender enough allowances to cover your verified emissions before 16 March 2019 to be compliant with ETS.
+          You have until 11.59pm 15 March 2019 to surrender enough allowances to cover your verified emissions.
 
         </strong>
       </div>
 
       <p class="govuk-body">We have sent you a confirmation email.</p>
-      <p class="govuk-body">Your 2018 emissions still need to be verified <strong>
+      <p class="govuk-body">Your 2018 emissions need to be verified <strong>
       {% if data.etsSubmitEmmissions.selectVerifier == 'other' %}
         {{ data.etsSubmitEmmissions.verifier }}
       {% else %}
         {{ data.etsSubmitEmmissions.selectVerifier }}
-      {% endif %}</strong>before 12 March 2019.We have sent your verifier a notification email.</p>
+      {% endif %}</strong>before 12 March 2019 - we've sent your verifier a notification email.</p>
 
 
 

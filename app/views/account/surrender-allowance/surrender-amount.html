@@ -5,23 +5,25 @@
 
 {% block content %}
       <h1 class="govuk-heading-xl">
-        Surrender your Allowances
+        Surrender your allowances
       </h1>
       <form class="form" action="surrender-amount" method="post">
 
                 {% if data.etsSurrenderAllowance.surrenderAmountDue %}
-                    {% if data.etsSurrenderAllowance.surrenderAmountDue - data.etsSurrenderAllowance.totalAmountSurrendered <= 0 %} 
-                    <p>You have already surrendered <strong>{{ data.etsSurrenderAllowance.totalAmountSurrendered }}</strong> allowances.</p><p>This is enough to meet your obligations. You can surrender more if you want to.</p>
+                    {% if data.etsSurrenderAllowance.surrenderAmountDue - data.etsSurrenderAllowance.totalAmountSurrendered <= 0 %}
+                    <p>You have already surrendered <strong>{{ data.etsSurrenderAllowance.totalAmountSurrendered }}</strong> allowances.</p><p>You have already met your obligations but you can surrender more allowances if you want to.</p>
                     {% else %}
-                       <p>You need to surrender <strong>{{ data.etsSurrenderAllowance.surrenderAmountDue - data.etsSurrenderAllowance.totalAmountSurrendered | d(0) }}</strong> allowances to be compliant.</p> 
-                       <ul class="govuk-list govuk-list--bullet">
+                      <p>You need to surrender <strong>{{ data.etsSurrenderAllowance.surrenderAmountDue - data.etsSurrenderAllowance.totalAmountSurrendered | d(0) }}</strong> allowances by 11:59pm 15 March 2019.</p>
+
+                      <p>You can also choose to surrender more allowances, using multiple transactions.</p>
+                       <!-- <ul class="govuk-list govuk-list--bullet">
                           <li>You need to do this before the deadline or [consequences]</li>
                           <li>You may also choose to surrender more than the required amount. </li>
                           <li>You can do this in multiple transactions.</li>
-                       </ul>
+                       </ul> -->
                     {% endif %}
                 {% else %}
-                    <p>You have not yet declared you emissions but you can still surrender allowance.</p>
+                    <p>You have not yet declared you emissions but you can still surrender allowances.</p>
                     {% if data.etsSurrenderAllowance.totalAmountSurrendered > 0 %}
                     <p>You have already surrendered <strong>{{ data.etsSurrenderAllowance.totalAmountSurrendered }}</strong> allowances.</p>
                     {% endif %}
@@ -35,14 +37,14 @@
                         text: "Enter amount to surrender"
                     },
                     hint: {
-                        text:  'You have ' + installationData.holdings[0].generalAllowance | formatNumber + ' Allowances available.'
+                        text:  'You have ' + installationData.holdings[0].generalAllowance | formatNumber + ' allowances available'
                     },
                     value: data.etsSurrenderAllowance.draft.amountToSurrender
                     }) }}
                 {% endset -%}
 
                 {% if data.etsSubmitEmmissions.total %}
-                    {% if data.etsSurrenderAllowance.surrenderAmountDue - data.etsSurrenderAllowance.totalAmountSurrendered <= 0 %} 
+                    {% if data.etsSurrenderAllowance.surrenderAmountDue - data.etsSurrenderAllowance.totalAmountSurrendered <= 0 %}
                         {{ amountToSurrender | safe }}
                     {% else %}
                         {{ govukRadios({
@@ -57,7 +59,7 @@
                             },
                             {
                               value: "customAmount",
-                              text: "Surrender a different amount",
+                              text: "Surrender another amount",
                               checked: checked ("etsSurrenderAllowance.draft.surrenderMethod", 'customAmount'),
                               conditional: {
                                 html: amountToSurrender

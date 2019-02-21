@@ -7,7 +7,7 @@
 {% block content %}
     <h1 class="govuk-heading-xl">
       <span class="govuk-caption-xl">{{ installationData.name}}</span>
-      Enter your 2018 emissions
+      Enter your 2018 emissions data
     </h1>
     <p>
     Your emissions data must be the same as the data verified in your Annual Emissions Report (AER).
@@ -27,7 +27,7 @@
 
         {{ govukInput({
           label: {
-            html: 'Carbon dioxide (C0<sub>2</sub>)'
+            html: 'Carbon dioxide (C02)'
           },
           hint: {
               text: "Metric tonnes"
@@ -51,7 +51,7 @@
 
         {{ govukInput({
           label: {
-            html: 'Nitrous oxide (N<sub>2</sub>O)'
+            html: 'Nitrous oxide (N2O)'
           },
           hint: {
               text: "Metric tonnes"

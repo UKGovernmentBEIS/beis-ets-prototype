@@ -9,7 +9,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="check-and-submit" method="POST">
+      <form class="form" action="check-and-submit" method="post">
        {% call govukFieldset({
       }) %}
         {{ govukRadios({
@@ -17,20 +17,15 @@
           name: "etsSubmitEmmissions.verifier",
           fieldset: {
             legend: {
-              text: "Who is your verifier?",
+              text: "Select your verifier",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--xl"
             }
           },
           hint: {
-            text: 'Select your chosen verifier from the list below.'
+            text: "Select your account's verifier:"
           },
           items: [
-            {
-              text: 'Lucideon',
-              value: 'Lucideon',
-              checked: checked("etsSubmitEmmissions.verifier",'Lucideon')
-            },
             {
               value: 'BSI Assurance UK Limited',
               text: 'BSI Assurance UK Limited',

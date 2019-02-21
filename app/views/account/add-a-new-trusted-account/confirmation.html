@@ -11,7 +11,7 @@
 {% block content %}
 
         <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-9">
-        <h1 class="govuk-panel__title">We have received your trusted account proposal.</h1>
+        <h1 class="govuk-panel__title">We've received your trusted account request.</h1>
 
         <div class="govuk-panel__body">
 
@@ -22,7 +22,7 @@
 
 
       {{ govukInsetText({
-        html: "Visit account page to <a class='govuk-link' href='/account/" + installationID +"'>check the status of your trusted accounts.</a>."
+        html: "Visit the account page to <a class='govuk-link' href='/account/" + installationID +"'>check the status of your trusted accounts.</a>."
       }) }}
 
       <h2 class="govuk-heading-m"> What happens next</h2>
@@ -30,10 +30,10 @@
         <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
         <strong class="govuk-warning-text__text">
           <span class="govuk-warning-text__assistive">Warning</span>
-          Your new trusted account proposal will need to be approved.
+          Your trusted account request is awaiting approval.
         </strong>
       </div>
 
-      <p>We’ve sent a notification of your proposal to representatives for this account. Once it’s approved it will take 7 working days to complete. <p/>
+      <p>We’ve sent your trusted account request to the account representatives. Once your request is approved, the account will be added on the fourth working day at 12pm CET. <p/>
 
 {% endblock %}

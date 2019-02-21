@@ -23,7 +23,7 @@
 
       {{ hmctsBanner({
       html: bannerHtml
-      }) }} 
+      }) }}
     {% endif %}
       {% set titleHTML %}
       <h1 class="govuk-heading-xl">Your accounts</h1>
@@ -42,8 +42,8 @@
             <tr class="govuk-table__row">
             <th class="govuk-table__header" scope="col">Account</th>
             <th class="govuk-table__header" scope="col">Account name</th>
-            <th class="govuk-table__header" scope="col">Account Holder</th>
-            <th class="govuk-table__header" scope="col">Compliance Status</th>
+            <th class="govuk-table__header" scope="col">Account holder</th>
+            <th class="govuk-table__header" scope="col">Compliance status</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Allowances</th>
             </tr>
         </thead>
@@ -70,7 +70,7 @@
                     {% for unit, value in item %}
                     {% set unitDisplayName = 'allowance' if unit == 'generalAllowance' else unit %}
                     {% if unit == "generalAllowance" %}
-                            {{ value }}
+                            {{ value | formatNumber }}
                         {% endif %}
                     {% endfor %}
                     {% endfor %}
@@ -100,7 +100,7 @@
                                 {% for unit, value in item %}
                                     {% set unitDisplayName = 'allowance' if unit == 'generalAllowance' else unit %}
                                     {% if unit == "generalAllowance" %}
-                                        {{ value }}
+                                        {{ value | formatNumber}}
                                     {% endif %}
                                 {% endfor %}
                             {% endfor %}
@@ -139,7 +139,7 @@
           ' (<span units=' + result.units + '>' + result.units + ' units</span>)'
       }
        function handleOnConfirm (result) {
-        window.location.href = '/account/' + result.permitId + '/' 
+        window.location.href = '/account/' + result.permitId + '/'
       }
        accessibleAutocomplete({
         element: element,
@@ -152,6 +152,6 @@
         }
       })
       }
-      
+
   </script>
 {% endblock %}

@@ -2,7 +2,7 @@
 {% from "summary-list/macro.njk" import govukSummaryList %}
 {% set hasSidebar = true %}
 {% block headerContent %}
-  <h1 class="govuk-heading-xl">Account Details for {{installation.name}}</h1>
+  <h1 class="govuk-heading-xl">Account details for {{installation.name}}</h1>
 {% endblock %}
 {% block mainContent %}
 {% set installationAddress %}
@@ -73,7 +73,7 @@
 </p>
 </p>
 {{ govukButton({
-  text: "Delete account",
+  text: "Close account",
    href: '#',
    classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
 }) }}
