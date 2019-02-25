@@ -1,0 +1,27 @@
+{% extends "layouts/admin/base-account-question.html" %}
+{% block pageTitle %}
+Enter email address
+{% endblock %}
+
+{% block content %}
+      <h1 class="govuk-heading-xl">
+        Surrender your allowances
+      </h1>
+      <form class="form" action="enter-email-address" method="post">
+
+        {{ govukInput({
+        id: "email-address",
+        name: "addNewRepresentative.draft.emailAddress",
+        classes: "govuk-input--width-7 format-number",
+        label: {
+            text: "Enter email address"
+        },
+        value: data.addNewRepresentative.draft.emailAddress
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+{% endblock %}

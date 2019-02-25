@@ -9,22 +9,8 @@
 {% endblock %}
 
 {% block content %}
-      {% if data.newLinkedRepresentative.existingEtsUser == 'no' %}
-        <div class="govuk-warning-text">
-          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-          <strong class="govuk-warning-text__text">
-            <span class="govuk-warning-text__assistive">Warning</span>
-            They need to create an account first.
-          </strong>
-        </div>
-        <p>Once they have created their account, use their ID number to add them as an authorised representative.</p>
-        {{ govukButton({
-          text: "Back to the home page",
-          href: '/account/' + installationID
-        }) }}
-      {% else %}
       <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-9">
-        <h1 class="govuk-panel__title">We’ve received your request to add a representative to your account.</h1>
+        <h1 class="govuk-panel__title">We’ve received your request to add a new representative to this account</h1>
 
         <div class="govuk-panel__body">
             Your reference number<br><strong>EU613749</strong>
@@ -44,5 +30,4 @@
           Your request to add a new authorised representative to your account is awaiting approval.
         </strong>
       </div>
-      {% endif %}
 {% endblock %}

@@ -192,24 +192,23 @@ router.post('/register-for-ets/linked-representative-answer', function (req, res
   }
 })
 
+router.post('/account/:id/add-a-new-authorised-representative/enter-email-address', function (req, res, next) {
+    res.redirect('/account/' + req.params.id + '/add-a-new-authorised-representative/check-and-submit')
+})
 
-router.post('/account/:id/add-a-new-authorised-representative/representative-details', function (req, res, next) {
-  var isExistingEtsUser = req.session.data.newLinkedRepresentative.existingEtsUser
-  var existingUserId = req.session.data.newLinkedRepresentative.id
-
-  if (isExistingEtsUser === 'yes' && existingUserId !== ' ') {
-    res.redirect('/account/' + req.params.id + '/add-a-new-authorised-representative/check-respresentative-details')
-  } else {
+router.post('/account/:id/add-a-new-authorised-representative/check-and-submit', function (req, res, next) {
     res.redirect('/account/' + req.params.id + '/add-a-new-authorised-representative/confirmation')
-  }
 })
 
 router.post('/account/:id/add-a-new-authorised-representative/confirmation', function (req, res, next) {
+  /*
+   * OLD CODE
   var newAuthorisedRepName = req.session.data.newAuthorisedRepresentatives.name
   var newAuthorisedReps = req.session.data.newAuthorisedReps
   if (!newAuthorisedReps.includes(newAuthorisedRepName)) {
     req.session.data.newAuthorisedReps.push(newAuthorisedRepName)
-  }
+    }
+  */
   next()
 })
 
