@@ -115,6 +115,21 @@ router.post('/account/:id/submit-emissions/specify-amount', function (req, res) 
 })
 
 
+router.get('/app/transaction/:id/:page?/:subPage?', function (req, res, next) {
+  res.locals['transactionID'] = req.params.id
+
+  res.locals.transaction = req.session.data.transactions.filter(function (transaction) {
+    if (transaction.transactionId === req.params.id) {
+      return transaction
+    }
+  })[0]
+  if (!req.params.page) {
+    res.render('app/transaction/index')
+  } else {
+    next()
+  }
+})
+
 
 router.post('/account/:id/surrender-allowance/surrender-amount', function (req, res) {
     if (req.session.data.etsSurrenderAllowance.draft.surrenderMethod === 'fullAmount') {
@@ -129,7 +144,7 @@ router.post('/account/:id/surrender-allowance/check-and-submit', function (req, 
     if (req.session.data.etsSurrenderAllowance.draft.amountToSurrender) {
         // Attempt to replace any commas if it's a string, otherwise just force it to be an integer
         var newSurrenderTransaction = {
-          "transactionId": "EU429591",
+          "transactionId": "EU596032",
           "started": Date.now(),
           "lastUpdated": Date.now(),
           "type": "Surrender",
@@ -137,7 +152,7 @@ router.post('/account/:id/surrender-allowance/check-and-submit', function (req, 
           "unitType": "allowances",
           "transferringAccount": "this",
           "acquiringAccount": "EU-110-56193-0-12",
-          "status": "Awaiting Approval"
+          "status": "Awaiting approval"
         }
         // push newly generated transaction onto transactions table
         req.session.data.transactions.push(newSurrenderTransaction)

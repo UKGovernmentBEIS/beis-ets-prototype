@@ -1,0 +1,121 @@
+{% extends "layouts/admin/base.html" %}
+{% set pageID = "transactions" %}
+{% from "summary-list/macro.njk" import govukSummaryList %}
+
+{% set status %}
+{% if transaction.status == "Completed" %}
+  <span class="jui-status  jui-status--complete  govuk-!-margin-left-1" >{{ transaction.status }}</span>
+{% elif transaction.status == "Failed" %}
+  <span class="jui-status  jui-status--urgent  govuk-!-margin-left-1" >{{ transaction.status }}</span>
+{% else %}
+  <span class="jui-status  jui-status--pending  govuk-!-margin-left-1" >{{ transaction.status }}</span>
+{% endif %}
+{% endset %}
+
+{% set randomAcquiringAccount %}
+{% if transaction.acquiringAccount == "this" %}
+EU-100-{{ [73432,82345,73104,77732] | random }}-0-76
+{% else %}
+{{ transaction.acquiringAccount }}
+{% endif %}
+{% endset %}
+{% set randomTransferringAccount %}
+{% if transaction.transferringAccount == 'this' %}
+EU-100-{{ [73432,82345,73104,77732] | random }}-0-76
+{% else %}
+  {{ transaction.transferringAccount}}
+{% endif %}
+{% endset %}
+
+{% block content %}
+<div class="jui-width-container">
+<main class="govuk-main-wrapper" role="main">
+  <h1 class="govuk-heading-xl">Transaction {{transaction.transactionId}} details</h1>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukSummaryList({
+        classes: 'govuk-summary-list--no-border',
+        rows: [
+          {
+            key: {
+              text: "Transaction ID:"
+            },
+            value: {
+              text: transaction.transactionId
+            }
+          },
+          {
+            key: {
+              text: "Type:"
+            },
+            value: {
+              text: transaction.type
+            }
+          },
+          {
+            key: {
+              text: "Started:"
+            },
+            value: {
+              html: transaction.started | date("DD MMMM YYYY") + '<br />' + transaction.started | date("h:mm:ss a")
+            }
+          },
+          {
+            key: {
+              text: "Last updated:"
+            },
+            value: {
+              html: transaction.lastUpdated | date("DD MMMM YYYY") + '<br />' + transaction.lastUpdated | date("h:mm:ss a")
+            }
+          },
+          {
+            key: {
+              text: "Units"
+            },
+            value: {
+              html: transaction.units | formatNumber + ' ' + transaction.unitType
+            }
+          },
+          {
+            key: {
+              text: "Transferring account"
+            },
+            value: {
+              html: randomTransferringAccount
+            }
+          },
+          {
+            key: {
+              text: "Acquiring account"
+            },
+            value: {
+              html: randomAcquiringAccount
+            }
+          },
+          {
+            key: {
+              text: "Status:"
+            },
+            value: {
+              html: status
+            }
+          }
+        ]
+      }) }}
+    </div>
+    <div class="govuk-grid-column-one-third">
+    {% if transaction.status == 'Awaiting approval' %}
+      {{ govukButton({
+        text: "Cancel transaction",
+        href: '#',
+        classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
+      }) }}
+    {% endif %}
+    </div>
+  </div>
+  
+  
+  
+</main>
+</div>
+{% endblock %}

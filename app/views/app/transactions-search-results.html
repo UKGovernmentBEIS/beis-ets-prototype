@@ -40,33 +40,6 @@
           </tr>
         </thead>
         <tbody class="govuk-table__body">
-        {% if data.etsSurrenderAllowance.totalAmountSurrendered %}
-          <tr class="govuk-table__row govuk-!-font-size-16">
-              <th class="govuk-table__cell" scope="row"><a href="#">EU596032</th>
-              <td class="govuk-table__cell ">
-                {{ currentDate | date("DD MMMM YYYY") }}<br/>
-                {{ currentDate | date("h:mm:ss a") }}
-              </td>
-              <td class="govuk-table__cell ">
-                {{ currentDate | date("DD MMMM YYYY") }}<br/>
-                {{ currentDate | date("h:mm:ss a") }}
-              </td>
-              <td class="govuk-table__cell ">10-02 Surrender Allowances</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric ">
-              {% if data.etsSurrenderAllowance.amountToSurrender == 'other' %}
-                <strong>140</strong> units oversurrendered
-              {% else %}
-                {{ data.etsSurrenderAllowance.amountToSurrender }}
-              {% endif %}
-              </td>
-              <td class="govuk-table__cell ">Allowances</td>
-              <td class="govuk-table__cell ">{{installationID}}</td>
-              <td class="govuk-table__cell "><span style="color: #8A8A8A; letter-spacing: .5px;">SURRENDER</span></td>
-              <td class="govuk-table__cell ">
-                <span class="jui-status  jui-status--new  govuk-!-margin-left-1" >Awaiting Approval</span>
-              </td>
-          </tr>
-          {% endif %}
           {% if data.etsTransferAllowance %}
           <tr class="govuk-table__row govuk-!-font-size-16">
               <th class="govuk-table__cell" scope="row">EU580697</th>
@@ -112,9 +85,9 @@
               </td>
           </tr>
           {% endif %}
-            {% for tx in data.transactions | sort(false, false, 'started') %}
+            {% for tx in data.transactions | sort(true, false, 'started') %}
           <tr class="govuk-table__row govuk-!-font-size-16">
-              <th class="govuk-table__cell" scope="row">{{ tx.transactionId }}</th>
+              <th class="govuk-table__cell" scope="row"><a href="/app/transaction/{{ tx.transactionId }}/">{{ tx.transactionId }}</a></th>
               <td class="govuk-table__cell ">
                 {{ tx.started | date("DD MMMM YYYY") }}<br/>
                 {{ tx.started | date("h:mm:ss a") }}
