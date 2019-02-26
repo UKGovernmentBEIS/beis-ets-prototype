@@ -12,7 +12,9 @@ router.use(function (req, res, next) {
   next()
 })
 
-
+function generateID (min, max) {
+  return 'EU' + Math.floor(Math.random() * (max - min + 1) + min)
+}
 
 router.get('/', function (req, res, next) {
   req.session.data.pageView = req.query.view || 'operator'
@@ -143,14 +145,16 @@ router.post('/account/:id/surrender-allowance/check-and-submit', function (req, 
     // Only generate a transaction if there's an amount to surrender
     if (req.session.data.etsSurrenderAllowance.draft.amountToSurrender) {
         // Attempt to replace any commas if it's a string, otherwise just force it to be an integer
+        var transactionID = generateID(596032, 596062)
+        req.session.data.etsSurrenderAllowance.transactionID = transactionID
         var newSurrenderTransaction = {
-          "transactionId": "EU596032",
+          "transactionId": transactionID,
           "started": Date.now(),
           "lastUpdated": Date.now(),
           "type": "Surrender",
           "units": parseInt(req.session.data.etsSurrenderAllowance.draft.amountToSurrender.toString().replace(/,/g, '')),
           "unitType": "allowances",
-          "transferringAccount": "this",
+          "transferringAccount": req.params.id,
           "acquiringAccount": "EU-110-56193-0-12",
           "status": "Awaiting approval"
         }
@@ -186,9 +190,12 @@ router.post('/account/:id/transfer-allowance/amount', function (req, res) {
 
 router.post('/account/:id/transfer-allowance/check-and-submit-transfer', function (req, res) {
 
-  function getAccountID(str) {
+  function getAccountID (str) {
     return str.split(',')[1]
-}
+  }
+  var transactionID = generateID(580697, 580710)
+  req.session.data.etsTransferAllowance.transactionID = transactionID
+
   var chosenUnit = req.session.data.etsTransferAllowance.unitType
   var request
   switch (chosenUnit) {
@@ -205,7 +212,7 @@ router.post('/account/:id/transfer-allowance/check-and-submit-transfer', functio
   var recipient = req.session.data.etsTransferAllowance.recepientId || getAccountID(req.session.data.etsTransferAllowance.recipient)
 
   var newTransferTransaction = {
-    'transactionId': 'EU580697',
+    'transactionId': transactionID,
     'started': Date.now(),
     'lastUpdated': Date.now(),
     'type': 'Transfer',
