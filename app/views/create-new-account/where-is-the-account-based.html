@@ -1,0 +1,42 @@
+{% extends "layouts/admin/base-account-question.html" %}
+
+{% block pageTitle %}
+Is the account based in the UK?
+{% endblock %}
+
+
+{% block content %}
+
+
+   <h1 class="govuk-heading-l">
+     Is the account based in the UK?
+    </h1>
+
+    <form class="form" method="post">
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        idPrefix: "basedInTheUK",
+        name: "createNewAccount.basedInTheUK",
+        fieldset: {},
+        items: [
+          {
+            value: "yes",
+            text: "Yes",
+            checked: checked("createNewAccount.basedInTheUK",'yes')
+          },
+          {
+            value: "no",
+            text: "No",
+            checked: checked("createNewAccount.basedInTheUK",'no')
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+
+{% endblock %}

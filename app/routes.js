@@ -296,4 +296,38 @@ router.post('/account/:id/add-a-new-trusted-account/confirmation', function (req
   next()
 })
 
+router.post('/create-new-account/start', function (req, res) {
+  res.redirect("choose-account-type");
+})
+
+router.post('/create-new-account/choose-account-type', function (req, res) {
+  res.redirect("about-the-account");
+})
+
+router.post('/create-new-account/about-the-account', function (req, res) {
+  res.redirect("where-is-the-account-based");
+})
+
+router.post('/create-new-account/where-is-the-account-based', function (req, res) {
+  console.log(req.session.data.createNewAccount);
+  if (req.session.data.createNewAccount.basedInTheUK == "yes") {
+    res.redirect("uk-address");
+  } else {
+    res.redirect("international-address");
+  }
+})
+
+router.post('/create-new-account/uk-address', function (req, res) {
+    res.redirect("check-your-answers");
+})
+
+router.post('/create-new-account/international-address', function (req, res) {
+    res.redirect("check-your-answers");
+})
+
+router.post('/create-new-account/check-your-answers', function (req, res) {
+    res.redirect("confirmation");
+})
+
+
 module.exports = router

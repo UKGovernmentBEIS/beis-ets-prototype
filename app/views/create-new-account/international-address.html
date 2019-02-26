@@ -1,0 +1,41 @@
+{% extends "layouts/admin/base-account-question.html" %}
+
+{% block pageTitle %}
+Is the account based in the UK?
+{% endblock %}
+
+
+{% block content %}
+
+
+
+    <form class="form" method="post">
+{% call govukFieldset({
+  legend: {
+    text: "What is the registered address for the account?",
+    classes: "govuk-fieldset__legend--l",
+    isPageHeading: true
+  }
+}) %}
+
+{{ govukTextarea({
+  name: "data.createNewAccount.internationalAddress",
+  id: "internationalAddress",
+  label: {
+    text: "Provide the full address for the account"
+  },
+  hint: {
+    text: "Separate the address onto separate lines"
+  }
+}) }}
+
+{% endcall %}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+
+{% endblock %}

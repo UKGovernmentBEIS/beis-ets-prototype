@@ -1,0 +1,60 @@
+{% extends "layouts/admin/base-account-question.html" %}
+
+{% block pageTitle %}
+  Enter the permit ID
+{% endblock %}
+
+{% block content %}
+
+<style>
+input, select { display: block; }
+</style>
+
+    <form class="form" method="post">
+      {% call govukFieldset({
+        legend: {
+          text: "About the account",
+          classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+          isPageHeading: true
+        }
+      }) %}
+
+      {{ govukInput({
+        label: {
+          text: "Give the new account a name"
+        },
+        hint: {
+          text: "This name will only be visible to you, and other users with permission to interact with the account"
+        },
+        id: "account-name",
+        name: "createNewAccount.accountName",
+        classes: 'govuk-input--width-10',
+        value: data.createNewAccount.accountName
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Permit ID for the new installation"
+        },
+        hint: {
+          text: "eg 'EU-100-47639-0-78'"
+        },
+        id: "permit-id",
+        name: "createNewAccount.permitId",
+        classes: 'govuk-input--width-10',
+        value: data.createNewAccount.permitId
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "Help with account ID",
+        text: "The permit ID will be included in the PDF document produced by the ETS Swap system."
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+      {% endcall %}
+    </form>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "layouts/admin/base-account-question.html" %}
+
+{% block pageTitle %}
+Is the account based in the UK?
+{% endblock %}
+
+
+{% block content %}
+
+
+
+    <form class="form" method="post">
+{% call govukFieldset({
+  legend: {
+    text: "What is the registered address for the account?",
+    classes: "govuk-fieldset__legend--l",
+    isPageHeading: true
+  }
+}) %}
+
+  {{ govukInput({
+    label: {
+      html: 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
+    },
+    id: "address-line-1",
+    name: "data.createNewAccount.data.createNewAccount.address-line-1"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      html: '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
+    },
+    id: "address-line-2",
+    name: "data.createNewAccount.address-line-2"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Town or city"
+    },
+    classes: "govuk-!-width-two-thirds",
+    id: "address-town",
+    name: "data.createNewAccount.address-town"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "County"
+    },
+    classes: "govuk-!-width-two-thirds",
+    id: "address-county",
+    name: "data.createNewAccount.address-county"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Postcode"
+    },
+    classes: "govuk-input--width-10",
+    id: "address-postcode",
+    name: "data.createNewAccount.address-postcode"
+  }) }}
+
+{% endcall %}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+
+{% endblock %}

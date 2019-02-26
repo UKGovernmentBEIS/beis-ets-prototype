@@ -1,0 +1,41 @@
+{% extends "layouts/admin/base-account-question.html" %}
+
+{% block pageTitle %}
+What type of account do you need?
+{% endblock %}
+
+
+{% block content %}
+
+
+   <h1 class="govuk-heading-l">
+What type of account do you need?
+    </h1>
+
+    <form class="form" action="choose-account-type" method="post">
+      {{ govukRadios({
+        idPrefix: "accountType",
+        name: "createNewAccount.accountType",
+        fieldset: {},
+        items: [
+          {
+            value: "trading",
+            text: "A trading account",
+            checked: checked("createNewAccount.accountType",'trading')
+          },
+          {
+            value: "installation",
+            text: "An installation account",
+            checked: checked("createNewAccount.accountType",'installation')
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+
+{% endblock %}
