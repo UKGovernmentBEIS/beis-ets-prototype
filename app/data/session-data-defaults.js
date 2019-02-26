@@ -27,6 +27,16 @@ module.exports = {
 					active: 'false'
 				}
 			],
+  'accountHolders': [
+				{
+					'companyName': 'Lufberg Concrete Ltd.',
+					'registrationNumber': '3242342667',
+					'numberOfTradingAccounts': 3,
+					'numberOfInstallationAccounts': 5,
+					'numberOfAdminUsers': 2,
+					'status': 'active'
+				}
+			],
   'installations': [
     {
       'name': 'Nevern Power Limited',
