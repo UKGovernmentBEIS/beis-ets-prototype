@@ -177,6 +177,48 @@ router.post('/account/:id/transfer-allowance/select-recipient', function (req, r
     res.redirect('new-recipient')
   }
 })
+router.post('/account/:id/transfer-allowance/add-nickname-answer', function (req, res) {
+  res.redirect('amount')
+})
+router.post('/account/:id/transfer-allowance/amount', function (req, res) {
+  res.redirect('check-and-submit-transfer')
+})
+
+router.post('/account/:id/transfer-allowance/check-and-submit-transfer', function (req, res) {
+
+  function getAccountID(str) {
+    return str.split(',')[1]
+}
+  var chosenUnit = req.session.data.etsTransferAllowance.unitType
+  var request
+  switch (chosenUnit) {
+    case 'CER':
+      request = req.session.data.etsTransferAllowance.holdings.CER.moved
+      break
+    case 'ERU':
+      request = req.session.data.etsTransferAllowance.holdings.ERU.moved
+      break
+    default:
+      request = req.session.data.etsTransferAllowance.holdings.generalAllowance.moved
+      break
+  }
+  var recipient = req.session.data.etsTransferAllowance.recepientId || getAccountID(req.session.data.etsTransferAllowance.recipient)
+
+  var newTransferTransaction = {
+    'transactionId': 'EU580697',
+    'started': Date.now(),
+    'lastUpdated': Date.now(),
+    'type': 'Transfer',
+    'units': parseInt(request.toString().replace(/,/g, '')),
+    'unitType': 'allowances',
+    'transferringAccount': req.params.id,
+    'acquiringAccount': recipient,
+    'status': 'Awaiting approval'
+  }
+  // push newly generated transaction onto transactions table
+  req.session.data.transactions.push(newTransferTransaction)
+  res.redirect('confirmation')
+})
 
 router.post('/register-for-ets/account-details-answer', function (req, res) {
   let previousEtsUser = req.session.data.etsRegister.isPreviousEtsUser

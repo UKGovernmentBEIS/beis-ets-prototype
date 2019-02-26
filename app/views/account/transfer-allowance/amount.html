@@ -20,7 +20,7 @@ input, select { display: block; }
         account
       </h1>
 
-    <form class="form" action="check-and-submit-transfer" method="post">
+    <form class="form" action="amount" method="post">
 
         {% if data.etsTransferAllowance.recipientType == 'existing' %}
           {{ govukSelect({
@@ -104,7 +104,7 @@ input, select { display: block; }
           <option value="" {{ 'selected' if checked('etsTransferAllowance.unitType', '') }}>Choose unit</option>
         {% for item in installationData.holdings %}
           {% for unit, value in item %}
-           {% set unitDisplayName = 'Allowance' if unit == 'generalAllowance' else unit %}
+           {% set unitDisplayName = 'allowance' if unit == 'generalAllowance' else unit %}
             <option value="{{ unit }}" {{ 'selected' if checked('etsTransferAllowance.unitType', unit) }}>{{ unitDisplayName }}</option>
           {% endfor %}
         {% endfor %}

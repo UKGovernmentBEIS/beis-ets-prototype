@@ -40,52 +40,7 @@
           </tr>
         </thead>
         <tbody class="govuk-table__body">
-          {% if data.etsTransferAllowance %}
-          <tr class="govuk-table__row govuk-!-font-size-16">
-              <th class="govuk-table__cell" scope="row">EU580697</th>
-              <td class="govuk-table__cell ">
-                {{ currentDate | date("DD MMMM YYYY") }}<br/>
-                {{ currentDate | date("h:mm:ss a") }}
-              </td>
-              <td class="govuk-table__cell ">
-                {{ currentDate | date("DD MMMM YYYY") }}<br/>
-                {{ currentDate | date("h:mm:ss a") }}
-              </td>
-              <td class="govuk-table__cell ">10-05 Transfer Allowances</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric ">
-            {% for unit, value in data.etsTransferAllowance.holdings %}
-                {% set unitDisplayName = 'Allowance' if unit == 'generalAllowance' else unit %}
-                {% if unit == data.etsTransferAllowance.unitType %}
-                {{ value.moved }}
-                {% endif %}
-            {% endfor %}
-              </td>
-              <td class="govuk-table__cell ">
-            {% for unit, value in data.etsTransferAllowance.holdings %}
-                {% set unitDisplayName = 'Allowance' if unit == 'generalAllowance' else unit %}
-                {% if unit == data.etsTransferAllowance.unitType %}
-                {{ unitDisplayName }}
-                {% endif %}
-            {% endfor %}
-              </td>
-              <td class="govuk-table__cell ">{{installationID}}</td>
-              <td class="govuk-table__cell ">
-              {% if data.etsTransferAllowance.recipientType == 'existing' %}
-                {{ data.etsTransferAllowance.recipient}}
-              {% elif data.etsTransferAllowance.recipientType == 'new' %}
-                {{ data.etsTransferAllowance.recepientId }}
-              {% endif %}
-            </td>
-              <td class="govuk-table__cell ">
-                  {% if data.etsTransferAllowance.approved == 'Yes' %}
-                  <span class="jui-status  jui-status--new  govuk-!-margin-left-1">Delayed until {{ currentDate | date("DD MMMM YYYY") }}</span>
-                  {% else %}
-                <span class="jui-status  jui-status--new  govuk-!-margin-left-1" >Awaiting Approval</span>
-                  {% endif %}
-              </td>
-          </tr>
-          {% endif %}
-            {% for tx in data.transactions | sort(true, false, 'started') %}
+         {% for tx in data.transactions | sort(true, false, 'started') %}
           <tr class="govuk-table__row govuk-!-font-size-16">
               <th class="govuk-table__cell" scope="row"><a href="/app/transaction/{{ tx.transactionId }}/">{{ tx.transactionId }}</a></th>
               <td class="govuk-table__cell ">

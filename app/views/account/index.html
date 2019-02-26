@@ -4,9 +4,7 @@
 {% block pageTitle %}Summary {{'- ' + serviceName}}{% endblock %}
 
 {% block content %}
-
       <h2 class="govuk-heading-l">Holdings</h2>
-
       <p>This account holds
         {% for item in installationData.holdings %}
            {%- for unit, value in item -%}
