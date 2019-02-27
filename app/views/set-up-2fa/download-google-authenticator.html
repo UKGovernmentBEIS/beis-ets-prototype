@@ -1,0 +1,53 @@
+{% if data.onBoardingComplete == "Yes" %}
+  {% extends "layouts/admin/base-account-question.html" %}
+{% else %}
+  {% extends "layout.html" %}
+{% endif %}
+
+{% from "warning-text/macro.njk" import govukWarningText %}
+
+{% block pageTitle %}
+Set up two-factor authentication
+{% endblock %}
+
+
+{% block content %}
+
+
+    <h1 class="govuk-heading-l">
+      Download Google Authenticator
+    </h1>
+
+    <form class="form" method="post">
+
+    <h2 class="govuk-heading-m">
+      For iOS
+    </h2>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>On your iPhone, tap the App Store icon.</li>
+      <li>Search for Google Authenticator</li>
+      <li>Tap the app, then download and install it.</li>
+    </ul>
+      {{ govukButton({
+        text: "Continue with iOS"
+      }) }}
+
+    <h2 class="govuk-heading-m">
+      For Android
+    </h2>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>On your phone, tap the Google Play store icon.</li>
+      <li>Search for Google Authenticator</li>
+      <li>Tap the app, then download and install it.</li>
+    </ul>
+
+      {{ govukButton({
+        text: "Continue with Android"
+      }) }}
+
+    </form>
+
+
+{% endblock %}

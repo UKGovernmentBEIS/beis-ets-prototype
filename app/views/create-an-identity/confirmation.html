@@ -1,8 +1,4 @@
-{% if data.onBoardingComplete == "Yes" %}
-  {% extends "layouts/admin/base-account-question.html" %}
-{% else %}
-  {% extends "layout.html" %}
-{% endif %}
+{% extends "layout.html" %}
 
 {% set installationID = '' %}
     {% set installationID = selectedInstallation.permitId %}
@@ -30,7 +26,7 @@
         </div>
       </div>
       {{ govukInsetText({
-        html: "Visit the account page to <a class='govuk-link' href='/register-your-organisation/task-list'>view the transaction</a>."
+        html: "Visit the account page to <a class='govuk-link' href='email-client-simulator'>view the transaction</a>."
       }) }}
       <h2 class="govuk-heading-m"> What happens next</h2>
       {% if data.etsTransferAllowance.recipientType == 'existing' %}

@@ -1,8 +1,4 @@
-{% if data.onBoardingComplete == "Yes" %}
-  {% extends "layouts/admin/base-account-question.html" %}
-{% else %}
-  {% extends "layout.html" %}
-{% endif %}
+{% extends "layout.html" %}
 
 {% set installationID = '' %}
     {% set installationID = selectedInstallation.permitId %}

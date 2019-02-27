@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Enter your email address
+{% endblock %}
+
+{% block beforeContent %}
+<a class="govuk-back-link" href=""<a href="" onclick="javascript:history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<style>
+input, select { display: block; }
+</style>
+
+   <h1 class="govuk-heading-l">
+     Enter your email address
+    </h1>
+    <form class="form" method="POST">
+
+      {{ govukInput({
+        label: {
+          text: "Enter your email address"
+        },
+        id: "emailAddress",
+        name: "userRegistration.emailAddress",
+        classes: 'govuk-input--width-10',
+        value: data.userRegistration.emailAddress
+      }) }}
+
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+{% endblock %}

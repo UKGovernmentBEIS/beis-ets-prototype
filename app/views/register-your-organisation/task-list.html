@@ -57,33 +57,54 @@
             -->
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
-              <a class="app-task-list__task-name" href="#" aria-describedby="eligibility-completed">
-                  Set up an account holder
+              <a class="app-task-list__task-name" href="/user-registration/start" aria-describedby="eligibility-completed">
+                  Provide details about yourself
               </a>
+              {% if data.userRegistrationCompleted == "Yes" %}
               <strong class="govuk-tag app-task-list__task-completed" id="eligibility-completed">Completed</strong>
+              {% endif %}
             </li>
             <li class="app-task-list__item">
-              <a class="app-task-list__task-name" href="#" aria-describedby="read-declaration-completed">
-                  Set up an installation account
+              <a class="app-task-list__task-name" href="/register-an-organisation/start" aria-describedby="eligibility-completed">
+                  Register at least one organisation
               </a>
-              <strong class="govuk-tag app-task-list__task-completed" id="read-declaration-completed">Completed</strong>
+              {% if data.registerAnOrganisationCompleted == "Yes" %}
+              <strong class="govuk-tag app-task-list__task-completed" id="eligibility-completed">Completed</strong>
+              {% endif %}
             </li>
             <li class="app-task-list__item">
-              <a class="app-task-list__task-name" href="#" aria-describedby="read-declaration-completed">
-                  Invite additional Authorised Representatives to use the Registry
+              <a class="app-task-list__task-name" href="/create-new-account/start" aria-describedby="read-declaration-completed">
+                  Create a new installation or trading account for the organisation
               </a>
+              {% if data.createNewAccountCompleted == "Yes" %}
               <strong class="govuk-tag app-task-list__task-completed" id="read-declaration-completed">Completed</strong>
+              {% endif %}
+            </li>
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="/account/add-a-new-authorised-representative/enter-email-address" aria-describedby="read-declaration-completed">
+                  Invite additional Authorised Representatives to use the installation or trading account
+              </a>
+              {% if data.addAnAuthorisedRepresentativeCompleted == "Yes" %}
+              <strong class="govuk-tag app-task-list__task-completed" id="read-declaration-completed">Completed</strong>
+              {% endif %}
             </li>
           </ul>
         </li>
-        
-        
       </ol>
-      <p>You are now ready to start using the system</p>
+              {% if
+              data.userRegistrationCompleted == "Yes" and
+              data.registerAnOrganisationCompleted == "Yes" and
+              data.createNewAccountCompleted == "Yes" and
+              data.addAnAuthorisedRepresentativeCompleted == "Yes" %}
+                <p>You are now ready to start using the system</p>
+                {{ govukButton({
+                  text: "Start using the registry",
+                  href: "../app/dashboard?onBoardingComplete=Yes"
+                }) }}
+              {% else %}
+                <p>You can start using the system when you have completed all these steps.</p>
+              {% endif %}
 
-      <form class="form" action="../app/dashboard" method="post">
-          <button class="govuk-button">Start using the registry</button>
-      </form>
 </div>
 {% endblock %}
 

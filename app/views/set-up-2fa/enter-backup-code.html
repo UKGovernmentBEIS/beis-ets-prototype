@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Enter a backup code
+{% endblock %}
+
+{% block beforeContent %}
+<a class="govuk-back-link" href=""<a href="" onclick="javascript:history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<style>
+input, select { display: block; }
+</style>
+
+   <h1 class="govuk-heading-l">
+     Enter a backup code
+    </h1>
+    <form class="form" method="POST">
+
+      {{ govukInput({
+        label: {
+          text: "Enter on of the backup codes you've printed"
+        },
+        id: "backupCode",
+        name: "twofa.backupCode",
+        classes: 'govuk-input--width-10',
+        value: data.twofa.backupCode
+      }) }}
+
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+{% endblock %}

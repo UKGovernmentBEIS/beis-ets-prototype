@@ -1,4 +1,8 @@
-{% extends "layouts/admin/base-account-question.html" %}
+{% if data.onBoardingComplete == "Yes" %}
+  {% extends "layouts/admin/base-account-question.html" %}
+{% else %}
+  {% extends "layout.html" %}
+{% endif %}
 
 {% block pageTitle %}
   Check before adding a new representative

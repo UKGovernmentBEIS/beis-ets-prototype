@@ -12,7 +12,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action='identification-details' method="POST">
+      <form method="POST">
       {% call govukFieldset({
         legend: {
           text: "Contact details",
@@ -24,20 +24,20 @@
           label: {
             text: "Contact number"
           },
-          id: "contact-number",
-          name: "ets-user-acc[contact-number]",
+          id: "phoneNumber",
+          name: "userRegistration.phoneNumber",
           type:'number',
-          value: data['ets-user-acc']['contact-number']
+          value: data.userRegistration.phoneNumber
         }) }}
 
         {{ govukInput({
           label: {
             text: "Email address"
           },
-          id: "email-address",
-          name: "ets-user-acc[email-address]",
+          id: "emailAddress",
+          name: "userRegistration.emailAddress",
           type: 'email',
-          value: data['ets-user-acc']['email-address']
+          value: data.userRegistration.emailAddress
         }) }}
 
         {{ govukInsetText({
@@ -60,7 +60,7 @@
 <script>
 $(function(){
     
-    $("#email-address").keyup(function(e){
+    $("#emailAddress").keyup(function(e){
       var leghthOfText = $(this).val().length
       if (leghthOfText === 0) {
         $('.show-hide-inset-text').css('display','none');

@@ -1,0 +1,41 @@
+{% if data.onBoardingComplete == "Yes" %}
+  {% extends "layouts/admin/base-account-question.html" %}
+{% else %}
+  {% extends "layout.html" %}
+{% endif %}
+
+{% from "warning-text/macro.njk" import govukWarningText %}
+
+{% block pageTitle %}
+Set up two-factor authentication
+{% endblock %}
+
+
+{% block content %}
+
+
+   <h1 class="govuk-heading-l">
+     Set up two-factor authentication
+    </h1>
+
+    <form class="form" method="post">
+      <p>Two-step verification adds additional protection to your account. When you sign in to the Emissions Trading Registry you'll need to enter both your password and a verification code. This verification code will be generated on your mobile device with an authenticator app.</p>
+      <p>When you access your account or do any kind of transaction on the system, you will always need your password and either one of the following:</a>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>A verification code (from the authenticator app)</li>
+      <li>A backup code</li>
+    </ul>
+
+    {{ govukWarningText({
+      text: "If you cannot provide a verification code or a backup code, you will lose access to your account.",
+      iconFallbackText: "Warning"
+    }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+
+{% endblock %}

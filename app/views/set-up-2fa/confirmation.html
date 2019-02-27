@@ -29,9 +29,15 @@
           Your reference number<br><strong>EU580697</strong>
         </div>
       </div>
-      {{ govukInsetText({
-        html: "Visit the account page to <a class='govuk-link' href='/register-your-organisation/task-list'>view the transaction</a>."
-      }) }}
+      {% if data.registrationJourney == "organisationOnboarding" %}
+        {{ govukInsetText({
+          html: "Visit the account page to <a class='govuk-link' href='/register-your-organisation/task-list'>continue registering your organisation with the UK ETS Registry</a>."
+        }) }}
+      {% else %}
+        {{ govukInsetText({
+          html: "Visit the account page to <a class='govuk-link' href='/user-registration/start'>provide details about yourself</a>."
+        }) }}
+      {% endif %}
       <h2 class="govuk-heading-m"> What happens next</h2>
       {% if data.etsTransferAllowance.recipientType == 'existing' %}
       <div class="govuk-warning-text">

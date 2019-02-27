@@ -1,19 +1,18 @@
-{% if data.onBoardingComplete == "Yes" %}
-  {% extends "layouts/admin/base-account-question.html" %}
-{% else %}
-  {% extends "layout.html" %}
-{% endif %}
+{% extends "layout.html" %}
 
 {% block pageTitle %}
-Select recipient
+Register an organisation
 {% endblock %}
 
+{% block beforeContent %}
+  <a class="govuk-back-link" href="contact-details">Back</a>
+{% endblock %}
 
 {% block content %}
 
 
    <h1 class="govuk-heading-l">
-  Create a new account
+  Register a user
     </h1>
 
     <form class="form" method="post">

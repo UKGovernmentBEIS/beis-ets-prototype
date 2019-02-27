@@ -13,20 +13,8 @@
     <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl">Your identification details</h1>
 
-      <form action='country-and-date-of-birth' method="POST">
+      <form method="POST">
 
-      {% set otherTypeHTML %}
-      {{ govukInput({
-        id: "id-document-number",
-        name: "ets-user-acc[type-of-other]",
-        classes: "govuk-!-width-one-third", 
-        label: {
-          text: "Type of other form of identification",
-          classes:'govuk-visually-hidden'
-        },
-        value: data['ets-user-acc']['type-of-other']
-      }) }}
-      {% endset -%}
       {% call govukFieldset({
         legend: {
           text: "Select the type of your identification document",
@@ -34,43 +22,37 @@
           isPageHeading: false
         }
       }) %}
+
         {{ govukRadios({
-          idPrefix: "identification-document",
-          name: "ets-user-acc[identification-document-type]",
+          idPrefix: "identificationDocument",
+          name: "userRegistration.identificationDocumentType",
           items: [
             {
               value: "passport",
               text: "Passport",
-              checked: checked("['ets-user-acc']['identification-document-type']", 'passport')
+              checked: checked("userRegistration.identificationDocumentType", "passport")
             },
             {
-              value: "driving-licence",
+              value: "drivingLicence",
               text: "Driving licence",
-              checked: checked("['ets-user-acc']['identification-document-type']", 'driving-licence')
-            },
-            {
-              value: "other",
-              text: "Other",
-              checked: checked("['ets-user-acc']['identification-document-type']", 'other'),
-              conditional: {
-                html: otherTypeHTML
-              }
+              checked: checked("userRegistration.identificationDocumentType", "drivingLicence")
             }
           ]
         }) }}
+
         <h2 class="govuk-heading-m">Document identification number</h2>
         {{ govukInput({
-          id: "id-document-number",
-          name: "ets-user-acc[document-number]",
+          id: "id-identificationDocumentNumber",
+          name: "userRegistration.identificationDocumentNumber",
           classes: "govuk-input--width-20", 
           label: {
             text: "Enter the document number"
           },
-          value: data['ets-user-acc']['document-number']
+          value: data.userRegistration.identificationDocumentNumber'
         }) }}
 
         {{ govukDateInput({
-          name: 'ets-user-acc[document-expiry-date]',
+          name: "userRegistration.identificationDocumentExpiryDate",
           fieldset: {
             legend: {
               text: "Document expiry date",
@@ -84,24 +66,24 @@
           items: [
             {
               classes: "govuk-input--width-2",
-              id: "ets-user-acc[document-expiry-date][day]",
+              id: "userRegistration.identificationDocumentExpiryDate.day",
               label: 'Day',
-              name: "ets-user-acc[document-expiry-date][day]",
-              value: data['ets-user-acc']['document-expiry-date']['day']
+              name: "userRegistration.identificationDocumentExpiryDate.day",
+              value: data.userRegistration.identificationDocumentExpiryDate.day'
             },
             {
               classes: "govuk-input--width-2",
               label: "Month",
-              name: "ets-user-acc[document-expiry-date][month]",
-              value: data['ets-user-acc']['document-expiry-date']['month']
+              name: "userRegistration.identificationDocumentExpiryDate.month",
+              value: data.userRegistration.identificationDocumentExpiryDate.month'
             },
             {
               classes: "govuk-input--width-4",
               label: "Year",
-              name: "ets-user-acc[document-expiry-date][year]",
-              value: data['ets-user-acc']['document-expiry-date']['year'] 
+              name: "userRegistration.identificationDocumentExpiryDate.year",
+              value: data.userRegistration.identificationDocumentExpiryDate.year'
             }
-          ]
+            ]
         }) }}
 
         {{ govukButton({

@@ -1,0 +1,44 @@
+{% if data.onBoardingComplete == "Yes" %}
+  {% extends "layouts/admin/base-account-question.html" %}
+{% else %}
+  {% extends "layout.html" %}
+{% endif %}
+
+{% from "warning-text/macro.njk" import govukWarningText %}
+
+{% block pageTitle %}
+Backup codes
+{% endblock %}
+
+
+{% block content %}
+
+
+   <h1 class="govuk-heading-l">
+     Backup codes
+    </h1>
+
+    <form class="form" method="post">
+      <p>Backup codes allow you to access your account whenever you are unable to provide a verification code, which may happen if you are traveling or if you lose your mobile phone. Please print these backup codes or save them in a safe place.</p>
+      <p>If you are unable to provide a verification code and you do not have a backup code, you will be unable to sign in to your Evernote account.</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>1234-1234-1234-1234</li>
+      <li>1234-1234-1234-1234</li>
+      <li>1234-1234-1234-1234</li>
+      <li>1234-1234-1234-1234</li>
+    </ul>
+
+    {{ govukWarningText({
+      text: "If you lose your phone you will not be able to restore your authenticator from a backup. These backup codes are very important, and you will need them if you lose your phone.",
+      iconFallbackText: "Warning"
+    }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+
+{% endblock %}

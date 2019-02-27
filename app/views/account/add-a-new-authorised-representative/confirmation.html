@@ -1,4 +1,8 @@
-{% extends "layouts/admin/base-account-question.html" %}
+{% if data.onBoardingComplete == "Yes" %}
+  {% extends "layouts/admin/base-account-question.html" %}
+{% else %}
+  {% extends "layout.html" %}
+{% endif %}
 {% set selectedInstallation = (data.newLinkedRepresentative.installation) or '' %}
 
 <!-- Adds a class to increase vertical spacing for pages without a back button -->
@@ -16,9 +20,16 @@
             Your reference number<br><strong>EU613749</strong>
         </div>
       </div>
+      
+{% if data.onBoardingComplete == "Yes" %}
       {{ govukInsetText({
         html: "Visit the account page to <a class='govuk-link' href='/account/" + installationID +"'>check the status of your request</a>."
       }) }}
+{% else %}
+      {{ govukInsetText({
+        html: "Visit the account page to <a class='govuk-link' href='/register-your-organisation/task-list'>check the status of your request</a>."
+      }) }}
+{% endif %}
 
       <h2 class="govuk-heading-m">What happens next</h2>
 

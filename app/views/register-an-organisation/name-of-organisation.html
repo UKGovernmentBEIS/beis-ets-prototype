@@ -12,7 +12,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action='contact-details' method="POST">
+      <form method="POST">
       {% call govukFieldset({
         legend: {
           text: "Personal details",
@@ -25,8 +25,8 @@
             text: "Given names"
           },
           id: "given-name",
-          name: "ets-user-acc[given-name]",
-          value: data['ets-user-acc']['given-name']
+          name: "userRegistration.givenName",
+          value: data.userRegistration.givenName
         }) }}
 
         {{ govukInput({
@@ -34,8 +34,8 @@
             text: "Family name"
           },
           id: "family-name",
-          name: "ets-user-acc[family-name]",
-          value: data['ets-user-acc']['family-name']
+          name: "userRegistration.familyName",
+          value: data.userRegistration.familyName
         }) }}
       
         {{ govukButton({

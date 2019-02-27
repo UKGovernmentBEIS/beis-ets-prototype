@@ -12,12 +12,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl">Provide your date and country of birth</h1>
-      <form action='check-and-submit' method="POST">
+      <form method="POST">
       {% call govukFieldset({
       }) %}
 
         {{ govukDateInput({
-          name: 'ets-user-acc[date-of-birth]',
+          name: 'userRegistration.dateOfBirth',
           fieldset: {
             legend: {
               text: "What is your date of birth?",
@@ -31,29 +31,29 @@
           items: [
             {
               classes: "govuk-input--width-2",
-              id: "ets-user-acc[date-of-birth][day]",
+              id: "userRegistration.dateOfBirth.day",
               label: 'Day',
-              name: "ets-user-acc[date-of-birth][day]",
-              value: data['ets-user-acc']['date-of-birth']['day']
+              name: "userRegistration.dateOfBirth.day",
+              value: data.userRegistration.dateOfBirth.day
             },
             {
               classes: "govuk-input--width-2",
               label: "Month",
-              name: "ets-user-acc[date-of-birth][month]",
-              value: data['ets-user-acc']['date-of-birth']['month']
+              name: "userRegistration.dateOfBirth.month",
+              value: data.userRegistration.dateOfBirth.month
             },
             {
               classes: "govuk-input--width-4",
               label: "Year",
-              name: "ets-user-acc[date-of-birth][year]",
-              value: data['ets-user-acc']['date-of-birth']['year']
+              name: "userRegistration.dateOfBirth.year",
+              value: data.userRegistration.dateOfBirth.year
             }
           ]
         }) }}
         <h2 class='govuk-heading-m'>Country of birth</h2>
         {{ govukSelect({
-          id: "country-of-birth",
-          name: "ets-user-acc[country-of-birth]",
+          id: "countryOfBirth",
+          name: "userRegistration.countryOfBirth",
           label: {
             text: "Provide you country of birth"
           },
@@ -70,1282 +70,1282 @@
             {
 text: 'Afghanistan',
 value: 'Afghanistan',
-selected: checked("['ets-user-acc']['country-of-birth']",'Afghanistan')
+selected: checked('userRegistration.countryOfBirth','Afghanistan')
 },
 {
 text: 'Akrotiri',
 value: 'Akrotiri',
-selected: checked("['ets-user-acc']['country-of-birth']",'Akrotiri')
+selected: checked('userRegistration.countryOfBirth','Akrotiri')
 },
 {
 text: 'Albania',
 value: 'Albania',
-selected: checked("['ets-user-acc']['country-of-birth']",'Albania')
+selected: checked('userRegistration.countryOfBirth','Albania')
 },
 {
 text: 'Algeria',
 value: 'Algeria',
-selected: checked("['ets-user-acc']['country-of-birth']",'Algeria')
+selected: checked('userRegistration.countryOfBirth','Algeria')
 },
 {
 text: 'American Samoa',
 value: 'American Samoa',
-selected: checked("['ets-user-acc']['country-of-birth']",'American Samoa')
+selected: checked('userRegistration.countryOfBirth','American Samoa')
 },
 {
 text: 'Andorra',
 value: 'Andorra',
-selected: checked("['ets-user-acc']['country-of-birth']",'Andorra')
+selected: checked('userRegistration.countryOfBirth','Andorra')
 },
 {
 text: 'Angola',
 value: 'Angola',
-selected: checked("['ets-user-acc']['country-of-birth']",'Angola')
+selected: checked('userRegistration.countryOfBirth','Angola')
 },
 {
 text: 'Anguilla',
 value: 'Anguilla',
-selected: checked("['ets-user-acc']['country-of-birth']",'Anguilla')
+selected: checked('userRegistration.countryOfBirth','Anguilla')
 },
 {
 text: 'Antarctica',
 value: 'Antarctica',
-selected: checked("['ets-user-acc']['country-of-birth']",'Antarctica')
+selected: checked('userRegistration.countryOfBirth','Antarctica')
 },
 {
 text: 'Antigua and Barbuda',
 value: 'Antigua and Barbuda',
-selected: checked("['ets-user-acc']['country-of-birth']",'Antigua and Barbuda')
+selected: checked('userRegistration.countryOfBirth','Antigua and Barbuda')
 },
 {
 text: 'Argentina',
 value: 'Argentina',
-selected: checked("['ets-user-acc']['country-of-birth']",'Argentina')
+selected: checked('userRegistration.countryOfBirth','Argentina')
 },
 {
 text: 'Armenia',
 value: 'Armenia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Armenia')
+selected: checked('userRegistration.countryOfBirth','Armenia')
 },
 {
 text: 'Aruba',
 value: 'Aruba',
-selected: checked("['ets-user-acc']['country-of-birth']",'Aruba')
+selected: checked('userRegistration.countryOfBirth','Aruba')
 },
 {
 text: 'Ashmore and Cartier Islands',
 value: 'Ashmore and Cartier Islands',
-selected: checked("['ets-user-acc']['country-of-birth']",'Ashmore and Cartier Islands')
+selected: checked('userRegistration.countryOfBirth','Ashmore and Cartier Islands')
 },
 {
 text: 'Australia',
 value: 'Australia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Australia')
+selected: checked('userRegistration.countryOfBirth','Australia')
 },
 {
 text: 'Austria',
 value: 'Austria',
-selected: checked("['ets-user-acc']['country-of-birth']",'Austria')
+selected: checked('userRegistration.countryOfBirth','Austria')
 },
 {
 text: 'Azerbaijan',
 value: 'Azerbaijan',
-selected: checked("['ets-user-acc']['country-of-birth']",'Azerbaijan')
+selected: checked('userRegistration.countryOfBirth','Azerbaijan')
 },
 {
 text: 'Bahamas, The',
 value: 'Bahamas, The',
-selected: checked("['ets-user-acc']['country-of-birth']",'Bahamas, The')
+selected: checked('userRegistration.countryOfBirth','Bahamas, The')
 },
 {
 text: 'Bahrain',
 value: 'Bahrain',
-selected: checked("['ets-user-acc']['country-of-birth']",'Bahrain')
+selected: checked('userRegistration.countryOfBirth','Bahrain')
 },
 {
 text: 'Bangladesh',
 value: 'Bangladesh',
-selected: checked("['ets-user-acc']['country-of-birth']",'Bangladesh')
+selected: checked('userRegistration.countryOfBirth','Bangladesh')
 },
 {
 text: 'Barbados',
 value: 'Barbados',
-selected: checked("['ets-user-acc']['country-of-birth']",'Barbados')
+selected: checked('userRegistration.countryOfBirth','Barbados')
 },
 {
 text: 'Bassas da India',
 value: 'Bassas da India',
-selected: checked("['ets-user-acc']['country-of-birth']",'Bassas da India')
+selected: checked('userRegistration.countryOfBirth','Bassas da India')
 },
 {
 text: 'Belarus',
 value: 'Belarus',
-selected: checked("['ets-user-acc']['country-of-birth']",'Belarus')
+selected: checked('userRegistration.countryOfBirth','Belarus')
 },
 {
 text: 'Belgium',
 value: 'Belgium',
-selected: checked("['ets-user-acc']['country-of-birth']",'Belgium')
+selected: checked('userRegistration.countryOfBirth','Belgium')
 },
 {
 text: 'Belize',
 value: 'Belize',
-selected: checked("['ets-user-acc']['country-of-birth']",'Belize')
+selected: checked('userRegistration.countryOfBirth','Belize')
 },
 {
 text: 'Benin',
 value: 'Benin',
-selected: checked("['ets-user-acc']['country-of-birth']",'Benin')
+selected: checked('userRegistration.countryOfBirth','Benin')
 },
 {
 text: 'Bermuda',
 value: 'Bermuda',
-selected: checked("['ets-user-acc']['country-of-birth']",'Bermuda')
+selected: checked('userRegistration.countryOfBirth','Bermuda')
 },
 {
 text: 'Bhutan',
 value: 'Bhutan',
-selected: checked("['ets-user-acc']['country-of-birth']",'Bhutan')
+selected: checked('userRegistration.countryOfBirth','Bhutan')
 },
 {
 text: 'Bolivia',
 value: 'Bolivia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Bolivia')
+selected: checked('userRegistration.countryOfBirth','Bolivia')
 },
 {
 text: 'Bosnia and Herzegovina',
 value: 'Bosnia and Herzegovina',
-selected: checked("['ets-user-acc']['country-of-birth']",'Bosnia and Herzegovina')
+selected: checked('userRegistration.countryOfBirth','Bosnia and Herzegovina')
 },
 {
 text: 'Botswana',
 value: 'Botswana',
-selected: checked("['ets-user-acc']['country-of-birth']",'Botswana')
+selected: checked('userRegistration.countryOfBirth','Botswana')
 },
 {
 text: 'Bouvet Island',
 value: 'Bouvet Island',
-selected: checked("['ets-user-acc']['country-of-birth']",'Bouvet Island')
+selected: checked('userRegistration.countryOfBirth','Bouvet Island')
 },
 {
 text: 'Brazil',
 value: 'Brazil',
-selected: checked("['ets-user-acc']['country-of-birth']",'Brazil')
+selected: checked('userRegistration.countryOfBirth','Brazil')
 },
 {
 text: 'British Indian Ocean Territory',
 value: 'British Indian Ocean Territory',
-selected: checked("['ets-user-acc']['country-of-birth']",'British Indian Ocean Territory')
+selected: checked('userRegistration.countryOfBirth','British Indian Ocean Territory')
 },
 {
 text: 'British Virgin Islands',
 value: 'British Virgin Islands',
-selected: checked("['ets-user-acc']['country-of-birth']",'British Virgin Islands')
+selected: checked('userRegistration.countryOfBirth','British Virgin Islands')
 },
 {
 text: 'Brunei',
 value: 'Brunei',
-selected: checked("['ets-user-acc']['country-of-birth']",'Brunei')
+selected: checked('userRegistration.countryOfBirth','Brunei')
 },
 {
 text: 'Bulgaria',
 value: 'Bulgaria',
-selected: checked("['ets-user-acc']['country-of-birth']",'Bulgaria')
+selected: checked('userRegistration.countryOfBirth','Bulgaria')
 },
 {
 text: 'Burkina Faso',
 value: 'Burkina Faso',
-selected: checked("['ets-user-acc']['country-of-birth']",'Burkina Faso')
+selected: checked('userRegistration.countryOfBirth','Burkina Faso')
 },
 {
 text: 'Burma',
 value: 'Burma',
-selected: checked("['ets-user-acc']['country-of-birth']",'Burma')
+selected: checked('userRegistration.countryOfBirth','Burma')
 },
 {
 text: 'Burundi',
 value: 'Burundi',
-selected: checked("['ets-user-acc']['country-of-birth']",'Burundi')
+selected: checked('userRegistration.countryOfBirth','Burundi')
 },
 {
 text: 'Cambodia',
 value: 'Cambodia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Cambodia')
+selected: checked('userRegistration.countryOfBirth','Cambodia')
 },
 {
 text: 'Cameroon',
 value: 'Cameroon',
-selected: checked("['ets-user-acc']['country-of-birth']",'Cameroon')
+selected: checked('userRegistration.countryOfBirth','Cameroon')
 },
 {
 text: 'Canada',
 value: 'Canada',
-selected: checked("['ets-user-acc']['country-of-birth']",'Canada')
+selected: checked('userRegistration.countryOfBirth','Canada')
 },
 {
 text: 'Cape Verde',
 value: 'Cape Verde',
-selected: checked("['ets-user-acc']['country-of-birth']",'Cape Verde')
+selected: checked('userRegistration.countryOfBirth','Cape Verde')
 },
 {
 text: 'Cayman Islands',
 value: 'Cayman Islands',
-selected: checked("['ets-user-acc']['country-of-birth']",'Cayman Islands')
+selected: checked('userRegistration.countryOfBirth','Cayman Islands')
 },
 {
 text: 'Central African Republic',
 value: 'Central African Republic',
-selected: checked("['ets-user-acc']['country-of-birth']",'Central African Republic')
+selected: checked('userRegistration.countryOfBirth','Central African Republic')
 },
 {
 text: 'Chad',
 value: 'Chad',
-selected: checked("['ets-user-acc']['country-of-birth']",'Chad')
+selected: checked('userRegistration.countryOfBirth','Chad')
 },
 {
 text: 'Chile',
 value: 'Chile',
-selected: checked("['ets-user-acc']['country-of-birth']",'Chile')
+selected: checked('userRegistration.countryOfBirth','Chile')
 },
 {
 text: 'China',
 value: 'China',
-selected: checked("['ets-user-acc']['country-of-birth']",'China')
+selected: checked('userRegistration.countryOfBirth','China')
 },
 {
 text: 'Christmas Island',
 value: 'Christmas Island',
-selected: checked("['ets-user-acc']['country-of-birth']",'Christmas Island')
+selected: checked('userRegistration.countryOfBirth','Christmas Island')
 },
 {
 text: 'Clipperton Island',
 value: 'Clipperton Island',
-selected: checked("['ets-user-acc']['country-of-birth']",'Clipperton Island')
+selected: checked('userRegistration.countryOfBirth','Clipperton Island')
 },
 {
 text: 'Cocos (Keeling) Islands',
 value: 'Cocos (Keeling) Islands',
-selected: checked("['ets-user-acc']['country-of-birth']",'Cocos (Keeling) Islands')
+selected: checked('userRegistration.countryOfBirth','Cocos (Keeling) Islands')
 },
 {
 text: 'Colombia',
 value: 'Colombia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Colombia')
+selected: checked('userRegistration.countryOfBirth','Colombia')
 },
 {
 text: 'Comoros',
 value: 'Comoros',
-selected: checked("['ets-user-acc']['country-of-birth']",'Comoros')
+selected: checked('userRegistration.countryOfBirth','Comoros')
 },
 {
 text: 'Congo',
 value: 'Congo',
-selected: checked("['ets-user-acc']['country-of-birth']",'Congo')
+selected: checked('userRegistration.countryOfBirth','Congo')
 },
 {
 text: 'Cook Islands',
 value: 'Cook Islands',
-selected: checked("['ets-user-acc']['country-of-birth']",'Cook Islands')
+selected: checked('userRegistration.countryOfBirth','Cook Islands')
 },
 {
 text: 'Coral Sea Islands',
 value: 'Coral Sea Islands',
-selected: checked("['ets-user-acc']['country-of-birth']",'Coral Sea Islands')
+selected: checked('userRegistration.countryOfBirth','Coral Sea Islands')
 },
 {
 text: 'Costa Rica',
 value: 'Costa Rica',
-selected: checked("['ets-user-acc']['country-of-birth']",'Costa Rica')
+selected: checked('userRegistration.countryOfBirth','Costa Rica')
 },
 {
 text: "Cote d'Ivoire",
 value: "Cote d'Ivoire",
-selected: checked("['ets-user-acc']['country-of-birth']","Cote d'Ivoire")
+selected: checked('userRegistration.countryOfBirth',"Cote d'Ivoire")
 },
 {
 text: 'Croatia',
 value: 'Croatia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Croatia')
+selected: checked('userRegistration.countryOfBirth','Croatia')
 },
 {
 text: 'Cuba',
 value: 'Cuba',
-selected: checked("['ets-user-acc']['country-of-birth']",'Cuba')
+selected: checked('userRegistration.countryOfBirth','Cuba')
 },
 {
 text: 'Cyprus',
 value: 'Cyprus',
-selected: checked("['ets-user-acc']['country-of-birth']",'Cyprus')
+selected: checked('userRegistration.countryOfBirth','Cyprus')
 },
 {
 text: 'Czech Republic',
 value: 'Czech Republic',
-selected: checked("['ets-user-acc']['country-of-birth']",'Czech Republic')
+selected: checked('userRegistration.countryOfBirth','Czech Republic')
 },
 {
 text: 'Denmark',
 value: 'Denmark',
-selected: checked("['ets-user-acc']['country-of-birth']",'Denmark')
+selected: checked('userRegistration.countryOfBirth','Denmark')
 },
 {
 text: 'Dhekelia',
 value: 'Dhekelia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Dhekelia')
+selected: checked('userRegistration.countryOfBirth','Dhekelia')
 },
 {
 text: 'Djibouti',
 value: 'Djibouti',
-selected: checked("['ets-user-acc']['country-of-birth']",'Djibouti')
+selected: checked('userRegistration.countryOfBirth','Djibouti')
 },
 {
 text: 'Dominica',
 value: 'Dominica',
-selected: checked("['ets-user-acc']['country-of-birth']",'Dominica')
+selected: checked('userRegistration.countryOfBirth','Dominica')
 },
 {
 text: 'Dominican Republic',
 value: 'Dominican Republic',
-selected: checked("['ets-user-acc']['country-of-birth']",'Dominican Republic')
+selected: checked('userRegistration.countryOfBirth','Dominican Republic')
 },
 {
 text: 'Ecuador',
 value: 'Ecuador',
-selected: checked("['ets-user-acc']['country-of-birth']",'Ecuador')
+selected: checked('userRegistration.countryOfBirth','Ecuador')
 },
 {
 text: 'Egypt',
 value: 'Egypt',
-selected: checked("['ets-user-acc']['country-of-birth']",'Egypt')
+selected: checked('userRegistration.countryOfBirth','Egypt')
 },
 {
 text: 'El Salvador',
 value: 'El Salvador',
-selected: checked("['ets-user-acc']['country-of-birth']",'El Salvador')
+selected: checked('userRegistration.countryOfBirth','El Salvador')
 },
 {
 text: 'Equatorial Guinea',
 value: 'Equatorial Guinea',
-selected: checked("['ets-user-acc']['country-of-birth']",'Equatorial Guinea')
+selected: checked('userRegistration.countryOfBirth','Equatorial Guinea')
 },
 {
 text: 'Eritrea',
 value: 'Eritrea',
-selected: checked("['ets-user-acc']['country-of-birth']",'Eritrea')
+selected: checked('userRegistration.countryOfBirth','Eritrea')
 },
 {
 text: 'Estonia',
 value: 'Estonia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Estonia')
+selected: checked('userRegistration.countryOfBirth','Estonia')
 },
 {
 text: 'Ethiopia',
 value: 'Ethiopia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Ethiopia')
+selected: checked('userRegistration.countryOfBirth','Ethiopia')
 },
 {
 text: 'Europa Island',
 value: 'Europa Island',
-selected: checked("['ets-user-acc']['country-of-birth']",'Europa Island')
+selected: checked('userRegistration.countryOfBirth','Europa Island')
 },
 {
 text: 'Falkland Islands',
 value: 'Falkland Islands',
-selected: checked("['ets-user-acc']['country-of-birth']",'Falkland Islands')
+selected: checked('userRegistration.countryOfBirth','Falkland Islands')
 },
 {
 text: 'Faroe Islands',
 value: 'Faroe Islands',
-selected: checked("['ets-user-acc']['country-of-birth']",'Faroe Islands')
+selected: checked('userRegistration.countryOfBirth','Faroe Islands')
 },
 {
 text: 'Fiji',
 value: 'Fiji',
-selected: checked("['ets-user-acc']['country-of-birth']",'Fiji')
+selected: checked('userRegistration.countryOfBirth','Fiji')
 },
 {
 text: 'Finland',
 value: 'Finland',
-selected: checked("['ets-user-acc']['country-of-birth']",'Finland')
+selected: checked('userRegistration.countryOfBirth','Finland')
 },
 {
 text: 'France',
 value: 'France',
-selected: checked("['ets-user-acc']['country-of-birth']",'France')
+selected: checked('userRegistration.countryOfBirth','France')
 },
 {
 text: 'French Guiana',
 value: 'French Guiana',
-selected: checked("['ets-user-acc']['country-of-birth']",'French Guiana')
+selected: checked('userRegistration.countryOfBirth','French Guiana')
 },
 {
 text: 'French Polynesia',
 value: 'French Polynesia',
-selected: checked("['ets-user-acc']['country-of-birth']",'French Polynesia')
+selected: checked('userRegistration.countryOfBirth','French Polynesia')
 },
 {
 text: 'French Southern and Antarctic Lands',
 value: 'French Southern and Antarctic Lands',
-selected: checked("['ets-user-acc']['country-of-birth']",'French Southern and Antarctic Lands')
+selected: checked('userRegistration.countryOfBirth','French Southern and Antarctic Lands')
 },
 {
 text: 'Gabon',
 value: 'Gabon',
-selected: checked("['ets-user-acc']['country-of-birth']",'Gabon')
+selected: checked('userRegistration.countryOfBirth','Gabon')
 },
 {
 text: 'Gambia,',
 value: 'Gambia,',
-selected: checked("['ets-user-acc']['country-of-birth']",'Gambia,')
+selected: checked('userRegistration.countryOfBirth','Gambia,')
 },
 {
 text: 'Gaza Strip',
 value: 'Gaza Strip',
-selected: checked("['ets-user-acc']['country-of-birth']",'Gaza Strip')
+selected: checked('userRegistration.countryOfBirth','Gaza Strip')
 },
 {
 text: 'Georgia',
 value: 'Georgia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Georgia')
+selected: checked('userRegistration.countryOfBirth','Georgia')
 },
 {
 text: 'Germany',
 value: 'Germany',
-selected: checked("['ets-user-acc']['country-of-birth']",'Germany')
+selected: checked('userRegistration.countryOfBirth','Germany')
 },
 {
 text: 'Ghana',
 value: 'Ghana',
-selected: checked("['ets-user-acc']['country-of-birth']",'Ghana')
+selected: checked('userRegistration.countryOfBirth','Ghana')
 },
 {
 text: 'Gibraltar',
 value: 'Gibraltar',
-selected: checked("['ets-user-acc']['country-of-birth']",'Gibraltar')
+selected: checked('userRegistration.countryOfBirth','Gibraltar')
 },
 {
 text: 'Glorioso Islands',
 value: 'Glorioso Islands',
-selected: checked("['ets-user-acc']['country-of-birth']",'Glorioso Islands')
+selected: checked('userRegistration.countryOfBirth','Glorioso Islands')
 },
 {
 text: 'Greece',
 value: 'Greece',
-selected: checked("['ets-user-acc']['country-of-birth']",'Greece')
+selected: checked('userRegistration.countryOfBirth','Greece')
 },
 {
 text: 'Greenland',
 value: 'Greenland',
-selected: checked("['ets-user-acc']['country-of-birth']",'Greenland')
+selected: checked('userRegistration.countryOfBirth','Greenland')
 },
 {
 text: 'Grenada',
 value: 'Grenada',
-selected: checked("['ets-user-acc']['country-of-birth']",'Grenada')
+selected: checked('userRegistration.countryOfBirth','Grenada')
 },
 {
 text: 'Guadeloupe',
 value: 'Guadeloupe',
-selected: checked("['ets-user-acc']['country-of-birth']",'Guadeloupe')
+selected: checked('userRegistration.countryOfBirth','Guadeloupe')
 },
 {
 text: 'Guam',
 value: 'Guam',
-selected: checked("['ets-user-acc']['country-of-birth']",'Guam')
+selected: checked('userRegistration.countryOfBirth','Guam')
 },
 {
 text: 'Guatemala',
 value: 'Guatemala',
-selected: checked("['ets-user-acc']['country-of-birth']",'Guatemala')
+selected: checked('userRegistration.countryOfBirth','Guatemala')
 },
 {
 text: 'Guernsey',
 value: 'Guernsey',
-selected: checked("['ets-user-acc']['country-of-birth']",'Guernsey')
+selected: checked('userRegistration.countryOfBirth','Guernsey')
 },
 {
 text: 'Guinea',
 value: 'Guinea',
-selected: checked("['ets-user-acc']['country-of-birth']",'Guinea')
+selected: checked('userRegistration.countryOfBirth','Guinea')
 },
 {
 text: 'Guinea-Bissau',
 value: 'Guinea-Bissau',
-selected: checked("['ets-user-acc']['country-of-birth']",'Guinea-Bissau')
+selected: checked('userRegistration.countryOfBirth','Guinea-Bissau')
 },
 {
 text: 'Guyana',
 value: 'Guyana',
-selected: checked("['ets-user-acc']['country-of-birth']",'Guyana')
+selected: checked('userRegistration.countryOfBirth','Guyana')
 },
 {
 text: 'Haiti',
 value: 'Haiti',
-selected: checked("['ets-user-acc']['country-of-birth']",'Haiti')
+selected: checked('userRegistration.countryOfBirth','Haiti')
 },
 {
 text: 'Heard Island and McDonald Islands',
 value: 'Heard Island and McDonald Islands',
-selected: checked("['ets-user-acc']['country-of-birth']",'Heard Island and McDonald Islands')
+selected: checked('userRegistration.countryOfBirth','Heard Island and McDonald Islands')
 },
 {
 text: 'Holy See (Vatican City)',
 value: 'Holy See (Vatican City)',
-selected: checked("['ets-user-acc']['country-of-birth']",'Holy See (Vatican City)')
+selected: checked('userRegistration.countryOfBirth','Holy See (Vatican City)')
 },
 {
 text: 'Honduras',
 value: 'Honduras',
-selected: checked("['ets-user-acc']['country-of-birth']",'Honduras')
+selected: checked('userRegistration.countryOfBirth','Honduras')
 },
 {
 text: 'Hong Kong',
 value: 'Hong Kong',
-selected: checked("['ets-user-acc']['country-of-birth']",'Hong Kong')
+selected: checked('userRegistration.countryOfBirth','Hong Kong')
 },
 {
 text: 'Hungary',
 value: 'Hungary',
-selected: checked("['ets-user-acc']['country-of-birth']",'Hungary')
+selected: checked('userRegistration.countryOfBirth','Hungary')
 },
 {
 text: 'Iceland',
 value: 'Iceland',
-selected: checked("['ets-user-acc']['country-of-birth']",'Iceland')
+selected: checked('userRegistration.countryOfBirth','Iceland')
 },
 {
 text: 'India',
 value: 'India',
-selected: checked("['ets-user-acc']['country-of-birth']",'India')
+selected: checked('userRegistration.countryOfBirth','India')
 },
 {
 text: 'Indonesia',
 value: 'Indonesia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Indonesia')
+selected: checked('userRegistration.countryOfBirth','Indonesia')
 },
 {
 text: 'Iran',
 value: 'Iran',
-selected: checked("['ets-user-acc']['country-of-birth']",'Iran')
+selected: checked('userRegistration.countryOfBirth','Iran')
 },
 {
 text: 'Iraq',
 value: 'Iraq',
-selected: checked("['ets-user-acc']['country-of-birth']",'Iraq')
+selected: checked('userRegistration.countryOfBirth','Iraq')
 },
 {
 text: 'Ireland',
 value: 'Ireland',
-selected: checked("['ets-user-acc']['country-of-birth']",'Ireland')
+selected: checked('userRegistration.countryOfBirth','Ireland')
 },
 {
 text: 'Isle of Man',
 value: 'Isle of Man',
-selected: checked("['ets-user-acc']['country-of-birth']",'Isle of Man')
+selected: checked('userRegistration.countryOfBirth','Isle of Man')
 },
 {
 text: 'Israel',
 value: 'Israel',
-selected: checked("['ets-user-acc']['country-of-birth']",'Israel')
+selected: checked('userRegistration.countryOfBirth','Israel')
 },
 {
 text: 'Italy',
 value: 'Italy',
-selected: checked("['ets-user-acc']['country-of-birth']",'Italy')
+selected: checked('userRegistration.countryOfBirth','Italy')
 },
 {
 text: 'Jamaica',
 value: 'Jamaica',
-selected: checked("['ets-user-acc']['country-of-birth']",'Jamaica')
+selected: checked('userRegistration.countryOfBirth','Jamaica')
 },
 {
 text: 'Jan Mayen',
 value: 'Jan Mayen',
-selected: checked("['ets-user-acc']['country-of-birth']",'Jan Mayen')
+selected: checked('userRegistration.countryOfBirth','Jan Mayen')
 },
 {
 text: 'Japan',
 value: 'Japan',
-selected: checked("['ets-user-acc']['country-of-birth']",'Japan')
+selected: checked('userRegistration.countryOfBirth','Japan')
 },
 {
 text: 'Jersey',
 value: 'Jersey',
-selected: checked("['ets-user-acc']['country-of-birth']",'Jersey')
+selected: checked('userRegistration.countryOfBirth','Jersey')
 },
 {
 text: 'Jordan',
 value: 'Jordan',
-selected: checked("['ets-user-acc']['country-of-birth']",'Jordan')
+selected: checked('userRegistration.countryOfBirth','Jordan')
 },
 {
 text: 'Juan de Nova Island',
 value: 'Juan de Nova Island',
-selected: checked("['ets-user-acc']['country-of-birth']",'Juan de Nova Island')
+selected: checked('userRegistration.countryOfBirth','Juan de Nova Island')
 },
 {
 text: 'Kazakhstan',
 value: 'Kazakhstan',
-selected: checked("['ets-user-acc']['country-of-birth']",'Kazakhstan')
+selected: checked('userRegistration.countryOfBirth','Kazakhstan')
 },
 {
 text: 'Kenya',
 value: 'Kenya',
-selected: checked("['ets-user-acc']['country-of-birth']",'Kenya')
+selected: checked('userRegistration.countryOfBirth','Kenya')
 },
 {
 text: 'Kiribati',
 value: 'Kiribati',
-selected: checked("['ets-user-acc']['country-of-birth']",'Kiribati')
+selected: checked('userRegistration.countryOfBirth','Kiribati')
 },
 {
 text: 'Korea, North',
 value: 'Korea, North',
-selected: checked("['ets-user-acc']['country-of-birth']",'Korea, North')
+selected: checked('userRegistration.countryOfBirth','Korea, North')
 },
 {
 text: 'Korea, South',
 value: 'Korea, South',
-selected: checked("['ets-user-acc']['country-of-birth']",'Korea, South')
+selected: checked('userRegistration.countryOfBirth','Korea, South')
 },
 {
 text: 'Kuwait',
 value: 'Kuwait',
-selected: checked("['ets-user-acc']['country-of-birth']",'Kuwait')
+selected: checked('userRegistration.countryOfBirth','Kuwait')
 },
 {
 text: 'Kyrgyzstan',
 value: 'Kyrgyzstan',
-selected: checked("['ets-user-acc']['country-of-birth']",'Kyrgyzstan')
+selected: checked('userRegistration.countryOfBirth','Kyrgyzstan')
 },
 {
 text: 'Laos',
 value: 'Laos',
-selected: checked("['ets-user-acc']['country-of-birth']",'Laos')
+selected: checked('userRegistration.countryOfBirth','Laos')
 },
 {
 text: 'Latvia',
 value: 'Latvia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Latvia')
+selected: checked('userRegistration.countryOfBirth','Latvia')
 },
 {
 text: 'Lebanon',
 value: 'Lebanon',
-selected: checked("['ets-user-acc']['country-of-birth']",'Lebanon')
+selected: checked('userRegistration.countryOfBirth','Lebanon')
 },
 {
 text: 'Lesotho',
 value: 'Lesotho',
-selected: checked("['ets-user-acc']['country-of-birth']",'Lesotho')
+selected: checked('userRegistration.countryOfBirth','Lesotho')
 },
 {
 text: 'Liberia',
 value: 'Liberia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Liberia')
+selected: checked('userRegistration.countryOfBirth','Liberia')
 },
 {
 text: 'Libya',
 value: 'Libya',
-selected: checked("['ets-user-acc']['country-of-birth']",'Libya')
+selected: checked('userRegistration.countryOfBirth','Libya')
 },
 {
 text: 'Liechtenstein',
 value: 'Liechtenstein',
-selected: checked("['ets-user-acc']['country-of-birth']",'Liechtenstein')
+selected: checked('userRegistration.countryOfBirth','Liechtenstein')
 },
 {
 text: 'Lithuania',
 value: 'Lithuania',
-selected: checked("['ets-user-acc']['country-of-birth']",'Lithuania')
+selected: checked('userRegistration.countryOfBirth','Lithuania')
 },
 {
 text: 'Luxembourg',
 value: 'Luxembourg',
-selected: checked("['ets-user-acc']['country-of-birth']",'Luxembourg')
+selected: checked('userRegistration.countryOfBirth','Luxembourg')
 },
 {
 text: 'Macau',
 value: 'Macau',
-selected: checked("['ets-user-acc']['country-of-birth']",'Macau')
+selected: checked('userRegistration.countryOfBirth','Macau')
 },
 {
 text: 'Macedonia',
 value: 'Macedonia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Macedonia')
+selected: checked('userRegistration.countryOfBirth','Macedonia')
 },
 {
 text: 'Madagascar',
 value: 'Madagascar',
-selected: checked("['ets-user-acc']['country-of-birth']",'Madagascar')
+selected: checked('userRegistration.countryOfBirth','Madagascar')
 },
 {
 text: 'Malawi',
 value: 'Malawi',
-selected: checked("['ets-user-acc']['country-of-birth']",'Malawi')
+selected: checked('userRegistration.countryOfBirth','Malawi')
 },
 {
 text: 'Malaysia',
 value: 'Malaysia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Malaysia')
+selected: checked('userRegistration.countryOfBirth','Malaysia')
 },
 {
 text: 'Maldives',
 value: 'Maldives',
-selected: checked("['ets-user-acc']['country-of-birth']",'Maldives')
+selected: checked('userRegistration.countryOfBirth','Maldives')
 },
 {
 text: 'Mali',
 value: 'Mali',
-selected: checked("['ets-user-acc']['country-of-birth']",'Mali')
+selected: checked('userRegistration.countryOfBirth','Mali')
 },
 {
 text: 'Malta',
 value: 'Malta',
-selected: checked("['ets-user-acc']['country-of-birth']",'Malta')
+selected: checked('userRegistration.countryOfBirth','Malta')
 },
 {
 text: 'Marshall Islands',
 value: 'Marshall Islands',
-selected: checked("['ets-user-acc']['country-of-birth']",'Marshall Islands')
+selected: checked('userRegistration.countryOfBirth','Marshall Islands')
 },
 {
 text: 'Martinique',
 value: 'Martinique',
-selected: checked("['ets-user-acc']['country-of-birth']",'Martinique')
+selected: checked('userRegistration.countryOfBirth','Martinique')
 },
 {
 text: 'Mauritania',
 value: 'Mauritania',
-selected: checked("['ets-user-acc']['country-of-birth']",'Mauritania')
+selected: checked('userRegistration.countryOfBirth','Mauritania')
 },
 {
 text: 'Mauritius',
 value: 'Mauritius',
-selected: checked("['ets-user-acc']['country-of-birth']",'Mauritius')
+selected: checked('userRegistration.countryOfBirth','Mauritius')
 },
 {
 text: 'Mayotte',
 value: 'Mayotte',
-selected: checked("['ets-user-acc']['country-of-birth']",'Mayotte')
+selected: checked('userRegistration.countryOfBirth','Mayotte')
 },
 {
 text: 'Mexico',
 value: 'Mexico',
-selected: checked("['ets-user-acc']['country-of-birth']",'Mexico')
+selected: checked('userRegistration.countryOfBirth','Mexico')
 },
 {
 text: 'Micronesia, Federated States of',
 value: 'Micronesia, Federated States of',
-selected: checked("['ets-user-acc']['country-of-birth']",'Micronesia, Federated States of')
+selected: checked('userRegistration.countryOfBirth','Micronesia, Federated States of')
 },
 {
 text: 'Moldova',
 value: 'Moldova',
-selected: checked("['ets-user-acc']['country-of-birth']",'Moldova')
+selected: checked('userRegistration.countryOfBirth','Moldova')
 },
 {
 text: 'Monaco',
 value: 'Monaco',
-selected: checked("['ets-user-acc']['country-of-birth']",'Monaco')
+selected: checked('userRegistration.countryOfBirth','Monaco')
 },
 {
 text: 'Mongolia',
 value: 'Mongolia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Mongolia')
+selected: checked('userRegistration.countryOfBirth','Mongolia')
 },
 {
 text: 'Montserrat',
 value: 'Montserrat',
-selected: checked("['ets-user-acc']['country-of-birth']",'Montserrat')
+selected: checked('userRegistration.countryOfBirth','Montserrat')
 },
 {
 text: 'Morocco',
 value: 'Morocco',
-selected: checked("['ets-user-acc']['country-of-birth']",'Morocco')
+selected: checked('userRegistration.countryOfBirth','Morocco')
 },
 {
 text: 'Mozambique',
 value: 'Mozambique',
-selected: checked("['ets-user-acc']['country-of-birth']",'Mozambique')
+selected: checked('userRegistration.countryOfBirth','Mozambique')
 },
 {
 text: 'Namibia',
 value: 'Namibia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Namibia')
+selected: checked('userRegistration.countryOfBirth','Namibia')
 },
 {
 text: 'Nauru',
 value: 'Nauru',
-selected: checked("['ets-user-acc']['country-of-birth']",'Nauru')
+selected: checked('userRegistration.countryOfBirth','Nauru')
 },
 {
 text: 'Navassa Island',
 value: 'Navassa Island',
-selected: checked("['ets-user-acc']['country-of-birth']",'Navassa Island')
+selected: checked('userRegistration.countryOfBirth','Navassa Island')
 },
 {
 text: 'Nepal',
 value: 'Nepal',
-selected: checked("['ets-user-acc']['country-of-birth']",'Nepal')
+selected: checked('userRegistration.countryOfBirth','Nepal')
 },
 {
 text: 'Netherlands',
 value: 'Netherlands',
-selected: checked("['ets-user-acc']['country-of-birth']",'Netherlands')
+selected: checked('userRegistration.countryOfBirth','Netherlands')
 },
 {
 text: 'Netherlands Antilles',
 value: 'Netherlands Antilles',
-selected: checked("['ets-user-acc']['country-of-birth']",'Netherlands Antilles')
+selected: checked('userRegistration.countryOfBirth','Netherlands Antilles')
 },
 {
 text: 'New Caledonia',
 value: 'New Caledonia',
-selected: checked("['ets-user-acc']['country-of-birth']",'New Caledonia')
+selected: checked('userRegistration.countryOfBirth','New Caledonia')
 },
 {
 text: 'New Zealand',
 value: 'New Zealand',
-selected: checked("['ets-user-acc']['country-of-birth']",'New Zealand')
+selected: checked('userRegistration.countryOfBirth','New Zealand')
 },
 {
 text: 'Nicaragua',
 value: 'Nicaragua',
-selected: checked("['ets-user-acc']['country-of-birth']",'Nicaragua')
+selected: checked('userRegistration.countryOfBirth','Nicaragua')
 },
 {
 text: 'Niger',
 value: 'Niger',
-selected: checked("['ets-user-acc']['country-of-birth']",'Niger')
+selected: checked('userRegistration.countryOfBirth','Niger')
 },
 {
 text: 'Nigeria',
 value: 'Nigeria',
-selected: checked("['ets-user-acc']['country-of-birth']",'Nigeria')
+selected: checked('userRegistration.countryOfBirth','Nigeria')
 },
 {
 text: 'Niue',
 value: 'Niue',
-selected: checked("['ets-user-acc']['country-of-birth']",'Niue')
+selected: checked('userRegistration.countryOfBirth','Niue')
 },
 {
 text: 'Norfolk Island',
 value: 'Norfolk Island',
-selected: checked("['ets-user-acc']['country-of-birth']",'Norfolk Island')
+selected: checked('userRegistration.countryOfBirth','Norfolk Island')
 },
 {
 text: 'Northern Mariana Islands',
 value: 'Northern Mariana Islands',
-selected: checked("['ets-user-acc']['country-of-birth']",'Northern Mariana Islands')
+selected: checked('userRegistration.countryOfBirth','Northern Mariana Islands')
 },
 {
 text: 'Norway',
 value: 'Norway',
-selected: checked("['ets-user-acc']['country-of-birth']",'Norway')
+selected: checked('userRegistration.countryOfBirth','Norway')
 },
 {
 text: 'Oman',
 value: 'Oman',
-selected: checked("['ets-user-acc']['country-of-birth']",'Oman')
+selected: checked('userRegistration.countryOfBirth','Oman')
 },
 {
 text: 'Pakistan',
 value: 'Pakistan',
-selected: checked("['ets-user-acc']['country-of-birth']",'Pakistan')
+selected: checked('userRegistration.countryOfBirth','Pakistan')
 },
 {
 text: 'Palau',
 value: 'Palau',
-selected: checked("['ets-user-acc']['country-of-birth']",'Palau')
+selected: checked('userRegistration.countryOfBirth','Palau')
 },
 {
 text: 'Panama',
 value: 'Panama',
-selected: checked("['ets-user-acc']['country-of-birth']",'Panama')
+selected: checked('userRegistration.countryOfBirth','Panama')
 },
 {
 text: 'Papua New Guinea',
 value: 'Papua New Guinea',
-selected: checked("['ets-user-acc']['country-of-birth']",'Papua New Guinea')
+selected: checked('userRegistration.countryOfBirth','Papua New Guinea')
 },
 {
 text: 'Paracel Islands',
 value: 'Paracel Islands',
-selected: checked("['ets-user-acc']['country-of-birth']",'Paracel Islands')
+selected: checked('userRegistration.countryOfBirth','Paracel Islands')
 },
 {
 text: 'Paraguay',
 value: 'Paraguay',
-selected: checked("['ets-user-acc']['country-of-birth']",'Paraguay')
+selected: checked('userRegistration.countryOfBirth','Paraguay')
 },
 {
 text: 'Peru',
 value: 'Peru',
-selected: checked("['ets-user-acc']['country-of-birth']",'Peru')
+selected: checked('userRegistration.countryOfBirth','Peru')
 },
 {
 text: 'Philippines',
 value: 'Philippines',
-selected: checked("['ets-user-acc']['country-of-birth']",'Philippines')
+selected: checked('userRegistration.countryOfBirth','Philippines')
 },
 {
 text: 'Pitcairn Islands',
 value: 'Pitcairn Islands',
-selected: checked("['ets-user-acc']['country-of-birth']",'Pitcairn Islands')
+selected: checked('userRegistration.countryOfBirth','Pitcairn Islands')
 },
 {
 text: 'Poland',
 value: 'Poland',
-selected: checked("['ets-user-acc']['country-of-birth']",'Poland')
+selected: checked('userRegistration.countryOfBirth','Poland')
 },
 {
 text: 'Portugal',
 value: 'Portugal',
-selected: checked("['ets-user-acc']['country-of-birth']",'Portugal')
+selected: checked('userRegistration.countryOfBirth','Portugal')
 },
 {
 text: 'Puerto Rico',
 value: 'Puerto Rico',
-selected: checked("['ets-user-acc']['country-of-birth']",'Puerto Rico')
+selected: checked('userRegistration.countryOfBirth','Puerto Rico')
 },
 {
 text: 'Qatar',
 value: 'Qatar',
-selected: checked("['ets-user-acc']['country-of-birth']",'Qatar')
+selected: checked('userRegistration.countryOfBirth','Qatar')
 },
 {
 text: 'Reunion',
 value: 'Reunion',
-selected: checked("['ets-user-acc']['country-of-birth']",'Reunion')
+selected: checked('userRegistration.countryOfBirth','Reunion')
 },
 {
 text: 'Romania',
 value: 'Romania',
-selected: checked("['ets-user-acc']['country-of-birth']",'Romania')
+selected: checked('userRegistration.countryOfBirth','Romania')
 },
 {
 text: 'Russia',
 value: 'Russia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Russia')
+selected: checked('userRegistration.countryOfBirth','Russia')
 },
 {
 text: 'Rwanda',
 value: 'Rwanda',
-selected: checked("['ets-user-acc']['country-of-birth']",'Rwanda')
+selected: checked('userRegistration.countryOfBirth','Rwanda')
 },
 {
 text: 'Saint Helena',
 value: 'Saint Helena',
-selected: checked("['ets-user-acc']['country-of-birth']",'Saint Helena')
+selected: checked('userRegistration.countryOfBirth','Saint Helena')
 },
 {
 text: 'Saint Kitts and Nevis',
 value: 'Saint Kitts and Nevis',
-selected: checked("['ets-user-acc']['country-of-birth']",'Saint Kitts and Nevis')
+selected: checked('userRegistration.countryOfBirth','Saint Kitts and Nevis')
 },
 {
 text: 'Saint Lucia',
 value: 'Saint Lucia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Saint Lucia')
+selected: checked('userRegistration.countryOfBirth','Saint Lucia')
 },
 {
 text: 'Saint Pierre and Miquelon',
 value: 'Saint Pierre and Miquelon',
-selected: checked("['ets-user-acc']['country-of-birth']",'Saint Pierre and Miquelon')
+selected: checked('userRegistration.countryOfBirth','Saint Pierre and Miquelon')
 },
 {
 text: 'Saint Vincent and the Grenadines',
 value: 'Saint Vincent and the Grenadines',
-selected: checked("['ets-user-acc']['country-of-birth']",'Saint Vincent and the Grenadines')
+selected: checked('userRegistration.countryOfBirth','Saint Vincent and the Grenadines')
 },
 {
 text: 'Samoa',
 value: 'Samoa',
-selected: checked("['ets-user-acc']['country-of-birth']",'Samoa')
+selected: checked('userRegistration.countryOfBirth','Samoa')
 },
 {
 text: 'San Marino',
 value: 'San Marino',
-selected: checked("['ets-user-acc']['country-of-birth']",'San Marino')
+selected: checked('userRegistration.countryOfBirth','San Marino')
 },
 {
 text: 'Sao Tome and Principe',
 value: 'Sao Tome and Principe',
-selected: checked("['ets-user-acc']['country-of-birth']",'Sao Tome and Principe')
+selected: checked('userRegistration.countryOfBirth','Sao Tome and Principe')
 },
 {
 text: 'Saudi Arabia',
 value: 'Saudi Arabia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Saudi Arabia')
+selected: checked('userRegistration.countryOfBirth','Saudi Arabia')
 },
 {
 text: 'Senegal',
 value: 'Senegal',
-selected: checked("['ets-user-acc']['country-of-birth']",'Senegal')
+selected: checked('userRegistration.countryOfBirth','Senegal')
 },
 {
 text: 'Serbia and Montenegro',
 value: 'Serbia and Montenegro',
-selected: checked("['ets-user-acc']['country-of-birth']",'Serbia and Montenegro')
+selected: checked('userRegistration.countryOfBirth','Serbia and Montenegro')
 },
 {
 text: 'Seychelles',
 value: 'Seychelles',
-selected: checked("['ets-user-acc']['country-of-birth']",'Seychelles')
+selected: checked('userRegistration.countryOfBirth','Seychelles')
 },
 {
 text: 'Sierra Leone',
 value: 'Sierra Leone',
-selected: checked("['ets-user-acc']['country-of-birth']",'Sierra Leone')
+selected: checked('userRegistration.countryOfBirth','Sierra Leone')
 },
 {
 text: 'Singapore',
 value: 'Singapore',
-selected: checked("['ets-user-acc']['country-of-birth']",'Singapore')
+selected: checked('userRegistration.countryOfBirth','Singapore')
 },
 {
 text: 'Slovakia',
 value: 'Slovakia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Slovakia')
+selected: checked('userRegistration.countryOfBirth','Slovakia')
 },
 {
 text: 'Slovenia',
 value: 'Slovenia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Slovenia')
+selected: checked('userRegistration.countryOfBirth','Slovenia')
 },
 {
 text: 'Solomon Islands',
 value: 'Solomon Islands',
-selected: checked("['ets-user-acc']['country-of-birth']",'Solomon Islands')
+selected: checked('userRegistration.countryOfBirth','Solomon Islands')
 },
 {
 text: 'Somalia',
 value: 'Somalia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Somalia')
+selected: checked('userRegistration.countryOfBirth','Somalia')
 },
 {
 text: 'South Africa',
 value: 'South Africa',
-selected: checked("['ets-user-acc']['country-of-birth']",'South Africa')
+selected: checked('userRegistration.countryOfBirth','South Africa')
 },
 {
 text: 'South Georgia and the South Sandwich Islands',
 value: 'South Georgia and the South Sandwich Islands',
-selected: checked("['ets-user-acc']['country-of-birth']",'South Georgia and the South Sandwich Islands')
+selected: checked('userRegistration.countryOfBirth','South Georgia and the South Sandwich Islands')
 },
 {
 text: 'Spain',
 value: 'Spain',
-selected: checked("['ets-user-acc']['country-of-birth']",'Spain')
+selected: checked('userRegistration.countryOfBirth','Spain')
 },
 {
 text: 'Spratly Islands',
 value: 'Spratly Islands',
-selected: checked("['ets-user-acc']['country-of-birth']",'Spratly Islands')
+selected: checked('userRegistration.countryOfBirth','Spratly Islands')
 },
 {
 text: 'Sri Lanka',
 value: 'Sri Lanka',
-selected: checked("['ets-user-acc']['country-of-birth']",'Sri Lanka')
+selected: checked('userRegistration.countryOfBirth','Sri Lanka')
 },
 {
 text: 'Sudan',
 value: 'Sudan',
-selected: checked("['ets-user-acc']['country-of-birth']",'Sudan')
+selected: checked('userRegistration.countryOfBirth','Sudan')
 },
 {
 text: 'Suriname',
 value: 'Suriname',
-selected: checked("['ets-user-acc']['country-of-birth']",'Suriname')
+selected: checked('userRegistration.countryOfBirth','Suriname')
 },
 {
 text: 'Svalbard',
 value: 'Svalbard',
-selected: checked("['ets-user-acc']['country-of-birth']",'Svalbard')
+selected: checked('userRegistration.countryOfBirth','Svalbard')
 },
 {
 text: 'Swaziland',
 value: 'Swaziland',
-selected: checked("['ets-user-acc']['country-of-birth']",'Swaziland')
+selected: checked('userRegistration.countryOfBirth','Swaziland')
 },
 {
 text: 'Sweden',
 value: 'Sweden',
-selected: checked("['ets-user-acc']['country-of-birth']",'Sweden')
+selected: checked('userRegistration.countryOfBirth','Sweden')
 },
 {
 text: 'Switzerland',
 value: 'Switzerland',
-selected: checked("['ets-user-acc']['country-of-birth']",'Switzerland')
+selected: checked('userRegistration.countryOfBirth','Switzerland')
 },
 {
 text: 'Syria',
 value: 'Syria',
-selected: checked("['ets-user-acc']['country-of-birth']",'Syria')
+selected: checked('userRegistration.countryOfBirth','Syria')
 },
 {
 text: 'Taiwan',
 value: 'Taiwan',
-selected: checked("['ets-user-acc']['country-of-birth']",'Taiwan')
+selected: checked('userRegistration.countryOfBirth','Taiwan')
 },
 {
 text: 'Tajikistan',
 value: 'Tajikistan',
-selected: checked("['ets-user-acc']['country-of-birth']",'Tajikistan')
+selected: checked('userRegistration.countryOfBirth','Tajikistan')
 },
 {
 text: 'Tanzania',
 value: 'Tanzania',
-selected: checked("['ets-user-acc']['country-of-birth']",'Tanzania')
+selected: checked('userRegistration.countryOfBirth','Tanzania')
 },
 {
 text: 'Thailand',
 value: 'Thailand',
-selected: checked("['ets-user-acc']['country-of-birth']",'Thailand')
+selected: checked('userRegistration.countryOfBirth','Thailand')
 },
 {
 text: 'Timor-Leste',
 value: 'Timor-Leste',
-selected: checked("['ets-user-acc']['country-of-birth']",'Timor-Leste')
+selected: checked('userRegistration.countryOfBirth','Timor-Leste')
 },
 {
 text: 'Togo',
 value: 'Togo',
-selected: checked("['ets-user-acc']['country-of-birth']",'Togo')
+selected: checked('userRegistration.countryOfBirth','Togo')
 },
 {
 text: 'Tokelau',
 value: 'Tokelau',
-selected: checked("['ets-user-acc']['country-of-birth']",'Tokelau')
+selected: checked('userRegistration.countryOfBirth','Tokelau')
 },
 {
 text: 'Tonga',
 value: 'Tonga',
-selected: checked("['ets-user-acc']['country-of-birth']",'Tonga')
+selected: checked('userRegistration.countryOfBirth','Tonga')
 },
 {
 text: 'Trinidad and Tobago',
 value: 'Trinidad and Tobago',
-selected: checked("['ets-user-acc']['country-of-birth']",'Trinidad and Tobago')
+selected: checked('userRegistration.countryOfBirth','Trinidad and Tobago')
 },
 {
 text: 'Tromelin Island',
 value: 'Tromelin Island',
-selected: checked("['ets-user-acc']['country-of-birth']",'Tromelin Island')
+selected: checked('userRegistration.countryOfBirth','Tromelin Island')
 },
 {
 text: 'Tunisia',
 value: 'Tunisia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Tunisia')
+selected: checked('userRegistration.countryOfBirth','Tunisia')
 },
 {
 text: 'Turkey',
 value: 'Turkey',
-selected: checked("['ets-user-acc']['country-of-birth']",'Turkey')
+selected: checked('userRegistration.countryOfBirth','Turkey')
 },
 {
 text: 'Turkmenistan',
 value: 'Turkmenistan',
-selected: checked("['ets-user-acc']['country-of-birth']",'Turkmenistan')
+selected: checked('userRegistration.countryOfBirth','Turkmenistan')
 },
 {
 text: 'Turks and Caicos Islands',
 value: 'Turks and Caicos Islands',
-selected: checked("['ets-user-acc']['country-of-birth']",'Turks and Caicos Islands')
+selected: checked('userRegistration.countryOfBirth','Turks and Caicos Islands')
 },
 {
 text: 'Tuvalu',
 value: 'Tuvalu',
-selected: checked("['ets-user-acc']['country-of-birth']",'Tuvalu')
+selected: checked('userRegistration.countryOfBirth','Tuvalu')
 },
 {
 text: 'Uganda',
 value: 'Uganda',
-selected: checked("['ets-user-acc']['country-of-birth']",'Uganda')
+selected: checked('userRegistration.countryOfBirth','Uganda')
 },
 {
 text: 'Ukraine',
 value: 'Ukraine',
-selected: checked("['ets-user-acc']['country-of-birth']",'Ukraine')
+selected: checked('userRegistration.countryOfBirth','Ukraine')
 },
 {
 text: 'United Arab Emirates',
 value: 'United Arab Emirates',
-selected: checked("['ets-user-acc']['country-of-birth']",'United Arab Emirates')
+selected: checked('userRegistration.countryOfBirth','United Arab Emirates')
 },
 {
 text: 'United Kingdom',
 value: 'United Kingdom',
-selected: checked("['ets-user-acc']['country-of-birth']",'United Kingdom')
+selected: checked('userRegistration.countryOfBirth','United Kingdom')
 },
 {
 text: 'United States',
 value: 'United States',
-selected: checked("['ets-user-acc']['country-of-birth']",'United States')
+selected: checked('userRegistration.countryOfBirth','United States')
 },
 {
 text: 'Uruguay',
 value: 'Uruguay',
-selected: checked("['ets-user-acc']['country-of-birth']",'Uruguay')
+selected: checked('userRegistration.countryOfBirth','Uruguay')
 },
 {
 text: 'Uzbekistan',
 value: 'Uzbekistan',
-selected: checked("['ets-user-acc']['country-of-birth']",'Uzbekistan')
+selected: checked('userRegistration.countryOfBirth','Uzbekistan')
 },
 {
 text: 'Vanuatu',
 value: 'Vanuatu',
-selected: checked("['ets-user-acc']['country-of-birth']",'Vanuatu')
+selected: checked('userRegistration.countryOfBirth','Vanuatu')
 },
 {
 text: 'Venezuela',
 value: 'Venezuela',
-selected: checked("['ets-user-acc']['country-of-birth']",'Venezuela')
+selected: checked('userRegistration.countryOfBirth','Venezuela')
 },
 {
 text: 'Vietnam',
 value: 'Vietnam',
-selected: checked("['ets-user-acc']['country-of-birth']",'Vietnam')
+selected: checked('userRegistration.countryOfBirth','Vietnam')
 },
 {
 text: 'Virgin Islands',
 value: 'Virgin Islands',
-selected: checked("['ets-user-acc']['country-of-birth']",'Virgin Islands')
+selected: checked('userRegistration.countryOfBirth','Virgin Islands')
 },
 {
 text: 'Wake Island',
 value: 'Wake Island',
-selected: checked("['ets-user-acc']['country-of-birth']",'Wake Island')
+selected: checked('userRegistration.countryOfBirth','Wake Island')
 },
 {
 text: 'Wallis and Futuna',
 value: 'Wallis and Futuna',
-selected: checked("['ets-user-acc']['country-of-birth']",'Wallis and Futuna')
+selected: checked('userRegistration.countryOfBirth','Wallis and Futuna')
 },
 {
 text: 'West Bank',
 value: 'West Bank',
-selected: checked("['ets-user-acc']['country-of-birth']",'West Bank')
+selected: checked('userRegistration.countryOfBirth','West Bank')
 },
 {
 text: 'Western Sahara',
 value: 'Western Sahara',
-selected: checked("['ets-user-acc']['country-of-birth']",'Western Sahara')
+selected: checked('userRegistration.countryOfBirth','Western Sahara')
 },
 {
 text: 'Yemen',
 value: 'Yemen',
-selected: checked("['ets-user-acc']['country-of-birth']",'Yemen')
+selected: checked('userRegistration.countryOfBirth','Yemen')
 },
 {
 text: 'Zambia',
 value: 'Zambia',
-selected: checked("['ets-user-acc']['country-of-birth']",'Zambia')
+selected: checked('userRegistration.countryOfBirth','Zambia')
 },
 {
 text: 'Zimbabwe',
 value: 'Zimbabwe',
-selected: checked("['ets-user-acc']['country-of-birth']",'Zimbabwe')
+selected: checked('userRegistration.countryOfBirth','Zimbabwe')
 }
           ]
         }) }}
@@ -1622,7 +1622,7 @@ selected: checked("['ets-user-acc']['country-of-birth']",'Zimbabwe')
         'Zambia',
         'Zimbabwe'
       ];
-    var element = document.querySelector('#country-of-birth')
+    var element = document.querySelector('#countryOfBirth')
     accessibleAutocomplete.enhanceSelectElement({
         selectElement: element
     });

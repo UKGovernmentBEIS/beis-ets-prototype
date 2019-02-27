@@ -22,14 +22,47 @@ router.get('/', function (req, res, next) {
 })
 
 router.post('/login-register', function (req, res, next) {
+  if (req.session.data.twofaSetupComplete == "Yes") {
     res.redirect('2fa');
+  } else {
+    res.redirect('/set-up-2fa/start');
+  }
+})
+
+router.post('/set-up-2fa/start', function (req, res, next) {
+  res.redirect('download-google-authenticator')
+})
+
+router.post('/set-up-2fa/download-google-authenticator', function (req, res, next) {
+  res.redirect('set-up-google-authenticator')
+})
+
+router.post('/set-up-2fa/set-up-google-authenticator', function (req, res, next) {
+  res.redirect('backup-codes')
+})
+
+router.post('/set-up-2fa/set-up-google-authenticator', function (req, res, next) {
+  res.redirect('backup-codes')
+})
+
+router.post('/set-up-2fa/backup-codes', function (req, res, next) {
+  res.redirect('enter-backup-code')
+})
+
+router.post('/set-up-2fa/enter-backup-code', function (req, res, next) {
+  req.session.data.twofaSetupComplete = "Yes";
+  res.redirect('confirmation')
 })
 
 router.post('/2fa', function (req, res, next) {
     if (req.session.data.continue_url) {
         res.redirect(req.session.data.continue_url);
     } else {
+      if ((req.session.data.registrationJourney == "organisationOnboarding") && (!req.session.data.onBoardingComplete)) {
+        res.redirect('/register-your-organisation/task-list')
+      } else {
         res.redirect('/app/dashboard')
+      }
     }
 })
 
@@ -261,6 +294,7 @@ router.post('/account/:id/add-a-new-authorised-representative/enter-email-addres
 })
 
 router.post('/account/:id/add-a-new-authorised-representative/check-and-submit', function (req, res, next) {
+    req.session.data.addAnAuthorisedRepresentativeCompleted = "Yes"
     res.redirect('/account/' + req.params.id + '/add-a-new-authorised-representative/confirmation')
 })
 
@@ -303,10 +337,78 @@ router.post('/account/:id/add-a-new-trusted-account/confirmation', function (req
   next()
 })
 
+router.post('/create-an-identity/enter-email-address', function (req, res) {
+  res.redirect("choose-a-password");
+})
+
+router.post('/create-an-identity/choose-a-password', function (req, res) {
+  res.redirect("confirmation");
+
+})
+
+router.post('/user-registration/start', function (req, res) {
+  res.redirect("full-name");
+})
+
+router.post('/user-registration/full-name', function (req, res) {
+  res.redirect("contact-number");
+})
+
+router.post('/user-registration/contact-number', function (req, res) {
+  res.redirect("country-and-date-of-birth");
+})
+
+router.post('/user-registration/country-and-date-of-birth', function (req, res) {
+  res.redirect("identification-details");
+})
+
+router.post('/user-registration/identification-details', function (req, res) {
+  res.redirect("document-upload");
+})
+
+router.post('/user-registration/document-upload', function (req, res) {
+  res.redirect("check-your-answers");
+})
+
+router.post('/user-registration/check-your-answers', function (req, res) {
+  req.session.data.userRegistrationCompleted = "Yes";
+  res.redirect("confirmation");
+})
+
+router.post('/register-an-organisation/start', function (req, res) {
+  res.redirect("choose-organisation-type");
+})
+
+router.post('/register-an-organisation/choose-organisation-type', function (req, res) {
+  res.redirect("name-of-organisation");
+})
+
+router.post('/register-an-organisation/name-of-organisation', function (req, res) {
+  res.redirect("vat-number");
+})
+
+
 router.post('/create-new-account/start', function (req, res) {
   res.redirect("choose-account-type");
 })
 
+router.post('/register-an-organisation/vat-number', function (req, res) {
+  res.redirect("where-is-the-organisation-based");
+})
+
+router.post('/register-an-organisation/where-is-the-organisation-based', function (req, res) {
+  // conditional logic depending on whether in uk or not
+  res.redirect("uk-address");
+})
+
+router.post('/register-an-organisation/uk-address', function (req, res) {
+  res.redirect("check-your-answers");
+})
+
+router.post('/register-an-organisation/check-your-answers', function (req, res) {
+  req.session.data.registerAnOrganisationCompleted = "Yes";
+  res.redirect("confirmation");
+})
 router.post('/create-new-account/choose-account-type', function (req, res) {
   res.redirect("about-the-account");
 })
@@ -333,6 +435,19 @@ router.post('/create-new-account/international-address', function (req, res) {
 })
 
 router.post('/create-new-account/check-your-answers', function (req, res) {
+    req.session.data.createNewAccountCompleted = "Yes";
+    res.redirect("confirmation");
+})
+
+
+// For the onBoarding journey
+//
+router.post('/account/add-a-new-authorised-representative/enter-email-address', function (req, res) {
+    res.redirect("check-and-submit");
+})
+
+router.post('/account/add-a-new-authorised-representative/check-and-submit', function (req, res) {
+    req.session.data.addAnAuthorisedRepresentativeCompleted = "Yes";
     res.redirect("confirmation");
 })
 
