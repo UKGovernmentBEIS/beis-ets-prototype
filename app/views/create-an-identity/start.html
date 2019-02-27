@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Manage your greenhouse gas emissions
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: "Environment",
+        href: "#"
+      },
+      {
+        text: "Climate change and energy",
+        href: "#"
+      },
+      {
+        text: "Emissions and emissions trading"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Create a user account for the registry</h1>
+
+      <p class="govuk-body">Create a user account to use the UK Emissions Trading Registry</p>
+
+      <h2 class="govuk-heading-m">Before you start</h2>
+
+      <p class="govuk-body">Make sure you have access to an iPhone or an Android phone during registration. This will be required to set up two-factor authentication on your account.</p>
+
+      <h2 class="govuk-heading-m">What you will need</h2>
+
+      <p class="govuk-body">You will need your passport or another form of identification, and will need to be able to upload an image of it to the system.</p>
+
+
+      {{ govukButton({
+        text: "Start",
+        href: "enter-email-address",
+        classes: "govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8"
+      }) }}
+
+  </div>
+{% endblock %}

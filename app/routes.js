@@ -22,10 +22,10 @@ router.get('/', function (req, res, next) {
 })
 
 router.post('/login-register', function (req, res, next) {
-  if (req.session.data.twofaSetupComplete == "Yes") {
-    res.redirect('2fa');
-  } else {
+  if (!req.session.data.twofaSetupComplete) {
     res.redirect('/set-up-2fa/start');
+  } else {
+    res.redirect('2fa');
   }
 })
 
