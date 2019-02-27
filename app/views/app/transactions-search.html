@@ -83,7 +83,8 @@
           hint: {
             text: "eg 10/12/2018"
           },
-          value: data.search.from
+          value: data.search.from,
+          type: "date"
         }) }}
 
         {{ govukInput({
@@ -93,6 +94,7 @@
           label: {
             text: "To"
           },
+          type: "date",
           value: data.search.from
         }) }}
       </div>
