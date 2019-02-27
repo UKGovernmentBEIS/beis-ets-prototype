@@ -48,6 +48,17 @@
 <div class="gov-uk-column-one-third">
 
       <h2 class="govuk-heading-l">Register to join the UK Emissions Trading Scheme</h2>
+
+              {% if
+              data.userRegistrationCompleted == "Yes" and
+              data.registerAnOrganisationCompleted == "Yes" and
+              data.createNewAccountCompleted == "Yes" and
+              data.addAnAuthorisedRepresentativeCompleted == "Yes" %}
+              <!-- Do nothing -->
+              {% else %}
+                <p>You must complete each of the following steps before you can submit your registration.</p>
+              {% endif %}
+              <br />
  <ol class="app-task-list">
         <li>
             <!--
@@ -96,14 +107,18 @@
               data.registerAnOrganisationCompleted == "Yes" and
               data.createNewAccountCompleted == "Yes" and
               data.addAnAuthorisedRepresentativeCompleted == "Yes" %}
-                <p>You are now ready to start using the system</p>
+                <p>You are now ready to submit your registration</p>
                 {{ govukButton({
-                  text: "Start using the registry",
+                  text: "Submit your registration",
                   href: "../app/dashboard?onBoardingComplete=Yes"
                 }) }}
               {% else %}
-                <p>You can start using the system when you have completed all these steps.</p>
+                {{ govukButton({
+                  text: "Submit your registration",
+                  disabled: true
+                }) }}
               {% endif %}
+              <p><a href="#">Save and continue later</a><p>
 
 </div>
 {% endblock %}
