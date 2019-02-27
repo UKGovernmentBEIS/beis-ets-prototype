@@ -11,7 +11,6 @@
 
 {% block content %}
 
-
 <div class="jui-width-container">
 
   <main class="govuk-main-wrapper" role="main">
@@ -255,10 +254,10 @@
           </div>
           <div class="tile-buttons tile-grid-cell">
             <div class="accept">
-              <a href="#" role="button" draggable="false" class="govuk-button task-button approve-btn">Approve</a>
+              <button type="submit" class="govuk-button task-button approve-btn" valuee="Approve">Approve</button>
             </div>
             <div class="reject">
-              <a href="#" role="button" draggable="false" class="govuk-button task-button hmcts-button--secondary reject-btn">Reject</a>
+              <button type="submit" class="govuk-button task-button hmcts-button--secondary reject-btn">Reject</button>
             </div>
         </div>
         </li>
@@ -284,37 +283,58 @@
     '<span id="2fa-hint" class="govuk-hint">Use your Google Authenticator app to generate a code</span>'+
     '<input class="govuk-input govuk-input--width-10" id="2fa-input" name="2fa-input" aria-describedby="2fa-hint"></input>'+
     '</div>'
-    var defaultState = '<div class="accept">'+'<a href="#" role="button" draggable="false" class="govuk-button task-button approve-btn">Approve</a>'+
+    var defaultState = '<div class="accept">'+'<button type="submit" class="govuk-button task-button approve-btn">Approve</button>'+
             '</div><div class="reject">'+
-              '<a href="#" role="button" draggable="false" class="govuk-button task-button hmcts-button--secondary reject-btn">Reject</a>'
+              '<button type="submit" class="govuk-button task-button hmcts-button--secondary reject-btn">Reject</button>'
             '</div>'
     $('body').on( "click", '.task-button', function(e) {
+        function updateTransactionID (transaction, statusmsg) {
+          var transactions = {{data.transactions | dump | safe }}
+          transactions.find(function (t,index) {
+            if (t.transactionId === transaction) {
+              transactions[index].status = statusmsg
+              transactions[index].lastUpdated = new Date(Date.now()).toISOString()
+              $.ajax({
+                method: "POST",
+                url: "/app/tasks",
+                data: { transactions },
+                dataType: "json"
+              })
+            }
+          })
+        }
         var $taskItem = $(this).parents('.tile-container')
+        var taskID = ($taskItem.find('.number').text().split('-')[1]).trim()
         e.preventDefault();
         var approvedTag = '<span class="jui-status  jui-status--new">Approved</span>'
         var rejectedTag = '<span class="jui-status  jui-status--urgent">Rejected</span>'
         var content
         if ($(this).hasClass('reject-btn')){
-            content = rejectCommentsBox + '<a href="#" role="button" draggable="false" class="govuk-button task-button hmcts-button--primary final-reject-btn" style="margin-bottom: 0px;">Reject</a>'+
-            '<a href="#" role="button" draggable="false" class="govuk-button task-button govuk-!-margin-left-2 hmcts-button--secondary cancel-btn" style="margin-bottom: 0px;">Cancel</a>'
+            content = rejectCommentsBox + '<button type="submit" class="govuk-button task-button hmcts-button--primary final-reject-btn" style="margin-bottom: 0px;">Reject</button>'+
+            '<button type="submit" class="govuk-button task-button govuk-!-margin-left-2 hmcts-button--secondary cancel-btn" style="margin-bottom: 0px;">Cancel</button>'
             $taskItem.find('.tile-buttons').html(content)
         }
         if ($(this).hasClass('approve-btn')){
-            content = twoFactorBox + '<a href="#" role="button" draggable="false" class="govuk-button task-button hmcts-button--primary final-approve-btn" style="margin-bottom: 0px;">Approve</a>'+
-            '<a href="#" role="button" draggable="false" class="govuk-button task-button govuk-!-margin-left-2 hmcts-button--secondary cancel-btn" style="margin-bottom: 0px;">Cancel</a>'
+            content = twoFactorBox + '<button type="submit" class="govuk-button task-button hmcts-button--primary final-approve-btn" style="margin-bottom: 0px;">Approve</button>'+
+            '<button type="submit" class="govuk-button task-button govuk-!-margin-left-2 hmcts-button--secondary cancel-btn" style="margin-bottom: 0px;">Cancel</button>'
             $taskItem.find('.tile-buttons').html(content)
         }
         if ($(this).hasClass('final-approve-btn')){
           $taskItem.find('.tile-buttons').addClass('approved-transaction').html(approvedTag)
           $taskItem.find('.transfer-completion').show()
+          updateTransactionID(taskID,'Approved')
+          $taskItem.fadeOut(500).delay(1000)
         }
 
         if ($(this).hasClass('final-reject-btn')){
             $taskItem.find('.tile-buttons').addClass('approved-transaction').html(rejectedTag)
+            updateTransactionID(taskID,'Rejected')
+            $taskItem.fadeOut(500).delay(1000)
         }
         if ($(this).hasClass('cancel-btn')){
             $taskItem.find('.tile-buttons').html(defaultState)
         }
+        
     });
 </script>
 {% endblock %}

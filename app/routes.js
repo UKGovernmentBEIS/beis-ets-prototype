@@ -91,7 +91,7 @@ router.post('/app/users/search', function (req, res, next) {
 })
 
 router.get('/account/:id/:page?/:subPage?', function (req, res, next) {
-  res.locals['currentDate'] = Date.now()
+  res.locals['currentDate'] = new Date(Date.now()).toISOString()
   res.locals['installationID'] = req.params.id
 
   res.locals.installationData = req.session.data.installations.filter(function (installation) {
@@ -182,8 +182,8 @@ router.post('/account/:id/surrender-allowance/check-and-submit', function (req, 
         req.session.data.etsSurrenderAllowance.transactionID = transactionID
         var newSurrenderTransaction = {
           "transactionId": transactionID,
-          "started": Date.now(),
-          "lastUpdated": Date.now(),
+          "started": new Date(Date.now()).toISOString(),
+          "lastUpdated": new Date(Date.now()).toISOString(),
           "type": "Surrender",
           "units": parseInt(req.session.data.etsSurrenderAllowance.draft.amountToSurrender.toString().replace(/,/g, '')),
           "unitType": "allowances",
@@ -246,8 +246,8 @@ router.post('/account/:id/transfer-allowance/check-and-submit-transfer', functio
 
   var newTransferTransaction = {
     'transactionId': transactionID,
-    'started': Date.now(),
-    'lastUpdated': Date.now(),
+    'started': new Date(Date.now()).toISOString(),
+    'lastUpdated': new Date(Date.now()).toISOString(),
     'type': 'Transfer',
     'units': parseInt(request.toString().replace(/,/g, '')),
     'unitType': 'allowances',
