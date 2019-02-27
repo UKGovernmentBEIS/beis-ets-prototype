@@ -121,3 +121,9 @@ $table-column-widths: (
 .hidden {
   display: none;
 }
+
+@media only screen {
+  body {
+    overflow-y: scroll;
+  }
+}
