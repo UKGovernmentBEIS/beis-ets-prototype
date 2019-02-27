@@ -2,6 +2,11 @@
 
 {% set pageID = "tasks" %}
 
+{% set reps = [] %}
+{% for rep in data.existingAuthorisedRepresentatives %}
+{% set reps = (reps.push(rep.name),reps) %}
+{% endfor %}
+
 {% block pageTitle %}Tasks {{'- ' + serviceName}}{% endblock %}
 
 {% block content %}
@@ -118,9 +123,23 @@
   html: searchForm
 }) }}
 
-
+      {% set accountFromName = '' %}
+      {% set accountToName = '' %}
       <ul class='govuk-list'>
-        {% for task in data.tasks %}
+        {% for task in data.transactions | sort(true, false, 'started')  %}
+          {% if 'Awaiting approval' in task.status %}
+            {% for inst in data.installations %}
+              {% if task.transferringAccount == inst.permitId %}
+                {% set accountFromName = inst.name %}
+              {% endif %}
+            {% endfor %}
+
+            {% for account in data.existingAccounts %}
+              {% if task.acquiringAccount | trim == account.id %}
+                {% set accountToName = account.name %}
+              {% endif %}
+            {% endfor %}
+
         <li>
         <div class="tile-container">
           <div class="heading tile-grid-cell">
@@ -132,7 +151,7 @@
                 Started:
               </span>
               <span class="datetime">
-                {{task.startDate}}
+                {{ task.started | date("DD MMMM YYYY") }} {{ task.started | date("h:mm:ss a") }}
               </span>
             </div>
             <div class="reference">
@@ -140,29 +159,27 @@
                 Reference:
               </span>
               <span class="number">
-                {{task.referenceNumber}}
+                TASK-{{task.transactionId}}
               </span>
             </div>
           </div>
           <div class="amount tile-grid-cell">
-            {% for unit in task.units %}
               <div class="value">
-                {{unit.unitAmount | formatNumber }}
+                {{task.units | formatNumber }}
               </div>
               <div class="unit">
-                {{unit.unitType | safe}}
+                {{task.unitType | safe}}
               </div>
-            {% endfor %}
           </div>
           <div class="proposer tile-grid-cell">
             <div class="label">
               Requested by:
             </div>
             <div class="name">
-              {{task.proposer}}
+              {{ reps | random }}
             </div>
           </div>
-          {% if task.type == 'Transfer' %}
+          {% if 'Transfer' in task.type %}
           <div class="transfer-completion tile-grid-cell hidden">
             <div class="label">
               Expected completion:
@@ -176,10 +193,10 @@
               From:
             </div>
             <div class="account-number">
-              <a href="#">{{task.accountFromID}}</a>
+              <a href="#">{{task.transferringAccount}}</a>
             </div>
             <div class="account-name">
-              {{task.accountFromName}}
+              {{accountFromName}}
             </div>
           </div>
           <div class="to tile-grid-cell">
@@ -187,14 +204,14 @@
               To:
             </div>
             <div class="account-number">
-              <a href="#">{{task.accountToID}}</a>
+              <a href="#">{% if task.acquiringAccount == "this" %}EU-100-{{ [73432,82345,73104,77732] | random }}-0-76{% else %}{{ task.acquiringAccount }}{% endif %}</a>
             </div>
             <div class="account-name">
-              {{task.accountToName}}
+              {{accountToName}}
             </div>
           </div>
           {% endif %}
-          {% if task.type == 'Surrender' %}
+          {% if 'Surrender' in task.type %}
           <div class="from tile-grid-cell">
             <div class="label">
               From:
@@ -203,11 +220,11 @@
               <a href="#">{{task.accountFromID}}</a>
             </div>
             <div class="account-name">
-              {{task.accountFromName}}
+              {{accountFromName}}
             </div>
           </div>
           {% endif %}
-          {% if task.type == 'Submission' %}
+          {% if 'Submission' in task.type %}
           <div class="from tile-grid-cell">
             <div class="label">
               From:
@@ -216,7 +233,7 @@
               <a href="#">{{task.accountFromID}}</a>
             </div>
             <div class="account-name">
-              {{task.accountFromName}}
+              {{accountFromName}}
             </div>
           </div>
           <div class="to tile-grid-cell">
@@ -230,10 +247,10 @@
           {% endif %}
           <div class="notes tile-grid-cell">
             <div class="label">
-                Notes:
+                Notes: 
             </div>
             <div class="text">
-              <p>{{task.notes}}</p>
+              <p>Notes go here</p>
             </div>
           </div>
           <div class="tile-buttons tile-grid-cell">
@@ -245,6 +262,7 @@
             </div>
         </div>
         </li>
+        {% endif %}
         {% endfor %}
       </ul>
   </main>
