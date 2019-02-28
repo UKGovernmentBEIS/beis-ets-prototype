@@ -164,8 +164,12 @@ module.exports = {
       "started": new Date(1550251388943).toISOString(),
       "lastUpdated": new Date(1550251388941).toISOString(),
       "type": "10-72 Receipt of allowances for exchange",
-      "units": 363,
-      "unitType": "allowances",
+      units: [
+        {
+          type: 'allowances',
+          amount: 363
+        }
+      ],
       "transferringAccount": "EU-110-54234-0-22",
       "acquiringAccount": "this",
       "status": "Completed",
@@ -177,8 +181,12 @@ module.exports = {
       "started": new Date(1550251388943).toISOString(),
       "lastUpdated": new Date(1550251388941).toISOString(),
       "type": "Transfer",
-      "units": 224,
-      "unitType": "CER",
+      units: [
+        {
+          type: 'CER',
+          amount: 67
+        }
+      ],
       "transferringAccount": "this",
       "acquiringAccount": "EU-110-56193-0-12",
       "status": "Completed",
@@ -189,9 +197,13 @@ module.exports = {
       "transactionId": "EU647943",
       "started": new Date(1550251388943).toISOString(),
       "lastUpdated": new Date(1550251388941).toISOString(),
-      "type": "10-02 Surrender allowances",
-      "units": 34523,
-      "unitType": "allowances",
+      "type": "Surrender",
+      units: [
+        {
+          type: 'allowances',
+          amount: 3468
+        }
+      ],
       "transferringAccount": "this",
       "acquiringAccount": "EU-110-63222-0-12",
       "status": "Completed",
@@ -203,8 +215,12 @@ module.exports = {
       "started": new Date(1550251388943).toISOString(),
       "lastUpdated": new Date(1550251388941).toISOString(),
       "type": "10-36 Allocation allowances",
-      "units": 56612,
-      "unitType": "allowances",
+      units: [
+        {
+          type: 'allowances',
+          amount: 5661
+        }
+      ],
       "transferringAccount": "EU-110-93932-0-11",
       "acquiringAccount": "this",
       "status": "Completed",
@@ -216,8 +232,12 @@ module.exports = {
       "started": new Date(1550251388999).toISOString(),
       "lastUpdated": new Date(1550251388941).toISOString(),
       "type": "01-34 Issuance allowances banking",
-      "units": 9756,
-      "unitType": "allowances",
+      units: [
+        {
+          type: 'allowances',
+          amount: 9674
+        }
+      ],
       "transferringAccount": "EU-110-93932-0-11",
       "acquiringAccount": "this",
       "status": "Completed",
@@ -229,8 +249,12 @@ module.exports = {
       "started": new Date(1550251388943).toISOString(),
       "lastUpdated": new Date(1550251388941).toISOString(),
       "type": "01-34 Issuance allowances banking",
-      "units": 4244,
-      "unitType": "allowances",
+      units: [
+        {
+          type: 'allowances',
+          amount: 4244
+        }
+      ],
       "transferringAccount": "EU-110-93932-0-11",
       "acquiringAccount": "this",
       "status": "Completed",
@@ -242,8 +266,12 @@ module.exports = {
       "started": new Date(1550251388943).toISOString(),
       "lastUpdated": new Date(1550251388941).toISOString(),
       "type": "10-34 Deletion allowances banking",
-      "units": 1122,
-      "unitType": "allowances",
+      units: [
+        {
+          type: 'allowances',
+          amount: 1112
+        }
+      ],
       "transferringAccount": "this",
       "acquiringAccount": "EU-110-59193-0-12",
       "status": "Completed",
@@ -255,8 +283,12 @@ module.exports = {
       "started": new Date(1550251388999).toISOString(),
       "lastUpdated": new Date(1550251388941).toISOString(),
       "type": "Transfer",
-      "units": 553423,
-      "unitType": "allowances",
+      units: [
+        {
+          type: 'allowances',
+          amount: 864
+        }
+      ],
       "transferringAccount": "this",
       "acquiringAccount": "EU-110-59193-0-12",
       "status": "Failed"
@@ -266,8 +298,12 @@ module.exports = {
       "started": new Date(1550251388941).toISOString(),
       "lastUpdated": new Date(1550251388941).toISOString(),
       "type": "Transfer",
-      "units": 678654,
-      "unitType": "allowances",
+      units: [
+        {
+          type: 'allowances',
+          amount: 657
+        }
+      ],
       "transferringAccount": "EU-110-56193-0-12",
       "acquiringAccount": "this",
       "status": "Completed",
@@ -279,8 +315,12 @@ module.exports = {
       "started": new Date(1551372160000).toISOString(),
       "lastUpdated": new Date(1551372160000).toISOString(),
       "type": "Transfer",
-      "units": 243,
-      "unitType": "allowances",
+      units: [
+        {
+          type: 'allowances',
+          amount: 243
+        }
+      ],
       "transferringAccount": "EU-110-56193-0-12",
       "acquiringAccount": "this",
       "status": "Awaiting approval",
@@ -292,8 +332,12 @@ module.exports = {
       "started": new Date(1551372160000).toISOString(),
       "lastUpdated": new Date(1551372160000).toISOString(),
       "type": "Surrender",
-      "units": 2160,
-      "unitType": "allowances",
+      units: [
+        {
+          type: 'allowances',
+          amount: 2160
+        }
+      ],
       "transferringAccount": "EU-100-82345-0-76",
       "acquiringAccount": "this",
       "status": "Awaiting approval",
@@ -305,8 +349,20 @@ module.exports = {
       "started": new Date(1551372160000).toISOString(),
       "lastUpdated": new Date(1551372160000).toISOString(),
       "type": "Submission",
-      "units": 2800,
-      "unitType": "allowances",
+      units: [
+        {
+          type: 'C02',
+          amount: 2800
+        },
+        {
+          type: 'PFCs',
+          amount: 568
+        },
+        {
+          type: 'N2O',
+          amount: 43
+        }
+      ],
       'verifier': 'Lucideon',
       "transferringAccount": "EU-100-77732-0-76",
       "acquiringAccount": "this",

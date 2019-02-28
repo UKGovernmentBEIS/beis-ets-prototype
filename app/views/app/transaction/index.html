@@ -75,17 +75,18 @@ EU-100-{{ [73432,82345,73104,77732] | random }}-0-76
     
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Units
+          Units:
         </dt>
         <dd class="govuk-summary-list__value">
-          {{transaction.units | formatNumber + ' ' + transaction.unitType}}
+        {% for unit in transaction.units %}
+          <strong>{{unit.amount | formatNumber}}</strong> {{ unit.type | safe}} <br />
+        {% endfor %}
         </dd>
-        
       </div>
     
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Transferring account
+          Transferring account:
         </dt>
         <dd class="govuk-summary-list__value">
           {{randomTransferringAccount}}
@@ -95,7 +96,7 @@ EU-100-{{ [73432,82345,73104,77732] | random }}-0-76
     
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Acquiring account
+          Acquiring account:
         </dt>
         <dd class="govuk-summary-list__value">
           {{randomAcquiringAccount}}
@@ -145,7 +146,17 @@ EU-100-{{ [73432,82345,73104,77732] | random }}-0-76
         
       </div>
       {% endif %}
-    
+      {% if 'cancelled' in transaction.status | lower %}
+        <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Cancelled by:
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ transaction.cancelledby }}
+        </dd>
+        
+      </div>
+      {% endif %}
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Status:
