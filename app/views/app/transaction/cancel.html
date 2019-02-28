@@ -39,7 +39,7 @@ $('body').on( "click", '.app-cancel-btn', function() {
     var notes = document.getElementById("more-detail").value
     var transactions = {{data.transactions | dump | safe }}
     var transaction = {{transaction.transactionId | dump | safe }}
-    var url = '/app/transcation'+ transaction
+    var url = '/app/transcation/'+ transaction
     transactions.find(function (t,index) {
     if (t.transactionId === transaction) {
         transactions[index].status = 'cancelled'
