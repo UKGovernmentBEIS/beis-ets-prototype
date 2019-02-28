@@ -276,8 +276,8 @@ module.exports = {
     },
     {
       "transactionId": "EU903339",
-      "started": new Date(1551372160).toISOString(),
-      "lastUpdated": new Date(1551372160).toISOString(),
+      "started": new Date(1551372160000).toISOString(),
+      "lastUpdated": new Date(1551372160000).toISOString(),
       "type": "Transfer",
       "units": 243,
       "unitType": "allowances",
@@ -289,8 +289,8 @@ module.exports = {
     },
     {
       "transactionId": "EU596032",
-      "started": new Date(1551372160).toISOString(),
-      "lastUpdated": new Date(1551372160).toISOString(),
+      "started": new Date(1551372160000).toISOString(),
+      "lastUpdated": new Date(1551372160000).toISOString(),
       "type": "Surrender",
       "units": 2160,
       "unitType": "allowances",
@@ -302,8 +302,8 @@ module.exports = {
     },
     {
       "transactionId": "EU790032",
-      "started": new Date(1551372160).toISOString(),
-      "lastUpdated": new Date(1551372160).toISOString(),
+      "started": new Date(1551372160000).toISOString(),
+      "lastUpdated": new Date(1551372160000).toISOString(),
       "type": "Submission",
       "units": 2800,
       "unitType": "allowances",
