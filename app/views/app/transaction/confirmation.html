@@ -1,0 +1,27 @@
+{% extends "layouts/admin/base.html" %}
+{% set pageID = "transactions" %}
+{% block pageTitle %}
+  Confirmation
+{% endblock %}
+
+{% block content %}
+<div class="jui-width-container">
+<main class="govuk-main-wrapper" role="main">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-9">
+          <h1 class="govuk-panel__title">We've cancel transaction: {{transaction.transactionId}}</h1>
+        </div>
+        <p>
+        <a href="/app/transaction/{{transaction.transactionId}}" class="govuk-link">Go back to the transaction details page</a>
+        </p>
+        <p>or</p>
+        <p><a href="/app/transactions/search?q=blah" class="govuk-link">Go back to the transaction search results</a>
+        </p>
+    </div>
+  </div>
+</main>
+</div>
+
+
+{% endblock %}
