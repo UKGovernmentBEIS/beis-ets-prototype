@@ -2,11 +2,6 @@
 
 {% set pageID = "tasks" %}
 
-{% set reps = [] %}
-{% for rep in data.existingAuthorisedRepresentatives %}
-{% set reps = (reps.push(rep.name),reps) %}
-{% endfor %}
-
 {% block pageTitle %}Tasks {{'- ' + serviceName}}{% endblock %}
 
 {% block content %}
@@ -126,7 +121,7 @@
       {% set accountToName = '' %}
       <ul class='govuk-list'>
         {% for task in data.transactions | sort(true, false, 'started')  %}
-          {% if 'Awaiting approval' in task.status %}
+          {% if 'awaiting approval' in task.status | lower %}
             {% for inst in data.installations %}
               {% if task.transferringAccount == inst.permitId %}
                 {% set accountFromName = inst.name %}
@@ -175,7 +170,7 @@
               Requested by:
             </div>
             <div class="name">
-              {{ reps | random }}
+              {{ task.proposer }}
             </div>
           </div>
           {% if 'Transfer' in task.type %}
@@ -288,12 +283,21 @@
               '<button type="submit" class="govuk-button task-button hmcts-button--secondary reject-btn">Reject</button>'
             '</div>'
     $('body').on( "click", '.task-button', function(e) {
-        function updateTransactionID (transaction, statusmsg) {
+        function updateTransactionID (transaction, statusmsg, notes, approvedBy, rejectedBy) {
           var transactions = {{data.transactions | dump | safe }}
           transactions.find(function (t,index) {
             if (t.transactionId === transaction) {
               transactions[index].status = statusmsg
               transactions[index].lastUpdated = new Date(Date.now()).toISOString()
+              if (notes !== null) {
+                transactions[index].notes = notes
+              }
+              if (rejectedBy !== null) {
+                transactions[index].rejectedby = rejectedBy
+              }
+               if (approvedBy !== null) {
+                transactions[index].approver = approvedBy
+              }
               $.ajax({
                 method: "POST",
                 url: "/app/tasks",
@@ -322,13 +326,14 @@
         if ($(this).hasClass('final-approve-btn')){
           $taskItem.find('.tile-buttons').addClass('approved-transaction').html(approvedTag)
           $taskItem.find('.transfer-completion').show()
-          updateTransactionID(taskID,'Approved')
+          updateTransactionID(taskID,'Approved',null,'Registry user',null)
           $taskItem.fadeOut(500).delay(1000)
         }
 
         if ($(this).hasClass('final-reject-btn')){
+            var notes = document.getElementById("more-detail").value
             $taskItem.find('.tile-buttons').addClass('approved-transaction').html(rejectedTag)
-            updateTransactionID(taskID,'Rejected')
+            updateTransactionID(taskID,'Rejected', notes, null, 'Registry user')
             $taskItem.fadeOut(500).delay(1000)
         }
         if ($(this).hasClass('cancel-btn')){

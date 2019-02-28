@@ -9,6 +9,7 @@ router.use(function (req, res, next) {
   if (!req.session.data.newTrustedAccounts) {
     req.session.data.newTrustedAccounts = []
   }
+  req.session.data.todaysDate = new Date(Date.now()).toISOString()
   next()
 })
 
@@ -161,7 +162,7 @@ router.get('/app/transaction/:id/:page?/:subPage?', function (req, res, next) {
   if (!req.params.page) {
     res.render('app/transaction/index')
   } else {
-    next()
+    res.render('app/transaction/' + req.params.page)
   }
 })
 

@@ -16,7 +16,51 @@ Example usage:
 ============================================================================
 
 */
-
+// var randomRep = this.existingAuthorisedRepresentatives[Math.floor(Math.random() * (this.existingAuthorisedRepresentatives.length))].name
+module.exports.reps = [
+  {
+    name: 'Divina Glaser',
+    id: '567-235-123',
+    jobTitle: 'Financial Controller',
+    email: 'divina.glaser@rertsss.com',
+    phone: '07823 423242'
+  },
+  {
+    name: 'Luann Steppe',
+    id: '245-334-223',
+    jobTitle: 'Compliance Manager',
+    email: 'Luann Steppe@grantsignal.com',
+    phone: '07823 256765'
+  },
+  {
+    name: 'Jimmy Pressly',
+    id: '442-451-234',
+    jobTitle: 'Financial Controller',
+    email: 'jim.pre@brentcross.com',
+    phone: '07235 234423'
+  },
+  {
+    name: 'Tyra Lucas',
+    id: '774-143-235',
+    jobTitle: 'Compliance Controller',
+    email: 'tyra@sertsprocter.com',
+    phone: '07823 427944'
+  },
+  {
+    name: 'Terisa Pritchett',
+    id: '344-626-343',
+    jobTitle: 'Financial Manager',
+    email: 't.p@roystonvaysey.com',
+    phone: '07823 242323'
+  },
+  {
+    name: 'Cecille Irving',
+    id: '266-423-423',
+    jobTitle: 'Financial Controller',
+    email: 'cecille@reretscottley.com',
+    phone: '07823 274545'
+  }
+]
 module.exports = {
 
   // Insert values here
@@ -113,59 +157,7 @@ module.exports = {
       ]
     }
   ],
-  'existingAuthorisedRepresentatives': [
-    {
-      name: 'Divina Glaser',
-      id: '567-235-123',
-      jobTitle: 'Financial Controller',
-      email: 'divina.glaser@rertsss.com',
-      phone: '07823 423242'
-    },
-    {
-      name: 'Luann Steppe',
-      id: '245-334-223',
-      jobTitle: 'Compliance Manager',
-      email: 'Luann Steppe@grantsignal.com',
-      phone: '07823 256765'
-    },
-    {
-      name: 'Jimmy Pressly',
-      id: '442-451-234',
-      jobTitle: 'Financial Controller',
-      email: 'jim.pre@brentcross.com',
-      phone: '07235 234423'
-    },
-    {
-      name: 'Tyra Lucas',
-      id: '774-143-235',
-      jobTitle: 'Compliance Controller',
-      email: 'tyra@sertsprocter.com',
-      phone: '07823 427944'
-    },
-    {
-      name: 'Terisa Pritchett',
-      id: '344-626-343',
-      jobTitle: 'Financial Manager',
-      email: 't.p@roystonvaysey.com',
-      phone: '07823 242323'
-    },
-    {
-      name: 'Cecille Irving',
-      id: '266-423-423',
-      jobTitle: 'Financial Controller',
-      email: 'cecille@reretscottley.com',
-      phone: '07823 274545'
-    }
-  ],
-  'availableAuthorisedReps': [
-    {
-      name: 'Joe Brown',
-      id: '939-216-693',
-      jobTitle: 'Account Manager',
-      email: 'joe.brown@blue.com',
-      phone: '07823 423242'
-    }
-  ],
+  'existingAuthorisedRepresentatives': module.exports.reps,
   'transactions': [
     {
       "transactionId": "EU472379",
@@ -176,7 +168,9 @@ module.exports = {
       "unitType": "allowances",
       "transferringAccount": "EU-110-54234-0-22",
       "acquiringAccount": "this",
-      "status": "Completed"
+      "status": "Completed",
+      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name,
+      'approver': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name
     },
     {
       "transactionId": "EU429591",
@@ -187,7 +181,9 @@ module.exports = {
       "unitType": "CER",
       "transferringAccount": "this",
       "acquiringAccount": "EU-110-56193-0-12",
-      "status": "Completed"
+      "status": "Completed",
+      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name,
+      'approver': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name
     },
     {
       "transactionId": "EU647943",
@@ -198,7 +194,9 @@ module.exports = {
       "unitType": "allowances",
       "transferringAccount": "this",
       "acquiringAccount": "EU-110-63222-0-12",
-      "status": "Completed"
+      "status": "Completed",
+      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name,
+      'approver': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name
     },
     {
       "transactionId": "EU104957",
@@ -209,7 +207,9 @@ module.exports = {
       "unitType": "allowances",
       "transferringAccount": "EU-110-93932-0-11",
       "acquiringAccount": "this",
-      "status": "Completed"
+      "status": "Completed",
+      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name,
+      'approver': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name
     },
     {
       "transactionId": "EU672244",
@@ -220,7 +220,9 @@ module.exports = {
       "unitType": "allowances",
       "transferringAccount": "EU-110-93932-0-11",
       "acquiringAccount": "this",
-      "status": "Completed"
+      "status": "Completed",
+      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name,
+      'approver': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name
     },
     {
       "transactionId": "EU289247",
@@ -231,7 +233,9 @@ module.exports = {
       "unitType": "allowances",
       "transferringAccount": "EU-110-93932-0-11",
       "acquiringAccount": "this",
-      "status": "Completed"
+      "status": "Completed",
+      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name,
+      'approver': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name
     },
     {
       "transactionId": "EU345954",
@@ -242,7 +246,9 @@ module.exports = {
       "unitType": "allowances",
       "transferringAccount": "this",
       "acquiringAccount": "EU-110-59193-0-12",
-      "status": "Completed"
+      "status": "Completed",
+      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name,
+      'approver': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name
     },
     {
       "transactionId": "EU345090",
@@ -264,7 +270,9 @@ module.exports = {
       "unitType": "allowances",
       "transferringAccount": "EU-110-56193-0-12",
       "acquiringAccount": "this",
-      "status": "Completed"
+      "status": "Completed",
+      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name,
+      'approver': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name
     },
     {
       "transactionId": "EU903339",
@@ -275,7 +283,8 @@ module.exports = {
       "unitType": "allowances",
       "transferringAccount": "EU-110-56193-0-12",
       "acquiringAccount": "this",
-      "status": "Awaiting approval"
+      "status": "Awaiting approval",
+      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name
     }
   ],
   'existingAccounts': [
@@ -323,85 +332,6 @@ module.exports = {
       name: 'Procter & Gamble Product Supply (UK) Ltd',
       legalEntity: 'P&G Group plc',
       id: 'EU-100-4847-0-25'
-    }
-  ],
-  'tasks': [
-    {
-      type: 'Transfer',
-      startDate: '15 January 2019 1:15pm',
-      referenceNumber: 'QR-454-665-34',
-      units: [
-        {
-          unitType: 'allowances',
-          unitAmount: '234'
-        }
-      ],
-      proposer: 'Divina Glaser',
-      accountFromID: 'EU-100-73432-0-76',
-      accountFromName: 'Nevern Power Limited',
-      accountToID: 'EU-100-77732-0-76',
-      accountToName: 'Lynemouth Power Station',
-      notes: 'Closes contract QQRN-3245 previously agreed on 25-JUN. Speak to Richard Curtis for further details',
-      status: 'open'
-    },
-    {
-      type: 'Surrender',
-      startDate: '12 January 2019 8:55pm',
-      referenceNumber: 'EU596032',
-      units: [
-        {
-          unitType: 'allowances',
-          unitAmount: '2160'
-        }
-      ],
-      proposer: 'Luann Steppe',
-      accountFromID: 'EU-100-82345-0-76',
-      accountFromName: 'Scunthorpe Integrated Iron & Steel Works',
-      notes: 'Surrendering for year 2018',
-      status: 'open'
-    },
-    {
-      type: 'Submission',
-      startDate: '18 January 2019 10:19am',
-      referenceNumber: 'HXJ76393F',
-      units: [
-        {
-          unitType: 'Carbon dioxide (C02)',
-          unitAmount: '2800'
-        },
-        {
-          unitType: 'Perfluorocarbons (PFCs)',
-          unitAmount: '568'
-        },
-        {
-          unitType: 'Nitrous oxide (N2O)',
-          unitAmount: '43'
-        }
-      ],
-      proposer: 'Tyra Lucas',
-      accountFromID: 'EU-100-77732-0-76',
-      accountFromName: 'Lynemouth Power Station',
-      verifier: 'Lucideon',
-      notes: 'Submitting emission for 2018',
-      status: 'open'
-    },
-    {
-      type: 'Transfer',
-      startDate: '16 January 2019 7:55pm',
-      referenceNumber: 'QR-054-103-90',
-      units: [
-        {
-          unitType: 'CER',
-          unitAmount: '303'
-        }
-      ],
-      proposer: 'Tyra Lucas',
-      accountFromID: 'EU-100-73104-0-76',
-      accountFromName: 'Port Talbot Steelworks',
-      accountToID: 'EU-100-82345-0-76',
-      accountToName: 'Scunthorpe Integrated Iron & Steel Works',
-      notes: 'Shortfall covering',
-      status: 'open'
     }
   ]
 }

@@ -1,6 +1,5 @@
 {% extends "layouts/admin/base.html" %}
 {% set pageID = "transactions" %}
-{% from "summary-list/macro.njk" import govukSummaryList %}
 
 {% set status %}
 {% if transaction.status == "Completed" %}
@@ -33,83 +32,158 @@ EU-100-{{ [73432,82345,73104,77732] | random }}-0-76
   <h1 class="govuk-heading-xl">Transaction {{transaction.transactionId}} details</h1>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {{ govukSummaryList({
-        classes: 'govuk-summary-list--no-border',
-        rows: [
-          {
-            key: {
-              text: "Transaction ID:"
-            },
-            value: {
-              text: transaction.transactionId
-            }
-          },
-          {
-            key: {
-              text: "Type:"
-            },
-            value: {
-              text: transaction.type
-            }
-          },
-          {
-            key: {
-              text: "Started:"
-            },
-            value: {
-              html: transaction.started | date("DD MMMM YYYY") + '<br />' + transaction.started | date("h:mm:ss a")
-            }
-          },
-          {
-            key: {
-              text: "Last updated:"
-            },
-            value: {
-              html: transaction.lastUpdated | date("DD MMMM YYYY") + '<br />' + transaction.lastUpdated | date("h:mm:ss a")
-            }
-          },
-          {
-            key: {
-              text: "Units"
-            },
-            value: {
-              html: transaction.units | formatNumber + ' ' + transaction.unitType
-            }
-          },
-          {
-            key: {
-              text: "Transferring account"
-            },
-            value: {
-              html: randomTransferringAccount
-            }
-          },
-          {
-            key: {
-              text: "Acquiring account"
-            },
-            value: {
-              html: randomAcquiringAccount
-            }
-          },
-          {
-            key: {
-              text: "Status:"
-            },
-            value: {
-              html: status
-            }
-          }
-        ]
-      }) }}
+    <dl class="govuk-summary-list govuk-summary-list--no-border">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Transaction ID:
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{transaction.transactionId}}
+        </dd>
+        
+      </div>
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Type:
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{transaction.type}}
+        </dd>
+        
+      </div>
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Started:
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{(transaction.started | date("DD MMMM YYYY") + '<br />' + transaction.started | date("h:mm:ss a")) | safe }}
+        </dd>
+        
+      </div>
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Last updated:
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{(transaction.lastUpdated | date("DD MMMM YYYY") + '<br />' + transaction.lastUpdated | date("h:mm:ss a")) | safe }}
+        </dd>
+        
+      </div>
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Units
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{transaction.units | formatNumber + ' ' + transaction.unitType}}
+        </dd>
+        
+      </div>
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Transferring account
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{randomTransferringAccount}}
+        </dd>
+        
+      </div>
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Acquiring account
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{randomAcquiringAccount}}
+        </dd>
+        
+      </div>
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Proposer:
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{transaction.proposer}}
+        </dd>
+        
+      </div>
+      {% if 'completed' in transaction.status | lower %}
+        <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Approver:
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{transaction.approver}}
+        </dd>
+        
+      </div>
+      {% endif %}
+      {% if 'approved' in transaction.status | lower %}
+        <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Approver:
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{transaction.approver}}
+        </dd>
+        
+      </div>
+      {% endif %}
+      {% if 'rejected' in transaction.status | lower %}
+        <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Rejected by:
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{transaction.rejectedby}}
+        </dd>
+        
+      </div>
+      {% endif %}
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Status:
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{status | safe}}
+        </dd>
+        
+      </div>
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Notes:
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{transaction.notes | d('No notes present')}}
+        </dd>
+        
+      </div>
+    </dl>
     </div>
     <div class="govuk-grid-column-one-third">
-    {% if transaction.status == 'Awaiting approval' %}
+    {% set cancelPeriodDate = transaction.lastUpdated | date("add", 26, "hours") | date(toISOString)  %}
+    {% set isBefore =  data.todaysDate  | date("isBefore", cancelPeriodDate) %}
+    {% if 'awaiting approval' in transaction.status | lower %}
       {{ govukButton({
         text: "Cancel transaction",
-        href: '#',
+        href: '/app/transaction/' + transaction.transactionId + '/cancel',
         classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
       }) }}
+    {% elif 'approved' in transaction.status | lower %}
+      {% if isBefore %}
+        {{ govukButton({
+        text: "Cancel transaction",
+        href: '/app/transaction/' + transaction.transactionId +'/cancel',
+        classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
+      }) }}
+      {% endif %}
     {% endif %}
     </div>
   </div>
