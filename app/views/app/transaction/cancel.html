@@ -39,7 +39,7 @@ $('body').on( "click", '.app-cancel-btn', function() {
     var notes = document.getElementById("more-detail").value
     var transactions = {{data.transactions | dump | safe }}
     var transaction = {{transaction.transactionId | dump | safe }}
-    console.log(transaction)
+    var url = '/app/transcation'+ transaction
     transactions.find(function (t,index) {
     if (t.transactionId === transaction) {
         transactions[index].status = 'cancelled'
@@ -48,7 +48,7 @@ $('body').on( "click", '.app-cancel-btn', function() {
         transactions[index].rejectedby = 'Registry user'
         $.ajax({
         method: "POST",
-        url: "/app/tasks",
+        url: url,
         data: { transactions },
         dataType: "json"
         })
