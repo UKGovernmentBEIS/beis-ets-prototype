@@ -365,7 +365,7 @@ module.exports = {
       ],
       'verifier': 'Lucideon',
       "transferringAccount": "EU-100-77732-0-76",
-      "acquiringAccount": "this",
+      "acquiringAccount": "Submission",
       "status": "Awaiting approval",
       'proposer': 'Tyra Lucas',
       'notes': 'Submitting emission for 2018'

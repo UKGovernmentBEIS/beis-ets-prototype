@@ -153,6 +153,37 @@ router.get('/account/:id/submit-emissions/confirmation', function (req, res, nex
     next();
 })
 
+router.post('/account/:id/submit-emissions/confirmation', function (req, res, next) {
+  if (req.session.data.etsSubmitEmmissions.emissions) {
+  // Only generate a transaction if there's an amount to submit
+    var transactionID = generateID(796032, 796062)
+    req.session.data.etsSubmitEmmissions.transactionID = transactionID
+    var units = []
+    for (var unit in req.session.data.etsSubmitEmmissions.emissions) {
+      var unitObj = {
+        type: unit,
+        amount: parseInt(req.session.data.etsSubmitEmmissions.emissions[unit])
+      }
+      units.push(unitObj)
+    }
+    var newSubmitTransaction = {
+      "transactionId": transactionID,
+      "started": new Date(Date.now()).toISOString(),
+      "lastUpdated": new Date(Date.now()).toISOString(),
+      "type": "Submission",
+      units: units,
+      'proposer': 'Registry user',
+      verifier: req.session.data.etsSubmitEmmissions.verifier,
+      "transferringAccount": req.params.id,
+      "acquiringAccount": "Submission",
+      "status": "Awaiting approval"
+    }
+    // push newly generated transaction onto transactions table
+    req.session.data.transactions.push(newSubmitTransaction)
+  }
+  next()
+})
+
 router.get('/account/:id/:page/:subPage', function (req, res, next) {
   if (req.query.error) {
     res.locals.errorExists = req.query.error

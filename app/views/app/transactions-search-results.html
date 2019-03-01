@@ -66,6 +66,8 @@
               <td class="govuk-table__cell ">
                   {% if tx.type == "Surrender" %}
                     <span style="color: #8A8A8A; letter-spacing: .5px;">SURRENDER</span>
+                  {% elif 'submission' in tx.type | lower %}
+                    <span style="color: #8A8A8A; letter-spacing: .5px;">SUBMISSION</span>
                   {% else %}
                     <a href="#">{% if tx.acquiringAccount == "this" %}EU-100-{{ [73432,82345,73104,77732] | random }}-0-76{% else %}{{ tx.acquiringAccount }}{% endif %}</a>
                   {% endif %}
