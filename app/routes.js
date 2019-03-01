@@ -206,8 +206,13 @@ router.post('/account/:id/surrender-allowance/check-and-submit', function (req, 
           "started": new Date(Date.now()).toISOString(),
           "lastUpdated": new Date(Date.now()).toISOString(),
           "type": "Surrender",
-          "units": parseInt(req.session.data.etsSurrenderAllowance.draft.amountToSurrender.toString().replace(/,/g, '')),
-          "unitType": "allowances",
+          units: [
+            {
+              type: 'allowances',
+              amount: parseInt(req.session.data.etsSurrenderAllowance.draft.amountToSurrender.toString().replace(/,/g, ''))
+            }
+          ],
+          'proposer': 'Registry user',
           "transferringAccount": req.params.id,
           "acquiringAccount": "EU-110-56193-0-12",
           "status": "Awaiting approval"
@@ -270,10 +275,15 @@ router.post('/account/:id/transfer-allowance/check-and-submit-transfer', functio
     'started': new Date(Date.now()).toISOString(),
     'lastUpdated': new Date(Date.now()).toISOString(),
     'type': 'Transfer',
-    'units': parseInt(request.toString().replace(/,/g, '')),
-    'unitType': 'allowances',
+    units: [
+      {
+        type: chosenUnit === 'generalAllowance' ? 'allowances' : chosenUnit,
+        amount: parseInt(request.toString().replace(/,/g, ''))
+      }
+    ],
     'transferringAccount': req.params.id,
     'acquiringAccount': recipient,
+    'proposer': 'Registry user',
     'status': 'Awaiting approval'
   }
   // push newly generated transaction onto transactions table

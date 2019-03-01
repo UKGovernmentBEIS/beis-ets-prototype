@@ -52,8 +52,16 @@
                 {{ tx.lastUpdated | date("h:mm:ss a") }}
               </td>
               <td class="govuk-table__cell ">{{ tx.type }}</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric ">{{ tx.units }}</td>
-              <td class="govuk-table__cell ">{{ tx.unitType }}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric ">
+              {% for unit in tx.units %}
+              {{ unit.amount | formatNumber }} <br />
+              {% endfor %}
+              </td>
+              <td class="govuk-table__cell ">
+              {% for unit in tx.units %} 
+              {{ unit.type }} <br />
+              {% endfor %}
+              </td>
               <td class="govuk-table__cell "><a href="#">{% if tx.transferringAccount == "this" %}EU-100-{{ [73432,82345,73104,77732] | random }}-0-76{% else %}{{ tx.transferringAccount }}{% endif %}</a></td>
               <td class="govuk-table__cell ">
                   {% if tx.type == "Surrender" %}

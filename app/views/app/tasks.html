@@ -158,12 +158,14 @@
             </div>
           </div>
           <div class="amount tile-grid-cell">
+          {% for unit in task.units %}
               <div class="value">
-                {{task.units | formatNumber }}
+                {{unit.amount | formatNumber }}
               </div>
               <div class="unit">
-                {{task.unitType | safe}}
+                {{unit.type | safe}}
               </div>
+          {% endfor %}
           </div>
           <div class="proposer tile-grid-cell">
             <div class="label">

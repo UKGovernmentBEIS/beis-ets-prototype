@@ -142,8 +142,16 @@
                 {{ tx.lastUpdated | date("HH:mm:ss") }}
               </td>
               <td class="govuk-table__cell ">{{ tx.type }}</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric ">{{ tx.units  | formatNumber }}</td>
-              <td class="govuk-table__cell ">{{ tx.unitType }}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric ">
+              {% for unit in tx.units %}
+              {{ unit.amount | formatNumber}} <br />
+              {% endfor %}
+              </td>
+              <td class="govuk-table__cell ">
+              {% for unit in tx.units %} 
+              {{ unit.type }} <br />
+              {% endfor %}
+              </td>
               <td class="govuk-table__cell "><a href="#">{% if tx.transferringAccount == "this" %}{{ installationData.permitId }}{% else %}{{ tx.transferringAccount }}{% endif %}</a></td>
 
               <td class="govuk-table__cell ">

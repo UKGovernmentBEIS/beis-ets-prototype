@@ -45,7 +45,7 @@ $('body').on( "click", '.app-cancel-btn', function() {
         transactions[index].status = 'cancelled'
         transactions[index].lastUpdated = new Date(Date.now()).toISOString()
         transactions[index].notes = notes
-        transactions[index].rejectedby = 'Registry user'
+        transactions[index].cancelledby = 'Registry user'
         $.ajax({
         method: "POST",
         url: url,
