@@ -25,18 +25,173 @@
       html: bannerHtml
       }) }}
     {% endif %}
-      {% set titleHTML %}
-      <h1 class="govuk-heading-xl">Your accounts</h1>
-      {% endset %}
+    {% if data.userPersona == 'ea' %}
+
+    {% set titleHTML %}
+    <h1 class="govuk-heading-l">Search for accounts by:</h1>
+    {% endset %}
     {{ hmctsPageHeaderWithActions({
       title: {
         html: titleHTML
       }
     }) }}
-    {% if data.userPersona == 'ea' %}
-        <label class='govuk-label' for="account-search">Find an account</label>
-        <div id="account-search" class="account-search-wrapper govuk-!-width-two-thirds"></div>
+<form method="POST">
+    <div class="tile-container search">
+      <div class="first-cell tile-grid-cell">
+        <h2 class="govuk-heading-m">Account</h2>
+
+        {{ govukSelect({
+          id: "account-type",
+          name: "search.account.type",
+          label: {
+          text: "Account type"
+          },
+          items: [{
+              value: 'Choose an account type',
+              text: 'Choose an account type',
+              selected: checked("",'')
+          },
+          {
+              value: 'Trading',
+              text: 'Trading',
+              selected: checked("search.account.type",'Trading')
+          },
+          {
+              value: 'Installation',
+              text: 'Installation',
+              selected: checked("search.account.type",'Installation')
+          }
+          ]
+        }) }}
+        {{ govukSelect({
+          id: "account-complianceStatus",
+          name: "search.account.complianceStatus",
+          label: {
+          text: "Compliance Status"
+          },
+          items: [{
+              value: 'choose',
+              text: 'Choose a status',
+              selected: checked("",'choose')
+          },
+          {
+              value: 'notSubmitted',
+              text: 'Emissions not submitted',
+              selected: checked("search.account.complianceStatus",'notSubmitted')
+          },
+          {
+              value: 'notSurrendered',
+              text: 'Allowance not surrendered',
+              selected: checked("search.account.complianceStatus",'notSurrendered')
+          },
+          {
+              value: 'compliant',
+              text: 'Compliant',
+              selected: checked("search.account.complianceStatus",'compliant')
+          }
+          ]
+        }) }}
+      </div>
+      <div class="second-cell tile-grid-cell">
+        <h2 class="govuk-heading-m">Account Holder</h2>
+        {{ govukInput({
+          id: "account-holder",
+          name: "search.account.accountHolderName",
+          classes: "",
+          label: {
+            text: "Name"
+          },
+          hint: {
+            text: "You can use wild cards"
+          },
+          value: data.search.account.accountHolderName,
+          type: "text"
+        }) }}
+
+        {{ govukInput({
+          id: "account-holder",
+          name: "search.account.accountHolderId",
+          classes: "",
+          label: {
+            text: "ID"
+          },
+          hint: {
+            text: "Eg. UK-432-5235-342"
+          },
+          value: data.search.account.accountHolderId,
+          type: "text"
+        }) }}
+
+      </div>
+      <div class="third-cell tile-grid-cell">
+        <h2 class="govuk-heading-m">State</h2>
+        {{ govukSelect({
+          id: "account-status",
+          name: "search.account.status",
+          label: {
+          text: "Account status"
+          },
+          items: [{
+              value: 'All',
+              text: 'All',
+              selected: checked("",'all')
+          },
+          {
+              value: 'onboardingNotComplete',
+              text: 'Onboarding not Complete',
+              selected: checked("search.account.status",'onboardingNotComplete')
+          },
+          {
+              value: 'closed',
+              text: 'Closed',
+              selected: checked("search.account.status",'closed')
+          }
+          ]
+        }) }}
+        {{ govukInput({
+          id: "",
+          name: "search.transaction.account.receiving",
+          classes: "govuk-!-width-full",
+          label: {
+            text: "Receiving account ID"
+          },
+          value: data.search.transaction.account.receiving
+        }) }}
+      </div>
+      <div class="fourth-cell tile-grid-cell">
+      </div>
+      <div class="advanced-search tile-grid-cell">
+        <details class="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Advanced search
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+          </div>
+        </details>
+      </div>
+      <div class="tile-buttons tile-grid-cell">
+        <div class="accept">
+          <button type="submit" class="govuk-button">
+              Continue
+          </button>
+        </div>
+        <div class="reject">
+          <a href="#" role="button" draggable="false" class="govuk-button hmcts-button--secondary reject-btn">Clear Search</a>
+        </div>
+      </div>
+    </div>
+    </form>
     {% else %}
+    {% set titleHTML %}
+    <h1 class="govuk-heading-l">Your accounts</h1>
+    {% endset %}
+    {{ hmctsPageHeaderWithActions({
+      title: {
+        html: titleHTML
+      }
+    }) }}
     <table class="govuk-table app-table--overflow">
         <thead class="govuk-table__head">
             <tr class="govuk-table__row">
