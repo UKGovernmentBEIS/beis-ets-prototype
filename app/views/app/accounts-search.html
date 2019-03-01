@@ -93,6 +93,33 @@
         }) }}
       </div>
       <div class="second-cell tile-grid-cell">
+        <h2 class="govuk-heading-m">State</h2>
+        {{ govukSelect({
+          id: "account-status",
+          name: "search.account.status",
+          label: {
+          text: "Account status"
+          },
+          items: [{
+              value: 'All',
+              text: 'All',
+              selected: checked("",'all')
+          },
+          {
+              value: 'onboardingNotComplete',
+              text: 'Onboarding not Complete',
+              selected: checked("search.account.status",'onboardingNotComplete')
+          },
+          {
+              value: 'closed',
+              text: 'Closed',
+              selected: checked("search.account.status",'closed')
+          }
+          ]
+        }) }}
+
+      </div>
+      <div class="third-cell tile-grid-cell">
         <h2 class="govuk-heading-m">Account Holder</h2>
         {{ govukInput({
           id: "account-holder",
@@ -121,44 +148,23 @@
           value: data.search.account.accountHolderId,
           type: "text"
         }) }}
-
-      </div>
-      <div class="third-cell tile-grid-cell">
-        <h2 class="govuk-heading-m">State</h2>
-        {{ govukSelect({
-          id: "account-status",
-          name: "search.account.status",
-          label: {
-          text: "Account status"
-          },
-          items: [{
-              value: 'All',
-              text: 'All',
-              selected: checked("",'all')
-          },
-          {
-              value: 'onboardingNotComplete',
-              text: 'Onboarding not Complete',
-              selected: checked("search.account.status",'onboardingNotComplete')
-          },
-          {
-              value: 'closed',
-              text: 'Closed',
-              selected: checked("search.account.status",'closed')
-          }
-          ]
-        }) }}
-        {{ govukInput({
-          id: "",
-          name: "search.transaction.account.receiving",
-          classes: "govuk-!-width-full",
-          label: {
-            text: "Receiving account ID"
-          },
-          value: data.search.transaction.account.receiving
-        }) }}
       </div>
       <div class="fourth-cell tile-grid-cell">
+
+        <h2 class="govuk-heading-m">Permit</h2>
+        {{ govukInput({
+          id: "permit-id",
+          name: "search.account.permitId",
+          classes: "",
+          label: {
+            text: "Permit ID"
+          },
+          hint: {
+            text: "eg. UK-3254-34-4223"
+          },
+          value: data.search.account.permitId,
+          type: "text"
+        }) }}
       </div>
       <div class="advanced-search tile-grid-cell">
         <details class="govuk-details">
