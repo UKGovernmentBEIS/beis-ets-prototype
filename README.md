@@ -10,3 +10,4 @@ Review archived versions:
 - https://ets-alpha-v5.herokuapp.com/
 - https://ets-alpha-v6.herokuapp.com/
 - https://ets-alpha-v7.herokuapp.com/
+- https://ets-alpha-v8.herokuapp.com/

@@ -40,7 +40,7 @@
           </tr>
         </thead>
         <tbody class="govuk-table__body">
-         {% for tx in data.transactions | sort(true, false, 'lastUpdated') %}
+         {% for tx in data.transactions | filterObjects('type', 'is not', 'submission') | sort(true, false, 'lastUpdated') %}
           <tr class="govuk-table__row govuk-!-font-size-16">
               <th class="govuk-table__cell" scope="row"><a href="/app/transaction/{{ tx.transactionId }}/">{{ tx.transactionId }}</a></th>
               <td class="govuk-table__cell ">

@@ -11,6 +11,19 @@ module.exports = function (env) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
 
+  filters.filterObjects = function (array, property, check, value) {
+    var output
+    switch (check) {
+      case 'is':
+        output = array.filter(object => object[property].toLowerCase() === value.toLowerCase())
+        break
+      case 'is not':
+        output = array.filter(object => object[property].toLowerCase() !== value.toLowerCase())
+        break
+    }
+    return output
+  }
+
   /* ------------------------------------------------------------------
     add your methods to the filters obj below this comment block:
     @example:

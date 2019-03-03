@@ -291,7 +291,8 @@ module.exports = {
       ],
       "transferringAccount": "this",
       "acquiringAccount": "EU-110-59193-0-12",
-      "status": "Failed"
+      "status": "Failed",
+      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name
     },
     {
       "transactionId": "EU945398",
