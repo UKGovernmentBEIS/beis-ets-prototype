@@ -222,6 +222,7 @@
               <td class="govuk-table__cell ">Currently no notes exist</td>
               <td class="govuk-table__cell ">{{ ea.legalEntity }}</td>
               <td class="govuk-table__cell govuk-table__cell--numeric">
+                <span class="jui-status  jui-status--complete  govuk-!-margin-left-1" >Active</span>
               </td>
           </tr>
             {% endfor %}
@@ -236,7 +237,6 @@
             <th class="govuk-table__header" scope="col">Name</th>
             <th class="govuk-table__header " scope="col">Job title</th>
             <th class="govuk-table__header " scope="col">Contact</th>
-            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Status</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -244,14 +244,15 @@
           {% for name in data.newAuthorisedReps %}
             <tr class="govuk-table__row govuk-!-font-size-16">
               <th class="govuk-table__cell" scope="row"><a href="#">939-216-693</a>
+              <span class="jui-status  jui-status--new  govuk-!-margin-left-1">
+                    APPROVAL PENDING
+                </span>
               </th>
               <td class="govuk-table__cell ">{{ name }}</td>
               <td class="govuk-table__cell ">Account Manager</td>
               <td class="govuk-table__cell ">joe.brown@blue.com <br />Tel: 07823 423242</td>
               <td class="govuk-table__cell govuk-table__cell--numeric">
-                <span class="jui-status  jui-status--new  govuk-!-margin-left-1">
-                    APPROVAL PENDING
-                </span></td>
+                </td>
               </td>
             </tr>
           {% endfor %}
@@ -262,8 +263,6 @@
               <td class="govuk-table__cell ">{{ ta.name }}</td>
               <td class="govuk-table__cell ">{{ ta.jobTitle }}</td>
               <td class="govuk-table__cell ">{{ ta.email }}<br/>Tel: {{ ta.phone }}</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">
-              </td>
           </tr>
             {% endfor %}
 

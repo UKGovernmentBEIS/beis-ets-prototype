@@ -15,55 +15,20 @@
 
       <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-7">
         <h1 class="govuk-panel__title">
-        {% if data.etsTransferAllowance.recipientType == 'existing' %}
-        We've received your transfer request
-        {% else %}
-        We've received your transfer request
-        {% endif %}
+          Registration details submitted
         </h1>
         <div class="govuk-panel__body">
           Your reference number<br><strong>EU580697</strong>
         </div>
       </div>
+      <h2 class="govuk-heading-m"> What happens next</h2>
       {% if data.registrationJourney == "organisationOnboarding" %}
-      {{ govukInsetText({
-        html: "Visit the account page to <a class='govuk-link' href='/register-your-organisation/task-list'>view the transaction</a>."
-      }) }}
+      <p>The details you've provided will be checked and you will be sent an email when this is complete. You will then be able to use the account to submit emissions data and trade allowances. This process can take up to 2 months.</p>
+      <p>In the meantime you can <a class='govuk-link' href='/register-your-organisation/task-list'>continue setting up your organisation</a>.
+      </p>
       {% else %}
       <p>The details you've provided will be checked by an administrator and you will be sent an email when the account is activated and ready for you to use. This process can take up to 2 months</p>
       {% endif %}
-      <h2 class="govuk-heading-m"> What happens next</h2>
-      {% if data.etsTransferAllowance.recipientType == 'existing' %}
-      <div class="govuk-warning-text">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <strong class="govuk-warning-text__text">
-          <span class="govuk-warning-text__assistive">Warning</span>
-          Your transfer is awaiting approval.
-        </strong>
-      </div>
-        <p>
-          We've sent your transfer request to the account representatives for approval.</p>
-          <p>Once approved, transfers will be made immediately on working days between 10am and 4pm CET. Outside these hours, it will be held until the next working day.
-
-        </p>
-
-
-      {% else %}
-      <div class="govuk-warning-text">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <strong class="govuk-warning-text__text">
-          <span class="govuk-warning-text__assistive">Warning</span>
-          Your transfer is awaiting approval.
-        </strong>
-      </div>
-
-      <p>We've sent your transfer request to the account representatives for approval.</p>
-        <p>Once approved, transfers between 10am and 4pm CET working days will be made immediately. Outside these hours, it will be held until the next working period.<p/>
-      {% endif %}
-
-
-
-
     </div>
   </div>
 {{installationID | dump(2)}}

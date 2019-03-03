@@ -15,14 +15,17 @@
       <form method="POST">
       {% call govukFieldset({
         legend: {
-          text: "Contact details",
+          text: "What's your phone number?",
           classes: "govuk-fieldset__legend--xl",
           isPageHeading: true
         }
       }) %}
         {{ govukInput({
           label: {
-            text: "Contact number"
+            text: "Enter phone number"
+          },
+          hint: {
+            text: "Include the international area code if outside the UK"
           },
           id: "phoneNumber",
           name: "userRegistration.phoneNumber",
@@ -30,20 +33,7 @@
           value: data.userRegistration.phoneNumber
         }) }}
 
-        {{ govukInput({
-          label: {
-            text: "Email address"
-          },
-          id: "emailAddress",
-          name: "userRegistration.emailAddress",
-          type: 'email',
-          value: data.userRegistration.emailAddress
-        }) }}
 
-        {{ govukInsetText({
-          classes: 'show-hide-inset-text',
-          html: "An email will be sent to <strong class='replay-email'></strong>"
-        }) }}
       
         {{ govukButton({
           text: "Save and continue"
