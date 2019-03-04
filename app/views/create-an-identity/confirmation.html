@@ -11,8 +11,8 @@
 {% endblock %}
 
 {% block content %}
-
-
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
       <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-7">
         <h1 class="govuk-panel__title">
         {% if data.etsTransferAllowance.recipientType == 'existing' %}
@@ -62,5 +62,6 @@
 
     </div>
   </div>
-{{installationID | dump(2)}}
+  </div>
+</div>
 {% endblock %}
