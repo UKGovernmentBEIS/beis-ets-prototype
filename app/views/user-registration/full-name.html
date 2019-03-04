@@ -15,14 +15,18 @@
       <form method="POST">
       {% call govukFieldset({
         legend: {
-          text: "Personal details",
+          text: "What's your name?",
           classes: "govuk-fieldset__legend--xl",
           isPageHeading: true
         }
       }) %}
         {{ govukInput({
           label: {
-            text: "Given names"
+            text: "First name",
+            hint: "Include middle names"
+          },
+          hint: {
+            text: "Include any middle names"
           },
           id: "given-name",
           name: "userRegistration.givenName",
@@ -31,7 +35,7 @@
 
         {{ govukInput({
           label: {
-            text: "Family name"
+            text: "Last name"
           },
           id: "family-name",
           name: "userRegistration.familyName",

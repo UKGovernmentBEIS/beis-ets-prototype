@@ -15,51 +15,11 @@
   <div class="govuk-grid-column-two-thirds">
       <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-7">
         <h1 class="govuk-panel__title">
-        {% if data.etsTransferAllowance.recipientType == 'existing' %}
-        We've received your transfer request
-        {% else %}
-        We've received your transfer request
-        {% endif %}
+         Check your email
         </h1>
-        <div class="govuk-panel__body">
-          Your reference number<br><strong>EU580697</strong>
-        </div>
       </div>
-      {{ govukInsetText({
-        html: "Visit the account page to <a class='govuk-link' href='email-client-simulator'>view the transaction</a>."
-      }) }}
-      <h2 class="govuk-heading-m"> What happens next</h2>
-      {% if data.etsTransferAllowance.recipientType == 'existing' %}
-      <div class="govuk-warning-text">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <strong class="govuk-warning-text__text">
-          <span class="govuk-warning-text__assistive">Warning</span>
-          Your transfer is awaiting approval.
-        </strong>
-      </div>
-        <p>
-          We've sent your transfer request to the account representatives for approval.</p>
-          <p>Once approved, transfers will be made immediately on working days between 10am and 4pm CET. Outside these hours, it will be held until the next working day.
-
-        </p>
-
-
-      {% else %}
-      <div class="govuk-warning-text">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <strong class="govuk-warning-text__text">
-          <span class="govuk-warning-text__assistive">Warning</span>
-          Your transfer is awaiting approval.
-        </strong>
-      </div>
-
-      <p>We've sent your transfer request to the account representatives for approval.</p>
-        <p>Once approved, transfers between 10am and 4pm CET working days will be made immediately. Outside these hours, it will be held until the next working period.<p/>
-      {% endif %}
-
-
-
-
+      <h2 class="govuk-heading-m">Your account has been created.</h2>
+      <p>You have been sent <a style='text-decoration: none; color: black;' class='govuk-link' href='email-client-simulator'>an email</a>. Click the link in the email to verify your account.</p>
     </div>
   </div>
   </div>
