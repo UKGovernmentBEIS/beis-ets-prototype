@@ -142,7 +142,7 @@
                 {{ tx.lastUpdated | date("HH:mm:ss") }}
               </td>
               <td class="govuk-table__cell ">
-                {{ tx.proposer }}
+                <a href="/app/user/{{tx.proposerId}}">{{ tx.proposer }}</a>
               </td>
               <td class="govuk-table__cell govuk-table__cell--numeric ">
               {% for unit in tx.units %}
@@ -261,7 +261,7 @@
           {% endif %}
             {% for ta in data.existingAuthorisedRepresentatives %}
           <tr class="govuk-table__row govuk-!-font-size-16">
-              <th class="govuk-table__cell" scope="row"><a href="#">{{ ta.id }}</th>
+            <th class="govuk-table__cell" scope="row"><a href="/app/user/{{ta.id}}">{{ ta.id }}</th>
               <td class="govuk-table__cell ">{{ ta.name }}</td>
               <td class="govuk-table__cell ">{{ ta.jobTitle }}</td>
               <td class="govuk-table__cell ">{{ ta.email }}<br/>Tel: {{ ta.phone }}</td>

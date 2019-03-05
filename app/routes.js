@@ -202,7 +202,7 @@ router.post('/account/:id/submit-emissions/specify-amount', function (req, res) 
 })
 
 
-router.get('/app/transaction/:id/:page?/:subPage?', function (req, res, next) {
+router.get('/app/transaction/:id', function (req, res, next) {
   res.locals['transactionID'] = req.params.id
 
   res.locals.transaction = req.session.data.transactions.filter(function (transaction) {
@@ -210,13 +210,24 @@ router.get('/app/transaction/:id/:page?/:subPage?', function (req, res, next) {
       return transaction
     }
   })[0]
-  if (!req.params.page) {
-    res.render('app/transaction/index')
+  console.log(req.params.id);
+  if (req.params.id == "") {
+    res.redirect('app/transactions/search')
   } else {
-    res.render('app/transaction/' + req.params.page)
+    res.render('app/transaction/index')
   }
 })
 
+router.get('/app/user/:id', function (req, res, next) {
+  res.locals['userID'] = req.params.id
+
+  res.locals.user = req.session.data.existingAuthorisedRepresentatives.filter(function (user) {
+    if (user.id === req.params.id) {
+      return user
+    }
+  })[0]
+    res.render('app/user/index')
+})
 
 router.post('/account/:id/surrender-allowance/surrender-amount', function (req, res) {
     if (req.session.data.etsSurrenderAllowance.draft.surrenderMethod === 'fullAmount') {

@@ -173,8 +173,9 @@ module.exports = {
       "transferringAccount": "EU-110-54234-0-22",
       "acquiringAccount": "this",
       "status": "Completed",
-      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name,
-      'approver': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name
+      'proposerId': module.exports.reps[3].id,
+      'proposer': module.exports.reps[3].name,
+      'approver': module.exports.reps[1].name
     },
     {
       "transactionId": "EU429591",
@@ -190,8 +191,9 @@ module.exports = {
       "transferringAccount": "this",
       "acquiringAccount": "EU-110-56193-0-12",
       "status": "Completed",
-      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name,
-      'approver': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name
+      'proposerId': module.exports.reps[2].id,
+      'proposer': module.exports.reps[2].name,
+      'approver': module.exports.reps[3].name
     },
     {
       "transactionId": "EU647943",
@@ -207,8 +209,9 @@ module.exports = {
       "transferringAccount": "this",
       "acquiringAccount": "EU-110-63222-0-12",
       "status": "Completed",
-      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name,
-      'approver': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name
+      'proposerId': module.exports.reps[4].id,
+      'proposer': module.exports.reps[4].name,
+      'approver': module.exports.reps[2].name
     },
     {
       "transactionId": "EU104957",
@@ -224,8 +227,9 @@ module.exports = {
       "transferringAccount": "EU-110-93932-0-11",
       "acquiringAccount": "this",
       "status": "Completed",
-      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name,
-      'approver': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name
+      'proposerId': module.exports.reps[2].id,
+      'proposer': module.exports.reps[2].name,
+      'approver': module.exports.reps[5].name
     },
     {
       "transactionId": "EU672244",
@@ -241,8 +245,9 @@ module.exports = {
       "transferringAccount": "EU-110-93932-0-11",
       "acquiringAccount": "this",
       "status": "Completed",
-      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name,
-      'approver': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name
+      'proposerId': module.exports.reps[2].id,
+      'proposer': module.exports.reps[2].name,
+      'approver': module.exports.reps[4].name
     },
     {
       "transactionId": "EU289247",
@@ -258,8 +263,9 @@ module.exports = {
       "transferringAccount": "EU-110-93932-0-11",
       "acquiringAccount": "this",
       "status": "Completed",
-      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name,
-      'approver': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name
+      'proposerId': module.exports.reps[2].id,
+      'proposer': module.exports.reps[2].name,
+      'approver': module.exports.reps[1].name
     },
     {
       "transactionId": "EU345954",
@@ -275,8 +281,9 @@ module.exports = {
       "transferringAccount": "this",
       "acquiringAccount": "EU-110-59193-0-12",
       "status": "Completed",
-      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name,
-      'approver': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name
+      'proposerId': module.exports.reps[2].id,
+      'proposer': module.exports.reps[2].name,
+      'approver': module.exports.reps[5].name
     },
     {
       "transactionId": "EU345090",
@@ -292,7 +299,8 @@ module.exports = {
       "transferringAccount": "this",
       "acquiringAccount": "EU-110-59193-0-12",
       "status": "Failed",
-      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name
+      'proposer': module.exports.reps[5].name,
+      'proposerId': module.exports.reps[5].id,
     },
     {
       "transactionId": "EU945398",
@@ -308,8 +316,9 @@ module.exports = {
       "transferringAccount": "EU-110-56193-0-12",
       "acquiringAccount": "this",
       "status": "Completed",
-      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name,
-      'approver': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name
+      'proposer': module.exports.reps[3].name,
+      'proposerId': module.exports.reps[3].id,
+      'approver': module.exports.reps[2].name
     },
     {
       "transactionId": "EU903339",
@@ -325,7 +334,8 @@ module.exports = {
       "transferringAccount": "EU-110-56193-0-12",
       "acquiringAccount": "this",
       "status": "Awaiting approval",
-      'proposer': module.exports.reps[Math.floor(Math.random() * (module.exports.reps.length))].name,
+      'proposer': module.exports.reps[1].name,
+      'proposerId': module.exports.reps[1].id,
       'notes': 'Closes contract QQRN-3245 previously agreed on 25-JUN. Speak to Richard Curtis for further details'
     },
     {
@@ -342,7 +352,8 @@ module.exports = {
       "transferringAccount": "EU-100-82345-0-76",
       "acquiringAccount": "this",
       "status": "Awaiting approval",
-      'proposer': 'Luann Steppe',
+      'proposer': module.exports.reps[5].name,
+      'proposerId': module.exports.reps[5].id,
       'notes': 'Surrendering for year 2018'
     },
     {
@@ -368,7 +379,8 @@ module.exports = {
       "transferringAccount": "EU-100-77732-0-76",
       "acquiringAccount": "Submission",
       "status": "Awaiting approval",
-      'proposer': 'Tyra Lucas',
+      'proposer': module.exports.reps[2].name,
+      'proposerId': module.exports.reps[2].id,
       'notes': 'Submitting emission for 2018'
     }
   ],

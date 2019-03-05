@@ -1,0 +1,71 @@
+{% extends "layouts/admin/base.html" %}
+{% set pageID = "transactions" %}
+
+{% set status %}
+{% if user.status == "Completed" %}
+  <span class="jui-status  jui-status--complete  govuk-!-margin-left-1" >{{ user.status }}</span>
+{% elif user.status == "Failed" %}
+  <span class="jui-status  jui-status--urgent  govuk-!-margin-left-1" >{{ user.status }}</span>
+{% else %}
+  <span class="jui-status  jui-status--pending  govuk-!-margin-left-1" >{{ user.status }}</span>
+{% endif %}
+{% endset %}
+
+{% block content %}
+<div class="jui-width-container">
+<main class="govuk-main-wrapper" role="main">
+<h1 class="govuk-heading-xl">User {{user.id}} details</h1>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    <dl class="govuk-summary-list govuk-summary-list--no-border">
+        <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Name:
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{user.name}}
+        </dd>
+      </div>
+        <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Job title:
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ user.jobTitle }}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Phone:
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{user.phone}}
+        </dd>
+        
+      </div>
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Email:
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{user.email}}
+        </dd>
+        
+      </div>
+    </dl>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      {{ govukButton({
+        text: "Suspend user",
+        href: '/app/user/' + user.id +'/suspend',
+        classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
+      }) }}
+    </div>
+  </div>
+  
+  
+  
+</main>
+</div>
+{% endblock %}
