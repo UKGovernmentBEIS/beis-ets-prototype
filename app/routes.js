@@ -202,7 +202,7 @@ router.post('/account/:id/submit-emissions/specify-amount', function (req, res) 
 })
 
 
-router.get('/app/transaction/:id', function (req, res, next) {
+router.get('/app/transaction/:id/:page?/:subPage?', function (req, res, next) {
   res.locals['transactionID'] = req.params.id
 
   res.locals.transaction = req.session.data.transactions.filter(function (transaction) {
@@ -210,15 +210,14 @@ router.get('/app/transaction/:id', function (req, res, next) {
       return transaction
     }
   })[0]
-  console.log(req.params.id);
-  if (req.params.id == "") {
-    res.redirect('app/transactions/search')
-  } else {
+  if (!req.params.page) {
     res.render('app/transaction/index')
+  } else {
+    res.render('app/transaction/' + req.params.page)
   }
 })
 
-router.get('/app/user/:id', function (req, res, next) {
+router.get('/app/user/:id/:page?/:subpage?', function (req, res, next) {
   res.locals['userID'] = req.params.id
 
   res.locals.user = req.session.data.existingAuthorisedRepresentatives.filter(function (user) {
@@ -226,7 +225,11 @@ router.get('/app/user/:id', function (req, res, next) {
       return user
     }
   })[0]
+  if (!req.params.page) {
     res.render('app/user/index')
+  } else {
+    res.render('app/user/' + req.params.page)
+  }
 })
 
 router.post('/account/:id/surrender-allowance/surrender-amount', function (req, res) {
