@@ -138,14 +138,15 @@
         <div class="tile-container">
           <div class="heading tile-grid-cell">
             <div class="title">
-              {{task.type}}
+              {{ 'Emissions' if 'submission' in task.type | lower else task.type}}
             </div>
             <div class="started">
               <span class="label">
                 Started:
               </span>
               <span class="datetime">
-                {{ task.started | date("DD MMMM YYYY") }} {{ task.started | date("h:mm:ss a") }}
+                {{ task.started | date("DD-MMM-YY") }} {{ task.started | date("HH:mm:ss") }}
+
               </span>
             </div>
             <div class="reference">
@@ -173,7 +174,7 @@
           </div>
           <div class="proposer tile-grid-cell">
             <div class="label">
-              Requested by:
+              Proposed by:
             </div>
             <div class="name">
               {{ task.proposer }}
@@ -185,7 +186,7 @@
               Expected completion:
             </div>
             <div class="date">
-              {{ currentDate  | date("add", 7, "days") | date("DD MMMM YYYY") }}
+              {{ currentDate  | date("add", 7, "days") | date("DD-MMM-YY") }}
             </div>
           </div>
           <div class="from tile-grid-cell">

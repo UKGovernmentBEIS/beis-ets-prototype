@@ -28,30 +28,27 @@
 <table class="govuk-table app-table--overflow" id="transactions" data-type="transactions">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row govuk-!-font-size-16">
-            <th class="govuk-table__header govuk-!-width-10" scope="col">Reference</th>
-            <th class="govuk-table__header govuk-!-width-10" scope="col">Started</th>
+            <th class="govuk-table__header govuk-!-width-10" scope="col">Transaction</th>
             <th class="govuk-table__header govuk-!-width-10" scope="col">Last updated</th>
-            <th class="govuk-table__header govuk-!-width-10" scope="col">Type</th>
+            <th class="govuk-table__header govuk-!-width-10" scope="col">Proposer</th>
             <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-10" scope="col">Units</th>
-            <th class="govuk-table__header govuk-!-width-10" scope="col">Unit Type</th>
-            <th class="govuk-table__header govuk-!-width-15" scope="col">Transferring Acct</th>
-            <th class="govuk-table__header govuk-!-width-15" scope="col">Acquiring Acct</th>
+            <th class="govuk-table__header govuk-!-width-10" scope="col">Unit type</th>
+            <th class="govuk-table__header govuk-!-width-15" scope="col">Transferring acct</th>
+            <th class="govuk-table__header govuk-!-width-15" scope="col">Acquiring acct</th>
             <th class="govuk-table__header govuk-!-width-10 govuk-table__header--numeric" scope="col">Status</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
          {% for tx in data.transactions | filterObjects('type', 'is not', 'submission') | sort(true, false, 'lastUpdated') %}
           <tr class="govuk-table__row govuk-!-font-size-16">
-              <th class="govuk-table__cell" scope="row"><a href="/app/transaction/{{ tx.transactionId }}/">{{ tx.transactionId }}</a></th>
+              <th class="govuk-table__cell" scope="row"><a href='/app/transaction/{{ tx.transactionId }}'>{{ tx.transactionId }}</a><br /><span style="font-weight: 100;">{{ tx.type }}</span></th>
               <td class="govuk-table__cell ">
-                {{ tx.started | date("DD MMMM YYYY") }}<br/>
-                {{ tx.started | date("h:mm:ss a") }}
+                {{ tx.lastUpdated | date("DD-MMM-YY") }}<br/>
+                {{ tx.lastUpdated | date("HH:mm:ss") }}
               </td>
               <td class="govuk-table__cell ">
-                {{ tx.lastUpdated | date("DD MMMM YYYY") }}<br/>
-                {{ tx.lastUpdated | date("h:mm:ss a") }}
+                <a href="/app/user/{{tx.proposerId}}">{{ tx.proposer }}</a>
               </td>
-              <td class="govuk-table__cell ">{{ tx.type }}</td>
               <td class="govuk-table__cell govuk-table__cell--numeric ">
               {% for unit in tx.units %}
               {{ unit.amount | formatNumber }} <br />
