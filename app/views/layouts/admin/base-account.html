@@ -92,7 +92,7 @@
   <div class="hmcts-identity-bar__container">
     <div class="hmcts-identity-bar__details">
         <span class="hmcts-identity-bar__title">
-        <strong>{{ installationData.name }}</strong>
+        <strong>{{ installationData.name }}{% if installationData.status != "active" %} <strong> ({{installationData.status | capitalize}})</strong>{% endif %}</strong>
         <!--
         <span class="jui-status  jui-status--complete  govuk-!-margin-left-1">
         {% if data.userPersona == 'trader' %}
