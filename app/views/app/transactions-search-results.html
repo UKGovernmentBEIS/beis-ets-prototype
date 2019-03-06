@@ -43,7 +43,7 @@
           <tr class="govuk-table__row govuk-!-font-size-16">
               <th class="govuk-table__cell" scope="row"><a href='/app/transaction/{{ tx.transactionId }}'>{{ tx.transactionId }}</a><br /><span style="font-weight: 100;">{{ tx.type }}</span></th>
               <td class="govuk-table__cell ">
-                {{ tx.lastUpdated | date("DD MMMM YYYY") }}<br/>
+                {{ tx.lastUpdated | date("DD-MMM-YY") }}<br/>
                 {{ tx.lastUpdated | date("HH:mm:ss") }}
               </td>
               <td class="govuk-table__cell ">
