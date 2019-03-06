@@ -342,14 +342,20 @@ router.post('/account/:id/edit/update-details', function (req, res) {
 })
 
 router.post('/account/:id/suspend/check-and-submit', function (req, res) {
-  // create task for national administrator
-  // set suspended state on the account
+  req.session.data.installations.find(function (installation,index) {
+    if (installation.permitId === req.params.id) {
+        req.session.data.installations[index].status = 'suspended';
+    }}
+  )
   res.redirect('confirmation')
 })
 
 router.post('/account/:id/close/check-and-submit', function (req, res) {
-  // create task for national administrator
-  // set suspended state on the account
+  req.session.data.installations.find(function (installation,index) {
+    if (installation.permitId === req.params.id) {
+        req.session.data.installations[index].status = 'closed';
+    }}
+  )
   res.redirect('confirmation')
 })
 
