@@ -40,16 +40,8 @@
             text: "Assigned to"
           },
           classes: 'govuk-!-width-one-third',
-          items: selectRepsArray
-        }) }}
-        {{ govukInput({
-          id: "assigned-to",
-          name: "search.assignee",
-          classes: "",
-          label: {
-            text: "Assigned to"
-          },
-          value: data.user.fullName
+          items: selectRepsArray,
+           value: data.user.fullName
         }) }}
 
           {{ govukSelect({
