@@ -3,7 +3,7 @@
 {% block content %}
 <div class="jui-width-container">
 <main class="govuk-main-wrapper" role="main">
-  <h1 class="govuk-heading-xl">Cancel transaction {{transaction.transactionId}}</h1>
+  <h1 class="govuk-heading-xl">Suspend User {{user.id}}</h1>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
     {% from "textarea/macro.njk" import govukTextarea %}
@@ -11,7 +11,7 @@
     name: "more-detail",
     id: "more-detail",
     label: {
-        text: "Why are you cancelling this transaction?"
+        text: "Why are you suspending this user?"
     },
     hint: {
         text: "Please provide a reason."
@@ -19,12 +19,12 @@
     }) }}
      {{ govukButton({
         text: "Go back. I have changed my mind",
-        href: '/app/transaction/' + transaction.transactionId,
+        href: '/app/user/' + user.id,
         classes: 'govuk-button--as-link govuk-!-margin-bottom-0'
       }) }}
       {{ govukButton({
-        text: "Cancel transaction",
-        href: '/app/transaction/'+ transaction.transactionId + '/confirmation',
+        text: "Suspend",
+        href: '/app/user/'+ user.id + '/confirmation',
         classes: 'govuk-!-margin-bottom-0 app-cancel-btn'
       }) }}
     </div>
