@@ -36,7 +36,6 @@
                 <span class="jui-status  jui-status--new  govuk-!-margin-left-1">
                     APPROVAL PENDING
                 </span></td>
-
               </td>
               <td class="govuk-table__cell govuk-table__cell--numeric">
               </td>
@@ -45,7 +44,7 @@
           {% endif %}
             {% for ta in data.existingAuthorisedRepresentatives %}
           <tr class="govuk-table__row govuk-!-font-size-16">
-              <th class="govuk-table__cell" scope="row"><a href="/app/user/{{ta.id}}">{{ ta.id }}</th>
+            <th class="govuk-table__cell" scope="row"><a href="/app/user/{{ta.id}}">{{ ta.id }}</a></th>
               <td class="govuk-table__cell ">{{ ta.name }}</td>
               <td class="govuk-table__cell ">{{ ta.jobTitle }}</td>
               <td class="govuk-table__cell ">{{ ta.email }}<br/>Tel: {{ ta.phone }}</td>

@@ -60,21 +60,21 @@
 <p>
   {{ govukButton({
     text: "Edit details",
-    href: '/account/'+ installation.permitId +'/details/edit/',
+    href: '/account/'+ installation.permitId +'/edit/update-details',
     classes: 'govuk-!-margin-bottom-0'
   }) }}
 </p>
 <p>
 {{ govukButton({
   text: "Suspend account",
-   href: '#',
+   href: '/account/'+ installation.permitId +'/suspend/check-and-submit',
    classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
 }) }}
 </p>
 </p>
 {{ govukButton({
   text: "Close account",
-   href: '#',
+   href: '/account/'+ installation.permitId +'/close/check-and-submit',
    classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
 }) }}
 </p>

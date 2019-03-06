@@ -2,7 +2,7 @@
 {% block content %}
 <h1 class="govuk-heading-xl">Edit account details for {{installation.name}}</h1>
 {% set url = "/account/"+ installation.permitId +"/details/confirmation" %}
-<form action={{url}} method="post">
+<form method="post">
   {{ govukInput({
     label: {
       text: 'Entity name'

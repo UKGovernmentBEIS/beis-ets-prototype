@@ -1,0 +1,21 @@
+{% extends "layouts/admin/base-account.html" %}
+
+
+{% block pageTitle %}
+  Account closed
+{% endblock %}
+
+{% block content %}
+  {{ govukPanel({
+    titleText: "Account closed",
+    classes:'govuk-!-margin-bottom-7'
+  }) }}
+
+  <h2 class="govuk-heading-m">What happens next</h2>
+  <p>The account is now closed.</p>
+  {{ govukButton({
+    href: '/account/'+ installation.permitId +'/details/view',
+    text: "Back to account page"
+  }) }}
+
+{% endblock %}

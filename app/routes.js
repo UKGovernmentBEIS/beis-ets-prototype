@@ -201,7 +201,6 @@ router.post('/account/:id/submit-emissions/specify-amount', function (req, res) 
     res.redirect('/account/' + req.params.id + '/submit-emissions/select-verifier');
 })
 
-
 router.get('/app/transaction/:id/:page?/:subPage?', function (req, res, next) {
   res.locals['transactionID'] = req.params.id
 
@@ -333,6 +332,24 @@ router.post('/account/:id/transfer-allowance/check-and-submit-transfer', functio
   }
   // push newly generated transaction onto transactions table
   req.session.data.transactions.push(newTransferTransaction)
+  res.redirect('confirmation')
+})
+
+router.post('/account/:id/edit/update-details', function (req, res) {
+  // create task for national administrator
+  // set suspended state on the account
+  res.redirect('confirmation')
+})
+
+router.post('/account/:id/suspend/check-and-submit', function (req, res) {
+  // create task for national administrator
+  // set suspended state on the account
+  res.redirect('confirmation')
+})
+
+router.post('/account/:id/close/check-and-submit', function (req, res) {
+  // create task for national administrator
+  // set suspended state on the account
   res.redirect('confirmation')
 })
 
