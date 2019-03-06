@@ -27,8 +27,13 @@ EU-100-{{ [73432,82345,73104,77732] | random }}-0-76
 {% endset %}
 
 {% block content %}
+
 <div class="jui-width-container">
 <main class="govuk-main-wrapper" role="main">
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'javascript:history.back()'
+  }) }}
   <h1 class="govuk-heading-xl">Transaction {{transaction.transactionId}} details</h1>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -170,7 +175,13 @@ EU-100-{{ [73432,82345,73104,77732] | random }}-0-76
           Status:
         </dt>
         <dd class="govuk-summary-list__value">
-          {{status | safe}}
+        {% if 'failed' in status | lower %}
+           {{status | safe}}
+           <p class="govuk-!-margin-top-2"> System error: Account ID no longer exists. </p>
+        {% else %}
+           {{status | safe}}
+        {% endif %}
+         
         </dd>
         
       </div>
