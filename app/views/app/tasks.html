@@ -145,7 +145,8 @@
                 Started:
               </span>
               <span class="datetime">
-                {{ task.started | date("DD MMMM YYYY") }} {{ task.started | date("h:mm:ss a") }}
+                {{ task.started | date("DD-MMM-YY") }} {{ task.started | date("HH:mm:ss") }}
+
               </span>
             </div>
             <div class="reference">
@@ -185,7 +186,7 @@
               Expected completion:
             </div>
             <div class="date">
-              {{ currentDate  | date("add", 7, "days") | date("DD MMMM YYYY") }}
+              {{ currentDate  | date("add", 7, "days") | date("DD-MMM-YY") }}
             </div>
           </div>
           <div class="from tile-grid-cell">
