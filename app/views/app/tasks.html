@@ -2,6 +2,25 @@
 
 {% set pageID = "tasks" %}
 
+{% set selectRepsArray = [] %}
+{% set blankObj = {
+    text: '',
+    value: '',
+    selected: checked('data.user.fullName','')
+    }
+  %}
+{% set selectRepsArray = (selectRepsArray.push(blankObj),selectRepsArray) %}
+{% for rep in data.existingAuthorisedRepresentatives %}
+  {% set repObj = {
+    text: rep.name,
+    value: rep.name,
+    selected: checked('data.user.fullName',rep.name)
+    }
+  %}
+  {% set selectRepsArray = (selectRepsArray.push(repObj),selectRepsArray) %}
+{% endfor %}
+
+
 {% block pageTitle %}Tasks {{'- ' + serviceName}}{% endblock %}
 
 {% block content %}
@@ -10,12 +29,19 @@
 
   <main class="govuk-main-wrapper" role="main">
   <h1 class="govuk-heading-l">Tasks</h1>
-
 {% set searchForm %}
 <form action='search' method="POST">
 <div class="tile-container search nobackground">
 <div class="first-cell tile-grid-cell">
-
+        {{ govukSelect({
+          id: "user-full-name",
+          name: "data.user.fullName",
+          label: {
+            text: "Assigned to"
+          },
+          classes: 'govuk-!-width-one-third',
+          items: selectRepsArray
+        }) }}
         {{ govukInput({
           id: "assigned-to",
           name: "search.assignee",
@@ -273,8 +299,9 @@
 
 {% endblock %}
 {% block page_scripts %}
+<script src="/public/javascripts/accessible-autocomplete.min.js"></script>
 <script>
-    /* global $ */
+    /* global $, accessibleAutocomplete */
     var rejectCommentsBox = '<div class="govuk-form-group">'+
     '<label class="govuk-label" for="more-detail">Why are you rejecting this?</label>'+
     '<span id="more-detail-hint" class="govuk-hint">Please provide a reason.</span>'+
@@ -348,5 +375,11 @@
         }
         
     });
-</script>
+
+    var element = document.querySelector('#user-full-name')
+    accessibleAutocomplete.enhanceSelectElement({
+        selectElement: element,
+        displayMenu: 'overlay'
+    });
+  </script>
 {% endblock %}
