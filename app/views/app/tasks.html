@@ -163,7 +163,11 @@
                 {{unit.amount | formatNumber }}
               </div>
               <div class="unit">
-                {{unit.type | safe}}
+                {% if 'submission' in task.type | lower %}
+                  {{ unit.type | upper | safe}}
+                {% else %}
+                  {{unit.type | safe}}
+                {% endif %}
               </div>
           {% endfor %}
           </div>

@@ -79,7 +79,15 @@ EU-100-{{ [73432,82345,73104,77732] | random }}-0-76
         </dt>
         <dd class="govuk-summary-list__value">
         {% for unit in transaction.units %}
-          <strong>{{unit.amount | formatNumber}}</strong> {{ unit.type | safe}} <br />
+        <strong>
+        {{unit.amount | formatNumber}}
+        </strong>
+        {% if 'submission' in task.type | lower %}
+            {{ unit.type | upper | safe}}
+        {% else %}
+          {{unit.type | safe}}
+        {% endif %}
+          <br />
         {% endfor %}
         </dd>
       </div>
