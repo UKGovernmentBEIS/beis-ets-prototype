@@ -114,16 +114,16 @@ var filterTable = function filterTable() {
       }
   }
   var filterValue = "{{ data.search.transaction.status }}".toLowerCase()
-  var sendingAccount = "{{data.search.transaction.account.sending}}".toLowerCase()
+  var accountID = "{{data.search.transaction.account.id}}".toLowerCase().trim()
   trArray.forEach(function (row) {
-    if( filterValue === 'choose a transaction status' && sendingAccount.length === 0) {
+    if( filterValue === 'choose a transaction status' && accountID.length === 0) {
       return
     }
     if(filterValue !== 'choose a transaction status'){
       hideRows(filterValue, row, null)
     }
-    if( sendingAccount.length > 0 ) {
-      hideRows(sendingAccount, row, 5)
+    if( accountID.length > 0 ) {
+      hideRows(accountID, row, null)
     }
   });
 };

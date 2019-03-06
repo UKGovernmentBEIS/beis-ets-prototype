@@ -64,6 +64,11 @@
               selected: checked("search.transaction.status",'Completed')
           },
           {
+              value: 'Rejected',
+              text: 'Rejected',
+              selected: checked("search.transaction.status",'Rejected')
+          },
+          {
               value: 'Failed',
               text: 'Failed',
               selected: checked("search.transaction.status",'Failed')
@@ -81,7 +86,7 @@
             text: "From"
           },
           hint: {
-            text: "eg 10/12/2018"
+            text: "in dd/mm/yyyy format"
           },
           value: data.search.from,
           type: "date"
@@ -99,27 +104,18 @@
         }) }}
       </div>
       <div class="third-cell tile-grid-cell">
-        <h2 class="govuk-heading-m">Account</h2>
+        <h2 class="govuk-heading-m">Account ID</h2>
         {{ govukInput({
           id: "",
-          name: "search.transaction.account.sending",
+          name: "search.transaction.account.id",
           classes: "govuk-!-width-full",
           label: {
-            text: "Sending account ID"
+            text: "Account ID"
           },
           hint: {
             text: "eg UK-12-424253-23"
           },
           value: data.search.transaction.account.sending
-        }) }}
-        {{ govukInput({
-          id: "",
-          name: "search.transaction.account.receiving",
-          classes: "govuk-!-width-full",
-          label: {
-            text: "Receiving account ID"
-          },
-          value: data.search.transaction.account.receiving
         }) }}
       </div>
       <div class="fourth-cell tile-grid-cell">
@@ -162,11 +158,33 @@
               label: {
                 text: "Transaction type"
               },
-              items: [{
+              items: [
+                {
                   value: 'Choose a transaction type',
                   text: 'Choose a transaction type',
                   selected: checked("",'')
-                }]
+                },
+                {
+                  value: 'Transfer',
+                  text: 'Transfer',
+                  selected: checked("search.transaction.type",'Transfer')
+                },
+                {
+                  value: 'Surrender',
+                  text: 'Surrender',
+                  selected: checked("search.transaction.type",'Surrender')
+                },
+                 {
+                  value: 'Deletion',
+                  text: 'Deletion',
+                  selected: checked("search.transaction.type",'Deletion')
+                },
+                {
+                  value: 'Allocation',
+                  text: 'Allocation',
+                  selected: checked("search.transaction.type",'Allocation')
+                }
+                ]
             }) }}
           </div>
         </details>
