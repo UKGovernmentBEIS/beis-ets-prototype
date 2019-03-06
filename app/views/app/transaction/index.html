@@ -63,7 +63,7 @@ EU-100-{{ [73432,82345,73104,77732] | random }}-0-76
           Started:
         </dt>
         <dd class="govuk-summary-list__value">
-          {{(transaction.started | date("DD MMMM YYYY") + '<br />' + transaction.started | date("h:mm:ss a")) | safe }}
+          {{(transaction.started | date("DD-MMM-YY") + '<br />' + transaction.started | date("HH:mm:ss")) | safe }}
         </dd>
         
       </div>
@@ -73,7 +73,7 @@ EU-100-{{ [73432,82345,73104,77732] | random }}-0-76
           Last updated:
         </dt>
         <dd class="govuk-summary-list__value">
-          {{(transaction.lastUpdated | date("DD MMMM YYYY") + '<br />' + transaction.lastUpdated | date("h:mm:ss a")) | safe }}
+          {{(transaction.lastUpdated | date("DD-MMM-YY") + '<br />' + transaction.lastUpdated | date("HH:mm:ss")) | safe }}
         </dd>
         
       </div>
