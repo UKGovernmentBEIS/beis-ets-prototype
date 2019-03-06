@@ -70,15 +70,11 @@ router.post('/2fa', function (req, res, next) {
 router.get('/app/dashboard', function (req, res, next) {
   if (req.session.data.userPersona == "ea") {
     if ( req.query.q ) {
-      console.log("here");
         res.render('app/accounts-search-results');
     } else {
-      console.log("d");
         res.render('app/accounts-search');
     }
   } else {
-      console.log("e");
-
     res.render('app/accounts-search-results');
   }
 })

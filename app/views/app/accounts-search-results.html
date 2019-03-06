@@ -60,7 +60,7 @@
             {% if acct.type == 'trading' %}
             <tr class="govuk-table__row">
                 <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
-                <td class="govuk-table__cell">{{ acct.name }}</td>
+                <td class="govuk-table__cell">{{ acct.name }} {% if acct.status != "active" %}{{acct.status | capitalize}}{% endif %}</td>
                 <td class="govuk-table__cell">{{ acct.accountHolder }}</td>
                 <td class="govuk-table__cell">
                     {% if acct.complianceStatusCode == "A" %}
@@ -90,7 +90,7 @@
                 {% if not acct.type %}
                     <tr class="govuk-table__row">
                         <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
-                        <td class="govuk-table__cell">{{ acct.name }}</td>
+                        <td class="govuk-table__cell">{{ acct.name }}{% if acct.status != "active" %} <strong>({{acct.status | capitalize}})</strong>{% endif %}</td>
                         <td class="govuk-table__cell">{{ acct.accountHolder }}</td>
                         <td class="govuk-table__cell">
                             {% if acct.complianceStatusCode == "A" %}
