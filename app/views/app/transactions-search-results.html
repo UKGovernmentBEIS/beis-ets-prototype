@@ -28,14 +28,14 @@
 <table class="govuk-table app-table--overflow" id="transactions" data-type="transactions">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row govuk-!-font-size-16">
-            <th class="govuk-table__header govuk-!-width-10" scope="col">Transaction</th>
-            <th class="govuk-table__header govuk-!-width-10" scope="col">Last updated</th>
-            <th class="govuk-table__header govuk-!-width-10" scope="col">Proposer</th>
-            <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-10" scope="col">Units</th>
-            <th class="govuk-table__header govuk-!-width-10" scope="col">Unit type</th>
-            <th class="govuk-table__header govuk-!-width-15" scope="col">Transferring acct</th>
-            <th class="govuk-table__header govuk-!-width-15" scope="col">Acquiring acct</th>
-            <th class="govuk-table__header govuk-!-width-10 govuk-table__header--numeric" scope="col">Status</th>
+            <th class="govuk-table__header govuk-!-width-10" scope="col" aria-sort="ascending">Transaction</th>
+            <th class="govuk-table__header govuk-!-width-10" scope="col" aria-sort="ascending">Last updated</th>
+            <th class="govuk-table__header govuk-!-width-10" scope="col" aria-sort="ascending">Proposer</th>
+            <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-10" scope="col" aria-sort="ascending">Units</th>
+            <th class="govuk-table__header govuk-!-width-10" scope="col" aria-sort="ascending">Unit type</th>
+            <th class="govuk-table__header govuk-!-width-15" scope="col" aria-sort="ascending">Transferring acct</th>
+            <th class="govuk-table__header govuk-!-width-15" scope="col" aria-sort="ascending">Acquiring acct</th>
+            <th class="govuk-table__header govuk-!-width-10 govuk-table__header--numeric" scope="col" aria-sort="ascending">Status</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -90,6 +90,7 @@
 
 {% endblock %}
 {% block page_scripts %}
+<script src="/public/javascripts/table-sort.js"></script>
 <script>
 var table = document.getElementById('transactions');
 var trArray = Array.prototype.slice.call(table.querySelectorAll('tbody tr'));
@@ -125,5 +126,8 @@ var filterTable = function filterTable() {
   });
 };
 filterTable();
+
+//sort tables
+new SortableTable(table);
 </script>
 {% endblock %}
