@@ -138,7 +138,7 @@
         <div class="tile-container">
           <div class="heading tile-grid-cell">
             <div class="title">
-              {{task.type}}
+              {{ 'Emissions' if 'submission' in task.type | lower else task.type}}
             </div>
             <div class="started">
               <span class="label">
@@ -173,7 +173,7 @@
           </div>
           <div class="proposer tile-grid-cell">
             <div class="label">
-              Requested by:
+              Proposed by:
             </div>
             <div class="name">
               {{ task.proposer }}
