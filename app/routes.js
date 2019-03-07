@@ -284,6 +284,10 @@ router.post('/account/:id/transfer-allowance/add-nickname-answer', function (req
   res.redirect('amount')
 })
 router.post('/account/:id/transfer-allowance/amount', function (req, res) {
+  res.redirect('notes')
+})
+
+router.post('/account/:id/transfer-allowance/notes', function (req, res) {
   res.redirect('check-and-submit-transfer')
 })
 
@@ -309,6 +313,7 @@ router.post('/account/:id/transfer-allowance/check-and-submit-transfer', functio
       break
   }
   var recipient = req.session.data.etsTransferAllowance.recepientId || getAccountID(req.session.data.etsTransferAllowance.recipient)
+  var notes = req.session.data.etsTransferAllowance.notes;
 
   var newTransferTransaction = {
     'transactionId': transactionID,
@@ -324,7 +329,8 @@ router.post('/account/:id/transfer-allowance/check-and-submit-transfer', functio
     'transferringAccount': req.params.id,
     'acquiringAccount': recipient,
     'proposer': 'Registry user',
-    'status': 'Awaiting approval'
+    'status': 'Awaiting approval',
+    'notes': notes
   }
   // push newly generated transaction onto transactions table
   req.session.data.transactions.push(newTransferTransaction)
