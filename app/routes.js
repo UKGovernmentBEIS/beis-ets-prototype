@@ -168,7 +168,8 @@ router.post('/account/:id/submit-emissions/confirmation', function (req, res, ne
       "lastUpdated": new Date(Date.now()).toISOString(),
       "type": "Submission",
       units: units,
-      'proposer': 'Registry user',
+      'proposerId': req.session.data.existingAuthorisedRepresentatives[6].id,
+      'proposer': req.session.data.existingAuthorisedRepresentatives[6].name,
       verifier: req.session.data.etsSubmitEmmissions.verifier,
       "transferringAccount": req.params.id,
       "acquiringAccount": "Submission",
@@ -252,7 +253,8 @@ router.post('/account/:id/surrender-allowance/check-and-submit', function (req, 
               amount: parseInt(req.session.data.etsSurrenderAllowance.draft.amountToSurrender.toString().replace(/,/g, ''))
             }
           ],
-          'proposer': 'Registry user',
+          'proposerId': req.session.data.existingAuthorisedRepresentatives[6].id,
+          'proposer': req.session.data.existingAuthorisedRepresentatives[6].name,
           "transferringAccount": req.params.id,
           "acquiringAccount": "EU-110-56193-0-12",
           "status": "Awaiting approval"
@@ -323,7 +325,8 @@ router.post('/account/:id/transfer-allowance/check-and-submit-transfer', functio
     ],
     'transferringAccount': req.params.id,
     'acquiringAccount': recipient,
-    'proposer': 'Registry user',
+    'proposerId': req.session.data.existingAuthorisedRepresentatives[6].id,
+    'proposer': req.session.data.existingAuthorisedRepresentatives[6].name,
     'status': 'Awaiting approval'
   }
   // push newly generated transaction onto transactions table
