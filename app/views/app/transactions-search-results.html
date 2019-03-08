@@ -84,6 +84,46 @@
         </tbody>
       </table>
 
+      {% from "pagination/macro.njk" import hmctsPagination %}
+
+      {{hmctsPagination({
+      results: {
+      from: 1,
+      to: 11,
+      count: 256
+      },
+
+      previous: {
+      text: 'Previous',
+      href: ''
+      },
+      next: {
+      text: 'Next',
+      href: ''
+      },
+      items: [{
+      text: '1',
+      href: '/page=1',
+      selected: true
+      }, {
+      type: 'dots'
+      }, {
+      text: '5',
+      href: '/page=5'
+      }, {
+      text: '6',
+      href: '/page=6'
+      }, {
+      text: '7',
+      href: '/page=7'
+      }, {
+      type: 'dots'
+      }, {
+      text: '10',
+      href: '/page=10'
+      }]
+      })}} 
+
   </main>
 
 </div>
