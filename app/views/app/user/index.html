@@ -64,9 +64,11 @@
       }) }}
     </div>
   </div>
-  
-  <h2 class="govuk-heading-l">Accounts</h2>
-  <table class="govuk-table app-table--overflow">
+  <hr class="govuk-section-break govuk-section-break--l">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h2 class="govuk-heading-l">Accounts</h2>
+      <table class="govuk-table app-table--overflow">
         <thead class="govuk-table__head">
             <tr class="govuk-table__row">
             <th class="govuk-table__header" scope="col">Account</th>
@@ -77,32 +79,32 @@
             </tr>
         </thead>
         <tbody class="govuk-table__body">
-          {% for acct in data.installations %}
-              {% if not acct.type %}
-                  <tr class="govuk-table__row">
-                      <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
-                      <td class="govuk-table__cell">{{ acct.name }}{% if acct.status != "active" %} <strong>({{acct.status | capitalize}})</strong>{% endif %}</td>
-                      <td class="govuk-table__cell">{{ acct.accountHolder }}</td>
-                      <td class="govuk-table__cell">
-                        AR
-                      </td>
-                      <td class="govuk-table__cell govuk-table__cell--numeric">
-                        <div class="hmcts-menu hmcts-menu--user-item user-item-{{loop.index0}}">
-                          <div class="hmcts-menu__wrapper">
-                            <a href="" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary govuk-!-margin-right-2">
-                                Suspend User
-                            </a>
-                            <a href="" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary govuk-!-margin-right-2">
-                                Un-enrol user
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                  </tr>
-              {% endif %}
+          {% for acct in data.installations | filterObjects('type', 'is not', 'trading') %}
+          <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
+              <td class="govuk-table__cell">{{ acct.name }}{% if acct.status != "active" %} <strong>({{acct.status | capitalize}})</strong>{% endif %}</td>
+              <td class="govuk-table__cell">{{ acct.accountHolder }}</td>
+              <td class="govuk-table__cell">
+                AR
+              </td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+                <div class="hmcts-menu hmcts-menu--user-item user-item-{{loop.index0}}">
+                  <div class="hmcts-menu__wrapper">
+                    <a href="/app/user/{{user.id}}/suspend" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary govuk-!-margin-right-2">
+                        Suspend User
+                    </a>
+                    <a href="" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary govuk-!-margin-right-2">
+                        Un-enrol user
+                    </a>
+                  </div>
+                </div>
+              </td>
+          </tr>
           {% endfor %}
         </tbody>
-    </table>
+      </table>
+      </div>
+    </div>
 </main>
 </div>
 {% endblock %}

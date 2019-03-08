@@ -96,6 +96,7 @@ module.exports = {
       'status': 'active',
       'units': 2364,
       'permitId': 'EU-100-73432-0-76',
+      'type': 'installation',
       'holdings': [
         {
           'generalAllowance': 52834
@@ -118,6 +119,7 @@ module.exports = {
       'status': 'active',
       'units': 2364,
       'permitId': 'EU-100-82345-0-76',
+      'type': 'installation',
       'holdings': [
         {
           'generalAllowance': 23871,
@@ -149,6 +151,7 @@ module.exports = {
       'status': 'active',
       'units': 2364,
       'permitId': 'EU-100-73104-0-76',
+      'type': 'installation',
       'holdings': [
         {
           'generalAllowance': 2480
@@ -162,6 +165,7 @@ module.exports = {
       'status': 'active',
       'units': 2364,
       'permitId': 'EU-100-77732-0-76',
+      'type': 'installation',
       'holdings': [
         {
           'generalAllowance': 10473
