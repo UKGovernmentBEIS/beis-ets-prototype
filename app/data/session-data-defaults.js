@@ -59,6 +59,13 @@ module.exports.reps = [
     jobTitle: 'Financial Controller',
     email: 'cecille@reretscottley.com',
     phone: '07823 274545'
+  },
+  {
+    name: 'Registry user',
+    id: '999-999-999',
+    jobTitle: 'Authorised representative',
+    email: 'user@ets.uk',
+    phone: '07893 7654'
   }
 ]
 module.exports = {

@@ -195,7 +195,7 @@
               Proposed by:
             </div>
             <div class="name">
-<a href="/app/user/{{ta.id}}">{{ task.proposer }}</a>
+<a href="/app/user/{{task.proposerId}}">{{ task.proposer }}</a>
             </div>
           </div>
           {% if 'Transfer' in task.type %}
@@ -353,14 +353,14 @@
           $taskItem.find('.tile-buttons').addClass('approved-transaction').html(approvedTag)
           $taskItem.find('.transfer-completion').show()
           updateTransactionID(taskID,'Approved',null,'Registry user',null)
-          $taskItem.fadeOut(500).delay(1000)
+          $taskItem.delay(2000).fadeOut(500)
         }
 
         if ($(this).hasClass('final-reject-btn')){
             var notes = document.getElementById("more-detail").value
             $taskItem.find('.tile-buttons').addClass('approved-transaction').html(rejectedTag)
             updateTransactionID(taskID,'Rejected', notes, null, 'Registry user')
-            $taskItem.fadeOut(500).delay(1000)
+            $taskItem.delay(2000).fadeOut(500)
         }
         if ($(this).hasClass('cancel-btn')){
             $taskItem.find('.tile-buttons').html(defaultState)
