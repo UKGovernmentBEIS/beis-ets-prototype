@@ -54,6 +54,7 @@
         
       </div>
     </dl>
+
     </div>
     <div class="govuk-grid-column-one-third">
       {{ govukButton({
@@ -64,8 +65,58 @@
     </div>
   </div>
   
-  
-  
+  <h2 class="govuk-heading-l">Accounts</h2>
+  <table class="govuk-table app-table--overflow">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Account</th>
+            <th class="govuk-table__header" scope="col">Account name</th>
+            <th class="govuk-table__header" scope="col">Account holder</th>
+            <th class="govuk-table__header" scope="col">Role</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          {% for acct in data.installations %}
+              {% if not acct.type %}
+                  <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
+                      <td class="govuk-table__cell">{{ acct.name }}{% if acct.status != "active" %} <strong>({{acct.status | capitalize}})</strong>{% endif %}</td>
+                      <td class="govuk-table__cell">{{ acct.accountHolder }}</td>
+                      <td class="govuk-table__cell">
+                        AR
+                      </td>
+                      <td class="govuk-table__cell govuk-table__cell--numeric">
+                        <div class="hmcts-menu hmcts-menu--user-item user-item-{{loop.index0}}">
+                          <div class="hmcts-menu__wrapper">
+                            <a href="" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary govuk-!-margin-right-2">
+                                Suspend User
+                            </a>
+                            <a href="" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary govuk-!-margin-right-2">
+                                Un-enrol user
+                            </a>
+                          </div>
+                        </div>
+                      </td>
+                  </tr>
+              {% endif %}
+          {% endfor %}
+        </tbody>
+    </table>
 </main>
 </div>
+{% endblock %}
+{% block page_scripts %}
+<script>
+$(".hmcts-menu--user-item").each(function( index ) {
+  var containerClass = '.user-item-' + index
+  new HMCTSFrontend.Menu({
+      container: $(containerClass),
+      mq: '(min-width: 200em)',
+      buttonText: 'Actions',
+      buttonClasses: 'hmcts-button--secondary hmcts-menu__toggle-button--secondary',
+      menuClasses: 'hmcts-menu__wrapper--right'
+    });
+});
+</script>
 {% endblock %}
