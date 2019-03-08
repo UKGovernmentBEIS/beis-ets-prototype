@@ -330,7 +330,7 @@ router.post('/account/:id/transfer-allowance/check-and-submit-transfer', functio
     ],
     'transferringAccount': req.params.id,
     'acquiringAccount': recipient,
-    'notes': notes
+    'notes': notes,
     'proposerId': req.session.data.existingAuthorisedRepresentatives[6].id,
     'proposer': req.session.data.existingAuthorisedRepresentatives[6].name,
     'status': 'Awaiting approval'
