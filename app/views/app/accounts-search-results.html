@@ -56,8 +56,7 @@
         </thead>
         <tbody class="govuk-table__body">
         {% if data.userPersona == 'trader' %}
-            {% for acct in data.installations %}
-            {% if acct.type == 'trading' %}
+            {% for acct in data.installations | filterObjects('type', 'is', 'trading') %}
             <tr class="govuk-table__row">
                 <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
                 <td class="govuk-table__cell">{{ acct.name }} {% if acct.status != "active" %}{{acct.status | capitalize}}{% endif %}</td>
@@ -83,11 +82,9 @@
                     {% endfor %}
                 </td>
                 </tr>
-            {% endif %}
             {% endfor %}
         {% else %}
-            {% for acct in data.installations %}
-                {% if not acct.type %}
+            {% for acct in data.installations | filterObjects('type', 'is not', 'trading') %}
                     <tr class="govuk-table__row">
                         <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
                         <td class="govuk-table__cell">{{ acct.name }}{% if acct.status != "active" %} <strong>({{acct.status | capitalize}})</strong>{% endif %}</td>
@@ -113,7 +110,6 @@
                             {% endfor %}
                         </td>
                     </tr>
-                {% endif %}
             {% endfor %}
         {% endif %}
         </tbody>
