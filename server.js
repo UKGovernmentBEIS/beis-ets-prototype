@@ -222,23 +222,13 @@ if (useAutoStoreData === 'true') {
 
 // Reset all data in session with what's in the sessionDataDefaults file.
 app.get('/resetSessionData', function (req, res, next) {
-    req.session.data = {};
-    const sessionDataDefaultsFile = path.join(__dirname, '/app/data/session-data-defaults.js')
-    let sessionDataDefaults = {}
-
-    try {
-      sessionDataDefaults = require(sessionDataDefaultsFile)
-    } catch (e) {
-      console.error('Could not load the session data defaults from app/data/session-data-defaults.js. Might be a syntax error?')
-    }
-
-    req.session.data = Object.assign({}, sessionDataDefaults, req.session.data) // load default data from file and insert into session.
-    res.redirect('/');
+  req.session.data = {};
+  res.redirect('/');
 })
 
 // Clear all data in session if you open /prototype-admin/clear-data
 app.post('/prototype-admin/clear-data', function (req, res) {
-  req.session.data = {}
+  req.session.data = {};
   res.render('prototype-admin/clear-data-success')
 })
 
