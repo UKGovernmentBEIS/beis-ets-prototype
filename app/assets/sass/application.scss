@@ -119,6 +119,48 @@ $table-column-widths: (
   }
 }
 
+// scrollable main nav on mobile
+.app-nav--overflow .hmcts-primary-navigation {
+  @include govuk-media-query($until: tablet) {
+    white-space: nowrap;
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+      height: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background-color: rgba(white,.5);
+      -webkit-box-shadow: 0 0 1px rgba(white,.5);
+  }
+  }
+}
+
+//allow for mobile menu
+.js-enabled .govuk-header__menu-button {
+  margin: 0 15px;
+  top: 18px;
+  display: none;
+  @include govuk-media-query($until: tablet) {
+    display: block;
+  }
+}
+.js-enabled .hmcts-header__logo {
+  @include govuk-media-query($until: tablet) {
+    padding-right: 60px;
+  }
+}
+@include govuk-media-query($until: tablet) {
+.js-enabled .hmcts-header__navigation-list {
+  text-align: right;
+}
+.js-enabled .hmcts-header__navigation {
+  display:none;
+}
+.js-enabled .hmcts-header__navigation--open {
+  display:block;
+}
+}
+
 .hidden {
   display: none;
 }

@@ -60,9 +60,11 @@
 
   }) }}
 
+  <button type="button" role="button" class="govuk-header__menu-button app-header-toggle" aria-controls="hmcts-header__navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+  
   {{ hmctsPrimaryNavigation({
     label: 'Primary navigation',
-    classes: 'govuk-!-margin-bottom-0',
+    classes: 'govuk-!-margin-bottom-0 app-nav--overflow',
     items: [
     {
       text: 'Accounts',
@@ -92,4 +94,24 @@
     ]
   }) }}
 {% endif %}
+<script>
+  function toggleClass(node, className) {
+  if (node.className.indexOf(className) > 0) {
+    node.className = node.className.replace(' ' + className, '');
+  } else {
+    node.className += ' ' + className;
+  }
+};
+  var $toggleButton = document.querySelector('.app-header-toggle')
+  var $target = document.querySelector('.' + $toggleButton.getAttribute('aria-controls'))
+  if ($toggleButton && $target) {
+  $toggleButton.onclick = function(event) {
+    var $toggleButton = event.target || event.srcElement;
+    toggleClass($target, 'hmcts-header__navigation--open');
+    toggleClass($toggleButton, 'govuk-header__menu-button--open');
+    $toggleButton.setAttribute('aria-expanded', $toggleButton.getAttribute('aria-expanded') !== 'true')
+    $target.setAttribute('aria-hidden', $target.getAttribute('aria-hidden') === 'false')
+  }
+};
+</script>
 
