@@ -11,7 +11,9 @@ What type of account do you need?
 
 
 {% block content %}
-
+{{data.createNewAccount | dump(2)}}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
    <h1 class="govuk-heading-l">
      Check your answers
@@ -23,41 +25,113 @@ What type of account do you need?
         rows: [
           {
             key: {
-              text: "Previous application number"
+              text: "Account type"
             },
             value: {
-              text: "502135326"
+              text: data.createNewAccount.accountType | capitalize
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "choose-account-type",
                   text: "Change",
-                  visuallyHiddenText: "previous application number"
+                  visuallyHiddenText: "the account type"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Licence type"
+              text: "Account name"
             },
             value: {
-              text: "For personal use"
+              text: data.createNewAccount.accountName
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-the-account",
                   text: "Change",
-                  visuallyHiddenText: "licence type"
+                  visuallyHiddenText: "account name"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Home address"
+              text: "Permit ID"
+            },
+            value: {
+              html: data.createNewAccount.permitId
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-account",
+                  text: "Change",
+                  visuallyHiddenText: "permit ID"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "Permit start date"
+            },
+            value: {
+              html: data.createNewAccount.permitStartDate.day + '/' + data.createNewAccount.permitStartDate.month + '/' + data.createNewAccount.permitStartDate.year
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-account",
+                  text: "Change",
+                  visuallyHiddenText: "permit start date"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "Permit expiry date"
+            },
+            value: {
+              html: data.createNewAccount.permitExpiry.day + '/' + data.createNewAccount.permitExpiry.month + '/' + data.createNewAccount.permitExpiry.year
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-account",
+                  text: "Change",
+                  visuallyHiddenText: "permit expiry date"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "First year of emission"
+            },
+            value: {
+              html: data.createNewAccount.yearOfFirstEmission.year
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-account",
+                  text: "Change",
+                  visuallyHiddenText: "first year of emission"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "Address"
             },
             value: {
               html: "72 Guild Street<br>London<br>SE23 6FH"
@@ -67,24 +141,61 @@ What type of account do you need?
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "home address"
+                  visuallyHiddenText: "Address"
                 }
               ]
             }
           },
+
           {
             key: {
-              text: "Licence period"
+              text: "Parent organisation"
             },
             value: {
-              text: "Valid for 6 months"
+              html: ""
             },
             actions: {
               items: [
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "Parent organisation"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "Account holder ID of parent organisation"
+            },
+            value: {
+              html: ""
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "account holder ID of parent organisation"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "Subsidiary organisation"
+            },
+            value: {
+              text: ""
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Subsidiary organisation"
                 }
               ]
             }
@@ -96,6 +207,7 @@ What type of account do you need?
       }) }}
 
     </form>
-
+  </div>
+</div>
 
 {% endblock %}

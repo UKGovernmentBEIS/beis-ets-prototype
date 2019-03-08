@@ -15,29 +15,22 @@
       <form method="POST">
       {% call govukFieldset({
         legend: {
-          text: "Personal details",
+          text: "Account holder details",
           classes: "govuk-fieldset__legend--xl",
           isPageHeading: true
         }
       }) %}
         {{ govukInput({
           label: {
-            text: "Given names"
+            text: "Account holder name"
           },
           id: "given-name",
           name: "userRegistration.givenName",
           value: data.userRegistration.givenName
         }) }}
 
-        {{ govukInput({
-          label: {
-            text: "Family name"
-          },
-          id: "family-name",
-          name: "userRegistration.familyName",
-          value: data.userRegistration.familyName
-        }) }}
-      
+
+
         {{ govukButton({
           text: "Save and continue"
         }) }}

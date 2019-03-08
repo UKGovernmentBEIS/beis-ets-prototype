@@ -11,60 +11,21 @@
   Confirmation page
 {% endblock %}
 
-{% block beforeContent %}
-{% endblock %}
-
 {% block content %}
-
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
       <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-7">
         <h1 class="govuk-panel__title">
-        {% if data.etsTransferAllowance.recipientType == 'existing' %}
-        We've received your transfer request
-        {% else %}
-        We've received your transfer request
-        {% endif %}
+        You’ve completed and saved your account details.
         </h1>
         <div class="govuk-panel__body">
-          Your reference number<br><strong>EU580697</strong>
+          Your reference number<br><strong>EU805434</strong>
         </div>
       </div>
       {{ govukInsetText({
-        html: "Visit the account page to <a class='govuk-link' href='/register-your-organisation/task-list'>view the transaction</a>."
+        html: "Your application isn’t complete yet. You can go back to <a class='govuk-link' href='/register-your-organisation/task-list'></a> to view your progress or <a class='govuk-link' href='/https://ets-alpha.herokuapp.com/account/add-a-new-authorised-representative/enter-email-address'> to invite additional representatives to your account.</a>."
       }) }}
-      <h2 class="govuk-heading-m"> What happens next</h2>
-      {% if data.etsTransferAllowance.recipientType == 'existing' %}
-      <div class="govuk-warning-text">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <strong class="govuk-warning-text__text">
-          <span class="govuk-warning-text__assistive">Warning</span>
-          Your transfer is awaiting approval.
-        </strong>
-      </div>
-        <p>
-          We've sent your transfer request to the account representatives for approval.</p>
-          <p>Once approved, transfers will be made immediately on working days between 10am and 4pm CET. Outside these hours, it will be held until the next working day.
-
-        </p>
-
-
-      {% else %}
-      <div class="govuk-warning-text">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <strong class="govuk-warning-text__text">
-          <span class="govuk-warning-text__assistive">Warning</span>
-          Your transfer is awaiting approval.
-        </strong>
-      </div>
-
-      <p>We've sent your transfer request to the account representatives for approval.</p>
-        <p>Once approved, transfers between 10am and 4pm CET working days will be made immediately. Outside these hours, it will be held until the next working period.<p/>
-      {% endif %}
-
-
-
-
-    </div>
   </div>
-{{installationID | dump(2)}}
+</div>
 {% endblock %}

@@ -16,62 +16,67 @@ Is the account based in the UK?
     <div class="govuk-grid-column-two-thirds">
 
     <form class="form" method="post">
-{% call govukFieldset({
-  legend: {
-    text: "What is the registered address for the account?",
-    classes: "govuk-fieldset__legend--l",
-    isPageHeading: true
-  }
-}) %}
+      {% call govukFieldset({
+        legend: {
+          text: "What is the registered address for the account?",
+          classes: "govuk-fieldset__legend--l",
+          isPageHeading: true
+        }
+      }) %}
 
-  {{ govukInput({
-    label: {
-      html: 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
-    },
-    id: "address1",
-    name: "data.createNewAccount.data.createNewAccount.address1"
-  }) }}
+        {{ govukInput({
+          label: {
+            html: 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
+          },
+          id: "address1",
+          name: "data.createNewAccount.data.createNewAccount.address1",
+          value: data.createNewAccount.data.createNewAccount.address1
+        }) }}
 
-  {{ govukInput({
-    label: {
-      html: '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
-    },
-    id: "address2",
-    name: "data.createNewAccount.address2"
-  }) }}
+        {{ govukInput({
+          label: {
+            html: '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
+          },
+          id: "address2",
+          name: "data.createNewAccount.address2",
+          value: data.createNewAccount.address2
+        }) }}
 
-  {{ govukInput({
-    label: {
-      text: "Town or city"
-    },
-    classes: "govuk-!-width-two-thirds",
-    id: "addressTown",
-    name: "data.createNewAccount.addressTown"
-  }) }}
+        {{ govukInput({
+          label: {
+            text: "Town or city"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "addressTown",
+          name: "data.createNewAccount.addressTown",
+          value: data.createNewAccount.addressTown
+        }) }}
 
-  {{ govukInput({
-    label: {
-      text: "County"
-    },
-    classes: "govuk-!-width-two-thirds",
-    id: "addressCounty",
-    name: "data.createNewAccount.addressCounty"
-  }) }}
+        {{ govukInput({
+          label: {
+            text: "County"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "addressCounty",
+          name: "data.createNewAccount.addressCounty",
+          value: data.createNewAccount.addressCounty
+        }) }}
 
-  {{ govukInput({
-    label: {
-      text: "Postcode"
-    },
-    classes: "govuk-input--width-10",
-    id: "addressPostcode",
-    name: "data.createNewAccount.addressPostcode"
-  }) }}
+        {{ govukInput({
+          label: {
+            text: "Postcode"
+          },
+          classes: "govuk-input--width-10",
+          id: "addressPostcode",
+          name: "data.createNewAccount.addressPostcode",
+          value: data.createNewAccount.addressPostcode
+        }) }}
 
-{% endcall %}
+      {% endcall %}
 
-      {{ govukButton({
-        text: "Continue"
-      }) }}
+            {{ govukButton({
+              text: "Continue"
+            }) }}
 
     </form>
 

@@ -4,28 +4,23 @@
 Register an organisation
 {% endblock %}
 
-{% block beforeContent %}
-  <a class="govuk-back-link" href="contact-details">Back</a>
-{% endblock %}
-
 {% block content %}
 
-
-   <h1 class="govuk-heading-l">
-  Register your details
-    </h1>
-
-    <form class="form" method="post">
-      <p>To use the Emissions Trading Registry you must provide information to prove who you are. You will be asked to provide your legal name and your address, and will also need to provide the following documents.</p>
-<ul class="govuk-list govuk-list--bullet">
-  <li>Your passport</li>
-  <li>A proof of address (either a bank statement or a utility bill)</li>
-</ul>
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-
-    </form>
-
-
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+      Register your details
+        </h1>
+      <form class="form" method="post">
+        <p>To use the Emissions Trading Registry you must provide information to prove who you are. You will be asked to provide your legal name and your address, and will also need to provide the following documents.</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Your passport</li>
+          <li>A proof of address (either a bank statement or a utility bill)</li>
+        </ul>
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
 {% endblock %}

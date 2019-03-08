@@ -13,7 +13,7 @@ What type of account do you need?
 
 
    <h1 class="govuk-heading-l">
-What type of account do you need?
+Is the account holder a person or company?
     </h1>
 
     <form class="form" method="post">
@@ -24,12 +24,12 @@ What type of account do you need?
         items: [
           {
             value: "trading",
-            text: "A trading account",
+            text: "Person",
             checked: checked("createNewAccount.accountType",'trading')
           },
           {
             value: "installation",
-            text: "An installation account",
+            text: "Company",
             checked: checked("createNewAccount.accountType",'installation')
           }
         ]

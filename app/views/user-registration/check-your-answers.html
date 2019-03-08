@@ -8,45 +8,181 @@ What type of account do you need?
 
 {% block content %}
 
-
-   <h1 class="govuk-heading-l">
-     Check your answers
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">
+      Check your answers
     </h1>
-
     <form class="form" method="post">
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
           {
             key: {
-              text: "-"
+              text: "First name"
             },
             value: {
-              text: "-"
+              text: data.userRegistration.givenName
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "full-name",
                   text: "Change",
-                  visuallyHiddenText: "-"
+                  visuallyHiddenText: "first name"
                 }
               ]
             }
           },
           {
             key: {
-              text: "-"
+              text: "Last name"
             },
             value: {
-              text: "-"
+              text: data.userRegistration.familyName
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "full-name",
                   text: "Change",
-                  visuallyHiddenText: "-"
+                  visuallyHiddenText: "last name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              text: data.userRegistration.phoneNumber
+            },
+            actions: {
+              items: [
+                {
+                  href: "contact-number",
+                  text: "Change",
+                  visuallyHiddenText: "phone number"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Date of birth"
+            },
+            value: {
+              text: data.userRegistration.dateOfBirth.day +'/'+ data.userRegistration.dateOfBirth.month +'/'+ data.userRegistration.dateOfBirth.year
+            },
+            actions: {
+              items: [
+                {
+                  href: "country-and-date-of-birth",
+                  text: "Change",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Country of birth"
+            },
+            value: {
+              text: data.userRegistration.countryOfBirth
+            },
+            actions: {
+              items: [
+                {
+                  href: "country-and-date-of-birth",
+                  text: "Change",
+                  visuallyHiddenText: "country of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Place of birth"
+            },
+            value: {
+              text: data.userRegistration.placeOfBirth
+            },
+            actions: {
+              items: [
+                {
+                  href: "country-and-date-of-birth",
+                  text: "Change",
+                  visuallyHiddenText: "place of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Type of identification document"
+            },
+            value: {
+              text: data.userRegistration.identificationDocumentType | capitalize
+            },
+            actions: {
+              items: [
+                {
+                  href: "identification-details",
+                  text: "Change",
+                  visuallyHiddenText: "type of identification document"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Document identification number"
+            },
+            value: {
+              text: data.userRegistration.identificationDocumentNumber
+            },
+            actions: {
+              items: [
+                {
+                  href: "identification-details",
+                  text: "Change",
+                  visuallyHiddenText: "document identification number"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Document expiry date"
+            },
+            value: {
+              text: data.userRegistration.identificationDocumentExpiryDate.day +'/'+ data.userRegistration.identificationDocumentExpiryDate.month +'/'+ data.userRegistration.identificationDocumentExpiryDate.year
+            },
+            actions: {
+              items: [
+                {
+                  href: "identification-details",
+                  text: "Change",
+                  visuallyHiddenText: "document expiry date"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Document uploaded"
+            },
+            value: {
+              text: data.userRegistration.identificationDocumentFileUpload
+            },
+            actions: {
+              items: [
+                {
+                  href: "document-upload",
+                  text: "Change",
+                  visuallyHiddenText: "document uploaded"
                 }
               ]
             }
@@ -58,6 +194,6 @@ What type of account do you need?
       }) }}
 
     </form>
-
-
+  </div>
+</div>
 {% endblock %}

@@ -10,19 +10,24 @@ Select recipient
 
 
 {% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Apply for an operator or trading account</h1>
 
+      <p>Apply for an operator or trading account for the UK Emissions Trading Registry.</p>
 
-   <h1 class="govuk-heading-l">
-  Create a new account
-    </h1>
+      <h2 class="govuk-heading-l">
+      What you'll need
+      </h1>
+      <p>If you are opening an operator account, you will either your greenhouse gas permit ID or your Monitoring Plan ID.</p>
+      <form class="form" method="post">
 
-    <form class="form" method="post">
-      <p> stuff and bullets</p>
       {{ govukButton({
         text: "Continue"
       }) }}
 
-    </form>
-
+      </form>
+    </div>
+  </div>
 
 {% endblock %}

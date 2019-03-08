@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="contact-details">Back</a>
+  <a class="govuk-back-link" href="country-and-date-of-birth">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -49,7 +49,7 @@
           label: {
             text: "Enter the document number"
           },
-          value: data.userRegistration.identificationDocumentNumber'
+          value: data.userRegistration.identificationDocumentNumber
         }) }}
 
         {{ govukDateInput({
@@ -70,19 +70,19 @@
               id: "userRegistration.identificationDocumentExpiryDate.day",
               label: 'Day',
               name: "userRegistration.identificationDocumentExpiryDate.day",
-              value: data.userRegistration.identificationDocumentExpiryDate.day'
+              value: data.userRegistration.identificationDocumentExpiryDate.day
             },
             {
               classes: "govuk-input--width-2",
               label: "Month",
               name: "userRegistration.identificationDocumentExpiryDate.month",
-              value: data.userRegistration.identificationDocumentExpiryDate.month'
+              value: data.userRegistration.identificationDocumentExpiryDate.month
             },
             {
               classes: "govuk-input--width-4",
               label: "Year",
               name: "userRegistration.identificationDocumentExpiryDate.year",
-              value: data.userRegistration.identificationDocumentExpiryDate.year'
+              value: data.userRegistration.identificationDocumentExpiryDate.year
             }
             ]
         }) }}

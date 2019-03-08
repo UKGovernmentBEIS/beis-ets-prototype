@@ -9,10 +9,11 @@
 {% endblock %}
 
 {% block content %}
-
-<style>
-input, select { display: block; }
-</style>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <style>
+    input, select { display: block; }
+    </style>
 
     <form class="form" method="post">
       {% call govukFieldset({
@@ -41,7 +42,7 @@ input, select { display: block; }
           text: "Permit ID for the new installation"
         },
         hint: {
-          text: "eg 'EU-100-47639-0-78'"
+          text: "eg 'UK-E-IN-34562'"
         },
         id: "permit-id",
         name: "createNewAccount.permitId",
@@ -50,8 +51,103 @@ input, select { display: block; }
       }) }}
 
       {{ govukDetails({
-        summaryText: "Help with account ID",
-        text: "The permit ID will be included in the PDF document produced by the ETS Swap system."
+        summaryText: "Help with permit ID",
+        text: "The permit ID will be included in the PDF document sent to you by the Regulator."
+      }) }}
+
+
+
+      {{ govukDateInput({
+        name: "createNewAccount.permitStartDate",
+        fieldset: {
+          legend: {
+            text: "Permit start date",
+            isPageHeading: false,
+            classes: 'govuk-fieldset__legend--m'
+          }
+        },
+        hint: {
+          text: "For example, 31 3 2021"
+        },
+        items: [
+          {
+            classes: "govuk-input--width-2",
+            id: "createNewAccount.permitStartDate.day",
+            label: 'Day',
+            name: "createNewAccount.permitStartDate.day",
+            value: data.createNewAccount.permitStartDate.day
+          },
+          {
+            classes: "govuk-input--width-2",
+            label: "Month",
+            name: "createNewAccount.permitStartDate.month",
+            value: data.createNewAccount.permitStartDate.month
+          },
+          {
+            classes: "govuk-input--width-4",
+            label: "Year",
+            name: "createNewAccount.permitStartDate.year",
+            value: data.createNewAccount.permitStartDate.year
+          }
+          ]
+      }) }}
+
+      {{ govukDateInput({
+        name: "createNewAccount.permitExpiry",
+        fieldset: {
+          legend: {
+            text: "Permit expiry date",
+            isPageHeading: false,
+            classes: 'govuk-fieldset__legend--m'
+          }
+        },
+        hint: {
+          text: "For example, 31 3 2024"
+        },
+        items: [
+          {
+            classes: "govuk-input--width-2",
+            id: "createNewAccount.permitExpiry.day",
+            label: 'Day',
+            name: "createNewAccount.permitExpiry.day",
+            value: data.createNewAccount.permitExpiry.day
+          },
+          {
+            classes: "govuk-input--width-2",
+            label: "Month",
+            name: "createNewAccount.permitExpiry.month",
+            value: data.createNewAccount.permitExpiry.month
+          },
+          {
+            classes: "govuk-input--width-4",
+            label: "Year",
+            name: "createNewAccount.permitExpiry.year",
+            value: data.createNewAccount.permitExpiry.year
+          }
+          ]
+      }) }}
+
+      {{ govukDateInput({
+        name: "createNewAccount.yearOfFirstEmission",
+        fieldset: {
+          legend: {
+            text: "First year of emissions",
+            isPageHeading: false,
+            classes: 'govuk-fieldset__legend--m'
+          }
+        },
+        hint: {
+          text: "For example, 2018"
+        },
+        items: [
+
+          {
+            classes: "govuk-input--width-4",
+            label: "Year",
+            name: "createNewAccount.yearOfFirstEmission.year",
+            value: data.createNewAccount.yearOfFirstEmission.year
+          }
+          ]
       }) }}
 
       {{ govukButton({
@@ -60,5 +156,7 @@ input, select { display: block; }
 
       {% endcall %}
     </form>
+  </div>
+</div>
 
 {% endblock %}

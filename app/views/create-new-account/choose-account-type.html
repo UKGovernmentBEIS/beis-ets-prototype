@@ -29,11 +29,19 @@ What type of account do you need?
           },
           {
             value: "installation",
-            text: "An installation account",
+            text: "An operator holding account",
             checked: checked("createNewAccount.accountType",'installation')
-          }
-        ]
-      }) }}
+          },
+
+    
+
+      {
+        value: "aircraft",
+        text: "An aircraft operator holding account",
+        checked: checked("createNewAccount.accountType",'installation')
+      }
+    ]
+  }) }}
 
       {{ govukButton({
         text: "Continue"
