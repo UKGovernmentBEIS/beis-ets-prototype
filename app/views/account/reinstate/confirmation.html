@@ -2,7 +2,7 @@
 
 
 {% block pageTitle %}
-  Request sent
+  Account reinstated
 {% endblock %}
 
 {% block content %}
@@ -12,7 +12,8 @@
   }) }}
 
   <h2 class="govuk-heading-m">What happens next</h2>
-  <p>The account is now reinstated. Users can now transfer, delete or surrender allowances and submit emissions data.</p>
+  <p>The account has been reinstated. Authorised users can now transfer, delete, and surrender allowances.</p>
+  <p> Users can also submit emissions data for the account.</p>
   {{ govukButton({
     href: '/account/'+ installation.permitId +'/details/view',
     text: "Back to account page"
