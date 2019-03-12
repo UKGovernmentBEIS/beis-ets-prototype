@@ -75,18 +75,19 @@
 <p>
 {% if 'active' in installation.status | lower %}
 {{ govukButton({
-  text: "Reinstate account",
-   href: '/account/'+ installation.permitId +'/reinstate/check-and-submit',
-   classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
-}) }}
-{% else %}
-{{ govukButton({
   text: "Suspend account",
    href: '/account/'+ installation.permitId +'/suspend/check-and-submit',
    classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
 }) }}
-</p>
 {% endif %}
+{% if 'suspended' in installation.status | lower %}
+{{ govukButton({
+  text: "Reinstate account",
+   href: '/account/'+ installation.permitId +'/reinstate/check-and-submit',
+   classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
+}) }}
+{% endif %}
+</p>
 {% if not 'closed' in installation.status | lower %}
 <p>
 {{ govukButton({
