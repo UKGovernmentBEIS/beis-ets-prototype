@@ -185,6 +185,11 @@ $table-column-widths: (
   }
 }
 
+.app-expand-previous-years {
+  display: block;
+  margin-top: govuk-spacing(2);
+}
+
 @media only screen {
   body {
     overflow-y: scroll;
