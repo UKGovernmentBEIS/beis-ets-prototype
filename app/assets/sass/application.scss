@@ -138,17 +138,13 @@ $table-column-widths: (
 //allow for mobile menu
 .js-enabled .govuk-header__menu-button {
   margin: 0 15px;
-  top: 18px;
+  top: 22px;
   display: none;
   @include govuk-media-query($until: tablet) {
     display: block;
   }
 }
-.js-enabled .hmcts-header__logo {
-  @include govuk-media-query($until: tablet) {
-    padding-right: 60px;
-  }
-}
+
 @include govuk-media-query($until: tablet) {
   .js-enabled .hmcts-header__navigation-list {
     text-align: right;
@@ -158,6 +154,13 @@ $table-column-widths: (
   }
   .js-enabled .hmcts-header__navigation--open {
     display:block;
+  }
+  
+}
+
+@include govuk-media-query($from: tablet) {
+  .hmcts-header__navigation {
+    float: right;
   }
 }
 
