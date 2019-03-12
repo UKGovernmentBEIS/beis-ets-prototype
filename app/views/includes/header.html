@@ -40,8 +40,7 @@
   <header class="hmcts-header" role="banner">
 
   <div class="hmcts-header__container">
-
-    <div class="hmcts-header__logo">
+    <div class="govuk-header__logo">
       <a href="/" class="govuk-header__link govuk-header__link--homepage">
         <span class="govuk-header__logotype">
           
@@ -54,38 +53,29 @@
             GOV.UK
           </span>
         </span>
-      </a>
-      <a class="hmcts-header__link" href="/app/dashboard">
-        <span class='app-service-name'>{{serviceName}}</span>
+        
       </a>
     </div>
-      <div class="hmcts-header__content">
-
-        <nav class="hmcts-header__navigation" aria-label="Account navigation">
-
-          <ul class="hmcts-header__navigation-list">
-
-            
-              <li class="hmcts-header__navigation-item">
-                <a class="hmcts-header__navigation-link" href="/admin">
-                  Admin
-                </a>
-              </li>
-            
-              <li class="hmcts-header__navigation-item">
-                <a class="hmcts-header__navigation-link" href="/resetSessionData">
-                  Sign out
-                </a>
-              </li>
-            
-
-          </ul>
-
-        </nav>
-
-      </div>
-    
-
+    <div class="govuk-header__content">
+      <a href="/" class="govuk-header__link govuk-header__link--service-name">
+        {{serviceName}}
+      </a>
+      <nav class="hmcts-header__navigation" aria-label="Account navigation">
+        <ul class="hmcts-header__navigation-list">
+            <li class="hmcts-header__navigation-item">
+              <a class="hmcts-header__navigation-link" href="/admin">
+                Admin
+              </a>
+            </li>
+          
+            <li class="hmcts-header__navigation-item">
+              <a class="hmcts-header__navigation-link" href="/resetSessionData">
+                Sign out
+              </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 
 </header>
