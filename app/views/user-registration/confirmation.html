@@ -22,13 +22,14 @@
         </div>
       </div>
       <h2 class="govuk-heading-m"> What happens next</h2>
-      {% if data.registrationJourney == "organisationOnboarding" %}
-      <p>The details you've provided will be checked and you will be sent an email when this is complete. You will then be able to use the account to submit emissions data and trade allowances. This process can take up to 2 months.</p>
-      <p>In the meantime you can <a class='govuk-link' href='/register-your-organisation/task-list'>continue setting up your organisation</a>.
+      <p>
+      The details you've provided will be checked and you will be sent an email when this is complete. 
+      You will then be able to use your account to submit emissions data and trade allowances for registry you have been invited to.
+      This process can take up to 2 months.</p>
+      <p>Ask your administrator to invite you to a registry account so that you can do this.</p>
+      <p>
+      Alternatively, if you will be the administrator for your organisation you can <a class='govuk-link' href='/register-your-organisation/task-list'>set up your organisation</a> with the registry.
       </p>
-      {% else %}
-      <p>The details you've provided will be checked by an administrator and you will be sent an email when the account is activated and ready for you to use. This process can take up to 2 months</p>
-      {% endif %}
     </div>
   </div>
 {% endblock %}

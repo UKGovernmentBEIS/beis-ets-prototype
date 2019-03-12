@@ -15,14 +15,14 @@
       <form method="POST">
       {% call govukFieldset({
         legend: {
-          text: "Account holder details",
+          text: "VAT Registration",
           classes: "govuk-fieldset__legend--xl",
           isPageHeading: true
         }
       }) %}
         {{ govukInput({
           label: {
-            text: "VAT and registration number"
+            text: "Enter your VAT registration number"
           },
           id: "given-name",
           name: "userRegistration.givenName",
@@ -32,7 +32,7 @@
   
 
         {{ govukButton({
-          text: "Save and continue"
+          text: "Continue"
         }) }}
 
       {% endcall %}

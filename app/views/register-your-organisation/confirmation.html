@@ -1,0 +1,33 @@
+  {% extends "layout.html" %}
+
+{% set mainClasses = "govuk-main-wrapper--l" %}
+{% block pageTitle %}
+  Confirmation page
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+
+
+      <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-7">
+        <h1 class="govuk-panel__title">
+        You've submitted your registration
+        </h1>
+        <div class="govuk-panel__body">
+          Your reference number<br><strong>EU580697</strong>
+        </div>
+      </div>
+      <h2 class="govuk-heading-m"> What happens next</h2>
+          <p>The registration for your organisation has been submitted and will be reviewed. When it has been approved, and when background checks have been completed you will be able to start trading in the system and submitting emissions data for your accounts.</p>
+          <p>In the meantime, you can start using the system to create additional accounts and invite other users in your organisation to use the system.</p>
+
+    {{ govukButton({
+      text: "Start using the Registry",
+      href: "../app/dashboard?onBoardingComplete=Yes"
+    }) }}
+    </div>
+  </div>
+
+{% endblock %}

@@ -5,7 +5,7 @@
 {% endif %}
 
 {% block pageTitle %}
-What type of account do you need?
+How is your organisation incorporated?
 {% endblock %}
 
 
@@ -13,24 +13,29 @@ What type of account do you need?
 
 
    <h1 class="govuk-heading-l">
-Is the account holder a person or company?
+How is your organisation incorporated?
     </h1>
 
     <form class="form" method="post">
       {{ govukRadios({
-        idPrefix: "accountType",
-        name: "createNewAccount.accountType",
+        idPrefix: "orgType",
+        name: "createNewOrganisation.orgType",
         fieldset: {},
         items: [
           {
-            value: "trading",
-            text: "Person",
-            checked: checked("createNewAccount.accountType",'trading')
+            value: "soleTrader",
+            text: "Sole Trader",
+            checked: checked("createNewOrganisation.orgType",'soleTrader')
           },
           {
-            value: "installation",
-            text: "Company",
-            checked: checked("createNewAccount.accountType",'installation')
+            value: "ltd",
+            text: "Limited Company",
+            checked: checked("createNewOrganisation.orgType",'ltd')
+          },
+          {
+            value: "plc",
+            text: "Public Limited Company",
+            checked: checked("createNewOrganisation.orgType",'plc')
           }
         ]
       }) }}

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Enter personal details
+Organisation Name
 {% endblock %}
 
 {% block beforeContent %}
@@ -15,14 +15,14 @@
       <form method="POST">
       {% call govukFieldset({
         legend: {
-          text: "Account holder details",
+          text: "Organisation name",
           classes: "govuk-fieldset__legend--xl",
           isPageHeading: true
         }
       }) %}
         {{ govukInput({
           label: {
-            text: "Account holder name"
+            text: "Enter name, or trading name, or your organisation"
           },
           id: "given-name",
           name: "userRegistration.givenName",
@@ -32,7 +32,7 @@
 
 
         {{ govukButton({
-          text: "Save and continue"
+          text: "Continue"
         }) }}
 
       {% endcall %}

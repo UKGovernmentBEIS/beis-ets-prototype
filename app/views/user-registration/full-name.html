@@ -20,22 +20,13 @@
           isPageHeading: true
         }
       }) %}
-        {{ govukInput({
-          label: {
-            text: "First name",
-            hint: "Include middle names"
-          },
-          hint: {
-            text: "Include any middle names"
-          },
-          id: "given-name",
-          name: "userRegistration.givenName",
-          value: data.userRegistration.givenName
-        }) }}
 
         {{ govukInput({
           label: {
-            text: "Last name"
+            text: "Full name"
+          },
+          hint: {
+            text: "Include any middle names"
           },
           id: "family-name",
           name: "userRegistration.familyName",
@@ -43,7 +34,7 @@
         }) }}
       
         {{ govukButton({
-          text: "Save and continue"
+          text: "Continue"
         }) }}
 
       {% endcall %}

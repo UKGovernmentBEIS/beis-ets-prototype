@@ -68,14 +68,6 @@
             -->
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
-              <a class="app-task-list__task-name" href="/user-registration/start" aria-describedby="eligibility-completed">
-                  Provide details about yourself
-              </a>
-              {% if data.userRegistrationCompleted == "Yes" %}
-              <strong class="govuk-tag app-task-list__task-completed" id="eligibility-completed">Completed</strong>
-              {% endif %}
-            </li>
-            <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="/register-an-organisation/start" aria-describedby="eligibility-completed">
                   Register your organisation
               </a>
@@ -110,7 +102,7 @@
                 <p>You are now ready to submit your registration</p>
                 {{ govukButton({
                   text: "Submit your registration",
-                  href: "../app/dashboard?onBoardingComplete=Yes"
+                  href: "confirmation?onBoardingComplete=Yes"
                 }) }}
               {% else %}
                 {{ govukButton({
