@@ -138,7 +138,7 @@ $table-column-widths: (
 //allow for mobile menu
 .js-enabled .govuk-header__menu-button {
   margin: 0 15px;
-  top: 18px;
+  top: 22px;
   display: none;
   @include govuk-media-query($until: tablet) {
     display: block;
@@ -158,6 +158,19 @@ $table-column-widths: (
   }
   .js-enabled .hmcts-header__navigation--open {
     display:block;
+  }
+  
+}
+.hmcts-header__logo .govuk-header__link {
+  margin-right: 15px;
+  vertical-align: middle;
+}
+.hmcts-header__link {
+  margin-top: 4px;
+}
+@include govuk-media-query($until: desktop) {
+  .hmcts-header__link {
+    display: block;
   }
 }
 
