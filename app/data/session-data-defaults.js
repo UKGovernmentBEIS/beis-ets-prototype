@@ -179,7 +179,7 @@ module.exports = {
       "transactionId": "EU472379",
       "started": new Date(1550251388943).toISOString(),
       "lastUpdated": new Date(1550251388941).toISOString(),
-      "type": "10-72 Receipt of allowances for exchange",
+      "type": "Allocation for exchange",
       units: [
         {
           type: 'allowances',
@@ -236,7 +236,7 @@ module.exports = {
       "transactionId": "EU104957",
       "started": new Date(1550251388943).toISOString(),
       "lastUpdated": new Date(1550251388941).toISOString(),
-      "type": "10-36 Allocation allowances",
+      "type": "Allocation",
       units: [
         {
           type: 'allowances',
@@ -255,7 +255,7 @@ module.exports = {
       "transactionId": "EU672244",
       "started": new Date(1550251388999).toISOString(),
       "lastUpdated": new Date(1550251388941).toISOString(),
-      "type": "01-34 Issuance allowances banking",
+      "type": "Allocation",
       units: [
         {
           type: 'allowances',
@@ -274,7 +274,7 @@ module.exports = {
       "transactionId": "EU289247",
       "started": new Date(1550251388943).toISOString(),
       "lastUpdated": new Date(1550251388941).toISOString(),
-      "type": "01-34 Issuance allowances banking",
+      "type": "Allocation",
       units: [
         {
           type: 'allowances',
@@ -293,7 +293,7 @@ module.exports = {
       "transactionId": "EU345954",
       "started": new Date(1550251388943).toISOString(),
       "lastUpdated": new Date(1550251388941).toISOString(),
-      "type": "10-34 Deletion allowances banking",
+      "type": "Deletion",
       units: [
         {
           type: 'allowances',
@@ -380,33 +380,6 @@ module.exports = {
       'notes': "Surrendering for year 2018",
       'proposer': module.exports.reps[5].name,
       'proposerId': module.exports.reps[5].id
-    },
-    {
-      "transactionId": "EU790032",
-      "started": new Date(1550251388943).toISOString(),
-      "lastUpdated": new Date(1550251388943).toISOString(),
-      "type": "Submission",
-      units: [
-        {
-          type: 'C02',
-          amount: 2800
-        },
-        {
-          type: 'PFCs',
-          amount: 568
-        },
-        {
-          type: 'N2O',
-          amount: 43
-        }
-      ],
-      'verifier': 'Lucideon',
-      "transferringAccount": "EU-100-77732-0-76",
-      "acquiringAccount": "Submission",
-      "status": "Awaiting approval",
-      'proposer': module.exports.reps[2].name,
-      'proposerId': module.exports.reps[2].id,
-      'notes': 'Submitting emission for 2018'
     }
   ],
   'existingAccounts': [

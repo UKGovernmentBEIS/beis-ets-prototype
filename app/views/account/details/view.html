@@ -65,36 +65,37 @@
 {% endblock %}
 
 {% block sideContent %}
-<p>
-  {{ govukButton({
-    text: "Edit details",
-    href: '/account/'+ installation.permitId +'/edit/update-details',
-    classes: 'govuk-!-margin-bottom-0'
-  }) }}
-</p>
-<p>
-{% if 'active' in installation.status | lower %}
-{{ govukButton({
-  text: "Suspend account",
-   href: '/account/'+ installation.permitId +'/suspend/check-and-submit',
-   classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
-}) }}
-{% endif %}
-{% if 'suspended' in installation.status | lower %}
-{{ govukButton({
-  text: "Reinstate account",
-   href: '/account/'+ installation.permitId +'/reinstate/check-and-submit',
-   classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
-}) }}
-{% endif %}
-</p>
+
 {% if not 'closed' in installation.status | lower %}
-<p>
-{{ govukButton({
-  text: "Close account",
-   href: '/account/'+ installation.permitId +'/close/check-and-submit',
-   classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
-}) }}
-</p>
+  <p>
+    {{ govukButton({
+      text: "Edit details",
+      href: '/account/'+ installation.permitId +'/edit/update-details',
+      classes: 'govuk-!-margin-bottom-0'
+    }) }}
+  </p>
+  <p>
+  {% if 'active' in installation.status | lower %}
+    {{ govukButton({
+      text: "Suspend account",
+       href: '/account/'+ installation.permitId +'/suspend/check-and-submit',
+       classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
+    }) }}
+  {% endif %}
+  {% if 'suspended' in installation.status | lower %}
+    {{ govukButton({
+      text: "Reinstate account",
+       href: '/account/'+ installation.permitId +'/reinstate/check-and-submit',
+       classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
+    }) }}
+  {% endif %}
+  </p>
+  <p>
+  {{ govukButton({
+    text: "Close account",
+     href: '/account/'+ installation.permitId +'/close/check-and-submit',
+     classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
+  }) }}
+  </p>
 {% endif %}
 {% endblock %}
