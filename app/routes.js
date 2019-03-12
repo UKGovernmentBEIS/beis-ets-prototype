@@ -355,6 +355,15 @@ router.post('/account/:id/suspend/check-and-submit', function (req, res) {
   res.redirect('confirmation')
 })
 
+router.post('/account/:id/reinstate/check-and-submit', function (req, res) {
+  req.session.data.installations.find(function (installation,index) {
+    if (installation.permitId === req.params.id) {
+        req.session.data.installations[index].status = 'active';
+    }}
+  )
+  res.redirect('confirmation')
+})
+
 router.post('/account/:id/close/check-and-submit', function (req, res) {
   req.session.data.installations.find(function (installation,index) {
     if (installation.permitId === req.params.id) {

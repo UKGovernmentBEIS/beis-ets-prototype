@@ -1,0 +1,20 @@
+{% extends "layouts/admin/base-account-question.html" %}
+
+{% block pageTitle %}
+  Check before reinstating the account
+{% endblock %}
+
+
+{% block content %}
+
+  <h1 class="govuk-heading-xl">Check before reinstating the account</h1>
+    <form class="form" action="check-and-submit" method="post">
+
+        <p>You are about to reinstate account <strong>{{ installationData.permitId }}</strong>.</p><p>Trading on this account will resume.</p>
+
+      {{ govukButton({
+        text: "Reinstate account"
+      }) }}
+    </form>
+
+{% endblock %}
