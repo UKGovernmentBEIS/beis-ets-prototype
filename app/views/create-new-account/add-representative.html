@@ -17,40 +17,31 @@ Do you want to add a representative to the account?
    <p>If you want to trade on the account you'll need to add another individual to the account</p>
 
     <form class="form" method="post">
-      {{ govukRadios({
-        classes: "govuk-radios--inline",
-        idPrefix: "basedInTheUK",
-        name: "createNewAccount.basedInTheUK",
-        fieldset: {},
-        items: [
-          {
-            value: "yes",
-            text: "Yes",
-            checked: checked("createNewAccount.basedInTheUK",'yes'),
-            attributes: 
-              {
-                "data-aria-controls": "hidden-representative-email"
-              }
-          },
-          {
-            value: "no",
-            text: "No",
-            checked: checked("createNewAccount.basedInTheUK",'no')
-          }
-        ]
-      }) }}
 
-      <div id="hidden-representative-email">
-        {{ govukInput({
-        id: "email-address",
-        name: "addNewRepresentative.draft.emailAddress",
-        classes: "govuk-input--width-20 format-number",
-        label: {
-            text: "Enter email address"
-        },
-        value: data.addNewRepresentative.draft.emailAddress
-        }) }}
+<div data-module="checkboxes">
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
+          <div class="govuk-radios govuk-radios--inline">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-rep-1" name="createNewAccount.addARep" type="radio" value="yes" data-aria-controls="conditional-2">
+              <label class="govuk-label govuk-radios__label" for="add-rep-1">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-rep-2" name="createNewAccount.addARep" type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="add-rep-2">
+                Yes
+              </label>
+            </div>
+          </div>
+        </fieldset>
       </div>
+
+      <div id="conditional-2">
+        adsfsdf
+      </div>
+</div>
       {{ govukButton({
         text: "Continue"
       }) }}
