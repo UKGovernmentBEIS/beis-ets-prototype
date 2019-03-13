@@ -32,7 +32,7 @@ Do you want to add a representative to the account?
           No
         </label>
       </div>
-      <div class="govuk-radios__conditional--hidden govuk-!-padding-top-5" id="hidden-representative-email">
+      <div class="{% if (data.createNewAccount.addRep == "no") or ( not data.createNewAccount.addRep) %} govuk-radios__conditional--hidden {% endif %} govuk-!-padding-top-5" id="hidden-representative-email">
         <h2 class="govuk-heading-m">
           Invite a representative to the account
         </h2>
