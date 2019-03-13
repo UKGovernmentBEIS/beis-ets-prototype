@@ -1,4 +1,4 @@
-UK Emissions Trading Registry Alpha Prototype
+# UK Emissions Trading Registry Alpha Prototype
 
 Latest live version:
 - https://ets-alpha.london.cloudapps.digital
@@ -29,9 +29,10 @@ Review archived versions:
   Sprint 7 - checkout git tag `version-7`
 
 - https://ets-alpha-v8.london.cloudapps.digital
+  
   Sprint 8 - checkout git tag `version-8`
 
-Run locally
+## Run locally
 - clone the repository
 - open terminal / bash and navigate into into
 - first time only: run `npm install`
