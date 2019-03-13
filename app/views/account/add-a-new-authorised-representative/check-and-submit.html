@@ -11,13 +11,13 @@
 
 {% block content %}
 
-  <h1 class="govuk-heading-xl">Check before adding a new representative</h1>
+  <h1 class="govuk-heading-xl">Check before adding a new authorised representative</h1>
     <form class="form" action="check-and-submit" method="post">
 
         <p>You are about to add <strong>{{ data.addNewRepresentative.draft.emailAddress }}</strong> to this account.</p><p> The user will receive an email inviting them to join the account.</p>
 
       {{ govukButton({
-        text: "Add new representative"
+        text: "Add new authorised representative"
       }) }}
     </form>
 
