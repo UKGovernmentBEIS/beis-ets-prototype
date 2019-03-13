@@ -121,7 +121,7 @@ input, select { display: block; }
                 text: 'Enter the number of units you want to transfer'
               },
               hint: {
-                html: 'You will have <span id="newnumber"> ' + value | formatNumber + ' </span> units of ' + unitDisplayName +' after this transfer'
+                html: 'You will have <span id="newnumber"> ' + value | formatNumber + ' </span> ' + unitDisplayName +' after this transfer'
               },
               classes: "govuk-input--width-5 app-emmission-transfer",
               attributes: {
@@ -172,7 +172,7 @@ input, select { display: block; }
       } else if ( !number ) {
         number = 0
       }
-      $this.parent().find('#newnumber').text( amountYouWillHave );
+      $this.parent().find('#newnumber').text( amountYouWillHave.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') );
     });
 
   });

@@ -14,13 +14,13 @@
 
 {% block content %}
       <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-9">
-        <h1 class="govuk-panel__title">We’ve received your request to add a new representative to this account</h1>
+        <h1 class="govuk-panel__title">We’ve received your request to add a new authorised representative to this account</h1>
 
         <div class="govuk-panel__body">
             Your reference number<br><strong>EU613749</strong>
         </div>
       </div>
-      
+
 {% if data.onBoardingComplete == "Yes" %}
       {{ govukInsetText({
         html: "Visit the account page to <a class='govuk-link' href='/account/" + installationID +"'>check the status of your request</a>."
