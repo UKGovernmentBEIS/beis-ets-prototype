@@ -540,10 +540,14 @@ router.post('/create-new-account/where-is-the-account-based', function (req, res
 })
 
 router.post('/create-new-account/uk-address', function (req, res) {
-    res.redirect("check-your-answers");
+    res.redirect("add-representative");
 })
 
 router.post('/create-new-account/international-address', function (req, res) {
+    res.redirect("add-representative");
+})
+
+router.post('/create-new-account/add-representative', function (req, res) {
     res.redirect("check-your-answers");
 })
 
