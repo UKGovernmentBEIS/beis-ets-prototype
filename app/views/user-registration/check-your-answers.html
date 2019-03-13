@@ -19,34 +19,17 @@ What type of account do you need?
         rows: [
           {
             key: {
-              text: "First name"
+              text: "Full name"
             },
             value: {
-              text: data.userRegistration.givenName
+              text: data.userRegistration.fullName
             },
             actions: {
               items: [
                 {
                   href: "full-name",
                   text: "Change",
-                  visuallyHiddenText: "first name"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Last name"
-            },
-            value: {
-              text: data.userRegistration.familyName
-            },
-            actions: {
-              items: [
-                {
-                  href: "full-name",
-                  text: "Change",
-                  visuallyHiddenText: "last name"
+                  visuallyHiddenText: "full name"
                 }
               ]
             }
