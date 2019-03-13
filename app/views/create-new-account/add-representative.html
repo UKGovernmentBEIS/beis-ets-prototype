@@ -8,45 +8,51 @@
 Do you want to add a representative to the account?
 {% endblock %}
 
-
 {% block content %}
 
-   <h1 class="govuk-heading-l">
-     Do you want to add a representative to the account now?
-   </h1>
-   <p>If you want to trade on the account you'll need to add another individual to the account</p>
-
-    <form class="form" method="post">
-
-<div data-module="checkboxes">
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
-          <div class="govuk-radios govuk-radios--inline">
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="add-rep-1" name="createNewAccount.addARep" type="radio" value="yes" data-aria-controls="conditional-2">
-              <label class="govuk-label govuk-radios__label" for="add-rep-1">
-                Yes
-              </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="add-rep-2" name="createNewAccount.addARep" type="radio" value="no">
-              <label class="govuk-label govuk-radios__label" for="add-rep-2">
-                Yes
-              </label>
-            </div>
-          </div>
-        </fieldset>
+<form class="form" method="post">
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        Do you want to add a representative to the account now?
+      </h1>
+    </legend>
+    <p>If you want to trade on the account you'll need to add another individual to the account</p>
+    <div class="govuk-radios govuk-radios--conditional" data-module="radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="add-rep-1" name="createNewAccount.addRep" type="radio" value="yes" aria-controls="hidden-representative-email" aria-expanded="false">
+        <label class="govuk-label govuk-radios__label" for="add-rep-1">
+          Yes
+        </label>
       </div>
-
-      <div id="conditional-2">
-        adsfsdf
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="add-rep-2" name="createNewAccount.addRep" type="radio" value="no">
+        <label class="govuk-label govuk-radios__label" for="add-rep-2">
+          No
+        </label>
       </div>
+      <div class="govuk-radios__conditional--hidden" id="hidden-representative-email">
+        <br />
+        <h2 class="govuk-heading-m">
+          Invite a representative to the account
+        </h2>
+        {{ govukInput({
+        id: "rep-email-address",
+        name: "createNewAccount.repEmailAddress",
+        classes: "govuk-input--width-20 format-number",
+        label: {
+            text: "Enter their email address"
+        },
+        value: data.createNewAccount.repEmailAddress
+        }) }}
+      </div>
+    </div>
+  </fieldset>
 </div>
-      {{ govukButton({
-        text: "Continue"
-      }) }}
 
-    </form>
-
-
+{{ govukButton({
+  text: "Continue"
+}) }}
+</form>
 {% endblock %}
