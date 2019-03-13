@@ -4,6 +4,10 @@
   Manage your greenhouse gas emissions
 {% endblock %}
 
+{% block signedInContent %}
+<!-- Don't show anything because we're not signed in at this point -->
+{% endblock %}
+
 {% block beforeContent %}
   {{ govukBreadcrumbs({
     items: [
