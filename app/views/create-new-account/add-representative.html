@@ -19,15 +19,15 @@ Do you want to add a representative to the account?
       </h1>
     </legend>
     <p>If you want to trade on the account you'll need to add another individual to the account</p>
-    <div class="govuk-radios govuk-radios--conditional" data-module="radios">
+    <div class="govuk-radios--inline govuk-radios--conditional" data-module="radios">
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="add-rep-1" name="createNewAccount.addRep" type="radio" value="yes" aria-controls="hidden-representative-email" aria-expanded="false">
+        <input class="govuk-radios__input" id="add-rep-1" name="createNewAccount.addRep" type="radio" value="yes" aria-controls="hidden-representative-email" aria-expanded="false" {{ checked("createNewAccount.addRep",'yes') }}>
         <label class="govuk-label govuk-radios__label" for="add-rep-1">
           Yes
         </label>
       </div>
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="add-rep-2" name="createNewAccount.addRep" type="radio" value="no">
+        <input class="govuk-radios__input" id="add-rep-2" name="createNewAccount.addRep" type="radio" value="no" {{ checked("createNewAccount.addRep",'no') }}>
         <label class="govuk-label govuk-radios__label" for="add-rep-2">
           No
         </label>
