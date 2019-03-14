@@ -1,3 +1,22 @@
+{% if shouldShowCookieMessage %}
+  <div class="app-cookie-banner app-cookie-banner--warning">
+    <div class="hmcts-header__container">
+      <p class="govuk-body">
+        This is not a real service, and is used for user testing purposes only.
+        <br>
+       Do not enter any personal information.
+      </p>
+      <p class="govuk-body">
+        This prototype sets a cookie when you choose to hide this banner.
+        <br>
+      </p>
+      
+      <form method="post" action="/hide-banner">
+        <button class="govuk-button app-cookie-banner__button">Hide this banner</button>
+      </form>
+    </div>
+  </div>
+{% endif %}
 {% set toggleSearchHtml %}
   <div class="hmcts-search-toggle">
     <div class="hmcts-search-toggle__toggle"></div>

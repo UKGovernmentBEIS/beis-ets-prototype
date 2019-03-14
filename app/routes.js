@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const utils = require('../lib/utils.js')
 
 // make available for all routes
 router.use(function (req, res, next) {
@@ -568,5 +569,15 @@ router.post('/account/add-a-new-authorised-representative/check-and-submit', fun
     res.redirect("confirmation");
 })
 
+router.post('/hide-banner', async function (req, res) {
+  let maxAgeInDays = 28
+  res.cookie(utils.COOKIE_NAME, 'yes', {
+    maxAge: maxAgeInDays * 24 * 60 * 60 * 1000,
+    httpOnly: true
+  })
+  // Redirect to where the user POSTed from.
+  let previousURL = req.header('Referer') || '/'
+  res.redirect(previousURL)
+})
 
 module.exports = router
