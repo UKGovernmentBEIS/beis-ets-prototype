@@ -1,39 +1,56 @@
 # UK Emissions Trading Registry Alpha Prototype
 
-Latest live version:
+## Latest version:
+
 - https://ets-alpha.london.cloudapps.digital
 
-Review archived versions:
-- https://ets-alpha-v1.london.cloudapps.digital
+## Archived versions:
+
+- Sprint 8
+
+  Preview: https://ets-alpha-v8.london.cloudapps.digital
+  
+  Local: checkout git tag `version-8`
+
+- Sprint 7
+
+  Preview: https://ets-alpha-v7.london.cloudapps.digital
+  
+  Local: checkout git tag `version-7`
+
+- Sprint 6
+
+  Preview: https://ets-alpha-v6.london.cloudapps.digital
+  
+  Local: checkout git tag `version-6`
+
+
+- Sprint 5
+
+  Preview: https://ets-alpha-v5.london.cloudapps.digital
+  
+  Local: checkout git tag `version-5`
+
+- Sprints 3&4
  
-  Sprint 1 - checkout git tag `version-1`
-
-- https://ets-alpha-v2.london.cloudapps.digital
+  Preview: https://ets-alpha-v3-4.london.cloudapps.digital
   
-  Sprint 1 - checkout git tag `version-2`
+  Local: checkout git tag `version-3`
 
-- https://ets-alpha-v3-4.london.cloudapps.digital
-  
-  Sprints 3&4 - checkout git tag `version-3`
+- Sprint 2
 
-- https://ets-alpha-v5.london.cloudapps.digital
+  Preview: https://ets-alpha-v2.london.cloudapps.digital
   
-  Sprint 5 - checkout git tag `version-5`
+  Local: checkout git tag `version-2`
 
-- https://ets-alpha-v6.london.cloudapps.digital
+- Sprint 1
   
-  Sprint 6 - checkout git tag `version-6`
-
-- https://ets-alpha-v7.london.cloudapps.digital
-  
-  Sprint 7 - checkout git tag `version-7`
-
-- https://ets-alpha-v8.london.cloudapps.digital
-  
-  Sprint 8 - checkout git tag `version-8`
+  Preview: https://ets-alpha-v1.london.cloudapps.digital
+ 
+  Local: checkout git tag `version-1`
 
 ## Run locally
 - clone the repository
-- open terminal / bash and navigate into into
+- open terminal / bash and navigate into the folder
 - first time only: run `npm install`
 - run `npm start` to start it
