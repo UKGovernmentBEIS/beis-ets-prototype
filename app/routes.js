@@ -225,8 +225,27 @@ router.get('/app/user/:id/:page?/:subpage?', function (req, res, next) {
   if (!req.params.page) {
     res.render('app/user/index')
   } else {
-    res.render('app/user/' + req.params.page)
+    res.render('app/user/' + req.params.page + '/' + req.params.subpage)
   }
+})
+
+router.post('/app/user/:id/suspend/check-and-submit/', function (req, res) {
+  req.session.data.existingAuthorisedRepresentatives.find(function (rep, index) {
+    if (rep.id === req.params.id) {
+      req.session.data.existingAuthorisedRepresentatives[index].status = 'suspended'
+      req.session.data.existingAuthorisedRepresentatives[index].notes = req.session.data.user.suspend.moreDetail
+    }
+  })
+  res.redirect('confirmation')
+})
+
+router.post('/app/user/:id/reinstate/check-and-submit', function (req, res) {
+  req.session.data.existingAuthorisedRepresentatives.find(function (rep, index) {
+    if (rep.id === req.params.id) {
+      req.session.data.existingAuthorisedRepresentatives[index].status = 'active'
+    }
+  })
+  res.redirect('confirmation')
 })
 
 router.post('/account/:id/surrender-allowance/surrender-amount', function (req, res) {

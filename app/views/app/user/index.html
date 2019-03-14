@@ -53,15 +53,43 @@
         </dd>
         
       </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Status:
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{user.status}}
+        </dd>
+        
+      </div>
+      {% if 'suspended' in user.status | lower %}
+        <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Notes:
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{user.notes | d('No notes provided')}}
+        </dd>
+      </div>
+      {% endif %}
+      
     </dl>
 
     </div>
     <div class="govuk-grid-column-one-third">
+    {% if 'suspended' in user.status | lower %}
       {{ govukButton({
-        text: "Suspend user",
-        href: '/app/user/' + user.id +'/suspend',
+        text: "Reinstate user",
+        href: '/app/user/' + user.id +'/reinstate/check-and-submit',
         classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
       }) }}
+    {% else %}
+      {{ govukButton({
+        text: "Suspend user",
+        href: '/app/user/' + user.id +'/suspend/check-and-submit',
+        classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
+      }) }}
+      {% endif %}
     </div>
   </div>
   <hr class="govuk-section-break govuk-section-break--l">

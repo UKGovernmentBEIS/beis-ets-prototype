@@ -1,0 +1,31 @@
+{% extends "layouts/admin/base.html" %}
+{% set pageID = "transactions" %}
+{% block pageTitle %}
+  Confirmation
+{% endblock %}
+
+{% block content %}
+<div class="jui-width-container">
+<main class="govuk-main-wrapper" role="main">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-9">
+          <h1 class="govuk-panel__title">User has been reinstated</h1>
+          <div class="govuk-panel__body">
+          User id<br><strong>{{user.id}}</strong>
+          </div>
+        </div>
+        <h2 class="govuk-heading-m">What to do next</h2>
+        <p><a href="/app/user/{{user.id}}" class="govuk-link">{{ user.name }}</a> has now been reinstated and will be able to access their account.
+        </p>
+        {{ govukButton({
+        href: '/app/user/'+ user.id,
+        text: "Back to user details page"
+      }) }}
+    </div>
+  </div>
+</main>
+</div>
+
+
+{% endblock %}
