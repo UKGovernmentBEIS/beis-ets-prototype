@@ -21,24 +21,48 @@
       </p>
 
       <ul class="govuk-list govuk-list--bullet">
-        <li><a href="/start">Start - Registering an organisation</a>
+        <li>
+          <a href="/start">
+            Start page
+          </a>
         </li>
-        <li><a href="create-an-identity/start?registrationJourney=userOnboarding">Start - setting up a new user account</a>
-        <li><a href="/login-register">Sign-in</a>
-        <li><a href="/app/dashboard">Dashboard</a>
+        <li>
+          <a href="/app/dashboard">
+            Dashboard - Organisation user view
+          </a>
         </li>
-        <li><a href="/account/EU-100-73432-0-76/">Account page</a></li>
-        <li><a href="/app/dashboard?taskCount=4">Task: approve a transaction</a>
+        <li>
+          <a href="/app/dashboard?userPersona=ea">
+            Dashboard - Environment Agency user view
+          </a>
+        </li>
+        <li><a href="/app/dashboard?taskCount=2">Dashboard - with outstanding tasks warning</a>
         </li>
       </ul>
 
-
+      <h2 class="govuk-heading-s">Set parameters</h2>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="/?twofaSetupComplete=Yes">
+            Assume two-factor authentication {% if data.twofaSetupComplete == "Yes" %}hasn't{% else %}has{% endif %} already been set up
+          </a>
+          <span class="govuk-hint">Currently 2FA {% if data.twofaSetupComplete == "Yes" %}<strong>has</strong>{% else %}<strong>has not</strong>{% endif %} been set up by the user</span>
+        </li>
+        <li>
+          <a href="/?userPersona=ea">
+            Set user type to {% if data.userPersona == "ea" %}an organisation user{% else %}an Environment Agency user{% endif %}
+          </a>
+          <span class="govuk-hint">Currently user type is set to {% if data.userPersona == "ea" %}<strong>an Environment Agency user</strong>{% else %}<strong>an organisation user</strong>{% endif %}
+        </li>
+      </ul>
     </div>
     <div class="govuk-grid-column-one-third">
+      <div class="section-related-items">
         <h2 class="govuk-heading-m">Controls</h2>
         <a href="/resetSessionData" role="button" class="govuk-button hmcts-menu__item hmcts-button--secondary ">
         Reset Prototype
         </a>
+      </div>
     </div>
 </div>
 
