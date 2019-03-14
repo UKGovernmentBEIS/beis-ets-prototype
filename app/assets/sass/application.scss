@@ -167,7 +167,9 @@ $table-column-widths: (
 .hidden {
   display: none;
 }
-
+.hmcts-header {
+  position: relative;
+}
 // mobile padding on identity bar
 .hmcts-identity-bar__container {
   .hmcts-menu,
