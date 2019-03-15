@@ -6,6 +6,12 @@
 
 ## Archived versions:
 
+- Sprint 9
+
+  Preview: https://ets-alpha-v9.london.cloudapps.digital
+  
+  Local: checkout git tag `version-9`
+
 - Sprint 8
 
   Preview: https://ets-alpha-v8.london.cloudapps.digital
