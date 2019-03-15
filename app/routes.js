@@ -514,10 +514,6 @@ router.post('/user-registration/check-your-answers', function (req, res) {
 })
 
 router.post('/register-an-organisation/start', function (req, res) {
-  res.redirect("choose-organisation-type");
-})
-
-router.post('/register-an-organisation/choose-organisation-type', function (req, res) {
   res.redirect("name-of-organisation");
 })
 
