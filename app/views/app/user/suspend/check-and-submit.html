@@ -1,0 +1,36 @@
+{% extends "layouts/admin/base.html" %}
+{% set pageID = "users" %}
+{% block content %}
+<div class="jui-width-container">
+<a class="govuk-back-link" href=""<a href="" onclick="javascript:history.back()">Back</a>
+<main class="govuk-main-wrapper" role="main">
+  <h1 class="govuk-heading-xl">Suspend user {{user.id}}</h1>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="check-and-submit" method="post">
+    {% from "textarea/macro.njk" import govukTextarea %}
+      {{ govukTextarea({
+        name: "user.suspend.moreDetail",
+        id: "more-detail",
+        label: {
+            text: "Why are you suspending this user?"
+        },
+        hint: {
+            text: "Please provide a reason."
+        }
+        }) }}
+        {{ govukButton({
+          text: "Go back. I have changed my mind",
+          href: '/app/user/' + user.id,
+          classes: 'govuk-button--as-link govuk-!-margin-bottom-0'
+        }) }}
+        {{ govukButton({
+          text: "Suspend",
+          classes: 'govuk-!-margin-bottom-0'
+        }) }}
+      </form>
+    </div>
+  </div>
+</main>
+</div>
+{% endblock %}

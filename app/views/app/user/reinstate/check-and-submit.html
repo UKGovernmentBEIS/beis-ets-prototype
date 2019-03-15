@@ -1,0 +1,21 @@
+{% extends "layouts/admin/base.html" %}
+{% set pageID = "users" %}
+{% block content %}
+<div class="jui-width-container">
+<a class="govuk-back-link" href=""<a href="" onclick="javascript:history.back()">Back</a>
+<main class="govuk-main-wrapper" role="main">
+  <h1 class="govuk-heading-xl">Check before reinstating the user</h1>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="check-and-submit" method="post">
+        <p>You are about to reinstate account <strong>{{user.id}}<strong>.</p>
+        {{ govukButton({
+          text: "Reinstate",
+          classes: 'govuk-!-margin-bottom-0'
+        }) }}
+      </form>
+    </div>
+  </div>
+</main>
+</div>
+{% endblock %}

@@ -23,49 +23,56 @@ module.exports.reps = [
     id: '567-235-123',
     jobTitle: 'Financial Controller',
     email: 'divina.glaser@rertsss.com',
-    phone: '07823 423242'
+    phone: '07823 423242',
+    status: 'active'
   },
   {
     name: 'Luann Steppe',
     id: '245-334-223',
     jobTitle: 'Compliance Manager',
     email: 'Luann Steppe@grantsignal.com',
-    phone: '07823 256765'
+    phone: '07823 256765',
+    status: 'active'
   },
   {
     name: 'Jimmy Pressly',
     id: '442-451-234',
     jobTitle: 'Financial Controller',
     email: 'jim.pre@brentcross.com',
-    phone: '07235 234423'
+    phone: '07235 234423',
+    status: 'active'
   },
   {
     name: 'Tyra Lucas',
     id: '774-143-235',
     jobTitle: 'Compliance Controller',
     email: 'tyra@sertsprocter.com',
-    phone: '07823 427944'
+    phone: '07823 427944',
+    status: 'active'
   },
   {
     name: 'Terisa Pritchett',
     id: '344-626-343',
     jobTitle: 'Financial Manager',
     email: 't.p@roystonvaysey.com',
-    phone: '07823 242323'
+    phone: '07823 242323',
+    status: 'active'
   },
   {
     name: 'Cecille Irving',
     id: '266-423-423',
     jobTitle: 'Financial Controller',
     email: 'cecille@reretscottley.com',
-    phone: '07823 274545'
+    phone: '07823 274545',
+    status: 'active'
   },
   {
     name: 'Registry user',
     id: '999-999-999',
     jobTitle: 'Authorised representative',
     email: 'user@ets.uk',
-    phone: '07893 7654'
+    phone: '07893 7654',
+    status: 'active'
   }
 ]
 module.exports = {
