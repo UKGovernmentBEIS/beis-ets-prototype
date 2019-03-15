@@ -60,9 +60,14 @@ router.post('/2fa', function (req, res, next) {
     if (req.session.data.continue_url) {
         res.redirect(req.session.data.continue_url);
     } else {
+
       if ((req.session.data.registrationJourney == "organisationOnboarding") && (!req.session.data.onBoardingComplete)) {
         res.redirect('/register-your-organisation/task-list')
-      } else {
+      }
+      else if ((req.session.data.registrationJourney == "userOnboarding") && (!req.session.data.userRegistrationCompleted)) {
+        res.redirect('/user-registration/start')
+      }
+      else {
         res.redirect('/app/dashboard')
       }
     }
