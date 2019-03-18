@@ -1,5 +1,7 @@
 # UK Emissions Trading Registry Alpha Prototype
 
+![Registry preview](preview.png)
+
 ## Latest version:
 
 - https://ets-alpha.london.cloudapps.digital
