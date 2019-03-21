@@ -59,7 +59,7 @@
             {% for acct in data.installations | filterObjects('type', 'is', 'trading') %}
             <tr class="govuk-table__row">
                 <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
-                <td class="govuk-table__cell">{{ acct.name }} {% if acct.status != "active" %}{{acct.status | capitalize}}{% endif %}</td>
+                <td class="govuk-table__cell">{{ acct.name }} {% if acct.status != "open" %}{{acct.status | capitalize}}{% endif %}</td>
                 <td class="govuk-table__cell">{{ acct.accountHolder }}</td>
                 <td class="govuk-table__cell">
                     {% if acct.complianceStatusCode == "A" %}
@@ -87,7 +87,7 @@
             {% for acct in data.installations | filterObjects('type', 'is not', 'trading') %}
                     <tr class="govuk-table__row">
                         <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
-                        <td class="govuk-table__cell">{{ acct.name }}{% if acct.status != "active" %} <strong>({{acct.status | capitalize}})</strong>{% endif %}</td>
+                        <td class="govuk-table__cell">{{ acct.name }}{% if acct.status != "open" %} <strong>({{acct.status | capitalize}})</strong>{% endif %}</td>
                         <td class="govuk-table__cell">{{ acct.accountHolder }}</td>
                         <td class="govuk-table__cell">
                             {% if acct.complianceStatusCode == "A" %}
