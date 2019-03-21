@@ -58,7 +58,7 @@
           Status:
         </dt>
         <dd class="govuk-summary-list__value">
-          {{user.status}}
+          {{user.status | capitalize }}
         </dd>
         
       </div>
@@ -110,7 +110,7 @@
           {% for acct in data.installations | filterObjects('type', 'is not', 'trading') %}
           <tr class="govuk-table__row">
               <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
-              <td class="govuk-table__cell">{{ acct.name }}{% if acct.status != "active" %} <strong>({{acct.status | capitalize}})</strong>{% endif %}</td>
+              <td class="govuk-table__cell">{{ acct.name }}{% if acct.status != "open" %} <strong>({{acct.status | capitalize}})</strong>{% endif %}</td>
               <td class="govuk-table__cell">{{ acct.accountHolder }}</td>
               <td class="govuk-table__cell">
                 AR

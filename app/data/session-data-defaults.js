@@ -24,7 +24,7 @@ module.exports.reps = [
     jobTitle: 'Financial Controller',
     email: 'divina.glaser@rertsss.com',
     phone: '07823 423242',
-    status: 'active'
+    status: 'open'
   },
   {
     name: 'Luann Steppe',
@@ -32,7 +32,7 @@ module.exports.reps = [
     jobTitle: 'Compliance Manager',
     email: 'Luann Steppe@grantsignal.com',
     phone: '07823 256765',
-    status: 'active'
+    status: 'open'
   },
   {
     name: 'Jimmy Pressly',
@@ -40,7 +40,7 @@ module.exports.reps = [
     jobTitle: 'Financial Controller',
     email: 'jim.pre@brentcross.com',
     phone: '07235 234423',
-    status: 'active'
+    status: 'open'
   },
   {
     name: 'Tyra Lucas',
@@ -48,7 +48,7 @@ module.exports.reps = [
     jobTitle: 'Compliance Controller',
     email: 'tyra@sertsprocter.com',
     phone: '07823 427944',
-    status: 'active'
+    status: 'open'
   },
   {
     name: 'Terisa Pritchett',
@@ -56,7 +56,7 @@ module.exports.reps = [
     jobTitle: 'Financial Manager',
     email: 't.p@roystonvaysey.com',
     phone: '07823 242323',
-    status: 'active'
+    status: 'open'
   },
   {
     name: 'Cecille Irving',
@@ -64,7 +64,7 @@ module.exports.reps = [
     jobTitle: 'Financial Controller',
     email: 'cecille@reretscottley.com',
     phone: '07823 274545',
-    status: 'active'
+    status: 'open'
   },
   {
     name: 'Registry user',
@@ -72,7 +72,7 @@ module.exports.reps = [
     jobTitle: 'Authorised representative',
     email: 'user@ets.uk',
     phone: '07893 7654',
-    status: 'active'
+    status: 'open'
   }
 ]
 module.exports = {
@@ -92,7 +92,7 @@ module.exports = {
 					'numberOfTradingAccounts': 3,
 					'numberOfInstallationAccounts': 5,
 					'numberOfAdminUsers': 2,
-					'status': 'active'
+					'status': 'open'
 				}
 			],
   'installations': [
@@ -100,7 +100,7 @@ module.exports = {
       'name': 'Nevern Power Limited',
       'accountHolder': 'Global Power Inc.',
       'complianceStatusCode': 'A',
-      'status': 'active',
+      'status': 'open',
       'units': 2364,
       'permitId': 'EU-100-73432-0-76',
       'type': 'installation',
@@ -123,7 +123,7 @@ module.exports = {
       'name': 'Scunthorpe Integrated Iron & Steel Works',
       'accountHolder': 'British Steel plc',
       'complianceStatusCode': 'B',
-      'status': 'active',
+      'status': 'open',
       'units': 2364,
       'permitId': 'EU-100-82345-0-76',
       'type': 'installation',
@@ -139,7 +139,7 @@ module.exports = {
       'name': 'ETS Trades',
       'accountHolder': 'MRC Trading Ltd',
       'complianceStatusCode': 'C',
-      'status': 'active',
+      'status': 'open',
       'units': 2500,
       'permitId': 'EU-100-82345-0-757',
       'type': 'trading',
@@ -155,7 +155,7 @@ module.exports = {
       'name': 'Port Talbot Steelworks',
       'accountHolder': 'British Steel plc',
       'complianceStatusCode': 'C',
-      'status': 'active',
+      'status': 'open',
       'units': 2364,
       'permitId': 'EU-100-73104-0-76',
       'type': 'installation',
@@ -169,7 +169,7 @@ module.exports = {
       'name': 'Lynemouth Power Station',
       'accountHolder': 'Global Power Inc.',
       'complianceStatusCode': 'C',
-      'status': 'active',
+      'status': 'open',
       'units': 2364,
       'permitId': 'EU-100-77732-0-76',
       'type': 'installation',

@@ -55,7 +55,7 @@
                 </span>
                 {% elif 'suspended' in ta.status | lower %}
                 <span class="jui-status  jui-status--urgent  govuk-!-margin-left-1">{{ta.status}}</span>
-                {% elif 'active' in ta.status | lower %}
+                {% elif 'open' in ta.status | lower %}
                   <span class="jui-status  jui-status--complete  govuk-!-margin-left-1">{{ta.status}}</span>
                 {% endif %}
               </td>

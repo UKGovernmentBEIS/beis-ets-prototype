@@ -247,7 +247,7 @@ router.post('/app/user/:id/suspend/check-and-submit/', function (req, res) {
 router.post('/app/user/:id/reinstate/check-and-submit', function (req, res) {
   req.session.data.existingAuthorisedRepresentatives.find(function (rep, index) {
     if (rep.id === req.params.id) {
-      req.session.data.existingAuthorisedRepresentatives[index].status = 'active'
+      req.session.data.existingAuthorisedRepresentatives[index].status = 'open'
     }
   })
   res.redirect('confirmation')
@@ -383,7 +383,7 @@ router.post('/account/:id/suspend/check-and-submit', function (req, res) {
 router.post('/account/:id/reinstate/check-and-submit', function (req, res) {
   req.session.data.installations.find(function (installation,index) {
     if (installation.permitId === req.params.id) {
-        req.session.data.installations[index].status = 'active';
+        req.session.data.installations[index].status = 'open';
     }}
   )
   res.redirect('confirmation')
