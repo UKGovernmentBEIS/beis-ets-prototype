@@ -106,9 +106,19 @@
               selected: checked("",'all')
           },
           {
-              value: 'onboardingNotComplete',
-              text: 'Onboarding not Complete',
-              selected: checked("search.account.status",'onboardingNotComplete')
+              value: 'open',
+              text: 'Open',
+              selected: checked("search.account.status",'open')
+          },
+          {
+              value: 'blocked',
+              text: 'Blocked',
+              selected: checked("search.account.status",'blocked')
+          },
+          {
+              value: 'closurePending',
+              text: 'Closure pending',
+              selected: checked("search.account.status",'closurePending')
           },
           {
               value: 'closed',
