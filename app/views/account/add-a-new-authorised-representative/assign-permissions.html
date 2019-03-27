@@ -151,11 +151,13 @@ Enter email address
   </div>
 {% endblock %}
 
-{% block page_scripts %}
+{% block pageScripts %}
+<script>
       var $multipleChoice = $('.govuk-radios__item');
       $multipleChoice.find('input[type="radio"]').click(function(){
           $multipleChoice.removeClass('selected-reason-state');
           $(this).parent().addClass('selected-reason-state');
       });
-{% endblock page_scripts %}
+</script>
+{% endblock pageScripts %}
 
