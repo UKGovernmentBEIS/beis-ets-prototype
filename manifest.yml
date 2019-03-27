@@ -23,7 +23,7 @@ applications:
   command: node start.js
   buildpacks: 
     - nodejs_buildpack
-  env:
-    USERNAME: ((username))
-    PASSWORD: ((password))
+  # env:
+  #   USERNAME: ((username))
+  #   PASSWORD: ((password))
 
