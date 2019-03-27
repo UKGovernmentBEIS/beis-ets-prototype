@@ -1,0 +1,37 @@
+{% extends "layouts/admin/base.html" %}
+
+
+{% block pageTitle %}
+  Account closure proposed
+{% endblock %}
+
+{% block content %}
+<div class="jui-width-container">
+  <main class="govuk-main-wrapper" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {{ govukPanel({
+          titleText: "Account closure proposed",
+          classes:'govuk-!-margin-bottom-7'
+        }) }}
+
+        <h2 class="govuk-heading-m">What happens next</h2>
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+            Account closure is awaiting approval.
+          </strong>
+        </div>
+
+            <p>We've sent your request to the account representatives for approval.</p>
+            <p>Once approved, the account will be closed.<p/>
+        {{ govukButton({
+          href: '/app/user/'+ user.id,
+          text: "Back to account page"
+        }) }}
+      </div>
+    </div>
+  </main>
+</div>     
+{% endblock %}

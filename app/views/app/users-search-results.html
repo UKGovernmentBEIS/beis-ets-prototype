@@ -57,6 +57,8 @@
                 <span class="jui-status  jui-status--urgent  govuk-!-margin-left-1">{{ta.status}}</span>
                 {% elif 'open' in ta.status | lower %}
                   <span class="jui-status  jui-status--complete  govuk-!-margin-left-1">{{ta.status}}</span>
+                {% elif 'closed' in ta.status | lower %}
+                  <span class="jui-status  jui-status--urgent  govuk-!-margin-left-1">{{ta.status}}</span>
                 {% endif %}
               </td>
               <td class="govuk-table__cell govuk-table__cell--numeric">

@@ -77,19 +77,35 @@
 
     </div>
     <div class="govuk-grid-column-one-third">
-    {% if 'suspended' in user.status | lower %}
+    {% if not 'closed' in user.status | lower %}
+      {% if 'open' in user.status | lower %}
+      <p>
       {{ govukButton({
-        text: "Reinstate user",
-        href: '/app/user/' + user.id +'/reinstate/check-and-submit',
-        classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
-      }) }}
-    {% else %}
-      {{ govukButton({
-        text: "Suspend user",
-        href: '/app/user/' + user.id +'/suspend/check-and-submit',
-        classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
-      }) }}
+          text: "Suspend user",
+          href: '/app/user/' + user.id +'/suspend/check-and-submit',
+          classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
+        }) }}
+      </p>
       {% endif %}
+      {% if 'suspended' in user.status | lower %}
+      <p>
+        {{ govukButton({
+          text: "Reinstate user",
+          href: '/app/user/' + user.id +'/reinstate/check-and-submit',
+          classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
+        }) }}
+      </p>
+      {% endif %}
+      {% if not 'closure' in user.status | lower %}
+      <p>
+      {{ govukButton({
+        text: "Propose user account closure",
+        href: '/app/user/' + user.id +'/close/check-and-submit',
+        classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
+      }) }}
+      </p>
+      {% endif %}
+    {% endif %}
     </div>
   </div>
   <hr class="govuk-section-break govuk-section-break--l">

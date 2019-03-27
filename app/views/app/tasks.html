@@ -24,7 +24,6 @@
 {% block pageTitle %}Tasks {{'- ' + serviceName}}{% endblock %}
 
 {% block content %}
-
 <div class="jui-width-container">
 
   <main class="govuk-main-wrapper" role="main">
@@ -140,6 +139,69 @@
       {% set accountFromName = '' %}
       {% set accountToName = '' %}
       <ul class='govuk-list'>
+      {% if data.task != ' ' %}
+        {% for task in data.tasks | filterObjects('taskStatus', 'is', 'Awaiting approval') | sort(true, false, 'started') %}
+          <li>
+          <div class="tile-container" data-type='{{task.accountType}}'>
+            <div class="heading tile-grid-cell">
+              <div class="title">
+                  {{ task.type}}
+              </div>
+            <div class="started">
+                <span class="label">
+                Started:
+                </span>
+                <span class="datetime">
+                {{ task.started | date("DD-MMM-YY") }} {{ task.started | date("HH:mm:ss") }}
+                </span>
+            </div>
+            <div class="reference">
+                <span class="label">
+                Reference:
+                </span>
+                <span class="number">
+                TASK-{{task.taskID}}
+                </span>
+            </div>
+            </div>
+            <div class="account tile-grid-cell">
+              <div class="account-id">
+                {{task.accountID}}
+              </div>
+              <div class="account-title">
+                  {{task.accountName}}
+              </div>
+          </div>
+            <div class="proposer tile-grid-cell">
+            <div class="label">
+                Proposed by:
+            </div>
+            <div class="name">
+                <a href="/app/user/{{task.proposerId}}">{{ task.proposer }}</a>
+            </div>
+            </div>
+
+            <div class="notes tile-grid-cell">
+            <div class="label">
+                Notes: 
+            </div>
+            <div class="text">
+                <p>{{task.notes | d('Notes go here')}}</p>
+            </div>
+            </div>
+            <div class="tile-buttons tile-grid-cell">
+            <div class="accept">
+                <button type="submit" class="govuk-button task-button approve-closure-btn" valuee="Approve">Approve</button>
+            </div>
+            <div class="reject">
+                <button type="submit" class="govuk-button task-button hmcts-button--secondary reject-closure-btn">Reject</button>
+            </div>
+            </div>
+            </div>
+          </li>
+        {% endfor %}
+      {% endif %}
+        
         {% for task in data.transactions | sort(true, false, 'started')  %}
           {% if 'awaiting approval' in task.status | lower %}
             {% for inst in data.installations %}
@@ -335,12 +397,77 @@
             }
           })
         }
+        function updateTaskID (task, taskStatus, notes, approvedBy, rejectedBy) {
+          var tasks = {{data.tasks | dump | safe }}
+          tasks.find(function (t,index) {
+            if (t.taskID === task) {
+              tasks[index].lastUpdated = new Date(Date.now()).toISOString()
+              tasks[index].taskStatus = taskStatus
+              if (notes !== null) {
+                tasks[index].notes = notes
+              }
+              if (rejectedBy !== null) {
+                tasks[index].rejectedby = rejectedBy
+              }
+               if (approvedBy !== null) {
+                tasks[index].approver = approvedBy
+              }
+              $.ajax({
+                method: "POST",
+                url: "/app/tasks",
+                data: { tasks },
+                dataType: "json"
+              })
+            }
+          })
+        }
+        function updateAccount (account, accountStatus, type) {
+          var installations = {{data.installations | dump | safe }}
+          var existingAuthorisedRepresentatives = {{data.existingAuthorisedRepresentatives | dump | safe }}
+          if (type === 'user') {
+            existingAuthorisedRepresentatives.find(function (t,index) {
+              if (t.id === account) {
+                existingAuthorisedRepresentatives[index].status = accountStatus
+                $.ajax({
+                  method: "POST",
+                  url: "/app/tasks",
+                  data: { existingAuthorisedRepresentatives },
+                  dataType: "json"
+                })
+              }
+            })
+          } else {
+            installations.find(function (t,index) {
+              if (t.permitId === account) {
+                installations[index].status = accountStatus
+                $.ajax({
+                  method: "POST",
+                  url: "/app/tasks",
+                  data: { installations },
+                  dataType: "json"
+                })
+              }
+            })
+          }
+        }
         var $taskItem = $(this).parents('.tile-container')
+        var taskItemType = $taskItem.data('type')
         var taskID = ($taskItem.find('.number').text().split('-')[1]).trim()
+        var accountID = ($taskItem.find('.account-id').text()).trim()
         e.preventDefault();
         var approvedTag = '<span class="jui-status  jui-status--new">Approved</span>'
         var rejectedTag = '<span class="jui-status  jui-status--urgent">Rejected</span>'
         var content
+        if ($(this).hasClass('reject-closure-btn')){
+            content = rejectCommentsBox + '<button type="submit" class="govuk-button task-button hmcts-button--primary reject-acc-closure-btn" style="margin-bottom: 0px;">Reject</button>'+
+            '<button type="submit" class="govuk-button task-button govuk-!-margin-left-2 hmcts-button--secondary cancel-btn" style="margin-bottom: 0px;">Cancel</button>'
+            $taskItem.find('.tile-buttons').html(content)
+        }
+         if ($(this).hasClass('approve-closure-btn')){
+            content = twoFactorBox + '<button type="submit" class="govuk-button task-button hmcts-button--primary approve-acc-closure-btn" style="margin-bottom: 0px;">Approve</button>'+
+            '<button type="submit" class="govuk-button task-button govuk-!-margin-left-2 hmcts-button--secondary cancel-btn" style="margin-bottom: 0px;">Cancel</button>'
+            $taskItem.find('.tile-buttons').html(content)
+        }
         if ($(this).hasClass('reject-btn')){
             content = rejectCommentsBox + '<button type="submit" class="govuk-button task-button hmcts-button--primary final-reject-btn" style="margin-bottom: 0px;">Reject</button>'+
             '<button type="submit" class="govuk-button task-button govuk-!-margin-left-2 hmcts-button--secondary cancel-btn" style="margin-bottom: 0px;">Cancel</button>'
@@ -364,6 +491,22 @@
             updateTransactionID(taskID,'Rejected', notes, null, 'Registry user')
             $taskItem.delay(2000).fadeOut(500)
         }
+
+        if ($(this).hasClass('reject-acc-closure-btn')){
+            var notes = document.getElementById("more-detail").value
+            $taskItem.find('.tile-buttons').addClass('approved-transaction').html(rejectedTag)
+            updateTaskID(taskID,'Rejected', notes, null, 'Registry user')
+            updateAccount(accountID,'open', taskItemType)
+            $taskItem.delay(2000).fadeOut(500)
+        }
+
+        if ($(this).hasClass('approve-acc-closure-btn')){
+            $taskItem.find('.tile-buttons').addClass('approved-transaction').html(approvedTag)
+            updateTaskID(taskID,'Approved', notes, null, 'Registry user')
+            updateAccount(accountID,'closed', taskItemType)
+            $taskItem.delay(2000).fadeOut(500)
+        }
+
         if ($(this).hasClass('cancel-btn')){
             $taskItem.find('.tile-buttons').html(defaultState)
         }

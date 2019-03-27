@@ -77,12 +77,12 @@
   <p>
   {% if 'open' in installation.status | lower %}
     {{ govukButton({
-      text: "Suspend account",
-       href: '/account/'+ installation.permitId +'/suspend/check-and-submit',
+      text: "Block account",
+       href: '/account/'+ installation.permitId +'/block/check-and-submit',
        classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
     }) }}
   {% endif %}
-  {% if 'suspended' in installation.status | lower %}
+  {% if 'blocked' in installation.status | lower %}
     {{ govukButton({
       text: "Reinstate account",
        href: '/account/'+ installation.permitId +'/reinstate/check-and-submit',
@@ -91,11 +91,13 @@
   {% endif %}
   </p>
   <p>
+  {% if not 'closure' in installation.status | lower %}
   {{ govukButton({
-    text: "Close account",
+    text: "Propose account closure",
      href: '/account/'+ installation.permitId +'/close/check-and-submit',
      classes: 'hmcts-button--secondary govuk-!-margin-bottom-0'
   }) }}
+  {% endif %}
   </p>
 {% endif %}
 {% endblock %}

@@ -1,0 +1,38 @@
+{% extends "layouts/admin/base.html" %}
+
+{% block pageTitle %}
+  Check before proposing closing the account
+{% endblock %}
+
+
+{% block content %}
+<div class="jui-width-container">
+  <a class="govuk-back-link" href=""<a href="" onclick="javascript:history.back()">Back</a>
+  <main class="govuk-main-wrapper" role="main">
+    <h1 class="govuk-heading-xl">Check before proposing closing the account</h1>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <form class="form" action="check-and-submit" method="post">
+
+          <p>You are about to propose closing account <strong>{{ user.id }}</strong>.</p>
+          <p>Closing the account will not be possible if there are any allowances in the account.</p>
+          {% from "textarea/macro.njk" import govukTextarea %}
+          {{ govukTextarea({
+            name: "user.close.moreDetail",
+            id: "more-detail",
+            label: {
+                text: "Why are you proposing to close this account?"
+            },
+            hint: {
+                text: "Please provide a reason."
+            }
+            }) }}
+          {{ govukButton({
+            text: "Propose account closure"
+          }) }}
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}
