@@ -1,0 +1,161 @@
+{% if data.onBoardingComplete == "Yes" %}
+  {% extends "layouts/admin/base-account-question.html" %}
+{% else %}
+  {% extends "layout.html" %}
+{% endif %}
+{% block pageTitle %}
+Enter email address
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" method="post">
+       <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              What type of user do you want to add to the account?
+            </h1>
+          </legend>
+          <p>If you want to trade on the account you'll need to add another individual to the account</p>
+          <div id="radios-with-supporting-text">
+            <div class="govuk-radios--conditional govuk-!-margin-bottom-4" data-module="radios">
+              <!-- for use in other contexts when Super Users and NA users are adding new users
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="role-1" name="createNewAccount.role" type="radio" value="naSuperUser" aria-controls="hidden-permissions-super-user" aria-expanded="false" {{ checked("createNewAccount.role",'naSuperUser') }}>
+                <label class="govuk-label govuk-radios__label govuk-!-font-weight-bold" for="role-1">
+                  National Administrator Super User
+                  <span class="govuk-!-font-weight-regular"><br/>
+                    test
+                  </span>
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="role-2" name="createNewAccount.role" type="radio" value="naUser" aria-controls="hidden-permissions-na-user" aria-expanded="false" {{ checked("createNewAccount.role",'naUser') }}>
+                <label class="govuk-label govuk-radios__label govuk-!-font-weight-bold" for="role-2">
+                  National Administrator Standard User
+                  <span class="govuk-!-font-weight-regular"><br/>
+                    test
+                  </span>
+                </label>
+              </div>
+              -->
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="role-3" name="createNewAccount.role" type="radio" value="accountAdmin" aria-controls="hidden-permissions-account-admin" aria-expanded="false" {{ checked("createNewAccount.role",'accountAdmin') }}>
+                <label class="govuk-label govuk-radios__label govuk-!-font-weight-bold" for="role-3">
+                  Account administrator
+                  <span class="govuk-!-font-weight-regular"><br/>
+                    This type of user has full access to the account and can perform all actions, including viewing account data, adding new users and submitting emissions data. In addition they can propose transactions, approve transactions proposed by others, and surrender allowances.
+                  </span>
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="role-4" name="createNewAccount.role" type="radio" value="accountUser" aria-controls="hidden-permissions-account-user" aria-expanded="false" {{ checked("createNewAccount.role",'accountUser') }}>
+                <label class="govuk-label govuk-radios__label govuk-!-font-weight-bold" for="role-4">
+                  Account standard user
+                  <span class="govuk-!-font-weight-regular"><br/>
+                    This type of user has permission to view all information on the account. In addition you may wish to grant some or all permissions to perform other tasks on the account.
+                  </span>
+                </label>
+              </div>
+              <!-- for use in other contexts when Super Users and NA users are adding new verifier users
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="role-5" name="createNewAccount.role" type="radio" value="verifierAdmin" aria-controls="hidden-permissions-verifier-admin" aria-expanded="false" {{ checked("createNewAccount.role",'verifierAdmin') }}>
+                <label class="govuk-label govuk-radios__label govuk-!-font-weight-bold" for="role-5">
+                  Verifier administrator
+                  <span class="govuk-!-font-weight-regular"><br/>
+                    test
+                  </span>
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="role-6" name="createNewAccount.role" type="radio" value="verifierUser" aria-controls="hidden-permissions-verifier-user" aria-expanded="false" {{ checked("createNewAccount.role",'verifierUser') }}>
+                <label class="govuk-label govuk-radios__label govuk-!-font-weight-bold" for="role-6">
+                  Verifier user
+                  <span class="govuk-!-font-weight-regular"><br/>
+                    test
+                  </span>
+                </label>
+              </div>
+              -->
+              <div class="govuk-radios__conditional--hidden govuk-!-padding-top-5" id="hidden-permissions-account-user">
+                {{ govukCheckboxes({
+                  idPrefix: "permissions-account-user",
+                  name: "permissions",
+                  fieldset: {
+                    legend: {
+                      text: "Which permissions do you wish to assign?",
+                      isPageHeading: false,
+                      classes: "govuk-fieldset__legend--m"
+                    }
+                  },
+                  hint: {
+                    text: "Select all that apply."
+                  },
+                  items: [
+                    {
+                      value: "submitEmissions",
+                      text: "Submit emissions data"
+                    },
+                    {
+                      value: "proposeTransfer",
+                      text: "Propose transfers of allowances"
+                    },
+                    {
+                      value: "approveTransfer",
+                      text: "Approve transfers of allowances"
+                    },
+                    {
+                      value: "surrenderAllowances",
+                      text: "Surrender allowances"
+                    }
+                  ]
+                }) }}
+              </div>
+              <div class="govuk-radios__conditional--hidden govuk-!-padding-top-5" id="hidden-permissions-verifier-user">
+                {{ govukCheckboxes({
+                  idPrefix: "permissions-verifier",
+                  name: "permissions",
+                  fieldset: {
+                    legend: {
+                      text: "Which permissions do you wish to assign?",
+                      isPageHeading: false,
+                      classes: "govuk-fieldset__legend--m"
+                    }
+                  },
+                  hint: {
+                    text: "Select all that apply."
+                  },
+                  items: [
+                    {
+                      value: "view",
+                      text: "View verification tasks"
+                    },
+                    {
+                      value: "verify",
+                      text: "Verify emissions"
+                    }
+                  ]
+                }) }}
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block page_scripts %}
+      var $multipleChoice = $('.govuk-radios__item');
+      $multipleChoice.find('input[type="radio"]').click(function(){
+          $multipleChoice.removeClass('selected-reason-state');
+          $(this).parent().addClass('selected-reason-state');
+      });
+{% endblock page_scripts %}
+

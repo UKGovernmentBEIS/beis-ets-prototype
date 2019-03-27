@@ -428,6 +428,10 @@ router.post('/register-for-ets/linked-representative-answer', function (req, res
 })
 
 router.post('/account/:id/add-a-new-authorised-representative/enter-email-address', function (req, res, next) {
+    res.redirect('/account/' + req.params.id + '/add-a-new-authorised-representative/assign-permissions')
+})
+
+router.post('/account/:id/add-a-new-authorised-representative/assign-permissions', function (req, res, next) {
     res.redirect('/account/' + req.params.id + '/add-a-new-authorised-representative/check-and-submit')
 })
 
