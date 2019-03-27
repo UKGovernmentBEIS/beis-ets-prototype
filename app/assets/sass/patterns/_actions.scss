@@ -39,10 +39,10 @@ $base-grey-light: #F9F9F9;
       color: #4A4A4A;
       @include govuk-font($size: 16, $weight: light);
     }
-    .value {
+    .value, .account-id {
       @include govuk-font($size: 36, $weight: bold);
     }
-    .unit {
+    .unit, .account-title {
       @include govuk-font($size: 16, $weight: light);
     }
 
@@ -102,6 +102,13 @@ $base-grey-light: #F9F9F9;
       @supports(display: grid ) {
         @include govuk-media-query($from: tablet) {  
           grid-column: 1 / span 1;
+        }
+      }
+    }
+    .account {
+      @supports(display: grid ) {
+        @include govuk-media-query($from: tablet) {  
+          grid-column: 1 / span 2;
         }
       }
     }

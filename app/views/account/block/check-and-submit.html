@@ -1,0 +1,30 @@
+{% extends "layouts/admin/base-account-question.html" %}
+
+{% block pageTitle %}
+  Check before blocking this account
+{% endblock %}
+
+
+{% block content %}
+
+  <h1 class="govuk-heading-xl">Check before blocking this account</h1>
+    <form class="form" action="check-and-submit" method="post">
+
+        <p>You are about to suspend account <strong>{{ installationData.permitId }}</strong>.</p><p>No trading will be permitted until the account is reinstated.</p>
+      {% from "textarea/macro.njk" import govukTextarea %}
+      {{ govukTextarea({
+        name: "account.block.moreDetail",
+        id: "more-detail",
+        label: {
+            text: "Why are you blocking this account?"
+        },
+        hint: {
+            text: "Please provide a reason."
+        }
+        }) }}
+      {{ govukButton({
+        text: "Block account"
+      }) }}
+    </form>
+
+{% endblock %}

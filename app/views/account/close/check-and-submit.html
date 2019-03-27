@@ -1,20 +1,30 @@
 {% extends "layouts/admin/base-account-question.html" %}
 
 {% block pageTitle %}
-  Check before closing the account
+  Check before proposing closing the account
 {% endblock %}
 
 
 {% block content %}
 
-  <h1 class="govuk-heading-xl">Check before closing the account</h1>
+  <h1 class="govuk-heading-xl">Check before proposing closing the account</h1>
     <form class="form" action="check-and-submit" method="post">
 
-      <p>You are about to close account <strong>{{ installationData.permitId }}</strong>.</p>
+      <p>You are about to propose closing account <strong>{{ installationData.permitId }}</strong>.</p>
       <p>Closing the account will not be possible if there are any allowances in the account.</p>
-
+      {% from "textarea/macro.njk" import govukTextarea %}
+      {{ govukTextarea({
+        name: "account.close.moreDetail",
+        id: "more-detail",
+        label: {
+            text: "Why are you proposing to close this account?"
+        },
+        hint: {
+            text: "Please provide a reason."
+        }
+        }) }}
       {{ govukButton({
-        text: "Close account"
+        text: "Propose account closure"
       }) }}
     </form>
 

@@ -77,7 +77,7 @@ if (isSecure) {
 }
 
 // Authentication middleware
-app.use(authentication)
+// app.use(authentication) //requested to disable password-only viewing
 
 // Set up App
 var appViews = [
