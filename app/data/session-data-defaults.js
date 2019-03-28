@@ -85,20 +85,25 @@ module.exports = {
 					active: 'false'
 				}
 			],
-  'accountHolders': [
+  'organisations': [
 				{
-					'companyName': 'Lufberg Concrete Ltd.',
+          'id': '424434',
+					'companyName': 'Global Power Inc.',
 					'registrationNumber': '3242342667',
-					'numberOfTradingAccounts': 3,
-					'numberOfInstallationAccounts': 5,
-					'numberOfAdminUsers': 2,
+					'status': 'open'
+				},
+				{
+          'id': '934572',
+					'companyName': 'British Steel Plc.',
+					'registrationNumber': '5829384513',
 					'status': 'open'
 				}
 			],
   'installations': [
     {
       'name': 'Nevern Power Limited',
-      'accountHolder': 'Global Power Inc.',
+      'organisationId': '424434',
+      'organisation': 'Global Power Inc.',
       'complianceStatusCode': 'A',
       'status': 'open',
       'units': 2364,
@@ -121,7 +126,8 @@ module.exports = {
     },
     {
       'name': 'Scunthorpe Integrated Iron & Steel Works',
-      'accountHolder': 'British Steel plc',
+      'organisationId': '934572',
+      'organisation': 'British Steel plc',
       'complianceStatusCode': 'B',
       'status': 'open',
       'units': 2364,
@@ -137,8 +143,8 @@ module.exports = {
     },
     {
       'name': 'ETS Trades',
-      'accountHolder': 'MRC Trading Ltd',
-      'complianceStatusCode': 'C',
+      'organisationId': '424434',
+      'organisation': 'Global Power Inc.',
       'status': 'open',
       'units': 2500,
       'permitId': 'EU-100-82345-0-757',
@@ -153,7 +159,8 @@ module.exports = {
     },
     {
       'name': 'Port Talbot Steelworks',
-      'accountHolder': 'British Steel plc',
+      'organisationId': '934572',
+      'organisation': 'British Steel plc',
       'complianceStatusCode': 'C',
       'status': 'open',
       'units': 2364,
@@ -167,7 +174,8 @@ module.exports = {
     },
     {
       'name': 'Lynemouth Power Station',
-      'accountHolder': 'Global Power Inc.',
+      'organisationId': '424434',
+      'organisation': 'Global Power Inc.',
       'complianceStatusCode': 'C',
       'status': 'open',
       'units': 2364,

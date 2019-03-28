@@ -133,6 +133,24 @@ router.get('/account/:id/:page?/:subPage?', function (req, res, next) {
   }
 })
 
+router.get('/organisation/:id/:page?/:subPage?', function (req, res, next) {
+  res.locals['currentDate'] = new Date(Date.now()).toISOString()
+  res.locals['organisationID'] = req.params.id
+
+  res.locals.organisationData = req.session.data.organisations.filter(function (organisation) {
+    if (organisation.id === req.params.id) {
+      console.log(organisation.id)
+      return organisation
+    }
+  })[0]
+
+  if (!req.params.page) {
+    res.redirect('details/view')
+  } else {
+    next()
+  }
+})
+
 router.get('/apply-for-an-account/:page', function (req, res, next) {
   next()
 })
@@ -200,6 +218,18 @@ router.get('/account/:id/:page/:subPage', function (req, res, next) {
     }
   })[0]
   res.render('account/' + req.params.page + '/' + req.params.subPage)
+})
+
+router.get('/organisation/:id/:page/:subPage', function (req, res, next) {
+  if (req.query.error) {
+    res.locals.errorExists = req.query.error
+  }
+  res.locals.organisation = req.session.data.organisations.filter(function (organisation) {
+    if (organisation.id === req.params.id) {
+      return organisation
+    }
+  })[0]
+  res.render('organisation/' + req.params.page + '/' + req.params.subPage)
 })
 
 router.post('/account/:id/submit-emissions/specify-amount', function (req, res) {

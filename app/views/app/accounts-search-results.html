@@ -49,7 +49,7 @@
             <tr class="govuk-table__row">
             <th class="govuk-table__header" scope="col">Account</th>
             <th class="govuk-table__header" scope="col">Account name</th>
-            <th class="govuk-table__header" scope="col">Account holder</th>
+            <th class="govuk-table__header" scope="col">Organisation</th>
             <th class="govuk-table__header" scope="col">Compliance status</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Allowances</th>
             </tr>
@@ -60,7 +60,7 @@
             <tr class="govuk-table__row">
                 <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
                 <td class="govuk-table__cell">{{ acct.name }} {% if acct.status != "open" %}{{acct.status | capitalize}}{% endif %}</td>
-                <td class="govuk-table__cell">{{ acct.accountHolder }}</td>
+                <td class="govuk-table__cell"><a href="/organisation/{{ acct.organisationId }}/details/view">{{ acct.organisation }}</a></td>
                 <td class="govuk-table__cell">
                     {% if acct.complianceStatusCode == "A" %}
                         <span class="jui-status  jui-status--new">SURRENDER DUE</span>
@@ -88,7 +88,7 @@
                     <tr class="govuk-table__row">
                         <th class="govuk-table__header" scope="row"><a href="/account/{{ acct.permitId }}/">{{ acct.permitId }}</a></th>
                         <td class="govuk-table__cell">{{ acct.name }}{% if acct.status != "open" %} <strong>({{acct.status | capitalize}})</strong>{% endif %}</td>
-                        <td class="govuk-table__cell">{{ acct.accountHolder }}</td>
+                        <td class="govuk-table__cell"><a href="/organisation/{{ acct.organisationId }}/details/view">{{ acct.organisation }}</a></td>
                         <td class="govuk-table__cell">
                             {% if acct.complianceStatusCode == "A" %}
                                 <span class="jui-status  jui-status--urgent">SURRENDER DUE</span>

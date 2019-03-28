@@ -1,0 +1,66 @@
+{% extends "layouts/admin/base-account.html" %}
+{% from "summary-list/macro.njk" import govukSummaryList %}
+{% set hasSidebar = true %}
+{% block hmctsIdentityBarTitle %}
+<strong>{{ organisationData.companyName }}{% if organisationData.status != "open" %} <strong> ({{ organisationData.status | capitalize}})</strong>{% endif %}</strong>
+{% endblock %}
+
+{% block buttons %}
+<div class="hmcts-identity-bar__actions">
+  {# primary actions #}
+  <div class="hmcts-menu">
+    <div class="hmcts-menu__wrapper">
+      <a href="/organisation/{{ organisationData.id }}/create-new-account/choose-account-type" role="button" class="govuk-button hmcts-menu__item  ">
+       Create a new account
+      </a>
+      <a href="/organisation/{{ organisationData.id }}/edit/update-details" role="button" class="govuk-button hmcts-menu__item
+          hmcts-button--secondary
+           govuk-!-margin-right-2">
+        Edit organisation details
+      </a>
+    </div>
+    </div>
+   {# grouped actions #}
+  
+</div>
+{% endblock buttons %}
+{% block headerContent %}
+  <h1 class="govuk-heading-xl">Organisation details for {{organisation.companyName}}</h1>
+{% endblock %}
+{% block mainContent %}
+
+{{ govukSummaryList({
+  classes: 'govuk-summary-list--no-border',
+  rows: [
+    {
+      key: {
+        text: "Organisation name"
+      },
+      value: {
+        text: organisation.companyName
+      }
+    },
+    {
+      key: {
+        text: "Registration Number"
+      },
+      value: {
+        html: organisation.registrationNumber
+      }
+    },
+    {
+      key: {
+        text: "Status"
+      },
+      value: {
+        text: organisation.status | capitalize
+      }
+    }
+  ]
+}) }}
+
+{% endblock %}
+
+{% block sideContent %}
+
+{% endblock %}
