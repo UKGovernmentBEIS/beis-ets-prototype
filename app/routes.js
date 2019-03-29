@@ -571,11 +571,15 @@ router.post('/user-registration/full-name', function (req, res) {
 })
 
 router.post('/user-registration/contact-number', function (req, res) {
+  res.redirect("uk-address");
+})
+
+router.post('/user-registration/uk-address', function (req, res) {
   res.redirect("country-and-date-of-birth");
 })
 
 router.post('/user-registration/country-and-date-of-birth', function (req, res) {
-  res.redirect("identification-details");
+  res.redirect("check-your-answers");
 })
 
 router.post('/user-registration/identification-details', function (req, res) {

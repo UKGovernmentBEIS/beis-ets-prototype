@@ -53,6 +53,23 @@ What type of account do you need?
           },
           {
             key: {
+              text: "Address"
+            },
+            value: {
+              text: data.userRegistration.address
+            },
+            actions: {
+              items: [
+                {
+                  href: "uk-address",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
               text: "Date of birth"
             },
             value: {
@@ -81,91 +98,6 @@ What type of account do you need?
                   href: "country-and-date-of-birth",
                   text: "Change",
                   visuallyHiddenText: "country of birth"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Place of birth"
-            },
-            value: {
-              text: data.userRegistration.placeOfBirth
-            },
-            actions: {
-              items: [
-                {
-                  href: "country-and-date-of-birth",
-                  text: "Change",
-                  visuallyHiddenText: "place of birth"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Type of identification document"
-            },
-            value: {
-              text: data.userRegistration.identificationDocumentType | capitalize
-            },
-            actions: {
-              items: [
-                {
-                  href: "identification-details",
-                  text: "Change",
-                  visuallyHiddenText: "type of identification document"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Document identification number"
-            },
-            value: {
-              text: data.userRegistration.identificationDocumentNumber
-            },
-            actions: {
-              items: [
-                {
-                  href: "identification-details",
-                  text: "Change",
-                  visuallyHiddenText: "document identification number"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Document expiry date"
-            },
-            value: {
-              text: data.userRegistration.identificationDocumentExpiryDate.day +'/'+ data.userRegistration.identificationDocumentExpiryDate.month +'/'+ data.userRegistration.identificationDocumentExpiryDate.year
-            },
-            actions: {
-              items: [
-                {
-                  href: "identification-details",
-                  text: "Change",
-                  visuallyHiddenText: "document expiry date"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Document uploaded"
-            },
-            value: {
-              text: data.userRegistration.identificationDocumentFileUpload
-            },
-            actions: {
-              items: [
-                {
-                  href: "document-upload",
-                  text: "Change",
-                  visuallyHiddenText: "document uploaded"
                 }
               ]
             }
