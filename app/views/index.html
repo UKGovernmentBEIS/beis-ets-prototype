@@ -43,13 +43,13 @@
       <h2 class="govuk-heading-s">Set parameters</h2>
       <ul class="govuk-list govuk-list--bullet">
         <li>
-          <a href="/?twofaSetupComplete=Yes">
+          <a href="{% if data.twofaSetupComplete == "Yes" %}/?twofaSetupComplete=No{% else %}/?twofaSetupComplete=Yes{% endif %}">
             Assume two-factor authentication {% if data.twofaSetupComplete == "Yes" %}hasn't{% else %}has{% endif %} already been set up
           </a>
           <span class="govuk-hint">Currently 2FA {% if data.twofaSetupComplete == "Yes" %}<strong>has</strong>{% else %}<strong>has not</strong>{% endif %} been set up by the user</span>
         </li>
         <li>
-          <a href="/?userPersona=ea">
+          <a href="{% if data.userPersona == "ea" %}/?userPersona=orgUser{% else %}/?userPersona=ea{% endif %}">
             Set user type to {% if data.userPersona == "ea" %}an organisation user{% else %}an Environment Agency user{% endif %}
           </a>
           <span class="govuk-hint">Currently user type is set to {% if data.userPersona == "ea" %}<strong>an Environment Agency user</strong>{% else %}<strong>an organisation user</strong>{% endif %}
