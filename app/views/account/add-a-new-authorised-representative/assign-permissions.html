@@ -7,9 +7,11 @@
 Enter email address
 {% endblock %}
 
+{% block beforeContent %}
+        <a class="govuk-back-link" href="#" onclick="javascript:history.go(-1)">Back</a>
+{% endblock %}
+
 {% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
       <form class="form" method="post">
        <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -18,7 +20,6 @@ Enter email address
             </h1>
           </legend>
           <p>If you want to trade on the account you'll need to add another individual to the account</p>
-          <div id="radios-with-supporting-text">
             <div class="govuk-radios--conditional govuk-!-margin-bottom-4" data-module="radios">
               <!-- for use in other contexts when Super Users and NA users are adding new users
               <div class="govuk-radios__item">
@@ -139,7 +140,6 @@ Enter email address
                 }) }}
               </div>
             </div>
-          </div>
         </fieldset>
 
         {{ govukButton({
@@ -147,8 +147,6 @@ Enter email address
         }) }}
       </form>
 
-    </div>
-  </div>
 {% endblock %}
 
 {% block pageScripts %}

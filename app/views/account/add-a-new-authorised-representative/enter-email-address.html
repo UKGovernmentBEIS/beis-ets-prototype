@@ -7,9 +7,11 @@
 Enter email address
 {% endblock %}
 
+{% block beforeContent %}
+        <a class="govuk-back-link" href="#" onclick="javascript:history.go(-1)">Back</a>
+{% endblock %}
+
 {% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">
         Provide the email address of the new authorised representative
       </h1>
@@ -30,6 +32,4 @@ Enter email address
           text: "Continue"
         }) }}
       </form>
-    </div>
-  </div>
 {% endblock %}

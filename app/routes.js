@@ -117,6 +117,7 @@ router.post('/app/users/search', function (req, res, next) {
 })
 
 router.get('/account/:id/:page?/:subPage?', function (req, res, next) {
+  req.session.data.onBoardingComplete = "Yes"; // Make sure dual-use journeys (eg. adding an authorised rep) appear in admin-interface style from now on...
   res.locals['currentDate'] = new Date(Date.now()).toISOString()
   res.locals['installationID'] = req.params.id
 
