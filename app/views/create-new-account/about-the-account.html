@@ -8,6 +8,10 @@
   Enter the permit ID
 {% endblock %}
 
+{% block beforeContent %}
+        <a class="govuk-back-link" href="#" onclick="javascript:history.go(-1)">Back</a>
+{% endblock %}
+
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
